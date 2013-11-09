@@ -12,3 +12,6 @@ class Node:
 
         for child_node in self.edges:
             node.edges.append(child_node.clone())
+
+    def __getitem__(self, item):
+        return self.edges[item]
