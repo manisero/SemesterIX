@@ -23,7 +23,11 @@ class Node:
 
     def add_edges(self, nodes):
         for node in nodes:
-            self.edges.append(node)
+            if node not in self.edges:
+                self.edges.append(node)
+
+            if self not in node.edges:
+                node.edges.append(self)
 
     def __getitem__(self, item):
         return self.edges[item]
