@@ -35,3 +35,6 @@ class Node:
         for node in self.iterator():
             if node.node_id == node_id:
                 return node
+
+    def node_count(self):
+        return sum(1 for _ in self.iterator())

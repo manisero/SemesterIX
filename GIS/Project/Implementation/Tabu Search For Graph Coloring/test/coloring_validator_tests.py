@@ -4,7 +4,7 @@ from validation.coloring_validator import ColoringValidator
 
 
 class ColoringValidatorTests(unittest.TestCase):
-    def test_is_coloring_valid_method_positive_verification(self):
+    def test_is_coloring_valid_method_positive(self):
         n1 = Node('red')
         n2 = Node('green')
         n3 = Node('green')
@@ -20,7 +20,7 @@ class ColoringValidatorTests(unittest.TestCase):
 
         self.assertTrue(coloring_valid)
 
-    def test_is_coloring_valid_method_negative_verification(self):
+    def test_is_coloring_valid_method_negative(self):
         n1 = Node('red')
         n2 = Node('green')
         n3 = Node('green')
