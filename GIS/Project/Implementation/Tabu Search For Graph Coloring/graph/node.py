@@ -1,17 +1,19 @@
 class Node:
-    def __init__(self, color=None):
+    Id = 0
+
+    def __init__(self, color=None, node_id=None):
         self.edges = []
         self.color = color
+
+        if node_id is not None:
+            self.node_id = node_id
+        else:
+            self.node_id = Node.Id
+            Node.Id += 1
 
     def add_edges(self, nodes):
         for node in nodes:
             self.edges.append(node)
-
-    def clone(self):
-        node = Node(self.color)
-
-        for child_node in self.edges:
-            node.edges.append(child_node.clone())
 
     def __getitem__(self, item):
         return self.edges[item]

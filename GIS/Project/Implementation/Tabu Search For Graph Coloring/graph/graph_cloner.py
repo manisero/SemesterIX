@@ -15,7 +15,7 @@ class GraphCloner:
 
     def fill_in_clone_nodes(self, node):
         self.inspected_nodes.add(node)
-        cloned_node = Node(node.color)
+        cloned_node = Node(node.color, node.node_id)
         self.cloned_nodes[node] = cloned_node
 
         for child_node in node.edges:
