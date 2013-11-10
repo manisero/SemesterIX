@@ -9,10 +9,10 @@ class MemoryTests(unittest.TestCase):
     def test_is_in_short_term_memory_method(self):
         self.memory.clear_memory()
 
-        n1 = Node(1)
-        n2 = Node(2)
-        n3 = Node(3)
-        n4 = Node(4)
+        n1 = Node(1, 18)
+        n2 = Node(2, 33)
+        n3 = Node(3, 52)
+        n4 = Node(4, 89)
 
         self.memory.add_to_memory(n1, 2)
         n1_2_in_memory_first = self.memory.is_in_short_term_memory(n1, 2)
