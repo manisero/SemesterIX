@@ -4,8 +4,6 @@ from graph.node import Node
 
 
 class CostEvaluatorTests(unittest.TestCase):
-    cost_evaluator = CostEvaluator()
-
     def test_evaluate_method(self):
         r1 = Node('red')
         r2 = Node('red')
@@ -24,8 +22,8 @@ class CostEvaluatorTests(unittest.TestCase):
         g2.add_edges([r3, g3])
         g3.add_edges([g2, b2])
 
-        evaluated_cost_r1 = self.cost_evaluator.evaluate(r1, ['red', 'blue', 'green'])
-        evaluated_cost_g3 = self.cost_evaluator.evaluate(g3, ['blue', 'red', 'green'])
+        evaluated_cost_r1 = CostEvaluator.evaluate(r1, ['red', 'blue', 'green'])
+        evaluated_cost_g3 = CostEvaluator.evaluate(g3, ['blue', 'red', 'green'])
 
         self.assertEqual(evaluated_cost_r1, evaluated_cost_g3)
         self.assertEqual(-4, evaluated_cost_r1)
@@ -42,6 +40,6 @@ class CostEvaluatorTests(unittest.TestCase):
         n4.add_edges([n2, n3, n5])
         n5.add_edges([n4])
 
-        evaluated_cost = self.cost_evaluator.evaluate(n1, ['red', 'green'])
+        evaluated_cost = CostEvaluator.evaluate(n1, ['red', 'green'])
 
         self.assertEqual(-7, evaluated_cost)

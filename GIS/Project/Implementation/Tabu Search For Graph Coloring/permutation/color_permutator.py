@@ -4,11 +4,9 @@ from graph.graph_cloner import GraphCloner
 class ColorPermutator:
     def __init__(self):
         self.graph_cloner = GraphCloner()
-        self.inspected_nodes = set()
         self.permutations = []
 
     def permutate(self, root_node, color_set, banned_transitions=None):
-        self.inspected_nodes = set()
         self.permutations = []
 
         if banned_transitions is None:
@@ -18,18 +16,13 @@ class ColorPermutator:
 
         return self.permutations
 
-    def find_permutations(self, node, color_set, banned_transitions):
-        self.inspected_nodes.add(node)
+    def find_permutations(self, root_node, color_set, banned_transitions):
+        for node in root_node.iterator():
+            for color in color_set:
+                if node.color == color or (node.node_id, color) in banned_transitions:
+                    continue
 
-        for color in color_set:
-            if node.color == color or (node.node_id, color) in banned_transitions:
-                continue
+                cloned_node = self.graph_cloner.clone(node)
+                cloned_node.color = color
 
-            cloned_node = self.graph_cloner.clone(node)
-            cloned_node.color = color
-
-            self.permutations.append(cloned_node)
-
-        for child_node in node.edges:
-            if child_node not in self.inspected_nodes:
-                self.find_permutations(child_node, color_set, banned_transitions)
+                self.permutations.append(cloned_node)

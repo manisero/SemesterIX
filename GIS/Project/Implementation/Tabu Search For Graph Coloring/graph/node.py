@@ -1,3 +1,6 @@
+from graph.node_iterator import NodeIterator
+
+
 class Node:
     Id = 0
 
@@ -25,23 +28,10 @@ class Node:
     def __getitem__(self, item):
         return self.edges[item]
 
+    def iterator(self):
+        return NodeIterator(self)
+
     def get_node_of_id(self, node_id):
-        self.visited_nodes = []
-        return self.recursive_search_for_node_of_id(self, node_id)
-
-    def recursive_search_for_node_of_id(self, current_node, node_id):
-        self.visited_nodes.append(current_node)
-
-        if current_node.node_id == node_id:
-            return current_node
-
-        for child_node in current_node.edges:
-            if child_node in self.visited_nodes:
-                continue
-
-            found_node = self.recursive_search_for_node_of_id(child_node, node_id)
-
-            if found_node is not None:
-                return found_node
-
-        return None
+        for node in self.iterator():
+            if node.node_id == node_id:
+                return node

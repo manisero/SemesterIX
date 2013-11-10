@@ -13,40 +13,32 @@ class CostEvaluator:
 
     """
     def __init__(self):
-        self.inspected_nodes = []
-        self.inspected_edges = []
+        pass
 
-    def evaluate(self, root_node, color_set):
+    @staticmethod
+    def evaluate(root_node, color_set):
         cost = 0
 
         for color in color_set:
-            self.inspected_nodes = []
-            self.inspected_edges = []
-            c_i, e_i = self.evaluate_score_for_color(root_node, color)
+            c_i, e_i = CostEvaluator.evaluate_score_for_color(root_node, color)
 
             cost += -1 * c_i ** 2 + 2 * c_i * e_i
 
         return cost
 
-    def evaluate_score_for_color(self, node, color):
+    @staticmethod
+    def evaluate_score_for_color(root_node, color):
+        inspected_edges = []
         c_i = 0
         e_i = 0
 
-        self.inspected_nodes.append(node)
+        for node in root_node.iterator():
+            if node.color == color:
+                c_i += 1
 
-        if node.color == color:
-            c_i += 1
-
-        for child_node in node.edges:
-            if node.color == color and child_node.color == color:
-                if {node, child_node} not in self.inspected_edges:
-                    self.inspected_edges.append({node, child_node})
+            for child_node in node.edges:
+                if {node, child_node} not in inspected_edges and node.color == color and child_node.color == color:
                     e_i += 1
-
-            if child_node not in self.inspected_nodes:
-                c_i_prim, e_i_prim = self.evaluate_score_for_color(child_node, color)
-
-                c_i += c_i_prim
-                e_i += e_i_prim
+                    inspected_edges.append({node, child_node})
 
         return c_i, e_i
