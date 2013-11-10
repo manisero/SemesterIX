@@ -4,8 +4,6 @@ from graph.node import Node
 
 
 class GraphClonerTests(unittest.TestCase):
-    graph_cloner = GraphCloner()
-
     def test_clone_method(self):
         n1 = Node(1, 123)
         n2 = Node(2, 456)
@@ -16,7 +14,7 @@ class GraphClonerTests(unittest.TestCase):
         n3.add_edges([n1, n4])
         n4.add_edges([n1, n2, n3])
 
-        cloned_n3 = self.graph_cloner.clone(n3)
+        cloned_n3 = GraphCloner.clone(n3)
         cloned_n1 = cloned_n3.get_node_of_id(123)
         cloned_n2 = cloned_n3.get_node_of_id(456)
         cloned_n3 = cloned_n3.get_node_of_id(789)

@@ -11,14 +11,15 @@ class NodeIterator:
         if self.current_node is None:
             self.current_node = self.root_node
         else:
-            current_node = self.current_node
+            has_unvisited_child = False
 
             for child_node in self.current_node.edges:
                 if child_node not in self.visited_nodes:
+                    has_unvisited_child = True
                     self.current_node = child_node
                     break
 
-            if current_node == self.current_node:
+            if not has_unvisited_child:
                 self.current_node = self.recursive_search_next_node()
 
         if self.current_node is None:

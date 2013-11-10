@@ -3,7 +3,6 @@ from graph.graph_cloner import GraphCloner
 
 class ColorPermutator:
     def __init__(self):
-        self.graph_cloner = GraphCloner()
         self.permutations = []
 
     def permutate(self, root_node, color_set, banned_transitions=None):
@@ -22,7 +21,7 @@ class ColorPermutator:
                 if node.color == color or (node.node_id, color) in banned_transitions:
                     continue
 
-                cloned_node = self.graph_cloner.clone(node)
+                cloned_node = GraphCloner.clone(node)
                 cloned_node.color = color
 
                 self.permutations.append(cloned_node)
