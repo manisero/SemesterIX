@@ -19,7 +19,8 @@ class GraphColoringSearchPerformer:
 
     def recursive_search(self, node, color_set):
         permutations = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
-        permutations_to_scores = {permutation: self.cost_evaluator.evaluate(node, color_set) for permutation in
+
+        permutations_to_scores = {permutation: self.cost_evaluator.evaluate(permutation, color_set) for permutation in
                                   permutations}
 
         if len(permutations_to_scores) == 0:

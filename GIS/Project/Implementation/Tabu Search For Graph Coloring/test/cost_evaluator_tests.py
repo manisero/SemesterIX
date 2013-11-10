@@ -29,3 +29,19 @@ class CostEvaluatorTests(unittest.TestCase):
 
         self.assertEqual(evaluated_cost_r1, evaluated_cost_g3)
         self.assertEqual(-4, evaluated_cost_r1)
+
+    def test_evaluate_method_second(self):
+        n1 = Node('red')
+        n2 = Node('green')
+        n3 = Node('green')
+        n4 = Node('red')
+        n5 = Node('red')
+        n1.add_edges([n2, n3])
+        n2.add_edges([n1, n4])
+        n3.add_edges([n1, n4])
+        n4.add_edges([n2, n3, n5])
+        n5.add_edges([n4])
+
+        evaluated_cost = self.cost_evaluator.evaluate(n1, ['red', 'green'])
+
+        self.assertEqual(-7, evaluated_cost)
