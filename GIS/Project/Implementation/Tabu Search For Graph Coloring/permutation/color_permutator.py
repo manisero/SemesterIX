@@ -10,6 +10,10 @@ class ColorPermutator:
     def permutate(self, root_node, color_set, banned_transitions=None):
         self.inspected_nodes = set()
         self.permutations = []
+
+        if banned_transitions is None:
+            banned_transitions = []
+
         self.find_permutations(root_node, color_set, banned_transitions)
 
         return self.permutations
@@ -18,10 +22,7 @@ class ColorPermutator:
         self.inspected_nodes.add(node)
 
         for color in color_set:
-            if node.color == color:
-                continue
-
-            if banned_transitions is not None and (node.node_id, color) in banned_transitions:
+            if node.color == color or (node.node_id, color) in banned_transitions:
                 continue
 
             cloned_node = self.graph_cloner.clone(node)
