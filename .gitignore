@@ -1,3 +1,12 @@
+# LaTeX
+*.aux
+*.log
+*.backup
+*.tex~
+
+# Linux
+.gitignore~
+
 # Mac
 .DS_Store
 
