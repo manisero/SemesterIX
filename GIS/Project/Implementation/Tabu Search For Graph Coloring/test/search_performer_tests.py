@@ -145,3 +145,33 @@ class SearchPerformerTests(unittest.TestCase):
         self.assertEqual(1, len(fifth_permutations))
         self.assertEqual(72, fifth_node.node_id)
         self.assertEqual('black', fifth_node.color)
+
+    def test_get_best_score_for_iteration_method_with_long_term_memory_usage(self):
+        search_performer = GraphColoringSearchPerformer(StopCriteria(10, 10), 2)
+        n1_first_permutation = Node(1, 2)
+        n2_first_permutation = Node(1, 5)
+        n3_first_permutation = Node(1, 8)
+        n1_first_permutation.add_edges([n2_first_permutation])
+        n2_first_permutation.add_edges([n3_first_permutation])
+        n1_second_permutation = Node(1, 2)
+        n2_second_permutation = Node(1, 5)
+        n3_second_permutation = Node(1, 8)
+        n1_second_permutation.add_edges([n2_second_permutation])
+        n2_second_permutation.add_edges([n3_second_permutation])
+        n1_third_permutation = Node(1, 2)
+        n2_third_permutation = Node(1, 5)
+        n3_third_permutation = Node(1, 8)
+        n1_third_permutation.add_edges([n2_third_permutation])
+        n2_third_permutation.add_edges([n3_third_permutation])
+        search_performer.memory.add_to_memory(n1_first_permutation, 2)
+        search_performer.memory.add_to_memory(n2_first_permutation, 3)
+        search_performer.memory.add_to_memory(n3_first_permutation, 4)
+        search_performer.memory.add_to_memory(n1_first_permutation, 5)
+        search_performer.memory.add_to_memory(n3_first_permutation, 6)
+        search_performer.memory.add_to_memory(n1_first_permutation, 7)
+
+        best_score_for_iteration = search_performer.get_best_score_for_iteration(
+            [(n1_first_permutation, 3), (n2_first_permutation, 3), (n3_first_permutation, 3)])
+
+        self.assertEqual(3, best_score_for_iteration[1])
+        self.assertEqual(n2_first_permutation, best_score_for_iteration[0])

@@ -26,7 +26,7 @@ class GraphColoringSearchPerformer:
         permutations_to_scores = {permutation: self.cost_evaluator.evaluate(permutation, color_set) for permutation in
                                   permutations}
 
-        iteration_best_score = sorted(permutations_to_scores.items(), key=lambda t: t[1])[0]
+        iteration_best_score = self.get_best_score_for_iteration(permutations_to_scores.items())
 
         self.memory.add_to_memory(iteration_best_score[0], iteration_best_score[0].previous_color)
 
@@ -54,3 +54,21 @@ class GraphColoringSearchPerformer:
 
     def return_score(self):
         return self.best_score[0]
+
+    def get_best_score_for_iteration(self, permutations_to_scores_list):
+        permutations_to_scores_sorted = sorted(permutations_to_scores_list, key=lambda t: t[1])
+        best_score = permutations_to_scores_sorted[0]
+        best_scores = filter(lambda t: t[1] == best_score[1], permutations_to_scores_sorted)
+
+        if len(best_scores) == 0:
+            return best_score
+
+        permutation_to_return = best_score, None
+
+        for score in best_scores:
+            node_usages = sum(1 for _ in filter(lambda t: t[0] == score[0].node_id, self.memory.get_long_term_memory()))
+
+            if permutation_to_return[1] is None or node_usages < permutation_to_return[1]:
+                permutation_to_return = score, node_usages
+
+        return permutation_to_return[0]
