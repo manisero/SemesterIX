@@ -14,6 +14,79 @@
 
 SK11 Kolorowanie grafu za pomocą przeszukiwania z tabu.
 
-\section{Założenia}
+
+
+\section{Interpretacja tematu}
+Zadaniem programu powstałego w wyniku realizacji projektu będzie pokolorowanie wierzchołków zadanego grafu z użyciem jak najmniejszej liczby kolorów.
+Kolorowanie odbywać się będzie z wykorzystaniem heurystycznego algorytmu przeszukiwania z tabu.
+Węzłem przestrzeni przeszukiwań będzie pokolorowany (legalnie bądź nie) graf.
+
+\subsection{Funckja celu}
+Algorytm będzie dążył do minimalizacji funckcji celu\footnote{Definicja funkcji celu zaczerpnięta z: D. S. Johnson, C. R. Aragon, L. A. McGeoch, C. Schevon, Optimization by Simulated Annealing: An Experimental Evaluation; Part II, Graph Coloring and Number Partitioning, Operations Research, Vol. 39, No. 3, May-June 1991, pp. 378-406.}:
+
+$f(G) = -\sum_{i=1}^{k} C_i^2 + \sum_{i=1}^{k} 2 C_i E_i$,
+
+gdzie:
+\begin{itemize}
+ \item $G$ - graf, dla którego liczona jest funkcja celu,
+ \item $k$ - liczba kolorów użytych do pokolorowania grafu $G$,
+ \item $C_i$ - liczba wierzchołków grafu $G$ pokolorowanych na $i$-ty kolor,
+ \item $E_i$ - liczba krawędzi grafu $G$, których oba końce pokolorowane są na $i$-ty kolor.
+\end{itemize}
+
+Definicję funkcji należy rozumieć następująco:
+
+\begin{enumerate}
+ \item z jednej strony, faworyzowane są pokolorowania z użyciem jak najmniejszej liczby kolorów,
+ \item z drugiej strony, dyskryminowane są pokolorowania nielegalne.
+\end{enumerate}
+
+\subsection{Lista tabu}
+Lista tabu zawierać będzie ograniczoną liczę ostatnich akcji podjętych przez algorytm.
+Pojedynczą akcją będzie pokolorowanie pojedycznego wierzchołka na określony kolor.
+
+
+\section{Dane wejściowe i wyjściowe}
+Program przyjmował będzie ścieżkę do pliku zawierającego definicję grafu w postaci zbioru wierzchołków i zbioru krawędzi, np.:
+
+\begin{verbatim}
+A
+B
+C
+
+A,B
+B,C
+\end{verbatim}
+
+Plik wynikowy zawierał będzie listę par wierzchołek-kolor, np.:
+
+\begin{verbatim}
+A,1
+B,2
+C,1
+\end{verbatim}
+
+
+
+\section{Sposób testowania programu}
+
+\begin{itemize}
+ \item Poprawność działania programu zostanie zweryfikowana przy pomocy testów jednostkowych.
+ \item Wydajność algorytmu zostanie zmierzona z użyciem zestawu grafów testowych różniących się liczbą wierzchołków i krawędzi.
+\end{itemize}
+
+
+
+
+
+
+
+\section{Założenia niefunkcjonalne}
+
+\begin{itemize}
+ \item Język programowania: Python.
+ \item Postać wynikowego programu: aplikacja konsolowa.
+\end{itemize}
+
 
 \end{document}
