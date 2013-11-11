@@ -1,6 +1,8 @@
 # LaTeX
-.aux
-.log
+*.aux
+*.log
+*.backup
+*.tex~
 
 # Linux
 .gitignore~

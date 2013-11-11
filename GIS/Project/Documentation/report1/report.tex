@@ -22,9 +22,11 @@ Kolorowanie odbywać się będzie z wykorzystaniem heurystycznego algorytmu prze
 Węzłem przestrzeni przeszukiwań będzie pokolorowany (legalnie bądź nie) graf.
 
 \subsection{Funckja celu}
-Algorytm będzie dążył do minimalizacji funckcji celu\footnote{Definicja funkcji celu zaczerpnięta z: D. S. Johnson, C. R. Aragon, L. A. McGeoch, C. Schevon, Optimization by Simulated Annealing: An Experimental Evaluation; Part II, Graph Coloring and Number Partitioning, Operations Research, Vol. 39, No. 3, May-June 1991, pp. 378-406.}:
+Algorytm będzie dążył do minimalizacji funkcji celu\footnote{Definicja funkcji celu zaczerpnięta z: D. S. Johnson, C. R. Aragon, L. A. McGeoch, C. Schevon, Optimization by Simulated Annealing: An Experimental Evaluation; Part II, Graph Coloring and Number Partitioning, Operations Research, Vol. 39, No. 3, May-June 1991, pp. 378-406.}:
 
-$f(G) = -\sum_{i=1}^{k} C_i^2 + \sum_{i=1}^{k} 2 C_i E_i$,
+\begin{equation}
+ f(G) = -\sum_{i=1}^{k} C_i^2 + \sum_{i=1}^{k} 2 C_i E_i
+\end{equation}
 
 gdzie:
 \begin{itemize}
@@ -42,12 +44,12 @@ Definicję funkcji należy rozumieć następująco:
 \end{enumerate}
 
 \subsection{Lista tabu}
-Lista tabu zawierać będzie ograniczoną liczę ostatnich akcji podjętych przez algorytm.
+Lista tabu zawierać będzie ograniczoną liczbę ostatnich akcji podjętych przez algorytm.
 Pojedynczą akcją będzie pokolorowanie pojedycznego wierzchołka na określony kolor.
 
 
 \section{Dane wejściowe i wyjściowe}
-Program przyjmował będzie ścieżkę do pliku zawierającego definicję grafu w postaci zbioru wierzchołków i zbioru krawędzi, np.:
+Program przyjmował będzie ścieżkę do pliku zawierającego definicję grafu, np.:
 
 \begin{verbatim}
 A
