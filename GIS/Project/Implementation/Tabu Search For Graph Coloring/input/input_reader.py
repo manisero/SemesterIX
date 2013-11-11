@@ -2,6 +2,8 @@ from graph.node import Node
 
 
 class InputReader:
+    ColorId = 1
+
     def __init__(self):
         self.id_to_note_mapping = {}
         self.edge_ids = []
@@ -17,10 +19,12 @@ class InputReader:
                     raise Exception('Invalid input format!')
 
                 if edge[0] not in self.id_to_note_mapping:
-                    self.id_to_note_mapping[edge[0]] = Node(node_id=edge[0])
+                    self.id_to_note_mapping[edge[0]] = Node(color=InputReader.ColorId, node_id=edge[0])
+                    InputReader.ColorId += 1
 
                 if edge[1] not in self.id_to_note_mapping:
-                    self.id_to_note_mapping[edge[1]] = Node(node_id=edge[1])
+                    self.id_to_note_mapping[edge[1]] = Node(color=InputReader.ColorId, node_id=edge[1])
+                    InputReader.ColorId += 1
 
                 self.edge_ids.append(edge)
 
