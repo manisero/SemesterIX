@@ -19,8 +19,6 @@ class Node:
         if previous_color is not None:
             self.previous_color = previous_color
 
-        self.visited_nodes = []
-
     def add_edges(self, nodes):
         for node in nodes:
             if node not in self.edges:

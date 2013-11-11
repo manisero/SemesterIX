@@ -18,13 +18,13 @@ class GraphColoringSearchPerformer:
         return self.recursive_search(root_node, color_set)
 
     def recursive_search(self, node, color_set):
-        permutations = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
+        permutations = self.find_permutations(node, color_set)
+
+        if len(permutations) == 0:
+            return self.return_score()
 
         permutations_to_scores = {permutation: self.cost_evaluator.evaluate(permutation, color_set) for permutation in
                                   permutations}
-
-        if len(permutations_to_scores) == 0:
-            return self.return_score()
 
         iteration_best_score = sorted(permutations_to_scores.items(), key=lambda t: t[1])[0]
 
@@ -39,6 +39,18 @@ class GraphColoringSearchPerformer:
             return self.return_score()
 
         return self.recursive_search(iteration_best_score[0], color_set)
+
+    def find_permutations(self, node, color_set):
+        permutations = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
+
+        for index in range(1, len(self.memory.get_short_term_memory())):
+            permutations = self.color_permutator.permutate(node, color_set,
+                                                           self.memory.get_short_term_memory()[1:])
+
+            if len(permutations) > 0:
+                break
+
+        return permutations
 
     def return_score(self):
         return self.best_score[0]
