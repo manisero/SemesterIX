@@ -1,3 +1,18 @@
+# LaTeX
+*.aux
+*.log
+*.backup
+*.tex~
+
+# Linux
+.gitignore~
+
+# Mac
+.DS_Store
+
+# IDEA
+.idea/
+
 *.py[cod]
 
 # C extensions
