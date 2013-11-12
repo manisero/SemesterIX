@@ -14,7 +14,7 @@ class InputReaderTests(unittest.TestCase):
             test_file.write('C,E\n')
             test_file.seek(0)
 
-            graph = input_reader.input_graph(test_file.name)
+            graph, color_set = input_reader.read_input_graph_and_color_set(test_file.name)
             a_node = graph.get_node_of_id('A')
             b_node = graph.get_node_of_id('B')
             c_node = graph.get_node_of_id('C')
@@ -22,6 +22,10 @@ class InputReaderTests(unittest.TestCase):
             e_node = graph.get_node_of_id('E')
 
             self.assertEqual(5, graph.node_count())
+            self.assertEqual(3, len(color_set))
+            self.assertIn(0, color_set)
+            self.assertIn(1, color_set)
+            self.assertIn(2, color_set)
             self.assertEqual(2, len(a_node.edges))
             self.assertIn(b_node, a_node.edges)
             self.assertIn(d_node, a_node.edges)
