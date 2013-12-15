@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.cpoo;
 
 import pl.edu.pw.elka.cpoo.blur.GaussianBlurFilteringPerformer;
+import pl.edu.pw.elka.cpoo.canny.CannyEdgeDetector;
 import pl.edu.pw.elka.cpoo.edge.SobelOperatorFilteringPerformer;
 import pl.edu.pw.elka.cpoo.grayscale.GrayscaleFilteringPerformer;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
@@ -53,10 +54,9 @@ public class EntryPoint
     {
         File imageFile = new File("lena.bmp");
         BufferedImage image = ImageReader.readImage(imageFile);
-        BufferedImage grayscaleImage = GrayscaleFilteringPerformer.filter(image);
-        BufferedImage blurredImage = GaussianBlurFilteringPerformer.filter(grayscaleImage, 3);
-        BufferedImage filteredImage = SobelOperatorFilteringPerformer.filter(blurredImage);
 
-        return filteredImage;
+        CannyEdgeDetector detector = new CannyEdgeDetector(2);
+
+        return detector.filter(image);
     }
 }
