@@ -2,6 +2,7 @@ package pl.edu.pw.elka.cpoo;
 
 import pl.edu.pw.elka.cpoo.blur.GaussianBlurFilteringPerformer;
 import pl.edu.pw.elka.cpoo.edge.SobelOperatorFilteringPerformer;
+import pl.edu.pw.elka.cpoo.grayscale.GrayscaleFilteringPerformer;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
 
 import javax.swing.*;
@@ -52,7 +53,8 @@ public class EntryPoint
     {
         File imageFile = new File("lena.bmp");
         BufferedImage image = ImageReader.readImage(imageFile);
-        BufferedImage blurredImage = GaussianBlurFilteringPerformer.filter(image, 3);
+        BufferedImage grayscaleImage = GrayscaleFilteringPerformer.filter(image);
+        BufferedImage blurredImage = GaussianBlurFilteringPerformer.filter(grayscaleImage, 3);
         BufferedImage filteredImage = SobelOperatorFilteringPerformer.filter(blurredImage);
 
         return filteredImage;
