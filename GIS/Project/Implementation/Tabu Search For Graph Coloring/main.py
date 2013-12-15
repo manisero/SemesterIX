@@ -1,5 +1,6 @@
 import argparse
 import sys
+from evaluation.cost_evaluator import CostEvaluator
 from input.input_reader import InputReader
 from output.output_writer import OutputWriter
 from search.search_performer import GraphColoringSearchPerformer
@@ -23,7 +24,7 @@ def main():
     for file_name in arguments.input_file:
         output_writer.write_analyzed_file_name(file_name)
         graph, color_set = InputReader().read_input_graph_and_color_set(file_name)
-        output_writer.write_input(graph, color_set, True)
+        output_writer.write_input(graph, color_set, CostEvaluator.evaluate(graph, color_set), True)
         stop_criteria = StopCriteria(arguments.i, arguments.s)
         best_score = GraphColoringSearchPerformer(stop_criteria, arguments.m, output_writer).search(graph, color_set)
         output_writer.write_result(best_score)
