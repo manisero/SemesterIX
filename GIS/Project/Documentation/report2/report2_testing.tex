@@ -2,7 +2,16 @@
 Przetestowane zostaną następujące aspekty programu:
 
 \subsection{Poprawność działania}
-Poprawność działania programu zostanie zweryfikowana przy pomocy testów jednostkowych.
+\label{sec:algorithm_correctness}
+Poprawność działania programu zostanie zweryfikowana:
+
+\begin{description}
+ \item [Przy pomocy testów jednostkowych] Każda metoda wykorzystywana w~algorytmie zostanie przetestowana jednostkowo.
+ \item [Przy pomocy zbiorów danych zaczerpniętych z~Internetu] Do testowania aplikacji zostaną wykorzystane znane optymalne pokolorowania grafu zaczerpnięte ze stron internetowych. Przykładowe dane znajdują się na serwerze \url{http://mat.gsia.cmu.edu/COLOR/instances.html}.
+\end{description}
+
+\subsection{Optymalny rozmiar pamięci tabu}
+Optymalny rozmiar pamięci będziemy wyznaczać korzystając ze zbiorów danych testowych wymienionych w~sekcji \ref{sec:algorithm_correctness}. Będziemy porównywać czas wyznaczania oraz poprawność danego rozwiązania dla różnych rodzajów pamięci. 
 
 \subsection{Wydajność}
 \begin{itemize}
