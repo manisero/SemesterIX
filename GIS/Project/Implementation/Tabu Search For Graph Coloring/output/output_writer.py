@@ -28,12 +28,13 @@ class OutputWriter:
 
         self.write_to_output(to_write, verbose)
 
-    def write_input(self, root_node, color_set, verbose=False):
+    def write_input(self, root_node, color_set, initial_score, verbose=False):
         to_write = 'Read colorset: \n' + ', '.join([str(color) for color in color_set])
         to_write += '\nRead graph: \n'
 
         self.write_to_output(to_write, verbose)
         self.write_graph(root_node, verbose)
+        self.write_to_output('Initial score: ' + str(initial_score) + '\n', verbose)
 
     def write_result(self, root_node, verbose=False):
         self.write_to_output('Resulting graph: \n', verbose)
