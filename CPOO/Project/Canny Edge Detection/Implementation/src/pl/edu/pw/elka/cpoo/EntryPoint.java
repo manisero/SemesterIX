@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.cpoo;
 
 import pl.edu.pw.elka.cpoo.blur.GaussianBlurFilteringPerformer;
+import pl.edu.pw.elka.cpoo.edge.SobelOperatorFilteringPerformer;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
 
 import javax.swing.*;
@@ -42,17 +43,18 @@ public class EntryPoint
     public static JLabel createImageLabel()
     {
         JLabel label = new JLabel();
-        label.setIcon(new ImageIcon(getBlurredImage()));
+        label.setIcon(new ImageIcon(getFilteredImage()));
 
         return label;
     }
 
-    public static BufferedImage getBlurredImage()
+    public static BufferedImage getFilteredImage()
     {
         File imageFile = new File("lena.bmp");
         BufferedImage image = ImageReader.readImage(imageFile);
         BufferedImage blurredImage = GaussianBlurFilteringPerformer.filter(image, 3);
+        BufferedImage filteredImage = SobelOperatorFilteringPerformer.filter(blurredImage);
 
-        return blurredImage;
+        return filteredImage;
     }
 }
