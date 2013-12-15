@@ -1,1 +1,30 @@
 \section{Opis algorytmu}
+Zadaniem programu jest pokolorowanie wierzchołków zadanego grafu z użyciem jak najmniejszej liczby kolorów.
+Kolorowanie odbywa się z wykorzystaniem heurystycznego algorytmu przeszukiwania z tabu.
+Węzłem przestrzeni przeszukiwań jest pokolorowany (legalnie bądź nie) graf.
+
+\subsection{Funckja celu}
+Algorytm dąży do minimalizacji funkcji celu\footnote{Definicja funkcji celu zaczerpnięta z: D. S. Johnson, C. R. Aragon, L. A. McGeoch, C. Schevon, Optimization by Simulated Annealing: An Experimental Evaluation; Part II, Graph Coloring and Number Partitioning, Operations Research, Vol. 39, No. 3, May-June 1991, pp. 378-406.}:
+
+\begin{equation}
+ f(G) = -\sum_{i=1}^{k} C_i^2 + \sum_{i=1}^{k} 2 C_i E_i
+\end{equation}
+
+gdzie:
+\begin{itemize}
+ \item $G$ - graf, dla którego liczona jest funkcja celu,
+ \item $k$ - liczba kolorów użytych do pokolorowania grafu $G$,
+ \item $C_i$ - liczba wierzchołków grafu $G$ pokolorowanych na $i$-ty kolor,
+ \item $E_i$ - liczba krawędzi grafu $G$, których oba końce pokolorowane są na $i$-ty kolor.
+\end{itemize}
+
+Definicję funkcji należy rozumieć następująco:
+
+\begin{enumerate}
+ \item z jednej strony, faworyzowane są pokolorowania z użyciem jak najmniejszej liczby kolorów,
+ \item z drugiej strony, dyskryminowane są pokolorowania nielegalne.
+\end{enumerate}
+
+\subsection{Lista tabu}
+Lista tabu zawiera ograniczoną liczbę ostatnich akcji podjętych przez algorytm.
+Pojedynczą akcją jest pokolorowanie pojedycznego wierzchołka na określony kolor.
