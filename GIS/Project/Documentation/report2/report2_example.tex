@@ -1,4 +1,4 @@
-\subsection{Przykład}
+\section{Przykład działania}
 
 \tikzset{
   every node/.style={circle,fill=black!40},
@@ -9,6 +9,10 @@
   4/.style={fill=cyan!50},
   5/.style={fill=blue!50}
 }
+
+Poniżej przedstawiono przykładowy przebieg działania programu.
+
+Dane wejściowe:
 
 \begin{itemize}
   \item Graf:
@@ -34,25 +38,32 @@
       \node [4] (E) at (2,0) {};
       \node [5] (F) at (2.5,0) {};
     \end{tikzpicture}
-
-  \item Przykładowy wynik:
-
-    \begin{tikzpicture}[scale=.8]
-      \node [0] (A) at (2,4) {A};
-      \node [0] (B) at (4,4) {B};
-      \node [1] (C) at (5,2) {C};
-      \node [2] (D) at (3,0) {D};
-      \node [2] (E) at (1,2) {E};
-      \node [0] (F) at (5,0) {F};
-
-      \foreach \from/\to in {A/D,B/C,B/D,B/E,C/D,C/E,C/F,D/F}
-        \draw (\from) -- (\to);
-    \end{tikzpicture}
+    
+  \item Wielkość pmięci: $3$
+  
+  \item Maksymalna liczba iteracji: $100$
+  
+  \item Maksymalna liczba iteracji bez zmiany rezultatu: $2$
 \end{itemize}
 
+Przykładowy wynik:
+
+\begin{tikzpicture}[scale=.8]
+  \node [0] (A) at (2,4) {A};
+  \node [0] (B) at (4,4) {B};
+  \node [1] (C) at (5,2) {C};
+  \node [2] (D) at (3,0) {D};
+  \node [2] (E) at (1,2) {E};
+  \node [0] (F) at (5,0) {F};
+
+  \foreach \from/\to in {A/D,B/C,B/D,B/E,C/D,C/E,C/F,D/F}
+    \draw (\from) -- (\to);
+\end{tikzpicture}
 
 
-\subsubsection{Krok 0}
+
+\subsection{Przygotowanie grafu}
+Przed rozpączęciem właściwego działania algorytmu, program buduje graf~i dokonuje jego losowego pokolorowania.
 
 \begin{itemize}
   \item Graf:
@@ -73,8 +84,11 @@
 \end{itemize}
 
 
-\subsubsection{Krok 1}
+\subsection{Przeszukiwanie}
+W każdym kroku algorytm sprawdza wszystkich sąsiadów aktualnego grafu.
+Jako aktualny graf obiera tego sąsiada, dla którego wartość funkcji celu jest najmniejsza.
 
+\subsubsection{Krok 1}
 \begin{itemize}
   \item Akcja:
    \begin{tikzpicture}[->,scale=.8]
@@ -106,7 +120,6 @@
       \node [4] (E) at (0,0) {E};
     \end{tikzpicture}
 \end{itemize}
-
 
 
 \subsubsection{Krok 2}
@@ -143,7 +156,6 @@
       \node [4] (E) at (0,0) {E};
     \end{tikzpicture}
 \end{itemize}
-
 
 
 \subsubsection{Krok 3}
@@ -183,7 +195,6 @@
 \end{itemize}
 
 
-
 \subsubsection{Krok 4}
 
 \begin{itemize}
@@ -220,6 +231,8 @@
     \end{tikzpicture}
 \end{itemize}
 
+W tym momencie znalezione zostało optymalne pokolorowanie grafu.
+Program nie sprawdza jednak poprawności pokolorowania w każdym kroku, dlatego kontynuuje działanie.
 
 
 \subsubsection{Krok 5}
@@ -257,3 +270,6 @@
       \node [0] (F) at (0,0) {F};
     \end{tikzpicture}
 \end{itemize}
+
+W tym momencie osiągnięto maksymalną liczbę iteracji bez zmiany rezultatu.
+Program kończy działanie, jako wynik podając graf otrzymany w kroku 4 (jako że graf otrzymany w kroku 5 nie jest od niego lepszy).
