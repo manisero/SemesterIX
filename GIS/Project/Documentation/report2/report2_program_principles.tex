@@ -51,3 +51,19 @@ Wykonywanie programu zakończy się, gdy algorytm przekroczy maksymalną liczbę
 
 \paragraph{}
 W obu przypadkach jako wynik działania programu zostanie podane najlepsze dotychczas znalezione pokolorowanie badanego grafu.
+
+
+\subsection{Sytuacje wyjątkowe}
+
+\paragraph{Brak któregokolwiek z wymaganych parametrów programu}
+W tym przypadku działanie programu kończy się niepowodzeniem, a na wyjście podawana jest informacja o poprawnym sposobie wywołania.
+
+\paragraph{Niepoprawny format pliku wejściowego}
+W tym przypadku działanie programu kończy się niepowodzeniem, a na wyjście podawana jest informacja o błędnym formacie pliku.
+
+\paragraph{Niespójny graf wejściowy}
+W tym przypadku działanie programu kończy się niepowodzeniem, a na wyjście podawana jest informacja o błędnej konstrukcji grafu.
+
+\paragraph{Brak możliwości wykonania jakiejkolwiek akcji}
+Ta sytuacja może zdarzyć się w przypadku, gdy lista tabu ma zbyt duży rozmiar i zawiera wszystkie możliwe w danym kroku akcje (tzn. każda możliwa permutacja aktualnego grafu jest zabroniona).
+Aby umożliwić dalsze działanie, program usuwa najstarsze elementy listy, dopóki nie osiągnie stanu, w którym dozwolona będzie przynajmniej jedna z możliwych akcji.
