@@ -3,6 +3,7 @@
 *.log
 *.backup
 *.tex~
+*.synctex.gz
 
 # Linux
 .gitignore~
