@@ -19,12 +19,12 @@ Złożoność obliczeniową można oszacować wyrażeniem:
 \noindent Każda z~$i$ iteracji składa się z~następujących kroków:
 
 \begin{enumerate}
- \item Wyznaczenie wszystkich możliwych sąsiadów aktualnego grafu, wraz ze sprawdzeniem dopuszczalności (lista tabu) - $nk * m$.
- \item Obliczenie funkcji celu dla każdego dopuszczalnego sąsiada - $nk * n^2$. Obliczenie funkcji celu wymaga odwiedzenia wszystkich wierzchołków oraz wszystkich wierzchołków z~nimi połączonych - $n^2$.
- \item Sortowanie wyznaczonych sąsiadów ze względu na wartość funkcji celu - $nk * log(nk)$.
+ \item Wyznaczenie wszystkich możliwych sąsiadów aktualnego grafu, wraz ze sprawdzeniem dopuszczalności (lista tabu): $nk * m$.
+ \item Obliczenie funkcji celu dla każdego dopuszczalnego sąsiada: $nk * n^2$. (Obliczenie funkcji celu wymaga odwiedzenia wszystkich wierzchołków oraz wszystkich wierzchołków z~nimi połączonych: $n^2$.)
+ \item Sortowanie wyznaczonych sąsiadów ze względu na wartość funkcji celu: $nk * log(nk)$.
 \end{enumerate}
 
-\noindent Zatem algorytm ma złożoność wielomianową. 
+\noindent Algorytm ma zatem złożoność wielomianową. 
 
 \subsection{Dane wejściowe}
 
