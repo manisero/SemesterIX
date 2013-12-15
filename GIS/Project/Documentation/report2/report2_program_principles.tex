@@ -1,3 +1,51 @@
 \section{Założenia programu}
 
-Placeholder
+\subsection{Opcje}
+
+\paragraph{Wielkość pamięci}
+
+Rozmiar tablicy tabu jest wymaganym parametrem aplikacji. Rozmiar tablicy tabu jest specyfikowany opcją \verb+-m+. 
+
+Przykład: \verb+<nazwa_programu> -m 5+ uruchamia algorytm z~pięcioelementową tablicą tabu.
+
+\paragraph{Plik(i) wejściowe}
+
+W~opcjach programu można wyspecyfikować jeden lub więcej plików wejściowych. Nazwę pliku wejściowego specyfikuje się bez dodatkowych opcji, zaraz po nazwie programu.
+
+Przykład: \verb+<nazwa_programu> graf1.txt -i graf2.txt+ wykona algorytm dla grafów opisanych w~plikach \emph{graf1.txt} oraz \emph{graf2.txt}.
+
+\paragraph{Plik wyjściowy}
+
+W~opcjach programu można wyspecyfikować nazwę pliku, do którego zostanie zapisane wyjście programu. Nazwę pliku wyjściowego specyfikuje się opcją \verb+-o+. Nazwa pliku wyjściowego jest parametrem opcjonalnym. Domyślnie wyjście przekierowywane jest na standardowy strumień (konsolę).
+
+Przykład: \verb+<nazwa_programu> -o wyjscie1.txt+ zapisze wyjście algorytmu do pliku \emph{wyjscie1.txt}.
+
+\paragraph{Tryb ,,rozmowny''}
+
+W~opcjach programu można włączyć tryb ,,rozmowny'' (\emph{verbose}), który wyprowadza dodatkowe informacje diagnostyczne na wyjście w~trakcie działania algorytmu. W~trybie domyślnym na wyjście wyprowadzany jest tylko wynik działania algorytmu. Tryb ,,rozmowny'' specyfikuje się opcją \verb+-v+.
+
+Przykład: \verb+<nazwa_programu> -v+ uruchamia aplikację w~trybie ,,rozmownym''.
+
+\paragraph{Maksymalna liczba iteracji}
+
+Maksymalna liczba iteracji określa liczbę przejść algorytmu, po której aplikacja wyłączy się (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji specyfikuje się opcją \verb+-i+.
+
+Przykład: \verb+<nazwa_programu> -i 500+ uruchamia algorytm dla maksymalnie 500 iteracji.
+
+\paragraph{Maksymalna liczba iteracji bez zmiany rezultatu}
+
+Maksymalna liczba iteracji bez zmiany rezultatu określa liczbę przejść algorytmu, po której aplikacja wyłączy się, jeżeli wartość funkcji celu dla najlepszego pokolorowania nie zmieni się (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji bez zmiany wyniku specyfikuje się opcją \verb+-s+.
+
+Przykład: \verb+<nazwa_programu> -s 25+ uruchamia algorytm dla maksymalnie 25 iteracji bez zmiany wyniku.
+
+\subsection{Kryteria stopu}
+\label{sec:stop_criteria}
+
+\paragraph{Maksymalna liczba iteracji}
+
+Wykonywanie programu zakończy się, gdy algorytm przekroczy maksymalną liczbę iteracji. Maksymalna liczba iteracji jest podana jako parametr aplikacji.
+
+\paragraph{Maksymalna liczba iteracji bez zmiany rezultatu}
+
+Wykonywanie programu zakończy się, gdy algorytm przekroczy maksymalną liczbę iteracji, w~których nie zmieniła się wartość funkcji celu dla najlepszego pokolorowania. Maksymalna liczba iteracji bez zmiany wyniku jest podawana w parametrach aplikacji.
+
