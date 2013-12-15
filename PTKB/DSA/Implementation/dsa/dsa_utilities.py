@@ -1,4 +1,4 @@
-from random import randrange
+from random import randrange, getrandbits
 
 
 class DSAUtilities:
