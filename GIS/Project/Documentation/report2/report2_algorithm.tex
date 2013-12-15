@@ -33,3 +33,12 @@ Lista tabu zawiera ograniczoną liczbę ostatnich akcji podjętych przez algoryt
 Pojedynczą akcją jest wybór wierzchołka, który zostanie pokolorowany na inny kolor.
 Akcja na liście tabu jest reprezentowana przez parę \emph{identyfikator wierzchołka} oraz \emph{kolor wierzchołka przed podjęciem akcji}. 
 Reprezentacja ta zapobiega badaniu jednakowych kombinacji w~kolejnych iteracjach algorytmu. Przykładowo, w~minimum lokalnym może zdarzyć się sytuacja, gdy najlepsze wartości funkcji celu będziemy osiągać poprzez cykliczną zmianę koloru tego samego wierzchołka w~kolejnych iteracjach, czego chcemy uniknąć.
+
+\subsection{Pamięci}
+
+W~algorytmie zostaną wykorzystane dwie pamięci:
+
+\begin{description}
+ \item [Krótkoterminowa] Realizuje listę tabu. Jej rozmiar jest parametrem algorytmu.
+ \item [Długoterminowa] Przechowuje historię wszystkich akcji. Jest wykorzystywana podczas podejmowania decyzji o~wyborze najlepszej permutacji w~danej iteracji, w~momencie gdy istnieje wiele najlepszych permutacji o~jednakowej wartości funkcji celu.
+\end{description}
