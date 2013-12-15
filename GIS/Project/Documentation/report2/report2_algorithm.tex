@@ -31,3 +31,5 @@ Definicję funkcji należy rozumieć następująco:
 \subsection{Lista tabu}
 Lista tabu zawiera ograniczoną liczbę ostatnich akcji podjętych przez algorytm.
 Pojedynczą akcją jest wybór wierzchołka, który zostanie pokolorowany na inny kolor.
+Akcja na liście tabu jest reprezentowana przez parę \emph{identyfikator wierzchołka} oraz \emph{kolor wierzchołka przed podjęciem akcji}. 
+Reprezentacja ta zapobiega badaniu jednakowych kombinacji w~kolejnych iteracjach algorytmu. Przykładowo, w~minimum lokalnym może zdarzyć się sytuacja, gdy najlepsze wartości funkcji celu będziemy osiągać poprzez cykliczną zmianę koloru tego samego wierzchołka w~kolejnych iteracjach, czego chcemy uniknąć.
