@@ -18,14 +18,15 @@ def main():
     parser.add_argument('-m', type=int, required=True, help='memory size', metavar='memory_size')
     arguments = parser.parse_args()
 
-    if arguments.verbose is True:
-        raise Exception('verbose mode currently not supported!')
+    output_writer = OutputWriter(arguments.o, arguments.verbose)
 
     for file_name in arguments.input_file:
+        output_writer.write_analyzed_file_name(file_name)
         graph, color_set = InputReader().read_input_graph_and_color_set(file_name)
+        output_writer.write_input(graph, color_set, True)
         stop_criteria = StopCriteria(arguments.i, arguments.s)
         best_score = GraphColoringSearchPerformer(stop_criteria, arguments.m).search(graph, color_set)
-        OutputWriter.write_graph(best_score, arguments.o)
+        output_writer.write_result(best_score)
 
 if __name__ == '__main__':
     main()
