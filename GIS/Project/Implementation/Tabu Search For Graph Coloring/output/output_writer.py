@@ -16,7 +16,7 @@ class OutputWriter:
             return
 
         if isinstance(self.output, str):
-            with open(self.output, 'w') as output_file:
+            with open(self.output, 'a') as output_file:
                 output_file.write(to_write)
         else:
             self.output.write(to_write)
@@ -24,7 +24,7 @@ class OutputWriter:
     def write_analyzed_file_name(self, file_name, verbose=False):
         to_write = ('-' * 80)
         to_write += '\n Analyzing graph: ' + file_name + '\n'
-        to_write += ('-' * 80)
+        to_write += ('-' * 80) + '\n'
 
         self.write_to_output(to_write, verbose)
 
@@ -37,7 +37,7 @@ class OutputWriter:
 
     def write_result(self, root_node, verbose=False):
         self.write_to_output('Resulting graph: \n', verbose)
-        self.write_graph(root_node)
+        self.write_graph(root_node, verbose)
 
     def write_iteration_info(self, current_iterations, current_iterations_without_score_change, iteration_best_score,
                              best_score, memory, permutation, verbose=False):
