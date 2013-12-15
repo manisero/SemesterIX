@@ -4,12 +4,13 @@ from permutation.color_permutator import ColorPermutator
 
 
 class GraphColoringSearchPerformer:
-    def __init__(self, stop_criteria, memory_size):
+    def __init__(self, stop_criteria, memory_size, output_writer=None):
         self.stop_criteria = stop_criteria
         self.color_permutator = ColorPermutator()
         self.memory = Memory(memory_size)
         self.cost_evaluator = CostEvaluator()
         self.best_score = None
+        self.output_writer = output_writer
 
     def search(self, root_node, color_set):
         self.memory.clear_memory()
@@ -34,6 +35,15 @@ class GraphColoringSearchPerformer:
             self.best_score = iteration_best_score
 
         self.stop_criteria.next_iteration(self.best_score)
+
+        if self.output_writer is not None:
+            self.output_writer.write_iteration_info(self.stop_criteria.current_iterations,
+                                                    self.stop_criteria.current_iterations_without_score_change,
+                                                    iteration_best_score[1],
+                                                    self.best_score[1],
+                                                    self.memory,
+                                                    iteration_best_score[0],
+                                                    True)
 
         if self.stop_criteria.should_stop():
             return self.return_score()

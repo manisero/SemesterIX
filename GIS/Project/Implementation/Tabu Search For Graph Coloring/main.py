@@ -25,7 +25,7 @@ def main():
         graph, color_set = InputReader().read_input_graph_and_color_set(file_name)
         output_writer.write_input(graph, color_set, True)
         stop_criteria = StopCriteria(arguments.i, arguments.s)
-        best_score = GraphColoringSearchPerformer(stop_criteria, arguments.m).search(graph, color_set)
+        best_score = GraphColoringSearchPerformer(stop_criteria, arguments.m, output_writer).search(graph, color_set)
         output_writer.write_result(best_score)
 
 if __name__ == '__main__':
