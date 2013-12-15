@@ -26,13 +26,69 @@ Złożoność obliczeniową można oszacować wyrażeniem:
 
 \noindent Algorytm ma zatem złożoność wielomianową. 
 
-\subsection{Opcje}
+\subsection{Dane wejściowe}
+
+Na rysunku \ref{fig:input_data} przedstawiono przykładowe dane wejściowe. Dane wejściowe składają się z:
+
+\begin{figure}[ht!]
+	\begin{Verbatim}[frame=single]
+3
+A,B
+C,D
+A,D
+C,E 
+	\end{Verbatim}
+	\caption{Przykładowe danye wejściowe.}
+	\label{fig:input_data}
+\end{figure}
+
+\begin{description}
+ \item [Liczebności klas kolorów] specyfikowanej jako pierwszy parametr. 
+ \item [Połączeń pomiędzy wierzchołkami] specyfikowanych w kolejnych wierszach jako para identyfikatorów wierzchołków oddzielonych przecinkami.
+\end{description}
+
+\subsection{Dane wyjściowe}
+
+Dane wyjściowe zależą od wybranego trybu programu (opisane w~sekcji \ref{sec:options}). 
+
+\begin{description}
+ \item [Tryb standardowy] Na wyjściu programu wypisywane są:
+	\begin{itemize}
+	 \item Nazwa pliku z~analizowanym grafem.
+	 \item Wynikowe przyporządkowanie \emph{wierzchołek} $\leftrightarrow$ \emph{kolor}.
+	 \item Sprawdzenie legalności wynikowego przyporządkowania (tak / nie).
+	\end{itemize}
+ \item [Tryb ,,rozmowny''] Na wyjściu programu, poza informacjami z~trybu standardowego, wypisywane są:
+	\begin{itemize}
+	 \item Dane początkowe - nazwy klas kolorów, wylosowane przyporządkowanie, wartość funkcji celu dla wylosowanego przyporządkowania.
+	 \item Dane związane z~każdą iteracją - numer iteracji, liczba iteracji bez zmiany wyniku, wartość funkcji celu dla najlepszej permutacji w~iteracji, wartość funkcji celu dla najlepszego wyniku, zawartość pamięci krótkotrwałej dla danej iteracji, pokolorowanie (permutację) wybrane w~danej iteracji.
+	\end{itemize}
+\end{description}
+
+\subsection{Parametry algorytmu}
 
 \paragraph{Wielkość pamięci}
 
 Rozmiar tablicy tabu jest wymaganym parametrem aplikacji. Rozmiar tablicy tabu jest specyfikowany opcją \verb+-m+. 
 
 Przykład: \verb+<nazwa_programu> -m 5+ uruchamia algorytm z~pięcioelementową tablicą tabu.
+
+\paragraph{Maksymalna liczba iteracji}
+
+Maksymalna liczba iteracji określa liczbę przejść algorytmu, po której aplikacja zakończy działanie (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji specyfikuje się opcją \verb+-i+.
+
+Przykład: \verb+<nazwa_programu> -i 500+ uruchamia algorytm dla maksymalnie 500 iteracji.
+
+\paragraph{Maksymalna liczba iteracji bez zmiany rezultatu}
+
+Maksymalna liczba iteracji bez zmiany rezultatu określa liczbę przejść algorytmu, po której aplikacja wyłączy się, jeżeli wartość funkcji celu dla najlepszego dotychczas znalezionego pokolorowania nie zmieni się (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji bez zmiany wyniku specyfikuje się opcją \verb+-s+.
+
+Przykład: \verb+<nazwa_programu> -s 25+ uruchamia algorytm dla maksymalnie 25 iteracji bez zmiany wyniku.
+
+\subsection{Opcje programu}
+\label{sec:options}
+
+Poza parametrami algorytmu, aplikacja udostępnia opisane poniżej opcje.
 
 \paragraph{Plik(i) wejściowe}
 
@@ -51,18 +107,6 @@ Przykład: \verb+<nazwa_programu> -o wyjscie1.txt+ zapisze wyjście algorytmu do
 W~opcjach programu można włączyć tryb ,,rozmowny'' (\emph{verbose}), który wyprowadza dodatkowe informacje diagnostyczne na wyjście w~trakcie działania algorytmu. W~trybie domyślnym na wyjście wyprowadzany jest tylko wynik działania algorytmu. Tryb ,,rozmowny'' specyfikuje się opcją \verb+-v+.
 
 Przykład: \verb+<nazwa_programu> -v+ uruchamia aplikację w~trybie ,,rozmownym''.
-
-\paragraph{Maksymalna liczba iteracji}
-
-Maksymalna liczba iteracji określa liczbę przejść algorytmu, po której aplikacja zakończy działanie (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji specyfikuje się opcją \verb+-i+.
-
-Przykład: \verb+<nazwa_programu> -i 500+ uruchamia algorytm dla maksymalnie 500 iteracji.
-
-\paragraph{Maksymalna liczba iteracji bez zmiany rezultatu}
-
-Maksymalna liczba iteracji bez zmiany rezultatu określa liczbę przejść algorytmu, po której aplikacja wyłączy się, jeżeli wartość funkcji celu dla najlepszego dotychczas znalezionego pokolorowania nie zmieni się (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji bez zmiany wyniku specyfikuje się opcją \verb+-s+.
-
-Przykład: \verb+<nazwa_programu> -s 25+ uruchamia algorytm dla maksymalnie 25 iteracji bez zmiany wyniku.
 
 \subsection{Kryteria stopu}
 \label{sec:stop_criteria}
