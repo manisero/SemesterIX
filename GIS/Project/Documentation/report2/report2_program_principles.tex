@@ -12,7 +12,7 @@ Przykład: \verb+<nazwa_programu> -m 5+ uruchamia algorytm z~pięcioelementową 
 
 W~opcjach programu można wyspecyfikować jeden lub więcej plików wejściowych. Nazwę pliku wejściowego specyfikuje się bez dodatkowych opcji, zaraz po nazwie programu.
 
-Przykład: \verb+<nazwa_programu> graf1.txt -i graf2.txt+ wykona algorytm dla grafów opisanych w~plikach \emph{graf1.txt} oraz \emph{graf2.txt}.
+Przykład: \verb+<nazwa_programu> graf1.txt graf2.txt+ wykona algorytm dla grafów opisanych w~plikach \emph{graf1.txt} oraz \emph{graf2.txt}.
 
 \paragraph{Plik wyjściowy}
 
@@ -28,13 +28,13 @@ Przykład: \verb+<nazwa_programu> -v+ uruchamia aplikację w~trybie ,,rozmownym'
 
 \paragraph{Maksymalna liczba iteracji}
 
-Maksymalna liczba iteracji określa liczbę przejść algorytmu, po której aplikacja wyłączy się (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji specyfikuje się opcją \verb+-i+.
+Maksymalna liczba iteracji określa liczbę przejść algorytmu, po której aplikacja zakończy działanie (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji specyfikuje się opcją \verb+-i+.
 
 Przykład: \verb+<nazwa_programu> -i 500+ uruchamia algorytm dla maksymalnie 500 iteracji.
 
 \paragraph{Maksymalna liczba iteracji bez zmiany rezultatu}
 
-Maksymalna liczba iteracji bez zmiany rezultatu określa liczbę przejść algorytmu, po której aplikacja wyłączy się, jeżeli wartość funkcji celu dla najlepszego pokolorowania nie zmieni się (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji bez zmiany wyniku specyfikuje się opcją \verb+-s+.
+Maksymalna liczba iteracji bez zmiany rezultatu określa liczbę przejść algorytmu, po której aplikacja wyłączy się, jeżeli wartość funkcji celu dla najlepszego dotychczas znalezionego pokolorowania nie zmieni się (opisane w~sekcji \ref{sec:stop_criteria}). Maksymalną liczbę iteracji bez zmiany wyniku specyfikuje się opcją \verb+-s+.
 
 Przykład: \verb+<nazwa_programu> -s 25+ uruchamia algorytm dla maksymalnie 25 iteracji bez zmiany wyniku.
 
@@ -49,3 +49,5 @@ Wykonywanie programu zakończy się, gdy algorytm przekroczy maksymalną liczbę
 
 Wykonywanie programu zakończy się, gdy algorytm przekroczy maksymalną liczbę iteracji, w~których nie zmieniła się wartość funkcji celu dla najlepszego pokolorowania. Maksymalna liczba iteracji bez zmiany wyniku jest podawana w parametrach aplikacji.
 
+\paragraph{}
+W obu przypadkach jako wynik działania programu zostanie podane najlepsze dotychczas znalezione pokolorowanie badanego grafu.
