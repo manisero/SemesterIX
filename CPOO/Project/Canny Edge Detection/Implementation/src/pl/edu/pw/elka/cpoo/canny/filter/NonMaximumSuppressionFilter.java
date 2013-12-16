@@ -11,10 +11,14 @@ import java.awt.image.BufferedImage;
 public class NonMaximumSuppressionFilter implements IImageFilter
 {
     private final DirectionAndMagnitude directionAndMagnitude;
+    private final int lowThreshold;
+    private final int highThreshold;
 
-    public NonMaximumSuppressionFilter(DirectionAndMagnitude directionAndMagnitude)
+    public NonMaximumSuppressionFilter(DirectionAndMagnitude directionAndMagnitude, int lowThreshold, int highThreshold)
     {
         this.directionAndMagnitude = directionAndMagnitude;
+        this.lowThreshold = lowThreshold;
+        this.highThreshold = highThreshold;
     }
 
     @Override
@@ -63,7 +67,7 @@ public class NonMaximumSuppressionFilter implements IImageFilter
                 {
                     if (DirectionAndMagnitudeComputer.isMagnitudeEastWestMaximum(directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -72,7 +76,7 @@ public class NonMaximumSuppressionFilter implements IImageFilter
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthEastSouthWestMaximum
                             (directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -80,7 +84,7 @@ public class NonMaximumSuppressionFilter implements IImageFilter
                 {
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthSouthMaximum(directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -89,7 +93,7 @@ public class NonMaximumSuppressionFilter implements IImageFilter
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthWestSouthEastMaximum
                             (directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -99,5 +103,19 @@ public class NonMaximumSuppressionFilter implements IImageFilter
         }
 
         return input;
+    }
+
+    private int pixelValue(double magnitude)
+    {
+        if (magnitude < lowThreshold)
+        {
+            return 0;
+        }
+        else if (magnitude < highThreshold)
+        {
+            return 128;
+        }
+
+        return 255;
     }
 }

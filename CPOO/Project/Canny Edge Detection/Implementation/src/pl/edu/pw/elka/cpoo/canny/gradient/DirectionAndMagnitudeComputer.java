@@ -40,7 +40,7 @@ public class DirectionAndMagnitudeComputer
 
                 if (horizontalValue != 0)
                 {
-                    directionAndMagnitude.setDirection(x, y, Math.atan(verticalValue / horizontalValue));
+                    directionAndMagnitude.setDirection(x, y, Math.atan2(verticalValue, horizontalValue));
                 }
                 else
                 {
@@ -72,7 +72,7 @@ public class DirectionAndMagnitudeComputer
             return Direction.DIRECTION_90_DEGREES;
         }
         else if (directionInRange(directionAndMagnitude.getDirection(x, y), Math.toRadians(-67.5),
-                Math.toRadians(22.5), true))
+                Math.toRadians(-22.5), true))
         {
             return Direction.DIRECTION_135_DEGREES;
         }

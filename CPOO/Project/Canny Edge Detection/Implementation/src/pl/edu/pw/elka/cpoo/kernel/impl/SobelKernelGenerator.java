@@ -6,14 +6,14 @@ import java.awt.image.Kernel;
 
 public class SobelKernelGenerator implements IKernelGenerator
 {
-    private static final float[] SOBEL_HORIZONTAL_MASK = new float[]
+    private static final float[] SOBEL_VERTICAL_MASK = new float[]
     {
         +1.0f, 0.0f, -1.0f,
         +2.0f, 0.0f, -2.0f,
         +1.0f, 0.0f, -1.0f
     };
 
-    private static final float[] SOBEL_VERTICAL_MASK = new float[]
+    private static final float[] SOBEL_HORIZONTAL_MASK = new float[]
     {
         +1.0f, +2.0f, +1.0f,
          0.0f,  0.0f,  0.0f,

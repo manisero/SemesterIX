@@ -7,16 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class HysteresisFilter implements IImageFilter
 {
-    private final double lowThreshold;
-    private final double highThreshold;
-
     private GrayscaleBufferedImage outputImage;
-
-    public HysteresisFilter(double lowThreshold, double highThreshold)
-    {
-        this.lowThreshold = lowThreshold;
-        this.highThreshold = highThreshold;
-    }
 
     @Override
     public BufferedImage filter(BufferedImage input)
@@ -29,7 +20,7 @@ public class HysteresisFilter implements IImageFilter
         {
             for (int y = 0; y < input.getHeight(); ++y)
             {
-                if (outputImage.getPixelValue(x, y) == 0 && grayscaleInput.getPixelValue(x, y) > highThreshold)
+                if (outputImage.getPixelValue(x, y) == 0 && isStrongPixel(grayscaleInput, x, y))
                 {
                     follow(x, y, grayscaleInput);
                 }
@@ -37,6 +28,11 @@ public class HysteresisFilter implements IImageFilter
         }
 
         return outputImage;
+    }
+
+    private boolean isStrongPixel(GrayscaleBufferedImage input, int x, int y)
+    {
+        return input.getPixelValue(x, y) == 255;
     }
 
     private void initializeOutputImage(BufferedImage input)
@@ -70,12 +66,17 @@ public class HysteresisFilter implements IImageFilter
         {
             for (int j = top; j <= bottom; ++j)
             {
-                if (outputImage.getPixelValue(i, j) == 0 && input.getPixelValue(i, j) > lowThreshold)
+                if (outputImage.getPixelValue(i, j) == 0 && isWeakPixel(input, i, j))
                 {
                     follow(i, j, input);
                     return;
                 }
             }
         }
+    }
+
+    private boolean isWeakPixel(GrayscaleBufferedImage input, int x, int y)
+    {
+        return input.getPixelValue(x, y) > 0 && input.getPixelValue(x, y) < 255;
     }
 }

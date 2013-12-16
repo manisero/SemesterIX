@@ -17,10 +17,10 @@ import java.awt.image.BufferedImage;
 public class CannyEdgeDetectionFilter implements IImageFilter
 {
     private final int radius;
-    private final double lowThreshold;
-    private final double highThreshold;
+    private final int lowThreshold;
+    private final int highThreshold;
 
-    public CannyEdgeDetectionFilter(int radius, double lowThreshold, double highThreshold)
+    public CannyEdgeDetectionFilter(int radius, int lowThreshold, int highThreshold)
     {
         this.radius = radius;
         this.lowThreshold = lowThreshold;
@@ -57,8 +57,9 @@ public class CannyEdgeDetectionFilter implements IImageFilter
 
     private IImageFilter getEdgesFilter(DirectionAndMagnitude directionAndMagnitude)
     {
-        IImageFilter nonMaximumSuppressionFilter = new NonMaximumSuppressionFilter(directionAndMagnitude);
-        IImageFilter hysteresisFilter = new HysteresisFilter(lowThreshold, highThreshold);
+        IImageFilter nonMaximumSuppressionFilter = new NonMaximumSuppressionFilter(directionAndMagnitude,
+                lowThreshold, highThreshold);
+        IImageFilter hysteresisFilter = new HysteresisFilter();
         IImageFilter edgesFilter = new CompositeImageFilter(nonMaximumSuppressionFilter, hysteresisFilter);
 
         return edgesFilter;
