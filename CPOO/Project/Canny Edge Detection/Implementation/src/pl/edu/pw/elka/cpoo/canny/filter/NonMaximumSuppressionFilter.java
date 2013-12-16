@@ -10,16 +10,11 @@ import java.awt.image.BufferedImage;
 
 public class NonMaximumSuppressionFilter extends CompositeImageFilter
 {
-    private final double lowThreshold;
-    private final double highThreshold;
     private final DirectionAndMagnitude directionAndMagnitude;
 
-    public NonMaximumSuppressionFilter(DirectionAndMagnitude directionAndMagnitude, double lowThreshold,
-                                       double highThreshold)
+    public NonMaximumSuppressionFilter(DirectionAndMagnitude directionAndMagnitude)
     {
         this.directionAndMagnitude = directionAndMagnitude;
-        this.lowThreshold = lowThreshold;
-        this.highThreshold = highThreshold;
     }
 
     @Override
