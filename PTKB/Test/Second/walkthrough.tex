@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 
 \title{[PTKB] Kolokwium 2 - opracowanie}
 \author{}
@@ -23,6 +24,25 @@
 \end{equation}
 
 Wybieramy $\lceil x \rceil = 3322$.
+
+\section{Zadanie 4.}
+
+\textbf{Treść}: Podać przykład liczby pseudopierwszej przy podstawie 2 i~3 jednocześnie. Czy takie liczby w~ogóle istnieją?
+
+\textbf{Rozwiązanie}: Liczba naturalna jest liczbą Carmichaela wtedy i~tylko wtedy, gdy:
+
+\begin{enumerate}
+ \item Jest liczbą złożoną.
+ \item Dla każdego $a \in \mathbb{N}$ z~przedziału $1 < a < n$, względnie pierwszej z~$n$, liczba $(a^{n-1} - 1)$ jest podzielna przez $n$.
+\end{enumerate}
+
+Patrząc na najmniejsze liczby Carmichaela:
+
+\begin{equation}
+	\begin{array}{lcl} 561& = & 3 \cdot 11 \cdot 17 \\ 1105 & = & 5 \cdot 13 \cdot 17 \\ \end{array}
+\end{equation}
+
+\noindent widzimy, że liczba Carmichaela 1105 jest względnie pierwsza zarówno z~2, jak również 3, a~więc pozwala ona stworzyć liczby pseudopierwsze $2^{1105 - 1} - 1$ oraz $3^{1105 - 1} - 1$.
 
 \section{Zadanie 7.}
 
