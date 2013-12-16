@@ -1,0 +1,27 @@
+\documentclass[a4paper,10pt, twocolumn]{article}
+\usepackage[MeX]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{amsmath}
+
+\title{[PTKB] Kolokwium 2 - opracowanie}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Zadanie 1.}
+
+\textbf{Treść}: Ile razy trzeba wykonać protokół uwierzytelniania Fiata-Shamira by prawdopodobieństwo oszustwa było mniejsze od $10^{-1000}$?
+
+\textbf{Rozwiązanie}: Prawdopodobieństwo udanego oszustwa po wykonaniu $n$ eksperymentów wynosi $(\frac{1}{2})^{n}$. Rozwiązujemy równanie $(\frac{1}{2})^{x} = 10^{-1000}$.
+
+\begin{equation}
+	\begin{array}{lcl} (\frac{1}{2})^{x} & = & 10^{-1000} \\ 2^{x} & = & 10^{1000} \\ x & = & \log_{2} 10^{1000} \\ x & = & 1000 \log_{2} 10 \\ x & \simeq & 3321.928 \end{array}
+\end{equation}
+
+Wybieramy $\lceil x \rceil = 3322$.
+
+\end{document}
