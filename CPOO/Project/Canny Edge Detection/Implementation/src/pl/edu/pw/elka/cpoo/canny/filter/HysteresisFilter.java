@@ -1,28 +1,25 @@
 package pl.edu.pw.elka.cpoo.canny.filter;
 
-import pl.edu.pw.elka.cpoo.filter.CompositeImageFilter;
 import pl.edu.pw.elka.cpoo.filter.IImageFilter;
 import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
 
-public class HysteresisFilter extends CompositeImageFilter
+public class HysteresisFilter implements IImageFilter
 {
     private final double lowThreshold;
     private final double highThreshold;
 
     private GrayscaleBufferedImage outputImage;
 
-    public HysteresisFilter(double lowThreshold, double highThreshold, IImageFilter... filters)
+    public HysteresisFilter(double lowThreshold, double highThreshold)
     {
-        super(filters);
-
         this.lowThreshold = lowThreshold;
         this.highThreshold = highThreshold;
     }
 
     @Override
-    protected BufferedImage performFiltering(BufferedImage input)
+    public BufferedImage filter(BufferedImage input)
     {
         initializeOutputImage(input);
 

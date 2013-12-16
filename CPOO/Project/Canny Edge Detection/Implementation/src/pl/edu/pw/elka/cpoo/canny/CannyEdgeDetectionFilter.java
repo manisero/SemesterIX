@@ -14,53 +14,53 @@ import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
 
-public class CannyEdgeDetectionFilter extends CompositeImageFilter
+public class CannyEdgeDetectionFilter implements IImageFilter
 {
     private final int radius;
     private final double lowThreshold;
     private final double highThreshold;
 
-    public CannyEdgeDetectionFilter(int radius, double lowThreshold, double highThreshold, IImageFilter... filters)
+    public CannyEdgeDetectionFilter(int radius, double lowThreshold, double highThreshold)
     {
-        super(filters);
-
         this.radius = radius;
         this.lowThreshold = lowThreshold;
         this.highThreshold = highThreshold;
     }
 
     @Override
-    protected BufferedImage performFiltering(BufferedImage input)
+    public BufferedImage filter(BufferedImage input)
     {
         GrayscaleBufferedImage grayscaleImage = GrayscaleBufferedImage.getGrayscaleImage(input);
 
-        BufferedImage sobelHorizontalImage = getSobelFilter(true).filter(grayscaleImage);
-        BufferedImage sobelVerticalImage = getSobelFilter(false).filter(grayscaleImage);
+        BufferedImage gradientHorizontalImage = getGradientFilter(true).filter(grayscaleImage);
+        BufferedImage gradientVerticalImage = getGradientFilter(false).filter(grayscaleImage);
 
         DirectionAndMagnitude directionAndMagnitude = DirectionAndMagnitudeComputer
-                .computeGradientDirectionAndMagnitude(sobelVerticalImage, sobelHorizontalImage);
+                .computeGradientDirectionAndMagnitude(gradientHorizontalImage, gradientVerticalImage);
 
-        BufferedImage edgesImage = getHysteresisFilter(directionAndMagnitude).filter(grayscaleImage);
+        BufferedImage edgesImage = getEdgesFilter(directionAndMagnitude).filter(grayscaleImage);
 
         return edgesImage;
     }
 
-    private IImageFilter getSobelFilter(boolean horizontal)
+    private IImageFilter getGradientFilter(boolean horizontal)
     {
         IImageFilter normalizationFilter = new HistogramNormalizationFilter();
         IImageFilter gaussianHorizontalFilter = new KernelFilter(new GaussianKernelGenerator(radius, true));
         IImageFilter gaussianVerticalFilter = new KernelFilter(new GaussianKernelGenerator(radius, false));
-        IImageFilter sobelFilter = new KernelFilter(new SobelKernelGenerator(horizontal), gaussianVerticalFilter,
-                gaussianHorizontalFilter, normalizationFilter);
+        IImageFilter sobelFilter = new KernelFilter(new SobelKernelGenerator(horizontal));
+        IImageFilter gradientFilter = new CompositeImageFilter(normalizationFilter, gaussianHorizontalFilter,
+                gaussianVerticalFilter, sobelFilter);
 
-        return sobelFilter;
+        return gradientFilter;
     }
 
-    private IImageFilter getHysteresisFilter(DirectionAndMagnitude directionAndMagnitude)
+    private IImageFilter getEdgesFilter(DirectionAndMagnitude directionAndMagnitude)
     {
         IImageFilter nonMaximumSuppressionFilter = new NonMaximumSuppressionFilter(directionAndMagnitude);
-        IImageFilter hysteresisFilter = new HysteresisFilter(lowThreshold, highThreshold, nonMaximumSuppressionFilter);
+        IImageFilter hysteresisFilter = new HysteresisFilter(lowThreshold, highThreshold);
+        IImageFilter edgesFilter = new CompositeImageFilter(nonMaximumSuppressionFilter, hysteresisFilter);
 
-        return hysteresisFilter;
+        return edgesFilter;
     }
 }

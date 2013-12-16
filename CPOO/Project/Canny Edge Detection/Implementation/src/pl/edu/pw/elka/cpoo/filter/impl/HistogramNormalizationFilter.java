@@ -1,15 +1,15 @@
 package pl.edu.pw.elka.cpoo.filter.impl;
 
-import pl.edu.pw.elka.cpoo.filter.CompositeImageFilter;
+import pl.edu.pw.elka.cpoo.filter.IImageFilter;
 import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-public class HistogramNormalizationFilter extends CompositeImageFilter
+public class HistogramNormalizationFilter implements IImageFilter
 {
     @Override
-    protected BufferedImage performFiltering(BufferedImage input)
+    public BufferedImage filter(BufferedImage input)
     {
         GrayscaleBufferedImage grayscaleImage = GrayscaleBufferedImage.getGrayscaleImage(input);
 

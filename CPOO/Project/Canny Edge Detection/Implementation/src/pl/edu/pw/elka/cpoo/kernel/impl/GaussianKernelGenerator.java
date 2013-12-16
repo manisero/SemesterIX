@@ -23,9 +23,9 @@ public class GaussianKernelGenerator implements IKernelGenerator
             throw new IllegalArgumentException("Gaussian blur kernel must be positive integer greater or equal to one");
         }
 
-        int kernelSize = 2 * radius + 1;
+        int kernelSize = 5;
         float[] data = new float[kernelSize];
-        float sigma = radius / 3.0f;
+        float sigma = 1.4f;
         float twoSigmaSquare = 2 * sigma * sigma;
         float squareRootTwoPiSigmaSquare = (float) Math.sqrt(twoSigmaSquare * Math.PI);
         float total = 0.0f;

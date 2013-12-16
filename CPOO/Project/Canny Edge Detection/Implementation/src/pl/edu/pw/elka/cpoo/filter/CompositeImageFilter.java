@@ -2,7 +2,7 @@ package pl.edu.pw.elka.cpoo.filter;
 
 import java.awt.image.BufferedImage;
 
-public abstract class CompositeImageFilter implements IImageFilter
+public class CompositeImageFilter implements IImageFilter
 {
     private IImageFilter[] filters;
 
@@ -19,8 +19,6 @@ public abstract class CompositeImageFilter implements IImageFilter
             input = filter.filter(input);
         }
 
-        return performFiltering(input);
+        return input;
     }
-
-    protected abstract BufferedImage performFiltering(BufferedImage input);
 }

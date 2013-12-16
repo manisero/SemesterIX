@@ -3,12 +3,12 @@ package pl.edu.pw.elka.cpoo.canny.filter;
 import pl.edu.pw.elka.cpoo.canny.gradient.Direction;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitude;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitudeComputer;
-import pl.edu.pw.elka.cpoo.filter.CompositeImageFilter;
+import pl.edu.pw.elka.cpoo.filter.IImageFilter;
 import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
 
-public class NonMaximumSuppressionFilter extends CompositeImageFilter
+public class NonMaximumSuppressionFilter implements IImageFilter
 {
     private final DirectionAndMagnitude directionAndMagnitude;
 
@@ -18,7 +18,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
     }
 
     @Override
-    protected BufferedImage performFiltering(BufferedImage input)
+    public BufferedImage filter(BufferedImage input)
     {
         GrayscaleBufferedImage grayscaleBufferedImage = GrayscaleBufferedImage.getGrayscaleImage(input);
         grayscaleBufferedImage = cutOffBorders(grayscaleBufferedImage);
