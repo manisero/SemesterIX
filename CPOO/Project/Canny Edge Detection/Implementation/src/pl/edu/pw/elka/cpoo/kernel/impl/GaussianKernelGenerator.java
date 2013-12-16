@@ -32,7 +32,7 @@ public class GaussianKernelGenerator implements IKernelGenerator
 
         for (int i = -radius; i <= radius; i++)
         {
-            int distance = radius * radius;
+            int distance = i * i;
             float value = (float) Math.exp(-distance / twoSigmaSquare) / squareRootTwoPiSigmaSquare;
 
             data[i + radius] = value;

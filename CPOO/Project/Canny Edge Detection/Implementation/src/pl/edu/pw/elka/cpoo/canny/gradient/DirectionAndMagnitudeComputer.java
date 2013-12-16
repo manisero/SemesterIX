@@ -19,12 +19,12 @@ public class DirectionAndMagnitudeComputer
     }
 
     public static DirectionAndMagnitude computeGradientDirectionAndMagnitude(
-            GrayscaleBufferedImage vertical, GrayscaleBufferedImage horizontal)
+            double[][] gradientX, double[][] gradientY)
     {
-        int width = horizontal.getWidth();
-        int height = horizontal.getHeight();
+        int width = gradientX.length;
+        int height = gradientX[0].length;
 
-        if (width != vertical.getWidth() || height != vertical.getHeight())
+        if (width != gradientY.length || height != gradientY[0].length)
         {
             throw new CannyEdgeDetectorException("Horizontal gradient and vertical gradient sizes does not match!");
         }
@@ -35,19 +35,19 @@ public class DirectionAndMagnitudeComputer
         {
             for (int y = 0; y < height; ++y)
             {
-                double verticalValue = vertical.getPixelValue(x, y);
-                double horizontalValue = horizontal.getPixelValue(x, y);
+                double yValue = gradientY[x][y];
+                double xValue = gradientX[x][y];
 
-                if (horizontalValue != 0)
+                if (xValue != 0)
                 {
-                    directionAndMagnitude.setDirection(x, y, Math.atan(verticalValue / horizontalValue));
+                    directionAndMagnitude.setDirection(x, y, Math.atan(yValue / xValue));
                 }
                 else
                 {
                     directionAndMagnitude.setDirection(x, y, Math.PI / 2.0d);
                 }
 
-                directionAndMagnitude.setMagnitude(x, y, Math.hypot(verticalValue, horizontalValue));
+                directionAndMagnitude.setMagnitude(x, y, Math.hypot(yValue, xValue));
             }
         }
 
@@ -72,7 +72,7 @@ public class DirectionAndMagnitudeComputer
             return Direction.DIRECTION_90_DEGREES;
         }
         else if (directionInRange(directionAndMagnitude.getDirection(x, y), Math.toRadians(-67.5),
-                Math.toRadians(22.5), true))
+                Math.toRadians(-22.5), true))
         {
             return Direction.DIRECTION_135_DEGREES;
         }

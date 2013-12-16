@@ -3,22 +3,26 @@ package pl.edu.pw.elka.cpoo.canny.filter;
 import pl.edu.pw.elka.cpoo.canny.gradient.Direction;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitude;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitudeComputer;
-import pl.edu.pw.elka.cpoo.filter.CompositeImageFilter;
+import pl.edu.pw.elka.cpoo.filter.IImageFilter;
 import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
 
-public class NonMaximumSuppressionFilter extends CompositeImageFilter
+public class NonMaximumSuppressionFilter implements IImageFilter
 {
     private final DirectionAndMagnitude directionAndMagnitude;
+    private final int lowThreshold;
+    private final int highThreshold;
 
-    public NonMaximumSuppressionFilter(DirectionAndMagnitude directionAndMagnitude)
+    public NonMaximumSuppressionFilter(DirectionAndMagnitude directionAndMagnitude, int lowThreshold, int highThreshold)
     {
         this.directionAndMagnitude = directionAndMagnitude;
+        this.lowThreshold = lowThreshold;
+        this.highThreshold = highThreshold;
     }
 
     @Override
-    protected BufferedImage performFiltering(BufferedImage input)
+    public BufferedImage filter(BufferedImage input)
     {
         GrayscaleBufferedImage grayscaleBufferedImage = GrayscaleBufferedImage.getGrayscaleImage(input);
         grayscaleBufferedImage = cutOffBorders(grayscaleBufferedImage);
@@ -63,7 +67,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                 {
                     if (DirectionAndMagnitudeComputer.isMagnitudeEastWestMaximum(directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -72,7 +76,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthEastSouthWestMaximum
                             (directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -80,7 +84,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                 {
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthSouthMaximum(directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -89,7 +93,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthWestSouthEastMaximum
                             (directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
+                        input.setPixelValue(x, y, pixelValue(directionAndMagnitude.getMagnitude(x, y)));
                         continue;
                     }
                 }
@@ -99,5 +103,19 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
         }
 
         return input;
+    }
+
+    private int pixelValue(double magnitude)
+    {
+        if (magnitude < lowThreshold)
+        {
+            return 0;
+        }
+        else if (magnitude < highThreshold)
+        {
+            return 128;
+        }
+
+        return 255;
     }
 }
