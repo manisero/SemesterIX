@@ -58,8 +58,8 @@ public class CannyEdgeDetectionFilter extends CompositeImageFilter
 
     private IImageFilter getHysteresisFilter(DirectionAndMagnitude directionAndMagnitude)
     {
-        IImageFilter nonMaximumSuppresionFilter = new NonMaximumSuppressionFilter(directionAndMagnitude);
-        IImageFilter hysteresisFilter = new HysteresisFilter(lowThreshold, highThreshold, nonMaximumSuppresionFilter);
+        IImageFilter nonMaximumSuppressionFilter = new NonMaximumSuppressionFilter(directionAndMagnitude);
+        IImageFilter hysteresisFilter = new HysteresisFilter(lowThreshold, highThreshold, nonMaximumSuppressionFilter);
 
         return hysteresisFilter;
     }

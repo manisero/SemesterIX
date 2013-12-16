@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.cpoo;
 
 import pl.edu.pw.elka.cpoo.canny.CannyEdgeDetectionFilter;
+import pl.edu.pw.elka.cpoo.gui.MainPanel;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
 
 import javax.swing.*;
@@ -26,17 +27,9 @@ public class EntryPoint
     {
         JFrame frame = new JFrame("Canny");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(createMainPanel());
+        frame.add(new MainPanel());
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static JPanel createMainPanel()
-    {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(createImageLabel());
-
-        return panel;
     }
 
     public static JLabel createImageLabel()
