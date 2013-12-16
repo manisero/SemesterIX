@@ -25,7 +25,7 @@ public class HistogramNormalizationFilter extends CompositeImageFilter
 
     private static int[] getPixelValues(GrayscaleBufferedImage image)
     {
-        int[] pixelValues = new int[255];
+        int[] pixelValues = new int[256];
 
         for (int x = 0; x < image.getWidth(); ++x)
         {
