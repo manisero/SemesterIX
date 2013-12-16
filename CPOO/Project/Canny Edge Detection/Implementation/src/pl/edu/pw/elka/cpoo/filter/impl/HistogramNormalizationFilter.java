@@ -1,28 +1,29 @@
-package pl.edu.pw.elka.cpoo.histogram;
+package pl.edu.pw.elka.cpoo.filter.impl;
+
+import pl.edu.pw.elka.cpoo.filter.CompositeImageFilter;
+import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-public class HistogramNormalizationPerformer
+public class HistogramNormalizationFilter extends CompositeImageFilter
 {
-    public static BufferedImage filter(BufferedImage image)
+    @Override
+    protected BufferedImage performFiltering(BufferedImage input)
     {
-        int[] pixelValues = getPixelValues(image);
+        GrayscaleBufferedImage grayscaleImage = GrayscaleBufferedImage.getGrayscaleImage(input);
+
+        int[] pixelValues = getPixelValues(grayscaleImage);
         int[] cumulativeDistributionFunction = getCumulativeDistributionFunction(pixelValues);
         int[] normalizedCumulativeDistributionFunction = normalizeCumulativeDistributionFunction(
-                cumulativeDistributionFunction, image.getWidth(), image.getHeight());
+                cumulativeDistributionFunction, grayscaleImage.getWidth(), grayscaleImage.getHeight());
 
-        mapPixelValues(normalizedCumulativeDistributionFunction, image);
+        mapPixelValues(normalizedCumulativeDistributionFunction, grayscaleImage);
 
-        return image;
+        return grayscaleImage;
     }
 
-    private static int getPixelValue(BufferedImage image, int x, int y)
-    {
-        return image.getRaster().getPixel(x, y, new int[1])[0];
-    }
-
-    private static int[] getPixelValues(BufferedImage image)
+    private static int[] getPixelValues(GrayscaleBufferedImage image)
     {
         int[] pixelValues = new int[255];
 
@@ -30,7 +31,7 @@ public class HistogramNormalizationPerformer
         {
             for (int y = 0; y < image.getHeight(); ++y)
             {
-                pixelValues[getPixelValue(image, x, y)] += 1;
+                pixelValues[image.getPixelValue(x, y)] += 1;
             }
         }
 
@@ -75,19 +76,14 @@ public class HistogramNormalizationPerformer
         return arrayCopy[0];
     }
 
-    private static void mapPixelValues(int[] pixelValues, BufferedImage image)
+    private static void mapPixelValues(int[] pixelValues, GrayscaleBufferedImage image)
     {
         for (int x = 0; x < image.getWidth(); ++x)
         {
             for (int y = 0; y < image.getHeight(); ++y)
             {
-                setPixelValue(image, x, y, pixelValues[getPixelValue(image, x, y)]);
+                image.setPixelValue(x, y, pixelValues[image.getPixelValue(x, y)]);
             }
         }
-    }
-
-    private static void setPixelValue(BufferedImage image, int x, int y, int value)
-    {
-        image.getRaster().setPixel(x, y, new int[] { value });
     }
 }

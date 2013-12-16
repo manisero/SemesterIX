@@ -1,10 +1,22 @@
-package pl.edu.pw.elka.cpoo.blur;
+package pl.edu.pw.elka.cpoo.kernel.impl;
+
+import pl.edu.pw.elka.cpoo.kernel.IKernelGenerator;
 
 import java.awt.image.Kernel;
 
-public class GaussianBlurKernelGenerator
+public class GaussianKernelGenerator implements IKernelGenerator
 {
-    public static Kernel generateGaussianBlurKernel(int radius, boolean horizontal)
+    private final int radius;
+    private final boolean horizontal;
+
+    public GaussianKernelGenerator(int radius, boolean horizontal)
+    {
+        this.radius = radius;
+        this.horizontal = horizontal;
+    }
+
+    @Override
+    public Kernel generateKernel()
     {
         if (radius < 1)
         {

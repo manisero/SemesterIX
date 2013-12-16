@@ -1,9 +1,11 @@
 package pl.edu.pw.elka.cpoo.canny;
 
-import pl.edu.pw.elka.cpoo.blur.GaussianBlurFilteringPerformer;
-import pl.edu.pw.elka.cpoo.edge.SobelOperatorFilteringPerformer;
-import pl.edu.pw.elka.cpoo.grayscale.GrayscaleFilteringPerformer;
-import pl.edu.pw.elka.cpoo.histogram.HistogramNormalizationPerformer;
+import pl.edu.pw.elka.cpoo.filter.IImageFilter;
+import pl.edu.pw.elka.cpoo.filter.impl.HistogramNormalizationFilter;
+import pl.edu.pw.elka.cpoo.filter.impl.KernelFilter;
+import pl.edu.pw.elka.cpoo.kernel.impl.GaussianKernelGenerator;
+import pl.edu.pw.elka.cpoo.kernel.impl.SobelKernelGenerator;
+import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
 
@@ -22,11 +24,10 @@ public class CannyEdgeDetector
 
     public BufferedImage filter(BufferedImage inputImage)
     {
-        BufferedImage grayScaleImage = GrayscaleFilteringPerformer.filter(inputImage);
-        BufferedImage normalizedImage = HistogramNormalizationPerformer.filter(grayScaleImage);
-        BufferedImage blurredImage = GaussianBlurFilteringPerformer.filter(normalizedImage, radius);
-        BufferedImage sobelHorizontalImage = SobelOperatorFilteringPerformer.filter(blurredImage, true);
-        BufferedImage sobelVerticalImage = SobelOperatorFilteringPerformer.filter(blurredImage, false);
+        GrayscaleBufferedImage grayscaleImage = GrayscaleBufferedImage.getGrayscaleImage(inputImage);
+
+        BufferedImage sobelHorizontalImage = getSobelFilter(true).filter(grayscaleImage);
+        BufferedImage sobelVerticalImage = getSobelFilter(false).filter(grayscaleImage);
 
         GradientDirectionMagnitude directionMagnitude = computeDirectionAndMagnitude(sobelHorizontalImage,
                 sobelVerticalImage);
@@ -34,6 +35,17 @@ public class CannyEdgeDetector
         performNonMaximumSuppresion(sobelVerticalImage, directionMagnitude);
 
         return sobelVerticalImage;
+    }
+
+    private IImageFilter getSobelFilter(boolean horizontal)
+    {
+        IImageFilter normalizationFilter = new HistogramNormalizationFilter();
+        IImageFilter gaussianHorizontalFilter = new KernelFilter(new GaussianKernelGenerator(radius, true));
+        IImageFilter gaussianVerticalFilter = new KernelFilter(new GaussianKernelGenerator(radius, false));
+        IImageFilter sobelFilter = new KernelFilter(new SobelKernelGenerator(horizontal), gaussianVerticalFilter,
+                gaussianHorizontalFilter, normalizationFilter);
+
+        return sobelFilter;
     }
 
     private GradientDirectionMagnitude computeDirectionAndMagnitude(BufferedImage horizontalGradient,

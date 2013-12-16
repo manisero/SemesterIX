@@ -1,7 +1,6 @@
 package pl.edu.pw.elka.cpoo;
 
 import pl.edu.pw.elka.cpoo.canny.CannyEdgeDetector;
-import pl.edu.pw.elka.cpoo.histogram.HistogramNormalizationPerformer;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
 
 import javax.swing.*;
