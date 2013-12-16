@@ -4,6 +4,7 @@
 \usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{accents}
 
 \title{[PTKB] Kolokwium 2 - opracowanie}
 \author{}
@@ -19,9 +20,9 @@
 
 \textbf{Rozwiązanie}: Prawdopodobieństwo udanego oszustwa po wykonaniu $n$ eksperymentów wynosi $(\frac{1}{2})^{n}$. Rozwiązujemy równanie $(\frac{1}{2})^{x} = 10^{-1000}$.
 
-\begin{equation}
+\begin{equation*}
 	\begin{array}{lcl} (\frac{1}{2})^{x} & = & 10^{-1000} \\ 2^{x} & = & 10^{1000} \\ x & = & \log_{2} 10^{1000} \\ x & = & 1000 \log_{2} 10 \\ x & \simeq & 3321.928 \end{array}
-\end{equation}
+\end{equation*}
 
 Wybieramy $\lceil x \rceil = 3322$.
 
@@ -38,9 +39,9 @@ Wybieramy $\lceil x \rceil = 3322$.
 
 Patrząc na najmniejsze liczby Carmichaela:
 
-\begin{equation}
+\begin{equation*}
 	\begin{array}{lcl} 561& = & 3 \cdot 11 \cdot 17 \\ 1105 & = & 5 \cdot 13 \cdot 17 \\ \end{array}
-\end{equation}
+\end{equation*}
 
 \noindent widzimy, że liczba Carmichaela 1105 jest względnie pierwsza zarówno z~2, jak również 3, a~więc pozwala ona stworzyć liczby pseudopierwsze $2^{1105 - 1} - 1$ oraz $3^{1105 - 1} - 1$.
 
@@ -64,18 +65,44 @@ Wielomianem drugiego stopnia nierozkładalnym w~ciele $G(3)[x]$ jest $x^2 + 1$ (
 
 \textbf{Rozwiązanie}: Wielomian drugiego stopnia można rozłożyć za pomocą dwóch wielomianów pierwszego stopnia, więc:
 
-\begin{equation}
+\begin{equation*}
 	\begin{array}{lcl} x^{2} + 1 & = & (ax + b) * (cx + d) \\ x^{2} + 1 & = & (ac)x^{2} + (ad + bc)x + bd \\ \end{array}
-\end{equation}
+\end{equation*}
 
 Dla ciała $GF(3)[x]$, $b, d \in \left\{0, 1, 2\right\}$ oraz $a, c \in \left\{1, 2\right\}$ (bo wielomian musi być rozkładalny). Rozważmy wszystkie możliwe wartości $(ad + bc) \bmod{3}$. Jeżeli $(ad + bc) \equiv 0 \mod 3 \Rightarrow a = 0 \wedge c = 0$, co jest sprzeczne z~dziedziną, a~więc wielomian nie może być rozkładalny.
 
 Dla ciała $GF(2)[x]$, $b, d \in \left\{0, 1\right\}$ oraz $a, c \in \left\{1\right\}$. Jeżeli $(b + d) \equiv 0 \mod 2 \Rightarrow (b = 0 \wedge d = 0) \vee (b = 1 \wedge d = 1)$. Dla drugiego przypadku otrzymujemy w~$GF(2)[x]$:
 
-\begin{equation}
+\begin{equation*}
 	x^{2} + 1 \equiv (x+1) * (x+1)
-\end{equation}
+\end{equation*}
 
 Zatem wielomian jest rozkładalny.
+
+\section{Zadanie 10.}
+
+\textbf{Treść}: Załóżmy, że mamy dwie niezależne zmienne losowe $X_{1}$ oraz $X_{2}$ o~wartościach w~zbiorze $Z_{2} = \left\{0, 1\right\}$. Wykazać, że jeśli $X_{1}$ ma rozkład równomierny, to również $X_{1} \oplus X_{2}$ ma rozkład równomierny. Ten fakt jest podstawą protokołu o~nazwie ,,rzut monetą przez telefon''.
+
+\textbf{Rozwiązanie}: Najpierw wykażemy, że odwzorowanie $Y = X_{1} \otimes X_{2}$ jest zmienną losową. Ogólnie rzecz biorąc, jeśli $(\Omega, \mathfrak{M})$ jest przestrzenią mierzalną, $(E_{t}, \mathfrak{F}_{t})_{t \in T}$ jest dowolną rodziną przestrzeni mierzalnych, a odwzorowania $f_{t}: \Omega \rightarrow E_{t}$ są $(\mathfrak{M}, \mathfrak{F}_{t})$ mierzalne dla każdego $t \in T$ to odwzorowanie $\underset{t \in T}{P} f_{t}: \Omega \rightarrow \underset{t \in T}{P} E_{t}$ jest $(\mathfrak{M}, \underset{t \in T}{P} \mathfrak{F}_{t})$ mierzalne. Stosując ten ogólny fakt do naszej sytuacji stwierdzamy, że odwzorowanie $(X_{1}, X_{2})$ jest $(\mathfrak{M}, 2^{\left\{0,1\right\}} \otimes  2^{\left\{0,1\right\}})$ mierzalne. Odwzorowanie $S: \left\{0,1\right\} \times \left\{0,1\right\} \ni (x_{1}, x_{2}) \rightarrow x_{1} \oplus x_{2} \in \left\{0,1\right\}$ jest oczywiście $(2^{\left\{0,1\right\}} \otimes  2^{\left\{0,1\right\}},  2^{\left\{0,1\right\}})$ mierzalne, zatem $Y = X_{1} \oplus X_{2}$ jako superpozycja odwzorowań mierzalnych $(X_{1}, X_{2})$ i~$S$ jest $(\mathfrak{M},  2^{\left\{0,1\right\}})$ mierzalne, jest więc zmienną losową.
+
+Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X_{2}$. Oznaczmy: 
+
+\begin{equation*}
+	\begin{array}{lcl} A_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 0 \right\}, \\ A_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 0 \right\}, \\ B_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 1 \right\}, \\ B_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 1 \right\}. \\\end{array}
+\end{equation*}
+
+\noindent Wówczas zdarzenia $A_{0}$, $A_{1}$, $B_{0}$, $B_{1}$ są parami rozłączne. Stąd i~z~niezależności zmiennych losowych $X_{1}$ i~$X_{2}$ oznaczając $P(X_{1} = 0) = p_{0}$, $P(X_{1} = 1) = p_{1}$ dostajemy:
+
+\begin{equation*}
+	\begin{array}{c} P(Y = 1) = P(A_{1} \cup B_{1}) = P(A_{1}) + P(B_{1}) = \\ = P(X_{1} = 1) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 0) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
+\end{equation*}
+
+\noindent ponieważ $p_{0} + p_{1} = 1$. Podobnie:
+
+\begin{equation*}
+	\begin{array}{c} P(Y = 0) = P(A_{0} \cup B_{0}) = P(A_{0}) + P(B_{0}) = \\ = P(X_{1} = 0) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 1) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
+\end{equation*}
+
+\noindent a~więc istotnie zmienna losowa $Y = X_{1} \oplus X_{2}$ ma rozkład równomierny.
 
 \end{document}
