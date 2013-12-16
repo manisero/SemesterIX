@@ -5,7 +5,6 @@ import pl.edu.pw.elka.cpoo.gui.MainPanel;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -29,6 +28,8 @@ public class EntryPoint
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new MainPanel());
         frame.pack();
+        frame.setResizable(false);
+        frame.setSize(800, 300);
         frame.setVisible(true);
     }
 
