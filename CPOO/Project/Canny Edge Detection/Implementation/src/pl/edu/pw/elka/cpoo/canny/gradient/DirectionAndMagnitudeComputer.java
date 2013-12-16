@@ -33,7 +33,7 @@ public class DirectionAndMagnitudeComputer
 
         for (int x = 0; x < width; ++x)
         {
-            for (int y = 0; y < width; ++y)
+            for (int y = 0; y < height; ++y)
             {
                 double verticalValue = vertical.getPixelValue(x, y);
                 double horizontalValue = horizontal.getPixelValue(x, y);
