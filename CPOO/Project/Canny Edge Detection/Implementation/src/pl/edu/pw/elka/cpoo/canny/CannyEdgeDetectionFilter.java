@@ -4,12 +4,12 @@ import pl.edu.pw.elka.cpoo.canny.filter.HysteresisFilter;
 import pl.edu.pw.elka.cpoo.canny.filter.NonMaximumSuppressionFilter;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitude;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitudeComputer;
+import pl.edu.pw.elka.cpoo.canny.gradient.SobelComputer;
 import pl.edu.pw.elka.cpoo.filter.CompositeImageFilter;
 import pl.edu.pw.elka.cpoo.filter.IImageFilter;
 import pl.edu.pw.elka.cpoo.filter.impl.HistogramNormalizationFilter;
 import pl.edu.pw.elka.cpoo.filter.impl.KernelFilter;
 import pl.edu.pw.elka.cpoo.kernel.impl.GaussianKernelGenerator;
-import pl.edu.pw.elka.cpoo.kernel.impl.SobelKernelGenerator;
 import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
@@ -31,28 +31,28 @@ public class CannyEdgeDetectionFilter implements IImageFilter
     public BufferedImage filter(BufferedImage input)
     {
         GrayscaleBufferedImage grayscaleImage = GrayscaleBufferedImage.getGrayscaleImage(input);
+        BufferedImage filteredImage = getInitialFilter() .filter(grayscaleImage);
 
-        BufferedImage gradientHorizontalImage = getGradientFilter(true).filter(grayscaleImage);
-        BufferedImage gradientVerticalImage = getGradientFilter(false).filter(grayscaleImage);
+        double[][] sobelGradientX = SobelComputer.computeGradientX(filteredImage);
+        double[][] sobelGradientY = SobelComputer.computeGradientY(filteredImage);
 
         DirectionAndMagnitude directionAndMagnitude = DirectionAndMagnitudeComputer
-                .computeGradientDirectionAndMagnitude(gradientHorizontalImage, gradientVerticalImage);
+                .computeGradientDirectionAndMagnitude(sobelGradientX, sobelGradientY);
 
         BufferedImage edgesImage = getEdgesFilter(directionAndMagnitude).filter(grayscaleImage);
 
         return edgesImage;
     }
 
-    private IImageFilter getGradientFilter(boolean horizontal)
+    private IImageFilter getInitialFilter()
     {
         IImageFilter normalizationFilter = new HistogramNormalizationFilter();
         IImageFilter gaussianHorizontalFilter = new KernelFilter(new GaussianKernelGenerator(radius, true));
         IImageFilter gaussianVerticalFilter = new KernelFilter(new GaussianKernelGenerator(radius, false));
-        IImageFilter sobelFilter = new KernelFilter(new SobelKernelGenerator(horizontal));
-        IImageFilter gradientFilter = new CompositeImageFilter(normalizationFilter, gaussianHorizontalFilter,
-                gaussianVerticalFilter, sobelFilter);
+        IImageFilter initialFilter = new CompositeImageFilter(normalizationFilter, gaussianHorizontalFilter,
+                gaussianVerticalFilter);
 
-        return gradientFilter;
+        return initialFilter;
     }
 
     private IImageFilter getEdgesFilter(DirectionAndMagnitude directionAndMagnitude)

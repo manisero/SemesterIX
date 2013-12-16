@@ -153,6 +153,7 @@ public class MainPanel extends JPanel implements ActionListener, ChangeListener
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Wybierz plik graficzny...");
         fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 
         String[] suffices = ImageIO.getReaderFileSuffixes();
 
