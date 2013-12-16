@@ -44,6 +44,20 @@ Patrząc na najmniejsze liczby Carmichaela:
 
 \noindent widzimy, że liczba Carmichaela 1105 jest względnie pierwsza zarówno z~2, jak również 3, a~więc pozwala ona stworzyć liczby pseudopierwsze $2^{1105 - 1} - 1$ oraz $3^{1105 - 1} - 1$.
 
+\section{Zadanie 5.}
+
+\textbf{Treść}: Podać przykład ciała $GF(3^{2})$, czyli ciała o~9 elementach.
+
+\textbf{Rozwiązanie}: Ciało $GF(p^{n})$, gdzie $p$ jest liczbą pierwszą oraz $n \in \mathbb{N}$, można wygenerować:
+
+\begin{itemize}
+ \item Znajdując wielomian $f(x)$ stopnia $n$ nierozkładalny w~pierścieniu $GF(p)[x]$.
+ \item Znajdując wszystkie możliwe reszty z~dzielenia wielomianu $f(x)$ w~pierścieniu $GF(p)[x]$.
+ \item Wykorzystując działania dodawania i~mnożenia wielomianów modulo $f(x)$.
+\end{itemize}
+
+Wielomianem drugiego stopnia nierozkładalnym w~ciele $G(3)[x]$ jest $x^2 + 1$ (patrz: \emph{Zadanie 7.}). Wszystkie możliwe reszty z~dzielenia tego wielomianu w~pierścieniu $G(3)[x]$ to: $2x + 2$, $2x + 1$, $2x$, $x + 2$, $x + 1$, $x$, $2$, $1$.
+
 \section{Zadanie 7.}
 
 \textbf{Treść}: Wykazać, że wielomian $x^{2} + 1$ jest nierozkładalny w~pierścieniu wielomianów $GF(3)[x]$, a~jest rozkładalny w~pierścieniu wielomianów $GF(2)[x]$.
