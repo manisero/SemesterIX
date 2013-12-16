@@ -68,7 +68,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                 {
                     if (DirectionAndMagnitudeComputer.isMagnitudeEastWestMaximum(directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, getPixelValueWithThreshold(directionAndMagnitude.getMagnitude(x, y)));
+                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
                         continue;
                     }
                 }
@@ -77,7 +77,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthEastSouthWestMaximum
                             (directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, getPixelValueWithThreshold(directionAndMagnitude.getMagnitude(x, y)));
+                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
                         continue;
                     }
                 }
@@ -85,7 +85,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                 {
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthSouthMaximum(directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, getPixelValueWithThreshold(directionAndMagnitude.getMagnitude(x, y)));
+                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
                         continue;
                     }
                 }
@@ -94,7 +94,7 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
                     if (DirectionAndMagnitudeComputer.isMagnitudeNorthWestSouthEastMaximum
                             (directionAndMagnitude, x, y))
                     {
-                        input.setPixelValue(x, y, getPixelValueWithThreshold(directionAndMagnitude.getMagnitude(x, y)));
+                        input.setPixelValue(x, y, (int) directionAndMagnitude.getMagnitude(x, y));
                         continue;
                     }
                 }
@@ -104,19 +104,5 @@ public class NonMaximumSuppressionFilter extends CompositeImageFilter
         }
 
         return input;
-    }
-
-    private int getPixelValueWithThreshold(double magnitudeValue)
-    {
-        if (magnitudeValue < lowThreshold)
-        {
-            return 0;
-        }
-        else if (magnitudeValue < highThreshold)
-        {
-            return 128;
-        }
-
-        return 255;
     }
 }

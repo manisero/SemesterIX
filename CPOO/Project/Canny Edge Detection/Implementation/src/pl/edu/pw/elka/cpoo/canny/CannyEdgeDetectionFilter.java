@@ -1,5 +1,6 @@
 package pl.edu.pw.elka.cpoo.canny;
 
+import pl.edu.pw.elka.cpoo.canny.filter.HysteresisFilter;
 import pl.edu.pw.elka.cpoo.canny.filter.NonMaximumSuppressionFilter;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitude;
 import pl.edu.pw.elka.cpoo.canny.gradient.DirectionAndMagnitudeComputer;
@@ -39,9 +40,9 @@ public class CannyEdgeDetectionFilter extends CompositeImageFilter
         DirectionAndMagnitude directionAndMagnitude = DirectionAndMagnitudeComputer
                 .computeGradientDirectionAndMagnitude(sobelVerticalImage, sobelHorizontalImage);
 
-        BufferedImage suppresedImage = getNonMaximumSuppressionFilter(directionAndMagnitude).filter(grayscaleImage);
+        BufferedImage edgesImage = getHysteresisFilter(directionAndMagnitude).filter(grayscaleImage);
 
-        return suppresedImage;
+        return edgesImage;
     }
 
     private IImageFilter getSobelFilter(boolean horizontal)
@@ -55,11 +56,12 @@ public class CannyEdgeDetectionFilter extends CompositeImageFilter
         return sobelFilter;
     }
 
-    private IImageFilter getNonMaximumSuppressionFilter(DirectionAndMagnitude directionAndMagnitude)
+    private IImageFilter getHysteresisFilter(DirectionAndMagnitude directionAndMagnitude)
     {
         IImageFilter nonMaximumSuppresionFilter = new NonMaximumSuppressionFilter(directionAndMagnitude,
                 lowThreshold, highThreshold);
+        IImageFilter hysteresisFilter = new HysteresisFilter(lowThreshold, highThreshold, nonMaximumSuppresionFilter);
 
-        return nonMaximumSuppresionFilter;
+        return hysteresisFilter;
     }
 }
