@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.cpoo.canny;
+package pl.edu.pw.elka.cpoo.exception;
 
 public class CannyEdgeDetectorException extends RuntimeException
 {

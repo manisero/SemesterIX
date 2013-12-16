@@ -1,6 +1,6 @@
 package pl.edu.pw.elka.cpoo;
 
-import pl.edu.pw.elka.cpoo.canny.CannyEdgeDetector;
+import pl.edu.pw.elka.cpoo.canny.CannyEdgeDetectionFilter;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
 
 import javax.swing.*;
@@ -52,7 +52,7 @@ public class EntryPoint
         File imageFile = new File("lena.bmp");
         BufferedImage image = ImageReader.readImage(imageFile);
 
-        CannyEdgeDetector detector = new CannyEdgeDetector(2, 20, 50);
+        CannyEdgeDetectionFilter detector = new CannyEdgeDetectionFilter(2, 20, 50);
         return detector.filter(image);
     }
 }
