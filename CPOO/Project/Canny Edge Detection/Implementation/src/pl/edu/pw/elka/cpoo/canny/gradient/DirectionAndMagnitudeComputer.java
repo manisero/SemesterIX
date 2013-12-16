@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.cpoo.canny.gradient;
 
 import pl.edu.pw.elka.cpoo.exception.CannyEdgeDetectorException;
+import pl.edu.pw.elka.cpoo.exception.DirectionAndMagnitudeComputerException;
 import pl.edu.pw.elka.cpoo.utilities.GrayscaleBufferedImage;
 
 import java.awt.image.BufferedImage;
@@ -92,13 +93,26 @@ public class DirectionAndMagnitudeComputer
 
     public static boolean isMagnitudeEastWestMaximum(DirectionAndMagnitude directionAndMagnitude, int x, int y)
     {
+        checkIfMagnitudeTestIsValid(directionAndMagnitude, x, y);
+
         return directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x - 1, y)
                 && directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x + 1, y);
+    }
+
+    private static void checkIfMagnitudeTestIsValid(DirectionAndMagnitude directionAndMagnitude, int x, int y)
+    {
+        if (x <= 0 || y <= 0 || x >= directionAndMagnitude.getMagnitudeWidth()
+                || y >= directionAndMagnitude.getMagnitudeHeight())
+        {
+            throw new DirectionAndMagnitudeComputerException("Could not test magnitude for: " + x + ", " + y + "!");
+        }
     }
 
     public static boolean isMagnitudeNorthSouthMaximum(DirectionAndMagnitude directionAndMagnitude, int x,
                                                        int y)
     {
+        checkIfMagnitudeTestIsValid(directionAndMagnitude, x, y);
+
         return directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x, y - 1)
                 && directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x, y + 1);
     }
@@ -106,6 +120,8 @@ public class DirectionAndMagnitudeComputer
     public static boolean isMagnitudeNorthEastSouthWestMaximum(DirectionAndMagnitude directionAndMagnitude,
                                                                int x, int y)
     {
+        checkIfMagnitudeTestIsValid(directionAndMagnitude, x, y);
+
         return directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x - 1, y - 1)
                 && directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x + 1, y + 1);
     }
@@ -113,6 +129,8 @@ public class DirectionAndMagnitudeComputer
     public static boolean isMagnitudeNorthWestSouthEastMaximum(DirectionAndMagnitude directionAndMagnitude,
                                                                int x, int y)
     {
+        checkIfMagnitudeTestIsValid(directionAndMagnitude, x, y);
+
         return directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x - 1, y + 1)
                 && directionAndMagnitude.getMagnitude(x, y) > directionAndMagnitude.getMagnitude(x + 1, y - 1);
     }

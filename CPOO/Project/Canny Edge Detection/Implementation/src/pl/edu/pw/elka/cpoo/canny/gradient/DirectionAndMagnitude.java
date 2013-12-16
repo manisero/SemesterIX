@@ -30,4 +30,14 @@ public class DirectionAndMagnitude
     {
         magnitude[x][y] = value;
     }
+
+    public int getMagnitudeWidth()
+    {
+        return magnitude.length;
+    }
+
+    public int getMagnitudeHeight()
+    {
+        return magnitude[0].length;
+    }
 }
