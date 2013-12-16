@@ -79,6 +79,14 @@ Dla ciała $GF(2)[x]$, $b, d \in \left\{0, 1\right\}$ oraz $a, c \in \left\{1\ri
 
 Zatem wielomian jest rozkładalny.
 
+\section{Zadanie 8.}
+
+\textbf{Treść}: Wykazać, że w~grupie skończonej dla każdego $a \in G$ mamy: $a^{rzG} = 1$, gdzie $rzG$ oznacza rząd grupy $G$. Wykazać, wykorzystując ten fakt, twierdzenie Eulera. (Wskazówka: wykorzystać twierdzenie Lagrange'a: dla grup skończonych rząd podgrupy jest dzielnikiem rzędu grupy).
+
+\textbf{Rozwiązanie}: W~ciągu $a^{1}, a^{2}, \cdots, a^{rzG}, a^{rzG + 1}$ muszą być dwa elementy równe, tzn. dla pewnych $k', k'' \in [1, rzG + 1], k' < k''$ musimy mieć $a^{k'} = a^{k''}$. Zatem $a^{k'' - k'} = 1$. Istnieje więc takie $k \in [1, rzG] (k = k'' - k')$, że $a^{k} = 1$. Niech $r$ będzie najmniejszym takim $k$, że $a^{k} = 1$, wówczas zbiór $H = \left\{a^{1}, a^{2}, \cdots, a^{r}\right\}$ stanowi podgrupę cykliczną rzędu $r$ grupy $G$. Ponieważ, z~twierdzenia Lagrange'a, $r$ jest dzielnikiem rzędu grupy $G$, więc również $a^{rzG} = 1$.
+
+\noindent Twierdzenie Eulera: jeśli $n \in \mathbb{N}$, $n \geq 2$ i~$a \in \mathbb{N}$ oraz $NWD(a, n) = 1$ to $a^{\phi(n)} \equiv 1 \mod n$, gdzie $\phi$ jest funkcją Eulera. Rozważmy grupę multiplikatywną $Z_{n}^{*}$. Grupa $Z_{n}^{*}$ ma rząd równy $\phi(n)$. Zatem korzystając z~$a^{rzG} = 1$ dostajemy, że dla każdego $a \in Z_{n}^{*}$ mamy $a^{\phi(n)} \equiv 1 \mod n$. Warunek $a \in Z_{n}^{*}$ jest równoznaczny warunkowi $NWD(a, n) = 1$. Zatem twierdzenie Eulera jest prostym wnioskiem z~ogólnego twierdzenia teoriogrupowego $a^{rzG} = 1$.
+
 \section{Zadanie 10.}
 
 \textbf{Treść}: Załóżmy, że mamy dwie niezależne zmienne losowe $X_{1}$ oraz $X_{2}$ o~wartościach w~zbiorze $Z_{2} = \left\{0, 1\right\}$. Wykazać, że jeśli $X_{1}$ ma rozkład równomierny, to również $X_{1} \oplus X_{2}$ ma rozkład równomierny. Ten fakt jest podstawą protokołu o~nazwie ,,rzut monetą przez telefon''.
