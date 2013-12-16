@@ -1,9 +1,7 @@
 package pl.edu.pw.elka.cpoo;
 
-import pl.edu.pw.elka.cpoo.blur.GaussianBlurFilteringPerformer;
 import pl.edu.pw.elka.cpoo.canny.CannyEdgeDetector;
-import pl.edu.pw.elka.cpoo.edge.SobelOperatorFilteringPerformer;
-import pl.edu.pw.elka.cpoo.grayscale.GrayscaleFilteringPerformer;
+import pl.edu.pw.elka.cpoo.histogram.HistogramNormalizationPerformer;
 import pl.edu.pw.elka.cpoo.reader.ImageReader;
 
 import javax.swing.*;
@@ -56,7 +54,6 @@ public class EntryPoint
         BufferedImage image = ImageReader.readImage(imageFile);
 
         CannyEdgeDetector detector = new CannyEdgeDetector(2, 20, 50);
-
         return detector.filter(image);
     }
 }
