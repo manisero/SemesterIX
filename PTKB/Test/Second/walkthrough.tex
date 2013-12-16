@@ -24,4 +24,24 @@
 
 Wybieramy $\lceil x \rceil = 3322$.
 
+\section{Zadanie 7.}
+
+\textbf{Treść}: Wykazać, że wielomian $x^{2} + 1$ jest nierozkładalny w~pierścieniu wielomianów $GF(3)[x]$, a~jest rozkładalny w~pierścieniu wielomianów $GF(2)[x]$.
+
+\textbf{Rozwiązanie}: Wielomian drugiego stopnia można rozłożyć za pomocą dwóch wielomianów pierwszego stopnia, więc:
+
+\begin{equation}
+	\begin{array}{lcl} x^{2} + 1 & = & (ax + b) * (cx + d) \\ x^{2} + 1 & = & (ac)x^{2} + (ad + bc)x + bd \\ \end{array}
+\end{equation}
+
+Dla ciała $GF(3)[x]$, $b, d \in \left\{0, 1, 2\right\}$ oraz $a, c \in \left\{1, 2\right\}$ (bo wielomian musi być rozkładalny). Rozważmy wszystkie możliwe wartości $(ad + bc) \bmod{3}$. Jeżeli $(ad + bc) \equiv 0 \mod 3 \Rightarrow a = 0 \wedge c = 0$, co jest sprzeczne z~dziedziną, a~więc wielomian nie może być rozkładalny.
+
+Dla ciała $GF(2)[x]$, $b, d \in \left\{0, 1\right\}$ oraz $a, c \in \left\{1\right\}$. Jeżeli $(b + d) \equiv 0 \mod 2 \Rightarrow (b = 0 \wedge d = 0) \vee (b = 1 \wedge d = 1)$. Dla drugiego przypadku otrzymujemy w~$GF(2)[x]$:
+
+\begin{equation}
+	x^{2} + 1 \equiv (x+1) * (x+1)
+\end{equation}
+
+Zatem wielomian jest rozkładalny.
+
 \end{document}
