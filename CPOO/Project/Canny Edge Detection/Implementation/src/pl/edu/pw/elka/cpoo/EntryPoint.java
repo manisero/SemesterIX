@@ -55,7 +55,7 @@ public class EntryPoint
         File imageFile = new File("lena.bmp");
         BufferedImage image = ImageReader.readImage(imageFile);
 
-        CannyEdgeDetector detector = new CannyEdgeDetector(2);
+        CannyEdgeDetector detector = new CannyEdgeDetector(2, 20, 50);
 
         return detector.filter(image);
     }
