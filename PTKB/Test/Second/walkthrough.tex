@@ -28,6 +28,20 @@
 
 Wybieramy $\lceil x \rceil = 3322$.
 
+\subsection{Zadanie 3.}
+
+\textbf{Treść}: Wykazać, że charakterystyka ciała skończonego (czyli najmniejsza taka liczba $n$, że spełniona jest równość $\underbrace{1 + 1 + 1 + \cdots + 1}_\text{n} = 0$) jest zawsze liczbą pierwszą.
+
+\textbf{Rozwiązanie}: Załóżmy, że $\text{char} K = n$ i~liczba $n = m_{1}m_{2}$, gdzie $m_{1}, m_{2} \in \mathbb{N}$, a~więc $n \cdot 1 = (m_{1}m_{2}) \cdot 1 = 0$. Z~łączności dodawania i~rozdzielności mnożenia względem dodawania w~ciele $K$ mamy $(m_{1}m_{2}) \cdot 1 = (m_{1} \cdot 1)(m_{2} \cdot 1)$, zatem:
+
+\begin{equation*}
+(m_{1} \cdot 1)(m_{2} \cdot 1) = 0
+\end{equation*}
+
+Jeśli $m_{1} < n$ to z~definicji charakterystyki dostajemy, że $m_{1} \cdot 1 \neq 0$, zatem istnieje element odwrotny $(m_{1} \cdot 1)^{-1}$ do $m_{1} \cdot 1$. Mnożąc lewostronnie równość $(m_{1} \cdot 1)(m_{2} \cdot 1) = 0$ przez $(m_{1} \cdot 1)^{-1}$ dostajemy $m_{2} \cdot 1 = 0$, ponieważ jednak $1 \leq m_{2} \leq n$ to biorąc pod uwagę definicję charakterystyki ciała musimy mieć $m_{2} = n$. Wynika stąd, że liczba $n$ nie jest podzielna przez żadną liczbę różną od $n$ i~$1$, a~zatem jest liczbą pierwszą.
+
+Można też rozumować nieco inaczej. Załóżmy, że $\text{char} K = n$ i~liczba $n$ daje się przedstawić w~postaci $n = m_{1}m_{2}$, gdzie $m_{1}, m_{2} \in \mathbb{N}$ i $m_{1}, m_{2} \geq 2$, czyli $n$ nie jest liczbą pierwszą. Wówczas $n \cdot 1 = (m_{1}m_{2}) \cdot 1 = (m_{1} \cdot 1)(m_{2} \cdot 1) = 0$. Ponieważ $m_{1} \cdot 1 \neq 0$ i~$m_{2} \cdot 1 \neq 0$ oraz $(m_{1} \cdot 1)(m_{2} \cdot 1) = 0$ co nie jest możliwe, bo ciało nie ma niezerowych dzielników zera. Zatem założenie, że $n$ nie jest liczbą pierwszą prowadzi do sprzeczności.
+
 \subsection{Zadanie 4.}
 
 \textbf{Treść}: Podać przykład liczby pseudopierwszej przy podstawie 2 i~3 jednocześnie. Czy takie liczby w~ogóle istnieją?
