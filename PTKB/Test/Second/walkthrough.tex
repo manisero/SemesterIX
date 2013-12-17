@@ -1,10 +1,10 @@
 \documentclass[a4paper,10pt, twocolumn]{article}
 \usepackage[MeX]{polski}
 \usepackage[utf8]{inputenc}
-\usepackage{fullpage}
+%\usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{accents}
+%\usepackage{accents}
 
 \title{[PTKB] Kolokwium 2 - opracowanie}
 \author{}
@@ -17,6 +17,7 @@
 \section{Kolokwium 2 z~PTKB (11.01.2012)}
 
 \subsection{Zadanie 1.}
+\label{subsec:KolZadanie1}
 
 \textbf{Treść}: Ile razy trzeba wykonać protokół uwierzytelniania Fiata-Shamira by prawdopodobieństwo oszustwa było mniejsze od $10^{-1000}$?
 
@@ -169,6 +170,7 @@ Zatem wielomian jest rozkładalny.
 \noindent Czyli wykorzystane algorytmy dodawania i~mnożenia dały poprawne rezultaty.
 
 \subsection{Zadanie 10.}
+\label{subsec:KolZadanie10}
 
 \textbf{Treść}: Załóżmy, że mamy dwie niezależne zmienne losowe $X_{1}$ oraz $X_{2}$ o~wartościach w~zbiorze $Z_{2} = \left\{0, 1\right\}$. Wykazać, że jeśli $X_{1}$ ma rozkład równomierny, to również $X_{1} \oplus X_{2}$ ma rozkład równomierny. Ten fakt jest podstawą protokołu o~nazwie ,,rzut monetą przez telefon''.
 
@@ -193,5 +195,47 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
 \end{equation*}
 
 \noindent a~więc istotnie zmienna losowa $Y = X_{1} \oplus X_{2}$ ma rozkład równomierny.
+
+\section{Zadania przygotowujące do kolokwium \#2 z PTKB}
+
+\subsection{Zadanie 2.}
+\textbf{Treść}: Ile razy trzeba wykonać protokoł uwierzytelniania Fiata-Shamira by prawdopodobieństwo oszustwa było mniejsze od $10^{-100}$.
+
+\textbf{Rozwiązanie}: Patrz \ref{subsec:KolZadanie1}
+
+\subsection{Zadanie 3.}
+\textbf{Treść}: Pokazać jak musi spreparować protokół Fiata-Shamira Prover nie znający tajemnicy (a wieęc oszust lub zapominalski) by zawsze na wyzwanie $e=1$ odpowiadać prawidłowo.
+
+\textbf{Rozwiązanie}: 
+\begin{enumerate}
+	\item Porver nie znający tajemnicy s prawdziwego Provera (czyli nie znający klucza prywatnego) losuje liczbę $r\in Z_n, r\neq 0,1$. Podnosi do kwadratu modulo n (przypominamy, że $n=pq$, gdzie $p,q$ są różnymi liczbami pierwszymi) i przesyła w pierwszym kroku protokołu do Verifiera liczbę $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$, gdzie $s \in Z_n$ jest tajemnicą (kluczem prywatnym) prawdziwego Provera, $s^2(modn)\in Z$, kluczem publicznym a odwrotność jest $n$ brana w pierścieniu $Z_n$.
+	\item Jeśli Verifier żąda w drugim kroku protokołu odpowiedzi na pytanie $e=1$ to Prover wysyła do Verifiera liczbę $y=r$
+	\item Verifier sprawdza teraz równanie weryfikacyjne sprawdzając czy:
+		\begin{equation*}
+			y^2(modn)=(x*s^2)(modn)
+		\end{equation*}
+		Równanie to jest dla $y=r$ i $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$
+		Proverowi udało się dobrze odpowiedzieć na pytanie $e=1$ Verifiera.
+\end{enumerate}
+
+\subsection{Zadanie 33.}
+\textbf{Treść}: Obliczyć wartość symbolu Legendre'a: a) $(\frac{35}{7})$ b) $(\frac{64}{5})$
+
+\textbf{Rozwiązanie}:
+\begin{enumerate}
+	\item{
+		\begin{equation*}
+			(\frac{35}{7})=(\frac{5}{7})(\frac{7}{7})=0
+		\end{equation*}
+	}
+	\item{
+		\begin{equation*}
+			(\frac{64}{5})=(\frac{4}{5})=1
+		\end{equation*}
+	}
+\end{enumerate}
+
+\subsection{Zadanie 10.}
+\textbf{Rozwiązanie}: Patrz \ref{subsec:KolZadanie10}
 
 \end{document}
