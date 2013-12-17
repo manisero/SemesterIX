@@ -1,0 +1,293 @@
+\documentclass[a4paper,10pt, twocolumn]{article}
+\usepackage[MeX]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{accents}
+
+\title{[PTKB] Kolokwium 2 - opracowanie}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Kolokwium 2 z~PTKB (11.01.2012)}
+
+\subsection{Zadanie 1.}
+\label{subsec:KolZadanie1}
+
+\textbf{Treść}: Ile razy trzeba wykonać protokół uwierzytelniania Fiata-Shamira by prawdopodobieństwo oszustwa było mniejsze od $10^{-1000}$?
+
+\textbf{Rozwiązanie}: Prawdopodobieństwo udanego oszustwa po wykonaniu $n$ eksperymentów wynosi $(\frac{1}{2})^{n}$. Rozwiązujemy równanie $(\frac{1}{2})^{x} = 10^{-1000}$.
+
+\begin{equation*}
+	\begin{array}{lcl} (\frac{1}{2})^{x} & = & 10^{-1000} \\ 2^{x} & = & 10^{1000} \\ x & = & \log_{2} 10^{1000} \\ x & = & 1000 \log_{2} 10 \\ x & \simeq & 3321.928 \end{array}
+\end{equation*}
+
+Wybieramy $\lceil x \rceil = 3322$.
+
+\subsection{Zadanie 2.}
+
+\textbf{Treść}: Skonstruować system podpisów cyfrowych ElGamala „dla małych liczb”. Przyjąć odpowiedni klucz publiczny i prywatny. Podpisać dowolną wybraną wiadomość $m$ i zweryfikować podpis.
+
+\textbf{Rozwiązanie} : 
+\begin{enumerate}
+	\item Ustanawianie systemu. Wybieramy liczbę pierwszą np. $p=13$. Jako generator grupy multiplikatywnej $Z^*_{13}$ można wybrać $g=2$, ponieważ $2^1(mod13)=2$, $2^2(mod13)=4$,  $2^3(mod13)=8$, $2^4(mod13)=3$, $2^5(mod13)=6$, $2^6(mod13)=12$, $2^7(mod13)=11$, $2^8(mod13)=9$, $2^9(mod13)=5$, $2^{10}(mod13)=10$, $2^{11}(mod13)=7$, $2^{12}(mod13)=1$
+	Jako klucz prywatny wybieramy losowo dowolną liczbę $x \in <2,p-2>$. Wybierzmy np. $x=3$. Będzie to tajemnica strony podpisującej wiadomość. Ujawniamy klucz publiczny $y=g^x(modp)=2^3(mod13)=8$.
+	\item Podpisywanie wiadomości (dokumentu) przez stronę dysponującą tajnym kluczem prywatnym x.
+	Wybieramy jako wiadomość podpisywaną dowolna liczbę $m \in Z_{p-1}$ czyli w naszym przypadku $m \in Z_{12}$. Wiadomość jawna $m$ jest więc jednym z elementów zbioru ${0,1,2,\cdots,11}$. Wybierzmy jako wiadomość podpisywaną $m=4$. Mając $m=4$ i $x=3$ tworzymy teraz podpis wiadomości $m=4$ czyli odpowiednią parę uporządkowaną $(a, b) \in Z^*_p \times Z_{p-1}$.
+	Losujemy $k \in Z_{p-1}$ takie, że $NWD(k,p-1)=1$. Niech to będzie $k=5$. Obliczamy $k^{-1}$ w pierścieniu $Z_{p-1}$ czyli w pierścieniu $Z_{12}$. Łatwo sprawdzić, że  $k^{-1}=5$. Obliczamy $a \in Z^*_p$ jako $g^k(modp)$, mamy więc $2^5(mod13)=6$.
+	Obliczamy teraz $b \in Z_{p-1}$ jako $b=k^{-1}\otimes_{p-1}(m-_{12}x\otimes[a]_{p-1})$. Przy przyjętych i obliczonych wartościach mamy więc $b=5\otimes_{12}(4-_{12}3\otimes_{12}6)=2$. Zatem podpis $(a,b)$ wiadomości $m=4$ ma postać pary uporządkowanej $(6,2)$ a podpisywana wiadomość $4$ z podpisem to para uporządkowana $(4,(6,2))$.
+	\item Weryfikacja podpisu. Równanie weryfikacyjne dla podpisów ElGamala ma postać: 
+	\begin{equation*}
+		y^a\otimes_p a^b=g^m
+	\end{equation*}
+	gdzie podnoszenie do potęgi jest jak pierścieniu $Z_p$. Musimy sprawdzić dla $y=8$, $a=6$, $b=2$, $m=4$ i $g=2$ czy równanie $(*)$ jest spełnione.
+	\begin{equation*}
+		\begin{array}{c}L=y^a\otimes_p a^b=8^6\cdot2(mod13)=3 \\ P=g^m=2^4(mod13)=3\end{array}
+	\end{equation*}
+	Mamy więc $L=P$ i równanie weryfikacyjne (*) jest spełnione, zatem przedstawiony do weryfikacji podpis akceptujemy.
+\end{enumerate}
+
+\subsection{Zadanie 3.}
+
+\textbf{Treść}: Wykazać, że charakterystyka ciała skończonego (czyli najmniejsza taka liczba $n$, że spełniona jest równość $\underbrace{1 + 1 + 1 + \cdots + 1}_\text{n} = 0$) jest zawsze liczbą pierwszą.
+
+\textbf{Rozwiązanie}: Załóżmy, że $\text{char} K = n$ i~liczba $n = m_{1}m_{2}$, gdzie $m_{1}, m_{2} \in \mathbb{N}$, a~więc $n \cdot 1 = (m_{1}m_{2}) \cdot 1 = 0$. Z~łączności dodawania i~rozdzielności mnożenia względem dodawania w~ciele $K$ mamy $(m_{1}m_{2}) \cdot 1 = (m_{1} \cdot 1)(m_{2} \cdot 1)$, zatem:
+
+\begin{equation*}
+(m_{1} \cdot 1)(m_{2} \cdot 1) = 0
+\end{equation*}
+
+Jeśli $m_{1} < n$ to z~definicji charakterystyki dostajemy, że $m_{1} \cdot 1 \neq 0$, zatem istnieje element odwrotny $(m_{1} \cdot 1)^{-1}$ do $m_{1} \cdot 1$. Mnożąc lewostronnie równość $(m_{1} \cdot 1)(m_{2} \cdot 1) = 0$ przez $(m_{1} \cdot 1)^{-1}$ dostajemy $m_{2} \cdot 1 = 0$, ponieważ jednak $1 \leq m_{2} \leq n$ to biorąc pod uwagę definicję charakterystyki ciała musimy mieć $m_{2} = n$. Wynika stąd, że liczba $n$ nie jest podzielna przez żadną liczbę różną od $n$ i~$1$, a~zatem jest liczbą pierwszą.
+
+Można też rozumować nieco inaczej. Załóżmy, że $\text{char} K = n$ i~liczba $n$ daje się przedstawić w~postaci $n = m_{1}m_{2}$, gdzie $m_{1}, m_{2} \in \mathbb{N}$ i $m_{1}, m_{2} \geq 2$, czyli $n$ nie jest liczbą pierwszą. Wówczas $n \cdot 1 = (m_{1}m_{2}) \cdot 1 = (m_{1} \cdot 1)(m_{2} \cdot 1) = 0$. Ponieważ $m_{1} \cdot 1 \neq 0$ i~$m_{2} \cdot 1 \neq 0$ oraz $(m_{1} \cdot 1)(m_{2} \cdot 1) = 0$ co nie jest możliwe, bo ciało nie ma niezerowych dzielników zera. Zatem założenie, że $n$ nie jest liczbą pierwszą prowadzi do sprzeczności.
+
+\subsection{Zadanie 4.}
+
+\textbf{Treść}: Podać przykład liczby pseudopierwszej przy podstawie 2 i~3 jednocześnie. Czy takie liczby w~ogóle istnieją?
+
+\textbf{Rozwiązanie}: Liczba naturalna jest liczbą Carmichaela wtedy i~tylko wtedy, gdy:
+
+\begin{enumerate}
+ \item Jest liczbą złożoną.
+ \item Dla każdego $a \in \mathbb{N}$ z~przedziału $1 < a < n$, względnie pierwszej z~$n$, liczba $(a^{n-1} - 1)$ jest podzielna przez $n$.
+\end{enumerate}
+
+Patrząc na najmniejsze liczby Carmichaela:
+
+\begin{equation*}
+	\begin{array}{lcl} 561& = & 3 \cdot 11 \cdot 17 \\ 1105 & = & 5 \cdot 13 \cdot 17 \\ \end{array}
+\end{equation*}
+
+\noindent widzimy, że liczba Carmichaela 1105 jest względnie pierwsza zarówno z~2, jak również 3, a~więc pozwala ona stworzyć liczby pseudopierwsze $2^{1105 - 1} - 1$ oraz $3^{1105 - 1} - 1$.
+
+\subsection{Zadanie 5.}
+
+\textbf{Treść}: Podać przykład ciała $GF(3^{2})$, czyli ciała o~9 elementach.
+
+\textbf{Rozwiązanie}: Ciało $GF(p^{n})$, gdzie $p$ jest liczbą pierwszą oraz $n \in \mathbb{N}$, można wygenerować:
+
+\begin{itemize}
+ \item Znajdując wielomian $f(x)$ stopnia $n$ nierozkładalny w~pierścieniu $GF(p)[x]$.
+ \item Znajdując wszystkie możliwe reszty z~dzielenia wielomianu $f(x)$ w~pierścieniu $GF(p)[x]$.
+ \item Wykorzystując działania dodawania i~mnożenia wielomianów modulo $f(x)$.
+\end{itemize}
+
+Wielomianem drugiego stopnia nierozkładalnym w~ciele $G(3)[x]$ jest $x^2 + 1$ (patrz: \emph{Zadanie 7.}). Wszystkie możliwe reszty z~dzielenia tego wielomianu w~pierścieniu $G(3)[x]$ to: $2x + 2$, $2x + 1$, $2x$, $x + 2$, $x + 1$, $x$, $2$, $1$.
+
+\subsection{Zadanie 6.}
+
+\textbf{Treść}: Podać przykład szyfru Rabina ,,dla małych liczb''. Podać przykład szyfrowania i~deszyfracji.
+
+\textbf{Rozwiązanie}: Generacja pary kluczy przebiega następująco:
+
+\begin{itemize}
+	\item Wybieramy dwie liczby pierwsze $p$~i~$q$. Dla uproszczenia można wybrać liczby, które spełniają warunek $p \equiv q \equiv 3 \mod 4$. 
+	\item Obliczamy klucz publiczny $n = p \cdot q$.
+\end{itemize}
+
+\noindent Żeby zaszyfrować wiadomość potrzebny jest wyłącznie klucz publiczny $n$. Żeby odczytać wiadomość potrzebny jest również rozkład klucza na czynniki pierwsze $p$~i~$q$. Przykładowe wartości ,,dla małych liczb'' - $p = 7$, $q = 11$, $n = 77$.
+
+\noindent Szyfrowanie wiadomości $m \in P = \left\{0, \cdots, n - 1 \right\}$ polega na obliczeniu szyfrogramu $c = m^{2} \mod n$. Przykładowo, chcąc zakodować wiadomość $m = 20$, obliczamy $c = 20^2 \mod 77 = 400 \mod 77 = 15$. Niestety, szyfrowanie nie jest jednoznaczne, ponieważ ten sam szyfrogram uzyskujemy dla czterech różnych wiadomości $m \in \left\{13, 20, 57, 64\right\}$.
+
+\noindent Deszyfrowanie wiadomości wymaga obliczenia pierwiastków kwadratowych ze względu na obie części klucza prywatnego $p$ i $q$.
+
+\begin{equation*}
+	\begin{array}{lcl} m_{p} & = & \sqrt{c} \mod p \\ m_{q} & = & \sqrt{c} \mod q \end{array}
+\end{equation*}
+
+\noindent Dla przykładowych małych liczb otrzymujemy $m_{p} = 1$ oraz $m_{q} = 9$. Następnie, używając rozszerzonego algorytmu Euklidesa, odnajdujemy $y_{p}$ oraz $y_{q}$ takie, że $y_{p} \cdot p + y_{q} \cdot q = 1$. Dla przykładowych danych $y_{p} = -3$ oraz $y_{q} = 2$. Teraz, korzystając z~chińskiego twierdzenia o~resztach, odnajdujemy cztery pierwiastki ($+r$, $-r$, $+s$ oraz $-s$) równania $c + n\mathbb{Z} \in \mathbb{Z}/n\mathbb{Z}$:
+
+\begin{equation*}
+	\begin{array}{lcl} r & = & (y_{p} \cdot p \cdot m_{q} + y_{q} \cdot q \cdot m_{p}) \mod n \\ -r & = & n - r \\ s & = & (y_{p} \cdot p \cdot m_{q} - y_{q} \cdot q \cdot m_{p}) \mod n \\ -s & = & n - s \\ \end{array}
+\end{equation*}
+
+\noindent Dla naszego przykładu pierwiastki tego równania przyjmują wartości $m \in \left\{ 64, 20, 13, 57 \right\}$. Wśród nich jest zakodowana wiadomość $m = 20$.
+
+\subsection{Zadanie 7.}
+
+\textbf{Treść}: Wykazać, że wielomian $x^{2} + 1$ jest nierozkładalny w~pierścieniu wielomianów $GF(3)[x]$, a~jest rozkładalny w~pierścieniu wielomianów $GF(2)[x]$.
+
+\textbf{Rozwiązanie}: Wielomian drugiego stopnia można rozłożyć za pomocą dwóch wielomianów pierwszego stopnia, więc:
+
+\begin{equation*}
+	\begin{array}{lcl} x^{2} + 1 & = & (ax + b) * (cx + d) \\ x^{2} + 1 & = & (ac)x^{2} + (ad + bc)x + bd \\ \end{array}
+\end{equation*}
+
+Dla ciała $GF(3)[x]$, $b, d \in \left\{0, 1, 2\right\}$ oraz $a, c \in \left\{1, 2\right\}$ (bo wielomian musi być rozkładalny). Rozważmy wszystkie możliwe wartości $(ad + bc) \bmod{3}$. Jeżeli $(ad + bc) \equiv 0 \mod 3 \Rightarrow a = 0 \wedge c = 0$, co jest sprzeczne z~dziedziną, a~więc wielomian nie może być rozkładalny.
+
+Dla ciała $GF(2)[x]$, $b, d \in \left\{0, 1\right\}$ oraz $a, c \in \left\{1\right\}$. Jeżeli $(b + d) \equiv 0 \mod 2 \Rightarrow (b = 0 \wedge d = 0) \vee (b = 1 \wedge d = 1)$. Dla drugiego przypadku otrzymujemy w~$GF(2)[x]$:
+
+\begin{equation*}
+	x^{2} + 1 \equiv (x+1) * (x+1)
+\end{equation*}
+
+Zatem wielomian jest rozkładalny.
+
+\subsection{Zadanie 8.}
+
+\textbf{Treść}: Wykazać, że w~grupie skończonej dla każdego $a \in G$ mamy: $a^{rzG} = 1$, gdzie $rzG$ oznacza rząd grupy $G$. Wykazać, wykorzystując ten fakt, twierdzenie Eulera. (Wskazówka: wykorzystać twierdzenie Lagrange'a: dla grup skończonych rząd podgrupy jest dzielnikiem rzędu grupy).
+
+\textbf{Rozwiązanie}: W~ciągu $a^{1}, a^{2}, \cdots, a^{rzG}, a^{rzG + 1}$ muszą być dwa elementy równe, tzn. dla pewnych $k', k'' \in [1, rzG + 1], k' < k''$ musimy mieć $a^{k'} = a^{k''}$. Zatem $a^{k'' - k'} = 1$. Istnieje więc takie $k \in [1, rzG] (k = k'' - k')$, że $a^{k} = 1$. Niech $r$ będzie najmniejszym takim $k$, że $a^{k} = 1$, wówczas zbiór $H = \left\{a^{1}, a^{2}, \cdots, a^{r}\right\}$ stanowi podgrupę cykliczną rzędu $r$ grupy $G$. Ponieważ, z~twierdzenia Lagrange'a, $r$ jest dzielnikiem rzędu grupy $G$, więc również $a^{rzG} = 1$.
+
+\noindent Twierdzenie Eulera: jeśli $n \in \mathbb{N}$, $n \geq 2$ i~$a \in \mathbb{N}$ oraz $NWD(a, n) = 1$ to $a^{\phi(n)} \equiv 1 \mod n$, gdzie $\phi$ jest funkcją Eulera. Rozważmy grupę multiplikatywną $Z_{n}^{*}$. Grupa $Z_{n}^{*}$ ma rząd równy $\phi(n)$. Zatem korzystając z~$a^{rzG} = 1$ dostajemy, że dla każdego $a \in Z_{n}^{*}$ mamy $a^{\phi(n)} \equiv 1 \mod n$. Warunek $a \in Z_{n}^{*}$ jest równoznaczny warunkowi $NWD(a, n) = 1$. Zatem twierdzenie Eulera jest prostym wnioskiem z~ogólnego twierdzenia teoriogrupowego $a^{rzG} = 1$.
+
+\subsection{Zadanie 9.}
+
+\textbf{Treść}: Mamy zapis RNS z~modułami $m_{1} = 5$, $m_{2} = 7$, $m_{3} = 11$, $m_{4} = 13$, za pomocą którego zapisujemy liczby całkowite ze zbioru $[0, m_{1} \cdot m_{2} \cdot m_{3} \cdot m_{4} - 1]$. Dodać i~pomnożyć dwie liczby $a = (3, 5, 9, 11)$ oraz $b = (1, 3, 7, 9)$ stosując typowy dla RNS algorytm. Czy uzyskane wyniki są poprawne?
+
+\textbf{Rozwiązanie}: W~RNS można wykonywać operację mnożenia i~dodawania według poniższego algorytmu, dla każdego elementu z~bazy:
+
+\begin{equation*}
+	\begin{array}{l} \forall i \in M \quad a_{i} \pm b_{i} \mod m_{i} \\ \forall i \in M \quad a_{i} \cdot b_{i} \mod m_{i} \\ \end{array}
+\end{equation*}
+
+\noindent Zatem:
+
+\begin{equation*}
+	\begin{array}{c}(a + b) = (3 + 1 \bmod{5}, 5 + 3 \bmod{7}, \\ 9 + 7 \bmod{11}, 11 + 9 \bmod{13}) = \\ =  (4, 1, 5, 7) \\ \end{array}
+\end{equation*}
+\begin{equation*}
+	\begin{array}{c}(a \cdot b) = (3 \cdot 1 \bmod{5}, 5 \cdot 3 \bmod{7}, \\ 9 \cdot 7 \bmod{11}, 11 \cdot 9 \bmod{13}) = \\ =  (3, 1, 8, 8) \\ \end{array}
+\end{equation*}
+
+\noindent Aby sprawdzić poprawność tego rozwiązania, musimy wyznaczyć liczby $a$ oraz $b$. Zapis RNS przedstawia liczby w~postaci układu kongruencji w~modulo bazy, a~więc:
+
+\begin{equation*}
+	\begin{array}{lcl}a & \equiv & 3 \mod 5 \\ a & \equiv & 5 \mod 7 \\ a & \equiv & 9 \mod 11 \\ a & \equiv & 11 \mod 13 \\ \end{array}
+\end{equation*}
+
+\noindent Układ ten można sprowadzić do $a \equiv -2 \mod 5005$. Analogicznie dla $b$:
+
+\begin{equation*}
+	\begin{array}{lcl}b & \equiv & 1 \mod 5 \\ b & \equiv & 3 \mod 7 \\ b & \equiv & 7 \mod 11 \\ b & \equiv & 9 \mod 13 \\ \end{array}
+\end{equation*}
+
+\noindent Układ ten można sprowadzić do $b \equiv -4 \mod 5005$. Wyznaczmy sumę $a + b$.
+
+\begin{equation*}
+	a + b \equiv -6 \mod 5005
+\end{equation*}
+
+\noindent Wyznaczmy iloczyn $a \cdot b$.
+
+\begin{equation*}
+	a * b \equiv 8 \mod 5005
+\end{equation*}
+
+\noindent Teraz sprawdźmy poprawność wyników uzyskanych przez algorytmy dodawania i~mnożenia w~RMS. Dodawanie:
+
+\begin{equation*}
+	\begin{array}{lcl} -6 & \equiv & 4 \mod 5 \\
+	-6 & \equiv & 1 \mod 7 \\
+	-6 & \equiv & 5 \mod 11 \\
+	-6 & \equiv & 7 \mod 13\\
+	\end{array}
+\end{equation*}
+
+\noindent Czyli uzyskaliśmy te same współczynniki. Teraz sprawdzamy poprawność mnożenia:
+
+\begin{equation*}
+	\begin{array}{lcl} 8 & \equiv & 3 \mod 5 \\
+	8 & \equiv & 1 \mod 7 \\
+	8 & \equiv & 8 \mod 11 \\
+	8 & \equiv & 8 \mod 13 \\
+	\end{array}
+\end{equation*}
+
+\noindent Czyli wykorzystane algorytmy dodawania i~mnożenia dały poprawne rezultaty.
+
+\subsection{Zadanie 10.}
+\label{subsec:KolZadanie10}
+
+\textbf{Treść}: Załóżmy, że mamy dwie niezależne zmienne losowe $X_{1}$ oraz $X_{2}$ o~wartościach w~zbiorze $Z_{2} = \left\{0, 1\right\}$. Wykazać, że jeśli $X_{1}$ ma rozkład równomierny, to również $X_{1} \oplus X_{2}$ ma rozkład równomierny. Ten fakt jest podstawą protokołu o~nazwie ,,rzut monetą przez telefon''.
+
+\textbf{Rozwiązanie}: Najpierw wykażemy, że odwzorowanie $Y = X_{1} \otimes X_{2}$ jest zmienną losową. Ogólnie rzecz biorąc, jeśli $(\Omega, \mathfrak{M})$ jest przestrzenią mierzalną, $(E_{t}, \mathfrak{F}_{t})_{t \in T}$ jest dowolną rodziną przestrzeni mierzalnych, a odwzorowania $f_{t}: \Omega \rightarrow E_{t}$ są $(\mathfrak{M}, \mathfrak{F}_{t})$ mierzalne dla każdego $t \in T$ to odwzorowanie $\underset{t \in T}{P} f_{t}: \Omega \rightarrow \underset{t \in T}{P} E_{t}$ jest $(\mathfrak{M}, \underset{t \in T}{P} \mathfrak{F}_{t})$ mierzalne. Stosując ten ogólny fakt do naszej sytuacji stwierdzamy, że odwzorowanie $(X_{1}, X_{2})$ jest $(\mathfrak{M}, 2^{\left\{0,1\right\}} \otimes  2^{\left\{0,1\right\}})$ mierzalne. Odwzorowanie $S: \left\{0,1\right\} \times \left\{0,1\right\} \ni (x_{1}, x_{2}) \rightarrow x_{1} \oplus x_{2} \in \left\{0,1\right\}$ jest oczywiście $(2^{\left\{0,1\right\}} \otimes  2^{\left\{0,1\right\}},  2^{\left\{0,1\right\}})$ mierzalne, zatem $Y = X_{1} \oplus X_{2}$ jako superpozycja odwzorowań mierzalnych $(X_{1}, X_{2})$ i~$S$ jest $(\mathfrak{M},  2^{\left\{0,1\right\}})$ mierzalne, jest więc zmienną losową.
+
+Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X_{2}$. Oznaczmy: 
+
+\begin{equation*}
+	\begin{array}{lcl} A_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 0 \right\}, \\ A_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 0 \right\}, \\ B_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 1 \right\}, \\ B_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 1 \right\}. \\\end{array}
+\end{equation*}
+
+\noindent Wówczas zdarzenia $A_{0}$, $A_{1}$, $B_{0}$, $B_{1}$ są parami rozłączne. Stąd i~z~niezależności zmiennych losowych $X_{1}$ i~$X_{2}$ oznaczając $P(X_{1} = 0) = p_{0}$, $P(X_{1} = 1) = p_{1}$ dostajemy:
+
+\begin{equation*}
+	\begin{array}{c} P(Y = 1) = P(A_{1} \cup B_{1}) = P(A_{1}) + P(B_{1}) = \\ = P(X_{1} = 1) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 0) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
+\end{equation*}
+
+\noindent ponieważ $p_{0} + p_{1} = 1$. Podobnie:
+
+\begin{equation*}
+	\begin{array}{c} P(Y = 0) = P(A_{0} \cup B_{0}) = P(A_{0}) + P(B_{0}) = \\ = P(X_{1} = 0) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 1) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
+\end{equation*}
+
+\noindent a~więc istotnie zmienna losowa $Y = X_{1} \oplus X_{2}$ ma rozkład równomierny.
+
+\section{Zadania przygotowujące do kolokwium \#2 z PTKB}
+
+\subsection{Zadanie 2.}
+\textbf{Treść}: Ile razy trzeba wykonać protokoł uwierzytelniania Fiata-Shamira by prawdopodobieństwo oszustwa było mniejsze od $10^{-100}$.
+
+\textbf{Rozwiązanie}: Patrz \ref{subsec:KolZadanie1}
+
+\subsection{Zadanie 3.}
+\textbf{Treść}: Pokazać jak musi spreparować protokół Fiata-Shamira Prover nie znający tajemnicy (a wieęc oszust lub zapominalski) by zawsze na wyzwanie $e=1$ odpowiadać prawidłowo.
+
+\textbf{Rozwiązanie}: 
+\begin{enumerate}
+	\item Porver nie znający tajemnicy s prawdziwego Provera (czyli nie znający klucza prywatnego) losuje liczbę $r\in Z_n, r\neq 0,1$. Podnosi do kwadratu modulo n (przypominamy, że $n=pq$, gdzie $p,q$ są różnymi liczbami pierwszymi) i przesyła w pierwszym kroku protokołu do Verifiera liczbę $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$, gdzie $s \in Z_n$ jest tajemnicą (kluczem prywatnym) prawdziwego Provera, $s^2(modn)\in Z$, kluczem publicznym a odwrotność jest $n$ brana w pierścieniu $Z_n$.
+	\item Jeśli Verifier żąda w drugim kroku protokołu odpowiedzi na pytanie $e=1$ to Prover wysyła do Verifiera liczbę $y=r$
+	\item Verifier sprawdza teraz równanie weryfikacyjne sprawdzając czy:
+		\begin{equation*}
+			y^2(modn)=(x*s^2)(modn)
+		\end{equation*}
+		Równanie to jest dla $y=r$ i $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$
+		Proverowi udało się dobrze odpowiedzieć na pytanie $e=1$ Verifiera.
+\end{enumerate}
+
+\subsection{Zadanie 33.}
+\textbf{Treść}: Obliczyć wartość symbolu Legendre'a: a) $(\frac{35}{7})$ b) $(\frac{64}{5})$
+
+\textbf{Rozwiązanie}:
+\begin{enumerate}
+	\item{
+		\begin{equation*}
+			(\frac{35}{7})=(\frac{5}{7})(\frac{7}{7})=0
+		\end{equation*}
+	}
+	\item{
+		\begin{equation*}
+			(\frac{64}{5})=(\frac{4}{5})=1
+		\end{equation*}
+	}
+\end{enumerate}
+
+\subsection{Zadanie 10.}
+\textbf{Rozwiązanie}: Patrz \ref{subsec:KolZadanie10}
+
+\end{document}
