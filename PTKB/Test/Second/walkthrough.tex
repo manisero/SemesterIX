@@ -276,6 +276,28 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
 \end{enumerate}
 
 \subsection{Zadanie 4.}
+
+\textbf{Treść}: Jakie jest prawdopodobieństwo tego, że losowo wygenerowana nieparzysta liczba złożona $n$ zostanie w~teście Millera-Rabina uznana za liczbę pierwszą, przy założeniu, że dokonujemy $t$ losowań podstawy $a$ ze zbioru $[1, n-1]$? Czy liczba pierwsza może być w~teście Millera-Rabina uznana za liczbę złożoną? Ile wykonać niezależnych doświadczeń-losowań podstawy $a$ w~algorytmie badania pierwszości Millera-Rabina, by z~prawdopodobieństwem większym równym od $1 - 10^{-1000}$ mieć pewność, że testowana liczba $n$ jest pierwsza.
+
+\textbf{Rozwiązanie}: Prawdopodobieństwo, że $a$ jest liczbą złożoną wynosi co najmniej $p = \frac{3}{4}$, a~dla braku rozstrzygnięcia co najwyżej $q = 1 - p = \frac{1}{4}$ (ze schematu Bernoulliego). Czyli dla $t$ losowań prawdopodobieństwo, że liczba $a$ zostanie uznana za pierwszą wynosi co najwyżej $(\frac{1}{4})^{t}$.
+
+\noindent Liczba pierwsza nie może zostać uznana za złożoną w~teście Millera-Rabina. Algorytm zakłada, że liczba jest pierwsza, a~potem dokonuje kolejnych testów, żeby tę tezę obalić, zatem odwrotna implikacja nie jest możliwa. 
+
+\noindent Obliczmy:
+
+\begin{equation*}
+	\begin{array}{lcl}
+		1 - (\frac{1}{4})^{t} & \geq & 1 - (\frac{1}{10})^{1000} \\ 
+		(\frac{1}{4})^{t} & \leq & (\frac{1}{10})^{1000} \\ 
+		4^{t} & \geq & 10^{1000} \\
+		t & \geq & log_{4}{10^{1000}} \\
+		t & \geq & 1000 \cdot log_{4}{10} \\
+	\end{array}
+\end{equation*}
+
+\noindent $1000 \cdot log_{4}{10} \approx 1660.964$, a~więc należy przeprowadzić co najmniej $t = 1661$ prób.
+
+\subsection{Zadanie 6.}
 \textbf{Treść}: Opisać i~wyjaśnić na prostym przykładzie (liczbowym) algorytm Diffiego-Hellmana dystrybucji kluczy. Czy jest to algorytm całkowicie bezpieczny w~wersji podstawowej? Wyjaśnić koncepcję ataku ,,man in the middle''.
 
 \textbf{Rozwiązanie}: Algorytm Diffiego-Hellmana w~podstawowej wersji jest algorytmem, który umożliwia ustalenie tajnego klucza pomiędzy dwoma stronami komunikacji, przy użyciu publicznych środków komunikacji, tzn. że przesyłana pomiędzy stronami informacja nie jest wystarczająca do odtworzenia klucza. Przykład liczbowy dla dwóch stron - $\mathfrak{A}$ oraz $\mathfrak{B}$:
@@ -292,7 +314,7 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
 
 \noindent Algorytm ten nie jest bezpieczny w~wersji podstawowej, ponieważ jest podatny na atak ,,man in the middle''. Atak ten wykorzystuje fakt, że strona $\mathfrak{C}$ może podszyć się od początku transmisji pod stronę $\mathfrak{A}$, jeżeli komunikuje się ze stroną $\mathfrak{B}$ oraz podszyć się pod stronę $\mathfrak{B}$ komunikując się ze stroną $\mathfrak{A}$. Strona $\mathfrak{C}$ wykonuje standardowy protokół Diffiego-Hellmana. Po zakończeniu ustalania klucza, strona $\mathfrak{C}$ posiada dwa sekretne klucze $s_{1}$ oraz $s_{2}$, które może wykorzystywać rozdzielnie do komunikacji z~$\mathfrak{A}$ oraz $\mathfrak{B}$. Zabezpieczenie przed tym atakiem polega na wprowadzeniu dodatkowego protokołu autentykacji drugiej strony połączenia.  
 
-\subsection{Zadanie 9.}
+\subsection{Zadanie 11.}
 
 \textbf{Treść}: Niech $G$ będzie skończoną grupą cykliczną rzędu $n$, a~$g \in G$ generatorem tej grupy. Pokazać, że dla każdego $d \in \mathbb{N}$ $g^{d}$ jest generatorem grupy $G$ wtedy i~tylko wtedy, gdy $NWD(d,n) = 1$.
 
@@ -300,7 +322,7 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
 
 \noindent 2. Wynikanie w~prawo. Niech $\text{NWD}(d,n) = r > 1$, wówczas istnieją takie $k_{1}, k_{2} \in \mathbb{N}$, że $n = k_{1} \cdot r$ oraz $d = k_{2} \cdot r$. Oczywiście, ponieważ $r > 1$ musimy mieć $k_{1} < n$. Zatem $(g^{d})^{k_{1}} = (g^{k_{2} \cdot r})^{k_{1}} = (g^{k_{1} \cdot r})^{k_{2}} = (g^{n})^{k_{2}} = 1$. Stąd wynika, że rząd elementu $g^{d}$ jest co najwyżej równy $k_{1}$, a~więc jest mniejszy od $n$, a~więc $g^{d}$ nie jest generatorem grupy $G$.
 
-\subsection{Zadanie 11.}
+\subsection{Zadanie 13.}
 
 \textbf{Treść}: Niech $GF(2^{k})[x]$ będzie pierścieniem wielomianów o~współczynnikach w~ciele $GF(2^{k})$. Wykazać, że dla każdego wielomianu $x^{n}$ (gdzie $n \in \mathbb{N}$) z~pierścienia $GF(2^{k})[x]$ mamy:
 
