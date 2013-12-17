@@ -275,6 +275,23 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
   Proverowi udało się dobrze odpowiedzieć na pytanie $e=1$ Verifiera.
 \end{enumerate}
 
+\subsection{Zadanie 4.}
+\textbf{Treść}: Opisać i~wyjaśnić na prostym przykładzie (liczbowym) algorytm Diffiego-Hellmana dystrybucji kluczy. Czy jest to algorytm całkowicie bezpieczny w~wersji podstawowej? Wyjaśnić koncepcję ataku ,,man in the middle''.
+
+\textbf{Rozwiązanie}: Algorytm Diffiego-Hellmana w~podstawowej wersji jest algorytmem, który umożliwia ustalenie tajnego klucza pomiędzy dwoma stronami komunikacji, przy użyciu publicznych środków komunikacji, tzn. że przesyłana pomiędzy stronami informacja nie jest wystarczająca do odtworzenia klucza. Przykład liczbowy dla dwóch stron - $\mathfrak{A}$ oraz $\mathfrak{B}$:
+
+\begin{enumerate}
+ \item $\mathfrak{A}$ oraz $\mathfrak{B}$ uzgadniają liczbę pierwszą $p=23$ i~podstawę $g=5$.
+ \item $\mathfrak{A}$ wybiera tajną liczbę całkowitą $a=6$ i~wysyła $\mathfrak{B}$ liczbę $A = g^{a} \mod p$. $A = 5^{6} \mod 23 = 8$.
+ \item $\mathfrak{B}$ wybiera tajną liczbę całkowitą $b=15$ i~wysyła $\mathfrak{A}$ liczbę $B = g^{b} \mod p$. $B = 5^{15} \mod 23 = 19$.
+ \item $\mathfrak{A}$ oblicza $s = B^{a} \mod p$. $s = 19^{6} \mod 23 = 2$.
+ \item $\mathfrak{B}$ oblicza $s = A^{b} \mod p$. $s = 8^{15} \mod 23 = 2$.
+\end{enumerate}
+
+\noindent Ustalonym prywatnym kluczem jest $s = 2$. Poprawność algorytmu wynika z~obserwacji, że $s = B^{a} \mod p = (g^{b})^{a} \mod p = g^{ab} \mod p$ i~jest równoważne do $s = A^{b} \mod p = (g^{a})^{b} \mod p = g^{ab} \mod p$. Aby wyznaczyć sekret podsłuchując transmisję, należałoby wykonać operację logarytmowania w~pierścieniu $\bmod{p}$, co jest operacją trudną.
+
+\noindent Algorytm ten nie jest bezpieczny w~wersji podstawowej, ponieważ jest podatny na atak ,,man in the middle''. Atak ten wykorzystuje fakt, że strona $\mathfrak{C}$ może podszyć się od początku transmisji pod stronę $\mathfrak{A}$, jeżeli komunikuje się ze stroną $\mathfrak{B}$ oraz podszyć się pod stronę $\mathfrak{B}$ komunikując się ze stroną $\mathfrak{A}$. Strona $\mathfrak{C}$ wykonuje standardowy protokół Diffiego-Hellmana. Po zakończeniu ustalania klucza, strona $\mathfrak{C}$ posiada dwa sekretne klucze $s_{1}$ oraz $s_{2}$, które może wykorzystywać rozdzielnie do komunikacji z~$\mathfrak{A}$ oraz $\mathfrak{B}$. Zabezpieczenie przed tym atakiem polega na wprowadzeniu dodatkowego protokołu autentykacji drugiej strony połączenia.  
+
 \subsection{Zadanie 9.}
 
 \textbf{Treść}: Niech $G$ będzie skończoną grupą cykliczną rzędu $n$, a~$g \in G$ generatorem tej grupy. Pokazać, że dla każdego $d \in \mathbb{N}$ $g^{d}$ jest generatorem grupy $G$ wtedy i~tylko wtedy, gdy $NWD(d,n) = 1$.
