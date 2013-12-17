@@ -24,7 +24,7 @@
 \textbf{Rozwiązanie}: Prawdopodobieństwo udanego oszustwa po wykonaniu $n$ eksperymentów wynosi $(\frac{1}{2})^{n}$. Rozwiązujemy równanie $(\frac{1}{2})^{x} = 10^{-1000}$.
 
 \begin{equation*}
-	\begin{array}{lcl} (\frac{1}{2})^{x} & = & 10^{-1000} \\ 2^{x} & = & 10^{1000} \\ x & = & \log_{2} 10^{1000} \\ x & = & 1000 \log_{2} 10 \\ x & \simeq & 3321.928 \end{array}
+ \begin{array}{lcl} (\frac{1}{2})^{x} & = & 10^{-1000} \\ 2^{x} & = & 10^{1000} \\ x & = & \log_{2} 10^{1000} \\ x & = & 1000 \log_{2} 10 \\ x & \simeq & 3321.928 \end{array}
 \end{equation*}
 
 Wybieramy $\lceil x \rceil = 3322$.
@@ -35,21 +35,21 @@ Wybieramy $\lceil x \rceil = 3322$.
 
 \textbf{Rozwiązanie} : 
 \begin{enumerate}
-	\item Ustanawianie systemu. Wybieramy liczbę pierwszą np. $p=13$. Jako generator grupy multiplikatywnej $Z^*_{13}$ można wybrać $g=2$, ponieważ $2^1(mod13)=2$, $2^2(mod13)=4$,  $2^3(mod13)=8$, $2^4(mod13)=3$, $2^5(mod13)=6$, $2^6(mod13)=12$, $2^7(mod13)=11$, $2^8(mod13)=9$, $2^9(mod13)=5$, $2^{10}(mod13)=10$, $2^{11}(mod13)=7$, $2^{12}(mod13)=1$
-	Jako klucz prywatny wybieramy losowo dowolną liczbę $x \in <2,p-2>$. Wybierzmy np. $x=3$. Będzie to tajemnica strony podpisującej wiadomość. Ujawniamy klucz publiczny $y=g^x(modp)=2^3(mod13)=8$.
-	\item Podpisywanie wiadomości (dokumentu) przez stronę dysponującą tajnym kluczem prywatnym x.
-	Wybieramy jako wiadomość podpisywaną dowolna liczbę $m \in Z_{p-1}$ czyli w naszym przypadku $m \in Z_{12}$. Wiadomość jawna $m$ jest więc jednym z elementów zbioru ${0,1,2,\cdots,11}$. Wybierzmy jako wiadomość podpisywaną $m=4$. Mając $m=4$ i $x=3$ tworzymy teraz podpis wiadomości $m=4$ czyli odpowiednią parę uporządkowaną $(a, b) \in Z^*_p \times Z_{p-1}$.
-	Losujemy $k \in Z_{p-1}$ takie, że $NWD(k,p-1)=1$. Niech to będzie $k=5$. Obliczamy $k^{-1}$ w pierścieniu $Z_{p-1}$ czyli w pierścieniu $Z_{12}$. Łatwo sprawdzić, że  $k^{-1}=5$. Obliczamy $a \in Z^*_p$ jako $g^k(modp)$, mamy więc $2^5(mod13)=6$.
-	Obliczamy teraz $b \in Z_{p-1}$ jako $b=k^{-1}\otimes_{p-1}(m-_{12}x\otimes[a]_{p-1})$. Przy przyjętych i obliczonych wartościach mamy więc $b=5\otimes_{12}(4-_{12}3\otimes_{12}6)=2$. Zatem podpis $(a,b)$ wiadomości $m=4$ ma postać pary uporządkowanej $(6,2)$ a podpisywana wiadomość $4$ z podpisem to para uporządkowana $(4,(6,2))$.
-	\item Weryfikacja podpisu. Równanie weryfikacyjne dla podpisów ElGamala ma postać: 
-	\begin{equation*}
-		y^a\otimes_p a^b=g^m
-	\end{equation*}
-	gdzie podnoszenie do potęgi jest jak pierścieniu $Z_p$. Musimy sprawdzić dla $y=8$, $a=6$, $b=2$, $m=4$ i $g=2$ czy równanie $(*)$ jest spełnione.
-	\begin{equation*}
-		\begin{array}{c}L=y^a\otimes_p a^b=8^6\cdot2(mod13)=3 \\ P=g^m=2^4(mod13)=3\end{array}
-	\end{equation*}
-	Mamy więc $L=P$ i równanie weryfikacyjne (*) jest spełnione, zatem przedstawiony do weryfikacji podpis akceptujemy.
+ \item Ustanawianie systemu. Wybieramy liczbę pierwszą np. $p=13$. Jako generator grupy multiplikatywnej $Z^*_{13}$ można wybrać $g=2$, ponieważ $2^1(mod13)=2$, $2^2(mod13)=4$,  $2^3(mod13)=8$, $2^4(mod13)=3$, $2^5(mod13)=6$, $2^6(mod13)=12$, $2^7(mod13)=11$, $2^8(mod13)=9$, $2^9(mod13)=5$, $2^{10}(mod13)=10$, $2^{11}(mod13)=7$, $2^{12}(mod13)=1$
+ Jako klucz prywatny wybieramy losowo dowolną liczbę $x \in <2,p-2>$. Wybierzmy np. $x=3$. Będzie to tajemnica strony podpisującej wiadomość. Ujawniamy klucz publiczny $y=g^x(modp)=2^3(mod13)=8$.
+ \item Podpisywanie wiadomości (dokumentu) przez stronę dysponującą tajnym kluczem prywatnym x.
+ Wybieramy jako wiadomość podpisywaną dowolna liczbę $m \in Z_{p-1}$ czyli w naszym przypadku $m \in Z_{12}$. Wiadomość jawna $m$ jest więc jednym z elementów zbioru ${0,1,2,\cdots,11}$. Wybierzmy jako wiadomość podpisywaną $m=4$. Mając $m=4$ i $x=3$ tworzymy teraz podpis wiadomości $m=4$ czyli odpowiednią parę uporządkowaną $(a, b) \in Z^*_p \times Z_{p-1}$.
+ Losujemy $k \in Z_{p-1}$ takie, że $NWD(k,p-1)=1$. Niech to będzie $k=5$. Obliczamy $k^{-1}$ w pierścieniu $Z_{p-1}$ czyli w pierścieniu $Z_{12}$. Łatwo sprawdzić, że  $k^{-1}=5$. Obliczamy $a \in Z^*_p$ jako $g^k(modp)$, mamy więc $2^5(mod13)=6$.
+ Obliczamy teraz $b \in Z_{p-1}$ jako $b=k^{-1}\otimes_{p-1}(m-_{12}x\otimes[a]_{p-1})$. Przy przyjętych i obliczonych wartościach mamy więc $b=5\otimes_{12}(4-_{12}3\otimes_{12}6)=2$. Zatem podpis $(a,b)$ wiadomości $m=4$ ma postać pary uporządkowanej $(6,2)$ a podpisywana wiadomość $4$ z podpisem to para uporządkowana $(4,(6,2))$.
+ \item Weryfikacja podpisu. Równanie weryfikacyjne dla podpisów ElGamala ma postać: 
+ \begin{equation*}
+  y^a\otimes_p a^b=g^m
+ \end{equation*}
+ gdzie podnoszenie do potęgi jest jak pierścieniu $Z_p$. Musimy sprawdzić dla $y=8$, $a=6$, $b=2$, $m=4$ i $g=2$ czy równanie $(*)$ jest spełnione.
+ \begin{equation*}
+  \begin{array}{c}L=y^a\otimes_p a^b=8^6\cdot2(mod13)=3 \\ P=g^m=2^4(mod13)=3\end{array}
+ \end{equation*}
+ Mamy więc $L=P$ i równanie weryfikacyjne (*) jest spełnione, zatem przedstawiony do weryfikacji podpis akceptujemy.
 \end{enumerate}
 
 \subsection{Zadanie 3.}
@@ -80,7 +80,7 @@ Można też rozumować nieco inaczej. Załóżmy, że $\text{char} K = n$ i~licz
 Patrząc na najmniejsze liczby Carmichaela:
 
 \begin{equation*}
-	\begin{array}{lcl} 561& = & 3 \cdot 11 \cdot 17 \\ 1105 & = & 5 \cdot 13 \cdot 17 \\ \end{array}
+ \begin{array}{lcl} 561& = & 3 \cdot 11 \cdot 17 \\ 1105 & = & 5 \cdot 13 \cdot 17 \\ \end{array}
 \end{equation*}
 
 \noindent widzimy, że liczba Carmichaela 1105 jest względnie pierwsza zarówno z~2, jak również 3, a~więc pozwala ona stworzyć liczby pseudopierwsze $2^{1105 - 1} - 1$ oraz $3^{1105 - 1} - 1$.
@@ -106,8 +106,8 @@ Wielomianem drugiego stopnia nierozkładalnym w~ciele $G(3)[x]$ jest $x^2 + 1$ (
 \textbf{Rozwiązanie}: Generacja pary kluczy przebiega następująco:
 
 \begin{itemize}
-	\item Wybieramy dwie liczby pierwsze $p$~i~$q$. Dla uproszczenia można wybrać liczby, które spełniają warunek $p \equiv q \equiv 3 \mod 4$. 
-	\item Obliczamy klucz publiczny $n = p \cdot q$.
+ \item Wybieramy dwie liczby pierwsze $p$~i~$q$. Dla uproszczenia można wybrać liczby, które spełniają warunek $p \equiv q \equiv 3 \mod 4$. 
+ \item Obliczamy klucz publiczny $n = p \cdot q$.
 \end{itemize}
 
 \noindent Żeby zaszyfrować wiadomość potrzebny jest wyłącznie klucz publiczny $n$. Żeby odczytać wiadomość potrzebny jest również rozkład klucza na czynniki pierwsze $p$~i~$q$. Przykładowe wartości ,,dla małych liczb'' - $p = 7$, $q = 11$, $n = 77$.
@@ -117,13 +117,13 @@ Wielomianem drugiego stopnia nierozkładalnym w~ciele $G(3)[x]$ jest $x^2 + 1$ (
 \noindent Deszyfrowanie wiadomości wymaga obliczenia pierwiastków kwadratowych ze względu na obie części klucza prywatnego $p$ i $q$.
 
 \begin{equation*}
-	\begin{array}{lcl} m_{p} & = & \sqrt{c} \mod p \\ m_{q} & = & \sqrt{c} \mod q \end{array}
+ \begin{array}{lcl} m_{p} & = & \sqrt{c} \mod p \\ m_{q} & = & \sqrt{c} \mod q \end{array}
 \end{equation*}
 
 \noindent Dla przykładowych małych liczb otrzymujemy $m_{p} = 1$ oraz $m_{q} = 9$. Następnie, używając rozszerzonego algorytmu Euklidesa, odnajdujemy $y_{p}$ oraz $y_{q}$ takie, że $y_{p} \cdot p + y_{q} \cdot q = 1$. Dla przykładowych danych $y_{p} = -3$ oraz $y_{q} = 2$. Teraz, korzystając z~chińskiego twierdzenia o~resztach, odnajdujemy cztery pierwiastki ($+r$, $-r$, $+s$ oraz $-s$) równania $c + n\mathbb{Z} \in \mathbb{Z}/n\mathbb{Z}$:
 
 \begin{equation*}
-	\begin{array}{lcl} r & = & (y_{p} \cdot p \cdot m_{q} + y_{q} \cdot q \cdot m_{p}) \mod n \\ -r & = & n - r \\ s & = & (y_{p} \cdot p \cdot m_{q} - y_{q} \cdot q \cdot m_{p}) \mod n \\ -s & = & n - s \\ \end{array}
+ \begin{array}{lcl} r & = & (y_{p} \cdot p \cdot m_{q} + y_{q} \cdot q \cdot m_{p}) \mod n \\ -r & = & n - r \\ s & = & (y_{p} \cdot p \cdot m_{q} - y_{q} \cdot q \cdot m_{p}) \mod n \\ -s & = & n - s \\ \end{array}
 \end{equation*}
 
 \noindent Dla naszego przykładu pierwiastki tego równania przyjmują wartości $m \in \left\{ 64, 20, 13, 57 \right\}$. Wśród nich jest zakodowana wiadomość $m = 20$.
@@ -135,15 +135,20 @@ Wielomianem drugiego stopnia nierozkładalnym w~ciele $G(3)[x]$ jest $x^2 + 1$ (
 \textbf{Rozwiązanie}: Wielomian drugiego stopnia można rozłożyć za pomocą dwóch wielomianów pierwszego stopnia, więc:
 
 \begin{equation*}
-	\begin{array}{lcl} x^{2} + 1 & = & (ax + b) * (cx + d) \\ x^{2} + 1 & = & (ac)x^{2} + (ad + bc)x + bd \\ \end{array}
+ \begin{array}{lcl} x^{2} + 1 & = & (ax + b) * (cx + d) \\ x^{2} + 1 & = & (ac)x^{2} + (ad + bc)x + bd \\ \end{array}
 \end{equation*}
 
-Dla ciała $GF(3)[x]$, $b, d \in \left\{0, 1, 2\right\}$ oraz $a, c \in \left\{1, 2\right\}$ (bo wielomian musi być rozkładalny). Rozważmy wszystkie możliwe wartości $(ad + bc) \bmod{3}$. Jeżeli $(ad + bc) \equiv 0 \mod 3 \Rightarrow a = 0 \wedge c = 0$, co jest sprzeczne z~dziedziną, a~więc wielomian nie może być rozkładalny.
+Dla ciała $GF(3)[x]$ mamy:
+$a, b, c, d \in \left\{0, 1, 2\right\}$.
+Aby otrzymać wielomian $x^2 + 1$, muszą być spełnione warunki:
+$ac \equiv 1 \mod 3$,
+$bd \equiv 1 \mod 3$.
+Zatem $a = b = c = d = 1$, co daje wielomian $x^2 + 2x + 1$, a nie $x^2 + 1$.
 
 Dla ciała $GF(2)[x]$, $b, d \in \left\{0, 1\right\}$ oraz $a, c \in \left\{1\right\}$. Jeżeli $(b + d) \equiv 0 \mod 2 \Rightarrow (b = 0 \wedge d = 0) \vee (b = 1 \wedge d = 1)$. Dla drugiego przypadku otrzymujemy w~$GF(2)[x]$:
 
 \begin{equation*}
-	x^{2} + 1 \equiv (x+1) * (x+1)
+ x^{2} + 1 \equiv (x+1) * (x+1)
 \end{equation*}
 
 Zatem wielomian jest rozkładalny.
@@ -163,60 +168,60 @@ Zatem wielomian jest rozkładalny.
 \textbf{Rozwiązanie}: W~RNS można wykonywać operację mnożenia i~dodawania według poniższego algorytmu, dla każdego elementu z~bazy:
 
 \begin{equation*}
-	\begin{array}{l} \forall i \in M \quad a_{i} \pm b_{i} \mod m_{i} \\ \forall i \in M \quad a_{i} \cdot b_{i} \mod m_{i} \\ \end{array}
+ \begin{array}{l} \forall i \in M \quad a_{i} \pm b_{i} \mod m_{i} \\ \forall i \in M \quad a_{i} \cdot b_{i} \mod m_{i} \\ \end{array}
 \end{equation*}
 
 \noindent Zatem:
 
 \begin{equation*}
-	\begin{array}{c}(a + b) = (3 + 1 \bmod{5}, 5 + 3 \bmod{7}, \\ 9 + 7 \bmod{11}, 11 + 9 \bmod{13}) = \\ =  (4, 1, 5, 7) \\ \end{array}
+ \begin{array}{c}(a + b) = (3 + 1 \bmod{5}, 5 + 3 \bmod{7}, \\ 9 + 7 \bmod{11}, 11 + 9 \bmod{13}) = \\ =  (4, 1, 5, 7) \\ \end{array}
 \end{equation*}
 \begin{equation*}
-	\begin{array}{c}(a \cdot b) = (3 \cdot 1 \bmod{5}, 5 \cdot 3 \bmod{7}, \\ 9 \cdot 7 \bmod{11}, 11 \cdot 9 \bmod{13}) = \\ =  (3, 1, 8, 8) \\ \end{array}
+ \begin{array}{c}(a \cdot b) = (3 \cdot 1 \bmod{5}, 5 \cdot 3 \bmod{7}, \\ 9 \cdot 7 \bmod{11}, 11 \cdot 9 \bmod{13}) = \\ =  (3, 1, 8, 8) \\ \end{array}
 \end{equation*}
 
 \noindent Aby sprawdzić poprawność tego rozwiązania, musimy wyznaczyć liczby $a$ oraz $b$. Zapis RNS przedstawia liczby w~postaci układu kongruencji w~modulo bazy, a~więc:
 
 \begin{equation*}
-	\begin{array}{lcl}a & \equiv & 3 \mod 5 \\ a & \equiv & 5 \mod 7 \\ a & \equiv & 9 \mod 11 \\ a & \equiv & 11 \mod 13 \\ \end{array}
+ \begin{array}{lcl}a & \equiv & 3 \mod 5 \\ a & \equiv & 5 \mod 7 \\ a & \equiv & 9 \mod 11 \\ a & \equiv & 11 \mod 13 \\ \end{array}
 \end{equation*}
 
 \noindent Układ ten można sprowadzić do $a \equiv -2 \mod 5005$. Analogicznie dla $b$:
 
 \begin{equation*}
-	\begin{array}{lcl}b & \equiv & 1 \mod 5 \\ b & \equiv & 3 \mod 7 \\ b & \equiv & 7 \mod 11 \\ b & \equiv & 9 \mod 13 \\ \end{array}
+ \begin{array}{lcl}b & \equiv & 1 \mod 5 \\ b & \equiv & 3 \mod 7 \\ b & \equiv & 7 \mod 11 \\ b & \equiv & 9 \mod 13 \\ \end{array}
 \end{equation*}
 
 \noindent Układ ten można sprowadzić do $b \equiv -4 \mod 5005$. Wyznaczmy sumę $a + b$.
 
 \begin{equation*}
-	a + b \equiv -6 \mod 5005
+ a + b \equiv -6 \mod 5005
 \end{equation*}
 
 \noindent Wyznaczmy iloczyn $a \cdot b$.
 
 \begin{equation*}
-	a * b \equiv 8 \mod 5005
+ a * b \equiv 8 \mod 5005
 \end{equation*}
 
-\noindent Teraz sprawdźmy poprawność wyników uzyskanych przez algorytmy dodawania i~mnożenia w~RMS. Dodawanie:
+\noindent Teraz sprawdźmy poprawność wyników uzyskanych przez algorytmy dodawania i~mnożenia w~RNS. Dodawanie:
 
 \begin{equation*}
-	\begin{array}{lcl} -6 & \equiv & 4 \mod 5 \\
-	-6 & \equiv & 1 \mod 7 \\
-	-6 & \equiv & 5 \mod 11 \\
-	-6 & \equiv & 7 \mod 13\\
-	\end{array}
+ \begin{array}{lcl} -6 & \equiv & 4 \mod 5 \\
+ -6 & \equiv & 1 \mod 7 \\
+ -6 & \equiv & 5 \mod 11 \\
+ -6 & \equiv & 7 \mod 13\\
+ \end{array}
 \end{equation*}
 
 \noindent Czyli uzyskaliśmy te same współczynniki. Teraz sprawdzamy poprawność mnożenia:
 
 \begin{equation*}
-	\begin{array}{lcl} 8 & \equiv & 3 \mod 5 \\
-	8 & \equiv & 1 \mod 7 \\
-	8 & \equiv & 8 \mod 11 \\
-	8 & \equiv & 8 \mod 13 \\
-	\end{array}
+ \begin{array}{lcl} 8 & \equiv & 3 \mod 5 \\
+ 8 & \equiv & 1 \mod 7 \\
+ 8 & \equiv & 8 \mod 11 \\
+ 8 & \equiv & 8 \mod 13 \\
+ \end{array}
 \end{equation*}
 
 \noindent Czyli wykorzystane algorytmy dodawania i~mnożenia dały poprawne rezultaty.
@@ -231,19 +236,19 @@ Zatem wielomian jest rozkładalny.
 Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X_{2}$. Oznaczmy: 
 
 \begin{equation*}
-	\begin{array}{lcl} A_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 0 \right\}, \\ A_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 0 \right\}, \\ B_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 1 \right\}, \\ B_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 1 \right\}. \\\end{array}
+ \begin{array}{lcl} A_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 0 \right\}, \\ A_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 0 \right\}, \\ B_{0} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 1, X_{2}(\omega) = 1 \right\}, \\ B_{1} & = & \left\{\omega \in \Omega; X_{1}(\omega) = 0, X_{2}(\omega) = 1 \right\}. \\\end{array}
 \end{equation*}
 
 \noindent Wówczas zdarzenia $A_{0}$, $A_{1}$, $B_{0}$, $B_{1}$ są parami rozłączne. Stąd i~z~niezależności zmiennych losowych $X_{1}$ i~$X_{2}$ oznaczając $P(X_{1} = 0) = p_{0}$, $P(X_{1} = 1) = p_{1}$ dostajemy:
 
 \begin{equation*}
-	\begin{array}{c} P(Y = 1) = P(A_{1} \cup B_{1}) = P(A_{1}) + P(B_{1}) = \\ = P(X_{1} = 1) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 0) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
+ \begin{array}{c} P(Y = 1) = P(A_{1} \cup B_{1}) = P(A_{1}) + P(B_{1}) = \\ = P(X_{1} = 1) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 0) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
 \end{equation*}
 
 \noindent ponieważ $p_{0} + p_{1} = 1$. Podobnie:
 
 \begin{equation*}
-	\begin{array}{c} P(Y = 0) = P(A_{0} \cup B_{0}) = P(A_{0}) + P(B_{0}) = \\ = P(X_{1} = 0) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 1) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
+ \begin{array}{c} P(Y = 0) = P(A_{0} \cup B_{0}) = P(A_{0}) + P(B_{0}) = \\ = P(X_{1} = 0) \cdot P(X_{2} = 0) + \\ + P(X_{1} = 1) \cdot P(X_{2} = 1) = \\ = p_{1} \cdot \frac{1}{2} + p_{2} \cdot \frac{1}{2} = \frac{1}{2} \\ \end{array}
 \end{equation*}
 
 \noindent a~więc istotnie zmienna losowa $Y = X_{1} \oplus X_{2}$ ma rozkład równomierny.
@@ -260,14 +265,14 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
 
 \textbf{Rozwiązanie}: 
 \begin{enumerate}
-	\item Porver nie znający tajemnicy s prawdziwego Provera (czyli nie znający klucza prywatnego) losuje liczbę $r\in Z_n, r\neq 0,1$. Podnosi do kwadratu modulo n (przypominamy, że $n=pq$, gdzie $p,q$ są różnymi liczbami pierwszymi) i przesyła w pierwszym kroku protokołu do Verifiera liczbę $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$, gdzie $s \in Z_n$ jest tajemnicą (kluczem prywatnym) prawdziwego Provera, $s^2(modn)\in Z$, kluczem publicznym a odwrotność jest $n$ brana w pierścieniu $Z_n$.
-	\item Jeśli Verifier żąda w drugim kroku protokołu odpowiedzi na pytanie $e=1$ to Prover wysyła do Verifiera liczbę $y=r$
-	\item Verifier sprawdza teraz równanie weryfikacyjne sprawdzając czy:
-		\begin{equation*}
-			y^2(modn)=(x*s^2)(modn)
-		\end{equation*}
-		Równanie to jest dla $y=r$ i $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$
-		Proverowi udało się dobrze odpowiedzieć na pytanie $e=1$ Verifiera.
+ \item Porver nie znający tajemnicy s prawdziwego Provera (czyli nie znający klucza prywatnego) losuje liczbę $r\in Z_n, r\neq 0,1$. Podnosi do kwadratu modulo n (przypominamy, że $n=pq$, gdzie $p,q$ są różnymi liczbami pierwszymi) i przesyła w pierwszym kroku protokołu do Verifiera liczbę $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$, gdzie $s \in Z_n$ jest tajemnicą (kluczem prywatnym) prawdziwego Provera, $s^2(modn)\in Z$, kluczem publicznym a odwrotność jest $n$ brana w pierścieniu $Z_n$.
+ \item Jeśli Verifier żąda w drugim kroku protokołu odpowiedzi na pytanie $e=1$ to Prover wysyła do Verifiera liczbę $y=r$
+ \item Verifier sprawdza teraz równanie weryfikacyjne sprawdzając czy:
+  \begin{equation*}
+   y^2(modn)=(x*s^2)(modn)
+  \end{equation*}
+  Równanie to jest dla $y=r$ i $x=(r^2(modn){(s^2(modn))}^{-1})(modn)$
+  Proverowi udało się dobrze odpowiedzieć na pytanie $e=1$ Verifiera.
 \end{enumerate}
 
 \subsection{Zadanie 33.}
@@ -275,16 +280,16 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
 
 \textbf{Rozwiązanie}:
 \begin{enumerate}
-	\item{
-		\begin{equation*}
-			(\frac{35}{7})=(\frac{5}{7})(\frac{7}{7})=0
-		\end{equation*}
-	}
-	\item{
-		\begin{equation*}
-			(\frac{64}{5})=(\frac{4}{5})=1
-		\end{equation*}
-	}
+ \item{
+  \begin{equation*}
+   (\frac{35}{7})=(\frac{5}{7})(\frac{7}{7})=0
+  \end{equation*}
+ }
+ \item{
+  \begin{equation*}
+   (\frac{64}{5})=(\frac{4}{5})=1
+  \end{equation*}
+ }
 \end{enumerate}
 
 \subsection{Zadanie 10.}
