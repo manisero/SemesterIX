@@ -35,8 +35,35 @@ Wybieramy $\lceil x \rceil = 3322$.
 
 \textbf{Rozwiązanie} : 
 \begin{enumerate}
+ \item \textbf{ElGamal:}
+  \\\emph{Generowanie klucza:} wybieramy dowolną liczbę pierwszą $p$, dowolny generator $\alpha$ podgrupy multiplikatywnej, tzn. taki element, którego rząd jest równy $p-1$, oraz dowolne $k$ takie, że: $1 < k < p$. Liczymy $\beta$:
+  $\beta = \alpha^k \mod p$,
+  co potrafimy zrobić szybko za pomocą potęgowania przez podnoszenie do kwadratu.
+  \\Następnie publikujemy $(p, \alpha, \beta)$ jako klucz publiczny i zachowujemy $(p, \alpha, \beta, k)$ jako klucz prywatny.
+  \\\emph{Szyfrowanie:} mając do zaszyfrowania wiadomość $m$, przedstawiamy ją jako element grupy [$1 < m < p - 1 $], wybieramy losowo liczbę $x$ i liczymy (modulo $p$)
+  $(\alpha^x, m\times \beta^x)$
+  \\\emph{Deszyfrowanie:} podnosimy otrzymane $\alpha^x$ do potęgi $k$:
+  $\left(\alpha^x\right)^k = \alpha^{kx} = \left(\alpha^k\right)^x = \beta^x$
+  Następnie znajdujemy odwrotność $\beta^x$ (nadal modulo $p$) rozszerzonym algorytmem Euklidesa:
+  \\$\gamma \beta^x + \delta p = 1$
+  \\$\gamma \beta^x \equiv 1 \mod p$
+  \\$\gamma \equiv (\beta^x)^{-1} \mod p$
+
+  W końcu dzielimy $m \times \beta^x$ przez $\beta^x$, czyli mnożymy przez jej odwrotność – $\gamma$:
+  \\$(m \times \beta^x) \times \gamma \equiv m \times (\beta^x \times \gamma) \equiv m \times 1 \equiv m \mod p$
  \item Ustanawianie systemu. Wybieramy liczbę pierwszą np. $p=13$. Jako generator grupy multiplikatywnej $Z^*_{13}$ można wybrać $g=2$, ponieważ $2^1(mod13)=2$, $2^2(mod13)=4$,  $2^3(mod13)=8$, $2^4(mod13)=3$, $2^5(mod13)=6$, $2^6(mod13)=12$, $2^7(mod13)=11$, $2^8(mod13)=9$, $2^9(mod13)=5$, $2^{10}(mod13)=10$, $2^{11}(mod13)=7$, $2^{12}(mod13)=1$
  Jako klucz prywatny wybieramy losowo dowolną liczbę $x \in <2,p-2>$. Wybierzmy np. $x=3$. Będzie to tajemnica strony podpisującej wiadomość. Ujawniamy klucz publiczny $y=g^x(modp)=2^3(mod13)=8$.
+ \item \textbf{Podpis cyfrowy:}
+  Klucz jest generowany w ten sam sposób. Żeby wygenerować podpis wiadomości $m$, losujemy liczbę $r$ i liczymy:
+  \\$y = \alpha^r$(mod p)
+  \\$s = (H(m)-ky)r^{-1}$ (mod(p-1)), gdzie $H$ jest funkcją skrótu.
+  Podpisem jest para $(y,s)$.
+  \\Żeby zweryfikować podpis, sprawdzamy równanie:
+  $\beta^y y^s = \alpha^{H(m)}$
+  \\Dla prawidłowego podpisu będzie się zgadzać:
+  \\$\alpha^{ky} \alpha^{rs} = \alpha^{ky + r\left((H(m)-ky)r^{-1}\right)} = \alpha^{ky + H(m)- ky} = \alpha^{H(m)}$
+  \\Ważne jest zachowanie tajności wylosowanego $r$. Jeśli $r$ byłoby znane, to można by odzyskać klucz prywatny z podpisu:
+  \\$y^{-1}\left(H(m)-sr\right) = y^{-1}\left(H(m)-(H(m)-ky)r^{-1}r\right)=y^{-1}ky=k$
  \item Podpisywanie wiadomości (dokumentu) przez stronę dysponującą tajnym kluczem prywatnym x.
  Wybieramy jako wiadomość podpisywaną dowolna liczbę $m \in Z_{p-1}$ czyli w naszym przypadku $m \in Z_{12}$. Wiadomość jawna $m$ jest więc jednym z elementów zbioru ${0,1,2,\cdots,11}$. Wybierzmy jako wiadomość podpisywaną $m=4$. Mając $m=4$ i $x=3$ tworzymy teraz podpis wiadomości $m=4$ czyli odpowiednią parę uporządkowaną $(a, b) \in Z^*_p \times Z_{p-1}$.
  Losujemy $k \in Z_{p-1}$ takie, że $NWD(k,p-1)=1$. Niech to będzie $k=5$. Obliczamy $k^{-1}$ w pierścieniu $Z_{p-1}$ czyli w pierścieniu $Z_{12}$. Łatwo sprawdzić, że  $k^{-1}=5$. Obliczamy $a \in Z^*_p$ jako $g^k(modp)$, mamy więc $2^5(mod13)=6$.
