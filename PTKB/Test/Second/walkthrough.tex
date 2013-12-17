@@ -29,6 +29,29 @@
 
 Wybieramy $\lceil x \rceil = 3322$.
 
+\subsection{Zadanie 2.}
+
+\textbf{Treść}: Skonstruować system podpisów cyfrowych ElGamala „dla małych liczb”. Przyjąć odpowiedni klucz publiczny i prywatny. Podpisać dowolną wybraną wiadomość $m$ i zweryfikować podpis.
+
+\textbf{Rozwiązanie} : 
+\begin{enumerate}
+	\item Ustanawianie systemu. Wybieramy liczbę pierwszą np. $p=13$. Jako generator grupy multiplikatywnej $Z^*_{13}$ można wybrać $g=2$, ponieważ $2^1(mod13)=2$, $2^2(mod13)=4$,  $2^3(mod13)=8$, $2^4(mod13)=3$, $2^5(mod13)=6$, $2^6(mod13)=12$, $2^7(mod13)=11$, $2^8(mod13)=9$, $2^9(mod13)=5$, $2^{10}(mod13)=10$, $2^{11}(mod13)=7$, $2^{12}(mod13)=1$
+	Jako klucz prywatny wybieramy losowo dowolną liczbę $x \in <2,p-2>$. Wybierzmy np. $x=3$. Będzie to tajemnica strony podpisującej wiadomość. Ujawniamy klucz publiczny $y=g^x(modp)=2^3(mod13)=8$.
+	\item Podpisywanie wiadomości (dokumentu) przez stronę dysponującą tajnym kluczem prywatnym x.
+	Wybieramy jako wiadomość podpisywaną dowolna liczbę $m \in Z_{p-1}$ czyli w naszym przypadku $m \in Z_{12}$. Wiadomość jawna $m$ jest więc jednym z elementów zbioru ${0,1,2,\cdots,11}$. Wybierzmy jako wiadomość podpisywaną $m=4$. Mając $m=4$ i $x=3$ tworzymy teraz podpis wiadomości $m=4$ czyli odpowiednią parę uporządkowaną $(a, b) \in Z^*_p \times Z_{p-1}$.
+	Losujemy $k \in Z_{p-1}$ takie, że $NWD(k,p-1)=1$. Niech to będzie $k=5$. Obliczamy $k^{-1}$ w pierścieniu $Z_{p-1}$ czyli w pierścieniu $Z_{12}$. Łatwo sprawdzić, że  $k^{-1}=5$. Obliczamy $a \in Z^*_p$ jako $g^k(modp)$, mamy więc $2^5(mod13)=6$.
+	Obliczamy teraz $b \in Z_{p-1}$ jako $b=k^{-1}\otimes_{p-1}(m-_{12}x\otimes[a]_{p-1})$. Przy przyjętych i obliczonych wartościach mamy więc $b=5\otimes_{12}(4-_{12}3\otimes_{12}6)=2$. Zatem podpis $(a,b)$ wiadomości $m=4$ ma postać pary uporządkowanej $(6,2)$ a podpisywana wiadomość $4$ z podpisem to para uporządkowana $(4,(6,2))$.
+	\item Weryfikacja podpisu. Równanie weryfikacyjne dla podpisów ElGamala ma postać: 
+	\begin{equation*}
+		y^a\otimes_p a^b=g^m
+	\end{equation*}
+	gdzie podnoszenie do potęgi jest jak pierścieniu $Z_p$. Musimy sprawdzić dla $y=8$, $a=6$, $b=2$, $m=4$ i $g=2$ czy równanie $(*)$ jest spełnione.
+	\begin{equation*}
+		\begin{array}{c}L=y^a\otimes_p a^b=8^6\cdot2(mod13)=3 \\ P=g^m=2^4(mod13)=3\end{array}
+	\end{equation*}
+	Mamy więc $L=P$ i równanie weryfikacyjne (*) jest spełnione, zatem przedstawiony do weryfikacji podpis akceptujemy.
+\end{enumerate}
+
 \subsection{Zadanie 3.}
 
 \textbf{Treść}: Wykazać, że charakterystyka ciała skończonego (czyli najmniejsza taka liczba $n$, że spełniona jest równość $\underbrace{1 + 1 + 1 + \cdots + 1}_\text{n} = 0$) jest zawsze liczbą pierwszą.
