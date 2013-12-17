@@ -76,6 +76,35 @@ Patrząc na najmniejsze liczby Carmichaela:
 
 Wielomianem drugiego stopnia nierozkładalnym w~ciele $G(3)[x]$ jest $x^2 + 1$ (patrz: \emph{Zadanie 7.}). Wszystkie możliwe reszty z~dzielenia tego wielomianu w~pierścieniu $G(3)[x]$ to: $2x + 2$, $2x + 1$, $2x$, $x + 2$, $x + 1$, $x$, $2$, $1$.
 
+\subsection{Zadanie 6.}
+
+\textbf{Treść}: Podać przykład szyfru Rabina ,,dla małych liczb''. Podać przykład szyfrowania i~deszyfracji.
+
+\textbf{Rozwiązanie}: Generacja pary kluczy przebiega następująco:
+
+\begin{itemize}
+	\item Wybieramy dwie liczby pierwsze $p$~i~$q$. Dla uproszczenia można wybrać liczby, które spełniają warunek $p \equiv q \equiv 3 \mod 4$. 
+	\item Obliczamy klucz publiczny $n = p \cdot q$.
+\end{itemize}
+
+\noindent Żeby zaszyfrować wiadomość potrzebny jest wyłącznie klucz publiczny $n$. Żeby odczytać wiadomość potrzebny jest również rozkład klucza na czynniki pierwsze $p$~i~$q$. Przykładowe wartości ,,dla małych liczb'' - $p = 7$, $q = 11$, $n = 77$.
+
+\noindent Szyfrowanie wiadomości $m \in P = \left\{0, \cdots, n - 1 \right\}$ polega na obliczeniu szyfrogramu $c = m^{2} \mod n$. Przykładowo, chcąc zakodować wiadomość $m = 20$, obliczamy $c = 20^2 \mod 77 = 400 \mod 77 = 15$. Niestety, szyfrowanie nie jest jednoznaczne, ponieważ ten sam szyfrogram uzyskujemy dla czterech różnych wiadomości $m \in \left\{13, 20, 57, 64\right\}$.
+
+\noindent Deszyfrowanie wiadomości wymaga obliczenia pierwiastków kwadratowych ze względu na obie części klucza prywatnego $p$ i $q$.
+
+\begin{equation*}
+	\begin{array}{lcl} m_{p} & = & \sqrt{c} \mod p \\ m_{q} & = & \sqrt{c} \mod q \end{array}
+\end{equation*}
+
+\noindent Dla przykładowych małych liczb otrzymujemy $m_{p} = 1$ oraz $m_{q} = 9$. Następnie, używając rozszerzonego algorytmu Euklidesa, odnajdujemy $y_{p}$ oraz $y_{q}$ takie, że $y_{p} \cdot p + y_{q} \cdot q = 1$. Dla przykładowych danych $y_{p} = -3$ oraz $y_{q} = 2$. Teraz, korzystając z~chińskiego twierdzenia o~resztach, odnajdujemy cztery pierwiastki ($+r$, $-r$, $+s$ oraz $-s$) równania $c + n\mathbb{Z} \in \mathbb{Z}/n\mathbb{Z}$:
+
+\begin{equation*}
+	\begin{array}{lcl} r & = & (y_{p} \cdot p \cdot m_{q} + y_{q} \cdot q \cdot m_{p}) \mod n \\ -r & = & n - r \\ s & = & (y_{p} \cdot p \cdot m_{q} - y_{q} \cdot q \cdot m_{p}) \mod n \\ -s & = & n - s \\ \end{array}
+\end{equation*}
+
+\noindent Dla naszego przykładu pierwiastki tego równania przyjmują wartości $m \in \left\{ 64, 20, 13, 57 \right\}$. Wśród nich jest zakodowana wiadomość $m = 20$.
+
 \subsection{Zadanie 7.}
 
 \textbf{Treść}: Wykazać, że wielomian $x^{2} + 1$ jest nierozkładalny w~pierścieniu wielomianów $GF(3)[x]$, a~jest rozkładalny w~pierścieniu wielomianów $GF(2)[x]$.
