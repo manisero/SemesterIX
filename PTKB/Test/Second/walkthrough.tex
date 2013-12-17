@@ -270,6 +270,48 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
 		Proverowi udało się dobrze odpowiedzieć na pytanie $e=1$ Verifiera.
 \end{enumerate}
 
+\subsection{Zadanie 11.}
+
+\textbf{Treść}: Niech $GF(2^{k})[x]$ będzie pierścieniem wielomianów o~współczynnikach w~ciele $GF(2^{k})$. Wykazać, że dla każdego wielomianu $x^{n}$ (gdzie $n \in \mathbb{N}$) z~pierścienia $GF(2^{k})[x]$ mamy:
+
+\begin{equation*}
+	x^{n}(\text{mod}(x^{4} + 1)) = x^{n(\text{mod} 4)}
+\end{equation*}
+
+\textbf{Rozwiązanie}: 1. W~ciele $Z_{2} = \left\{0,1\right\}$ dodawanie jest zwykłą sumą modulo 2 (oznaczaną symbolem $\oplus$). Również odejmowanie w~$Z_{2}$ jest sumą modulo 2, bo mamy $1 \oplus 1 = 0$ i~$0 \oplus 0 = 0$, więc $-a = a$ dla $a \in Z_{2}$ oraz $a -_{2} b = a \oplus b$ dla $a, b \in Z_{2}$, gdzie $-_{2}$ jest odejmowaniem modulo 2 w~$Z_{2}$.
+
+\noindent 2. W~ciele $GF(2^{k})$, którego elementami są słowa binarne o~długości $k$, definiujemy działanie dodawania standardowo jako sumę wielomianów. W~naszej sytuacji jest to jednocześnie suma modulo 2~po współrzędnych, tzn. jeśli $a = (a_{1}, a_{2}, \cdots, a_{k}) \in GF(2^{k})$, gdzie $a_{i} \in \left\{0,1\right\}$ oraz $b = (b_{1}, b_{2}, \cdots, b_{k}) \in GF(2^{k})$, gdzie $b_{i} \in \left\{0,1\right\}$ to:
+
+\begin{equation*}
+	a + b = (a_{1} \oplus b_{1}, a_{2} \oplus b_{2}, \cdots, a_{k} \oplus b_{k})
+\end{equation*}
+
+\noindent oraz:
+
+\begin{equation*}
+	\begin{array}{c} a -_{2} b = (a_{1} -_{2} b_{1}, a_{2} -_{2} b_{2}, \cdots, a_{k} -_{2} b_{k}) = \\ = (a_{1} \oplus b_{1}, a_{2} \oplus b_{2}, \cdots, a_{k} \oplus b_{k}) \end{array}
+\end{equation*}
+
+\noindent Dla $n < 4$ wzór jest zawsze prawdziwy (przypadek trywialny). Dla $n \geq 4$ istnieje takie $q \in \mathbb{N}$, że $n = q \cdot 4 + r$ i~$0 \leq r < 4$, gdzie $r = n (\text{mod} 4)$. Zauważmy jak przebiega dzielenie wielomianu $x^{n}$ dla $n \geq 4$. Uwzględniając, że w~ciele modulo 2 operacje dodawania i~odejmowania są tożsame, mamy:
+
+\begin{equation*}
+	\begin{array}{lllllllll} 
+		x^{n-4} & + & x^{n-8} & + & \cdots & + & x^{n-q \cdot 4} & & \\
+		\cline{1-7}
+		x^{n} & & & & & & & : & x^{4} + 1 \\
+		x^{n} & + & x^{n-4} & & & & & & \\
+		\cline{1-7}
+		& & x^{n-4} & & & & & & \\
+		& & x^{n-4} & + & x^{n-8} & & & & \\
+		\cline{3-7}
+		& & & & \cdots & & & & \\
+		\cline{6-7}
+		& & & & & & x^{r} & & \\
+	\end{array}
+\end{equation*}
+
+\noindent z~czego wynika, że $x^{n} (\text{mod}(x^{4} + 1 )) = x^{n(\text{mod}4)}$.
+
 \subsection{Zadanie 33.}
 \textbf{Treść}: Obliczyć wartość symbolu Legendre'a: a) $(\frac{35}{7})$ b) $(\frac{64}{5})$
 
