@@ -275,6 +275,14 @@ Udowodnimy teraz równomierność rozkładu zmiennej losowej $Y = X_{1} \oplus X
   Proverowi udało się dobrze odpowiedzieć na pytanie $e=1$ Verifiera.
 \end{enumerate}
 
+\subsection{Zadanie 9.}
+
+\textbf{Treść}: Niech $G$ będzie skończoną grupą cykliczną rzędu $n$, a~$g \in G$ generatorem tej grupy. Pokazać, że dla każdego $d \in \mathbb{N}$ $g^{d}$ jest generatorem grupy $G$ wtedy i~tylko wtedy, gdy $NWD(d,n) = 1$.
+
+\textbf{Rozwiązanie}: 1. Wynikanie w~lewo. Niech $NWD(d,n) = 1$. Jeśli $(g^{d})^{r_{1}} = (g^{d})^{r_{2}}$ dla pewnych $r_{1}, r_{2} \in \mathbb{N}$ to $g^{d(r_{1} - r_{2})} = 1$. Z~uwagi na fakt, że $g$ jest generatorem grupy $G$ musimy mieć $d(r_{1} - r_{2}) \equiv 0 (\text{mod}n)$ co oznacza, że $d(r_{1} - r_{2})$ jest wielokrotnością $n$. Wynika stąd, że jeśli $r_{1}, r_{2} \in [1, n]$ to $r_{1} = r_{2}$. Kolejne potęgi $(g^{d})^{r}$ dla $r = 1, 2, \cdots, n$ są więc parami różne, co dowodzi faktu, że $g^{d}$ jest generatorem. 
+
+\noindent 2. Wynikanie w~prawo. Niech $\text{NWD}(d,n) = r > 1$, wówczas istnieją takie $k_{1}, k_{2} \in \mathbb{N}$, że $n = k_{1} \cdot r$ oraz $d = k_{2} \cdot r$. Oczywiście, ponieważ $r > 1$ musimy mieć $k_{1} < n$. Zatem $(g^{d})^{k_{1}} = (g^{k_{2} \cdot r})^{k_{1}} = (g^{k_{1} \cdot r})^{k_{2}} = (g^{n})^{k_{2}} = 1$. Stąd wynika, że rząd elementu $g^{d}$ jest co najwyżej równy $k_{1}$, a~więc jest mniejszy od $n$, a~więc $g^{d}$ nie jest generatorem grupy $G$.
+
 \subsection{Zadanie 11.}
 
 \textbf{Treść}: Niech $GF(2^{k})[x]$ będzie pierścieniem wielomianów o~współczynnikach w~ciele $GF(2^{k})$. Wykazać, że dla każdego wielomianu $x^{n}$ (gdzie $n \in \mathbb{N}$) z~pierścienia $GF(2^{k})[x]$ mamy:
