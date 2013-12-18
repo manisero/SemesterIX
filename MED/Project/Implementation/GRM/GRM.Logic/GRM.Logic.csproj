@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseProcessing\Entities\ConcreteItem.cs" />
+    <Compile Include="DatabaseProcessing\Entities\DatabaseRepresentation.cs" />
+    <Compile Include="DatabaseProcessing\Entities\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,36 +1,10 @@
 ﻿using System.Collections.Generic;
+using GRM.Logic.DatabaseProcessing.Entities;
 using Xunit;
 using System.Linq;
 
 namespace GRM.Logic.Tests
 {
-    public struct Item
-    {
-        public string Name { get; set; }
-
-        public string Value { get; set; }
-    }
-
-    public struct ConcreteItem
-    {
-        public Item Item { get; set; }
-
-        public int TransactionID { get; set; }
-    }
-
-    public class DatabaseRepresentation
-    {
-        public IDictionary<Item, int> ItemIDs { get; private set; }
-
-        public IDictionary<int, IList<int>> ItemTransactions { get; private set; }
-
-        public DatabaseRepresentation()
-        {
-            ItemIDs = new Dictionary<Item, int>();
-            ItemTransactions = new Dictionary<int, IList<int>>();
-        }
-    }
-
     public class GRM
     {
         private DatabaseRepresentation Execute(IEnumerable<ConcreteItem> database)
