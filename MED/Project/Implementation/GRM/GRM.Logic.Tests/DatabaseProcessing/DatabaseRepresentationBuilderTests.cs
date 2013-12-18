@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using GRM.Logic.DatabaseProcessing;
 using GRM.Logic.DatabaseProcessing.Entities;
+using GRM.Logic.DatabaseProcessing._Impl;
 using Xunit;
 using System.Linq;
 

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using GRM.Logic.DatabaseProcessing.Entities;
 
-namespace GRM.Logic.DatabaseProcessing
+namespace GRM.Logic.DatabaseProcessing._Impl
 {
-    public class DatabaseRepresentationBuilder
+    public class DatabaseRepresentationBuilder : IDatabaseRepresentationBuilder
     {
         public DatabaseRepresentation Build(IEnumerable<ConcreteItem> database)
         {
