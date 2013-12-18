@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseProcessing\DatabaseRepresentationBuilder.cs" />
     <Compile Include="DatabaseProcessing\Entities\ConcreteItem.cs" />
     <Compile Include="DatabaseProcessing\Entities\DatabaseRepresentation.cs" />
     <Compile Include="DatabaseProcessing\Entities\Item.cs" />

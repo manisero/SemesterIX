@@ -1,43 +1,16 @@
 ﻿using System.Collections.Generic;
+using GRM.Logic.DatabaseProcessing;
 using GRM.Logic.DatabaseProcessing.Entities;
 using Xunit;
 using System.Linq;
 
-namespace GRM.Logic.Tests
+namespace GRM.Logic.Tests.DatabaseProcessing
 {
-    public class GRM
+    public class DatabaseRepresentationBuilderTests
     {
         private DatabaseRepresentation Execute(IEnumerable<ConcreteItem> database)
         {
-            var result = new DatabaseRepresentation();
-            var mappingCounter = 1;
-
-            foreach (var item in database)
-            {
-                int itemId;
-
-                if (!result.ItemIDs.ContainsKey(item.Item))
-                {
-                    result.ItemIDs.Add(item.Item, mappingCounter);
-                    itemId = mappingCounter;
-                    mappingCounter++;
-                }
-                else
-                {
-                    itemId = result.ItemIDs[item.Item];
-                }
-
-                if (!result.ItemTransactions.ContainsKey(itemId))
-                {
-                    result.ItemTransactions.Add(itemId, new List<int>{ item.TransactionID });
-                }
-                else
-                {
-                    result.ItemTransactions[itemId].Add(item.TransactionID);
-                }
-            }
-
-            return result;
+            return new DatabaseRepresentationBuilder().Build(database);
         }
 
         private void AssertItemRepresentation(Item item, int expectedId, int[] expectedFrequencies, DatabaseRepresentation actualRepresentation)
