@@ -608,7 +608,7 @@ Rozwijanie możliwych wyrazów rozpoczyna się od płytek znajdujących się po 
 
 Następnie rozwijana jest prawa część wyrazu, która uwzględnia kotwicę oraz wszystkie płytki na prawo od niej. W~tym celu wyszukuje się w~słowniku poprawne sufiksy, które składają się z~dostępnych na stojaku liter oraz spełniają wyznaczone ograniczenia.
 
-Algorytm Appela-Jacobsona jest wydajny, jednak posiada narzut wydajnościowy związany z~wyznaczaniem lewostronnych dopełnień wyrazów. Zakładając, że kotwica jest również ostatnią literą nowego wyrazu, należy zbadać $6! = 720$ lewostronnych kombinacji. W~pesymistycznym przypadku, kiedy na stojaku znajdują się dwa blanki\footnote{Blank - płytka, która nie posiada wartości punktowej, ale może być zastąpiona dowolną literą.}, liczba badanych kombinacji wzrasta do $\frac{4! \times 32^{2}}{2} = 12288$, co jest znaczącym narzutem, biorąc pod uwagę fakt, że większość wyznaczonych prefiksów w~ogóle nie będzie występować w~słowniku.
+Algorytm Appela-Jacobsona jest wydajny, jednak posiada narzut obliczeniowy związany z~wyznaczaniem lewostronnych dopełnień wyrazów. Zakładając, że kotwica jest również ostatnią literą nowego wyrazu, należy zbadać $6! = 720$ lewostronnych kombinacji. W~pesymistycznym przypadku, kiedy na stojaku znajdują się dwa blanki\footnote{Blank - płytka, która nie posiada wartości punktowej, ale może być zastąpiona dowolną literą.}, liczba badanych kombinacji wzrasta do $\frac{4! \times 32^{2}}{2} = 12288$, co jest znaczącym narzutem, biorąc pod uwagę fakt, że większość wyznaczonych prefiksów w~ogóle nie będzie występować w~słowniku.
 
 Powyższa obserwacja stała się podstawą zmodyfikowanego algorytmu, zaprezentowanego przez Stevena Gordona\footnote{A Faster Scrabble Move Generation Algorithm, \em{Software - Practice and Experience}, 24(2):219--232, 1994.}. Autor nie zmienia kroków algorytmu wykorzystywanych do generacji wszystkich kombinacji ruchów. Zaproponowana modyfikacja obejmuje wykorzystanie struktury GADDAG\footnote{Autor nie podaje rozwinięcia tego skrótu, jednak ze względu na postać przechowywanych w~strukturze danych, można domyślać się, że jest ona wariacją nazwy DAG (z~angielskiego Directed Acyclic Graph - skierowany, acykliczny graf).}, w~miejsce słownika DAWG. 
 
@@ -715,8 +715,76 @@ Przykładowa struktura GADDAG opisująca wyraz narta została zaprezentowana na 
 		\caption{Przykład struktury GADDAG dla wyrazu narta.}
 		\label{fig:gaddag_example}
 	\end{center}
-
 \end{figure}
+
+\section*{Dobór strategii w~zależności od fazy gry}
+
+Rozgrywkę w~Scrabble można podzielić na trzy fazy gry:
+
+\begin{description}
+ \item [MG (mid-game)] trwa od rozpoczęcia rozgrywki, do rozpoczęcia fazy \emph{PEG},
+ \item [PEG (pre-endgame)] rozpoczyna się, kiedy do pobrania pozostają wyłącznie jedna (lub, w~zależności od definicji) dwie płytki,
+ \item [EG (end-game)] rozpoczyna się, kiedy nie ma już płytek do pobrania, a~więc gracze znają wzajemnie własne płytki.
+\end{description}
+
+W~fazie \emph{MG} liczba możliwych kombinacji płytek przeciwnika oraz ruchów jest tak duża, że nie jest możliwa analiza przestrzeni stanów. Podejściem stosowanym w~tej fazie rozgrywki jest wykorzystanie metod heurystycznych i~symulacji do wyboru najlepszego ruchu. Schemat postępowania zostanie opisany na przykładzie algorytmu wykorzystywanego w~programie \emph{Quackle}\footnote{\url{http://people.csail.mit.edu/jasonkb/quackle/doc/how_quackle_plays_scrabble.html}} - uznawanym za najlepszego komputerowego gracza Scrabble na świecie. Diagram ilustrujący algorytm został przedstawiony na rysunku \ref{fig:quackle_schema}.
+
+\begin{figure}[ht!]
+ 	\begin{center}
+		\scalebox{0.63}{
+			\begin{tikzpicture}[node distance=2cm]
+				\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=UniGreen!50]
+				\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!50]
+				\tikzstyle{arrow} = [thick,->,>=stealth]
+				
+				\node (rack) [io] {Stojak};
+				\node (board) [io, right of=rack, xshift=2cm] {Plansza};
+				\coordinate (rackboard) at ($(rack)!0.5!(board)$);
+				\node (movegen) [process, below of= rackboard] {Generacja ruchu};
+				\node (staticeval) [process, below of=movegen] {Statyczne oszacowanie};
+				\coordinate (movegenstaticeval) at ($(movegen)!0.5!(staticeval)$);
+				\node (possmoves) [io, right of=movegenstaticeval, xshift=3cm, text width=3cm] {Wszystkie możliwe ruchy};
+				\node (simulation) [process, below of=staticeval] {Symulacja};
+				\node (bestmoves) [io, below of=possmoves, text width=3cm] {23 najlepsze ruchy};
+				\node (hypsequences) [io, below of=bestmoves, text width=3cm, yshift=-0.5cm] {Hipotetyczna sytuacja 2 ruchy w~przód};
+				\node (winpercestimation) [process, below of=simulation, text width=3cm, yshift=-1cm] {Oszacowanie prawdopodobieństwa wygranej};
+				\node (end) [process, draw=none, fill=none, below of=winpercestimation, yshift=-1cm] { };
+				\coordinate (staticevalsimulation) at ($(staticeval)!0.5!(simulation)$);
+				\node (tilesleft) [io, left of=staticevalsimulation,xshift=-2cm, text width=2cm] {Pozostałe płytki};
+				\node (score) [io, below of=tilesleft, yshift=-1cm] {Wynik};
+				\coordinate (winpercestimationend) at ($(winpercestimation)!0.5!(end)$);
+				\node (chosenmoves) [io, below of=hypsequences,text width=3cm, yshift=-1cm] {10 wybranych, posortowanych ruchów};
+				\draw [arrow] (movegen) -- (staticeval);
+				\draw [arrow] (staticeval) -- (simulation);
+				\draw [arrow] (simulation) -- (winpercestimation);
+				\draw [arrow] (rack) -- (movegen);
+				\draw [arrow] (board) -- (movegen);
+				\draw [arrow] (winpercestimation) -- (end);
+				\draw [arrow] (tilesleft) -- (winpercestimation);
+				\draw [arrow] (score) -- (winpercestimation);
+				\draw [arrow] ($(movegen)!0.5!(staticeval)$) -- (possmoves);
+				\draw [arrow] ($(staticeval)!0.5!(simulation)$) -- (bestmoves);
+				\draw [arrow] ($(simulation)!0.5!(winpercestimation)$) -- (hypsequences);
+				\draw [arrow] ($(winpercestimation)!0.5!(end)$) -- (chosenmoves);
+			\end{tikzpicture}
+			}
+			\caption{Schemat blokowy algorytmu wykorzystywanego w~aplikacji \emph{Quackle}.}
+			\label{fig:quackle_schema}
+	\end{center}
+\end{figure}
+
+\emph{Quackle} wykorzystuje następujący algorytm:
+
+\begin{enumerate}
+ \item Generacja wszystkich dopuszczalnych możliwości ruchu.
+ \item Przypisanie każdej z~możliwości statycznego oszacowania. Funkcja wykorzystywana do szacowania może być tak prosta, jak suma punktów uzyskanych za dane zagranie.
+ \item Sortowanie ruchów od najlepszego do najgorszego względem statycznego oszacowania.
+ \item Wylosowanie prawdopodobnego układu płytek, którymi może dysponować przeciwnik.
+ \item Symulacja przeprowadzana dla 23 najlepszych ruchów. Dla wylosowanego układu płytek przeciwnika symulowana jest partia na dwa kroki w~przód. Do oceny wykorzystuje się wynik punktowy po przeprowadzeniu symulacji.
+ \item Na podstawie wyniku rozgrywki i~liczby płytek pozostałych do pobrania szacowane jest prawdopodobieństwo wygranej dla każdego z~zasymulowanych ruchów.
+ \item Wybieranych jest 10 ruchów dających największe prawdopodobieństwo wygranej.
+ \item Na podstawie dodatkowych czynników (przykładowo: zestawu wykorzystanych w~danym ruchu liter) wybierana jest najlepsza możliwość.
+\end{enumerate}
 
 
 \end{document}
