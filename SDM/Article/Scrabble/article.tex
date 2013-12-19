@@ -346,6 +346,188 @@ W~celu wyznaczenia heurystyk mogących wspomóc sztuczną inteligencję grając�
 
 Wykres przedstawiony na rysunku \ref{fig:letter_probability_distribution} dostarcza nam informacji, że autorzy polskich liter w~grze Scrabble nie oszacowali poprawnie częstotliwości występowania wszystkich liter. Przykładowo, wbrew zasadom gry, litera \textbf{o} w~rzeczywistości występuje częściej niż litera \textbf{e}. Wynika z~tego, że porównując dwa podobnie punktowane zagrania, warto wybrać to, które wykorzystuje więcej samogłosek \textbf{e} niż \textbf{o}. Podobną zależność można stwierdzić w~przypadku litery \textbf{h}, której częstotliwość występowania została przez autorów zasad znacząco zawyżona. Korzytnie jest wybierać zagrania, które powodują wyłożenie płytek z~literą \textbf{h}.
 
+Interesującą statystyką są najlepsze otwarcia (czyli pierwsze zagrania w~grze). Pozwalają one, przy wylosowaniu szczęśliwej kombinacji płytek, zagrać w~najbardziej opłacalny sposób (na początku rozgrywki nie ma ryzyka pozostawienia przeciwnikowi ,,otwartej gry''). Statystyka ta jest szczególnie przydatna dla ludzi, chociaż również sztuczna inteligencja może wykorzystywać tego typu informacje do pominięcia zbędnych obliczeń. Najlepsze otwarcia dla słownika alternatywnego zebrano na rysunku \ref{fig:best_openings}.
 
+\begin{figure}[ht!]
+	\begin{center}
+			\begin{tikzpicture}
+		\tikzstyle{every node}=[draw, shape=rectangle, rounded corners = 1pt, minimum width = 16pt, minimum height = 16pt, align=center, text height = 5pt, font=\scriptsize];
+		\node [fill=Board] at (0, 0) { };
+		\node [fill=Board] at (.6, 0) { };
+		\node [fill=DoubleLetterBonus] at (1.2, 0) {x2};
+		\node [fill=Board] at (1.8, 0) { };
+		\node [fill=Board] at (2.4, 0) { };
+		\node [fill=Board] at (3, 0) { };
+		\node [fill=DoubleWordBonus] at (3.6, 0) { };
+		\node [fill=Board] at (4.2, 0) { };
+		\node [fill=Board] at (4.8, 0) { };
+		\node [fill=Board] at (5.4, 0) { };
+		\node [fill=DoubleLetterBonus] at (6, 0) {x2};
+		\node [fill=Board] at (6.6, 0) { };
+		\node [fill=Board] at (7.2, 0) { };		
+		\node [shape=star, star points=8, rounded corners = 0pt, fill=black, text height = 0pt] at (3.6, 0) {};
+		\node [fill=Tile] at (0, -.6) {P};
+		\node [fill=Tile] at (.6, -.6) {Ó};
+		\node [fill=Tile] at (1.2, -.6) {Ź};
+		\node [fill=Tile] at (1.8, -.6) {N};
+		\node [fill=Tile] at (2.4, -.6) {O};
+		\node [fill=Tile] at (3, -.6) {Ś};
+		\node [fill=Tile] at (3.6, -.6) {Ć};
+		\node [fill=Board] at (4.2, -.6) { };
+		\node [fill=Board] at (4.8, -.6) { };
+		\node [fill=Board] at (5.4, -.6) { };
+		\node [fill=DoubleLetterBonus] at (6, -.6) {x2};
+		\node [fill=Board] at (6.6, -.6) { };
+		\node [fill=Board] at (7.2, -.6) { };	
+		\node [fill=Board] at (0, -1.2) { };
+		\node [fill=Board] at (.6, -1.2) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -1.2) {x2};
+		\node [fill=Board] at (1.8, -1.2) { };
+		\node [fill=Board] at (2.4, -1.2) { };
+		\node [fill=Board] at (3, -1.2) { };
+		\node [fill=Tile] at (3.6, -1.2) {B};
+		\node [fill=Tile] at (4.2, -1.2) {Ł};
+		\node [fill=Tile] at (4.8, -1.2) {Ą};
+		\node [fill=Tile] at (5.4, -1.2) {D};
+		\node [fill=Tile] at (6, -1.2) {Ź};
+		\node [fill=Tile] at (6.6, -1.2) {Ż};
+		\node [fill=Tile] at (7.2, -1.2) {E};
+		\node [fill=Board] at (0, -1.8) { };
+		\node [fill=Board] at (.6, -1.8) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -1.8) {x2};
+		\node [fill=Board] at (1.8, -1.8) { };
+		\node [fill=Board] at (2.4, -1.8) { };
+		\node [fill=Board] at (3, -1.8) { };
+		\node [fill=Tile] at (3.6, -1.8) {U};
+		\node [fill=Tile] at (4.2, -1.8) {B};
+		\node [fill=Tile] at (4.8, -1.8) {O};
+		\node [fill=Tile] at (5.4, -1.8) {D};
+		\node [fill=Tile] at (6, -1.8) {Ź};
+		\node [fill=Tile] at (6.6, -1.8) {Ż};
+		\node [fill=Tile] at (7.2, -1.8) {E};
+		\node [fill=Board] at (0, -2.4) { };
+		\node [fill=Board] at (.6, -2.4) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -2.4) {x2};
+		\node [fill=Board] at (1.8, -2.4) { };
+		\node [fill=Board] at (2.4, -2.4) { };
+		\node [fill=Board] at (3, -2.4) { };
+		\node [fill=Tile] at (3.6, -2.4) {P};
+		\node [fill=Tile] at (4.2, -2.4) {Ó};
+		\node [fill=Tile] at (4.8, -2.4) {J};
+		\node [fill=Tile] at (5.4, -2.4) {D};
+		\node [fill=Tile] at (6, -2.4) {Ź};
+		\node [fill=Tile] at (6.6, -2.4) {K};
+		\node [fill=Tile] at (7.2, -2.4) {Ę};		
+		\node [fill=Board] at (0, -3) { };
+		\node [fill=Board] at (.6, -3) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -3) {x2};
+		\node [fill=Board] at (1.8, -3) { };
+		\node [fill=Board] at (2.4, -3) { };
+		\node [fill=Board] at (3, -3) { };
+		\node [fill=Tile] at (3.6, -3) {G};
+		\node [fill=Tile] at (4.2, -3) {Ł};
+		\node [fill=Tile] at (4.8, -3) {Ó};
+		\node [fill=Tile] at (5.4, -3) {D};
+		\node [fill=Tile] at (6, -3) {Ź};
+		\node [fill=Tile] at (6.6, -3) {Ż};
+		\node [fill=Tile] at (7.2, -3) {E};	
+		\node [fill=Board] at (0, -3.6) { };
+		\node [fill=Board] at (.6, -3.6) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -3.6) {x2};
+		\node [fill=Board] at (1.8, -3.6) { };
+		\node [fill=Board] at (2.4, -3.6) { };
+		\node [fill=Board] at (3, -3.6) { };
+		\node [fill=Tile] at (3.6, -3.6) {U};
+		\node [fill=Tile] at (4.2, -3.6) {B};
+		\node [fill=Tile] at (4.8, -3.6) {Ą};
+		\node [fill=Tile] at (5.4, -3.6) {D};
+		\node [fill=Tile] at (6, -3.6) {Ź};
+		\node [fill=Tile] at (6.6, -3.6) {Ż};
+		\node [fill=Tile] at (7.2, -3.6) {E};		
+		\node [fill=Board] at (0, -4.2) { };
+		\node [fill=Board] at (.6, -4.2) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -4.2) {x2};
+		\node [fill=Board] at (1.8, -4.2) { };
+		\node [fill=Board] at (2.4, -4.2) { };
+		\node [fill=Board] at (3, -4.2) { };
+		\node [fill=Tile] at (3.6, -4.2) {U};
+		\node [fill=Tile] at (4.2, -4.2) {G};
+		\node [fill=Tile] at (4.8, -4.2) {Ó};
+		\node [fill=Tile] at (5.4, -4.2) {D};
+		\node [fill=Tile] at (6, -4.2) {Ź};
+		\node [fill=Tile] at (6.6, -4.2) {Ż};
+		\node [fill=Tile] at (7.2, -4.2) {E};		
+		\node [fill=Board] at (0, -4.8) { };
+		\node [fill=Board] at (.6, -4.8) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -4.8) {x2};
+		\node [fill=Board] at (1.8, -4.8) { };
+		\node [fill=Board] at (2.4, -4.8) { };
+		\node [fill=Board] at (3, -4.8) { };
+		\node [fill=Tile] at (3.6, -4.8) {B};
+		\node [fill=Tile] at (4.2, -4.8) {L};
+		\node [fill=Tile] at (4.8, -4.8) {U};
+		\node [fill=Tile] at (5.4, -4.8) {Ź};
+		\node [fill=Tile] at (6, -4.8) {Ń};
+		\node [fill=Tile] at (6.6, -4.8) {Ż};
+		\node [fill=Tile] at (7.2, -4.8) {E};	
+		\node [fill=Board] at (0, -5.4) { };
+		\node [fill=Board] at (.6, -5.4) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -5.4) {x2};
+		\node [fill=Board] at (1.8, -5.4) { };
+		\node [fill=Board] at (2.4, -5.4) { };
+		\node [fill=Board] at (3, -5.4) { };
+		\node [fill=Tile] at (3.6, -5.4) {P};
+		\node [fill=Tile] at (4.2, -5.4) {Ó};
+		\node [fill=Tile] at (4.8, -5.4) {J};
+		\node [fill=Tile] at (5.4, -5.4) {D};
+		\node [fill=Tile] at (6, -5.4) {Ź};
+		\node [fill=Tile] at (6.6, -5.4) {K};
+		\node [fill=Tile] at (7.2, -5.4) {Ą};		
+		\node [fill=Board] at (0, -6) { };
+		\node [fill=Board] at (.6, -6) { };
+		\node [fill=DoubleLetterBonus] at (1.2, -6) {x2};
+		\node [fill=Board] at (1.8, -6) { };
+		\node [fill=Board] at (2.4, -6) { };
+		\node [fill=Tile] at (3, -6) {U};
+		\node [fill=Tile] at (3.6, -6) {G};
+		\node [fill=Tile] at (4.2, -6) {R};
+		\node [fill=Tile] at (4.8, -6) {Z};
+		\node [fill=Tile] at (5.4, -6) {Ą};
+		\node [fill=Tile] at (6, -6) {Ź};
+		\node [fill=Tile] at (6.6, -6) {Ć};
+		\node [fill=Board] at (7.2, -6) { };		
+	\end{tikzpicture}
+	\caption{Najlepsze otwarcia dla Słownika alternatywnego. Słowo \emph{późność} jest warte 126 punktów, pozostałe po 124 punkty.}
+	\label{fig:best_openings}
+	\end{center}
+\end{figure}
+
+Dokonując statycznej analizy słownika, warto wziąć pod uwagę najbardziej opłacalne kombinacje liter. W~trakcie rozgrywki gracze dążą do układania wyrazów, które wymagają użycia wszystkich siedmiu płytek znajdujących się na stojaku. Zagranie takie jest bowiem punktowane dodatkową premią w~wysokości 50 punktów. Stąd przez najbardziej opłacalną kombinację liter należy rozumieć taką zawartość stojaka, która pozwala ułożyć jak najwięcej wyrazów siedmioliterowych. Duża liczba kombinacji powoduje, że ułożony wyraz uda się wpasować w~istniejące na planszy ułożenie płytek z~większym prawdopodobieństwem. Autor przeanalizował najlepsze kombinacje liter dla Słownika alternatywnego. Wyniki zebrane są w~tabeli \ref{tab:best_letter_combos}.
+
+\begin{figure}
+	\begin{center}
+				\begin{tabular}{|c|c|}
+					\hline
+					Litery	&	Liczba możliwych do	 \\
+					& ułożenia wyrazów \\
+					\hline
+					E, I, K, L, N, O, W	&	12 słów	\\
+					A, E, I, K, P, R, S	&	12 słów	\\
+					A, E, I, K, L, N, P	&	12 słów	\\
+					A, E, K, N, R, T, Y	&	11 słów	\\
+					A, I, K, M, O, P, S&	11 słów	\\
+					A, I, K, M, O, R, W&	11 słów	\\
+					A, A, I, K, L, M, S	&	10 słów	\\
+					A, I, K, M, O, S, T&	10 słów	\\
+					A, I, K, L, N, O, W	&	10 słów	\\
+					A, I, K, L, M, N, O&	10 słów	\\
+					\hline
+				\end{tabular}
+			\caption{Najlepsze kombinacje liter dla Słownika alternatywnego.}
+			\label{tab:best_letter_combos}
+	\end{center}
+\end{figure}
+
+Najbardziej opłacalne kombinacje liter można wykorzystać do strategicznego planowania zagrań. Wykonując poszczególne ruchy korzystnie jest dążyć do uzyskania jednego z~przedstawionych układów liter na stojaku. Można tego dokonać poprzez usuwanie płytek, które nie zostały uwzględnione w~tych kombinacjach, jak również usuwanie płytek zduplikowanych (częstą sytuacją jest posiadanie kilku płytek z~tą samą samogłoską).
 
 \end{document}
