@@ -786,5 +786,42 @@ W~fazie \emph{MG} liczba możliwych kombinacji płytek przeciwnika oraz ruchów 
  \item Na podstawie dodatkowych czynników (przykładowo: zestawu wykorzystanych w~danym ruchu liter) wybierana jest najlepsza możliwość.
 \end{enumerate}
 
+W~fazach \emph{PEG} oraz \emph{EG} stosowane jest inne podejście. Liczba scenariuszy rozgrywki znacząco spada, dlatego możliwe staje się analizowanie przestrzeni stanów, która została poglądowo zaprezentowana na rysunku \ref{fig:state_space}. 
+
+\begin{figure}[ht!]
+	\begin{center}
+			\begin{tikzpicture}
+				\tikzstyle{state} = [draw, shape=circle, minimum width=15pt, minimum height=15pt]
+				\node (s0) [state, fill=UniGreen] at (0,0) {};
+				\node (s1) [state] at (2,2) {};
+				\node (s2) [state] at (2,0) {};
+				\node (s3) [state] at (2, -2) {};
+				\node (s4) [state] at (4,3.5) {};
+				\node (s5) [state] at (4,2.5) {};
+				\node (s6) [state] at (4,1.5) {};
+				\node (s7) [state] at (4,0.5) {};
+				\node (s8) [state] at (4,-0.5) {};
+				\node (s9) [state] at (4,-1.5) {};
+				\node (s10) [state] at (4,-2.5) {};
+				\draw (s0) -- node[above, sloped, font=\scriptsize] {Zagranie 1} (s1);
+				\draw (s0) -- node[above, sloped, font=\scriptsize, near end, xshift=-8pt] {Zagranie 2} (s2);
+				\draw (s0) -- node[above, sloped, font=\scriptsize] {Zagranie 3} (s3);
+				\draw (s1) -- node[above, sloped, font=\tiny] {Odpowiedź 1} (s4);
+				\draw (s1) -- node[xshift=-6pt, below, near end, sloped, font=\tiny] {Odpowiedź 2} (s5);
+				\draw (s1) -- node[below, sloped, font=\tiny] {Odpowiedź 3} (s6);
+				\draw (s2) -- node[above, sloped, font=\tiny] {Odpowiedź 1} (s7);
+				\draw (s2) -- node[below, sloped, font=\tiny] {Odpowiedź 2} (s8);
+				\draw (s3) -- node[above, sloped, font=\tiny] {Odpowiedź 1} (s9);
+				\draw (s3) -- node[below, sloped, font=\tiny] {Odpowiedź 2} (s10);
+				\draw [red, thick] plot [smooth cycle] coordinates {(-0.5, -0.5) (-0.5, 0.5) (2, 0.5) (4.5, 1.05) (4.76, -1.15) (2.3, -0.65)};
+			\end{tikzpicture}
+			\caption{Schematyczne przedstawienie przestrzeni stanów w~Scrabble.}
+			\label{fig:state_space}
+	\end{center}
+\end{figure}
+
+Na etapach \emph{PEG} oraz \emph{EG} wciąż nie jest możliwe dokonanie pełnego przeszukiwania przestrzeni stanów, nie można więc skorzystać z~algorytmów $\alpha - \beta$, czy $A^{*}$. Użyteczne są algorytmy pozwalające przeszukiwać przestrzeń stanów z~ograniczeniami, przykładowo: $B^{*}$, istnieje bowiem sposób na wyznaczenie dobrego przybliżenia zarówno górnego, jak i~dolnego przedziału wartości punktowych, które pozwolą odnieść zwycięstwo w~rozgrywce. Dodatkowo, przeszukiwanie powinno być prowadzone w~sposób progresywny, a~więc rozpoczynając od miejsc, w~których najszybciej możemy zakończyć przeszukiwanie. Miejsca takie związane są z~możliwie małą ilością zagrań, a~tym samym możliwie długimi układanymi wyrazami.
+
+Przeszukiwanie przestrzeni stanów jest podejściem, które pozwala wygrać każdą rozgrywkę, o~ile warunki początkowe przy wchodzeniu w~fazę \emph{EG} pozwalają na zwycięstwo. Świadczą o~tym wyniki uzyskiwane przez komputerowych graczy Scrabble przeciwko najlepszym ludziom. Podczas turnieju, w~którym najlepsze algorytmy sztucznej inteligencji rywalizowały przeciwko ludziom, \emph{Quackle} uzyskał rezultat 32 wygranych i~4 porażek, a~następnie pokonał ówczesnego mistrza świata - Davida Boysa - rezultatem 3 do 2\footnote{Jacek Mandziuk, ,,Knowledge-Free and Learning-Based Methods in Intelligent Game Playing''. Wydawnictwo Springer, strona 46, styczeń 2010.}.
 
 \end{document}
