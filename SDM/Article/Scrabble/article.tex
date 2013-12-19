@@ -6,7 +6,7 @@
 \usetikzlibrary{calc,shapes,shapes.multipart, arrows}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.8}
-\usepackage{hyperref}
+\usepackage[breaklinks=true]{hyperref}
 
 % ;;;;;;;;; colors ;;;;;;;;;;;;
 
@@ -19,7 +19,7 @@
 
 % ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-\title{\LARGE{Sztuczna inteligencja grająca w~Scrabble} \\ \vspace{2mm} \large{Koncepcja implementacji - dane, struktury danych, algorytmy}}
+\title{\LARGE{Wykorzystanie sztucznej inteligencji w~grze Scrabble} \\ \vspace{2mm} \large{Koncepcja implementacji - dane, struktury danych, algorytmy}}
 \author{Jakub Turek}
 \date{\today}
 
@@ -33,7 +33,7 @@ Celem artykułu jest opisanie zbioru koncepcji, które posłużą do implementac
 
 \section*{Wstęp}
 
-Scrabble to ,,gra słowna polegająca na układaniu na określonej planszy wyrazów z~losowanych liter''\footnote{Wielki słownik ortograficzny - PWN 2003, 2006, 2008 - E. Polański}. Jest to bardzo ogólna definicja, którą należy uściślić. Scrabble jest grą przeznaczoną dla 2-4 osób. Akcesoriami do gry są: kwadratowa plansza o~stałym rozmiarze $15 \times 15$, torebka wypełniona płytkami, na których nadrukowane są litery oraz ich wartości punktowe, a~także stojaki, na których gracze umieszczają płytki, którymi w~danej chwili dysponują.
+Scrabble to ,,gra słowna polegająca na układaniu na określonej planszy wyrazów z~losowanych liter''. \cite{scrabble_definition} Jest to bardzo ogólna definicja, którą należy uściślić. Scrabble jest grą przeznaczoną dla 2-4 osób. Akcesoriami do gry są: kwadratowa plansza o~stałym rozmiarze $15 \times 15$, torebka wypełniona płytkami, na których nadrukowane są litery oraz ich wartości punktowe, a~także stojaki, na których gracze umieszczają płytki, którymi w~danej chwili dysponują.
 
 Gra rozgrywana jest w~turach. Zadaniem graczy jest układanie wyrazów na planszy, w~taki sposób aby tworzyły one poprawne słowa w~języku, w~którym prowadzona jest rozgrywka, w~układzie krzyżówkowym. Układ krzyżówkowy został przedstawiony na rysunkach \ref{fig:crossword_first} oraz \ref{fig:crossword_second}:
 
@@ -201,9 +201,9 @@ Punktacja za dane zagranie jest obliczana jako suma punktów za wszystkie płytk
 
 \section*{Słowniki do gier}
 
-Reguły Scrabble dopuszczają układanie ,,wszystkich słów występujących w~słownikach języka polskiego oraz wszystkich ich prawidłowych form gramatycznych, z~wyjątkiem takich słów, które rozpoczynają się od wielkiej litery, są skrótami, bądź słowami wymagającymi cudzysłowu lub łącznika''\footnote{Reguły gry w~Scrabble z~witryny Polskiej Federacji Scrabble - \url{http://www.pfs.org.pl/zds.php}.}. 
+Reguły Scrabble dopuszczają układanie ,,wszystkich słów występujących w~słownikach języka polskiego oraz wszystkich ich prawidłowych form gramatycznych, z~wyjątkiem takich słów, które rozpoczynają się od wielkiej litery, są skrótami, bądź słowami wymagającymi cudzysłowu lub łącznika'. '\cite{scrabble_word_rules} 
 
-Brak zamkniętej listy słów możliwych do wykorzystania w~grze prowadzi do konfliktu interesów, ponieważ gracze sami muszą rozstrzygnąć między sobą, czy dany wyraz jest legalny, bądź nie. Aby możliwa była uczciwa rozgrywka, konieczne było stworzenie słownika do gier. Słownik wyrazów do gier jest to lista wszystkich słów, wraz ze wszystkimi poprawnymi odmianami, dopuszczalnych do wykorzystania w~grach słownych\footnote{Anna Andrzejczuk, \emph{Słowniki do gier słownych jako nowy typ wydawnictw leksykograficznych}. Praca magisterska pod kierownictwem dr hab. R. Pawelec.}.
+Brak zamkniętej listy słów możliwych do wykorzystania w~grze prowadzi do konfliktu interesów, ponieważ gracze sami muszą rozstrzygnąć między sobą, czy dany wyraz jest legalny, bądź nie. Aby możliwa była uczciwa rozgrywka, konieczne było stworzenie słownika do gier. Słownik wyrazów do gier jest to lista wszystkich słów, wraz ze wszystkimi poprawnymi odmianami, dopuszczalnych do wykorzystania w~grach słownych. \cite{game_dictionary_definition}
 
 W~chwili obecnej istnieją dwa duże polskie słowniki do gier:
 
@@ -534,7 +534,7 @@ Najbardziej opłacalne kombinacje liter można wykorzystać do strategicznego pl
 
 \section*{Wyznaczanie wszystkich legalnych ruchów}
 
-Podstawowym zadaniem sztucznej inteligencji w~grze Scrabble jest wyznaczenie wszystkich kombinacji ruchów w~danej turze, na podstawie zadanego słownika. Odpowiedni algorytm został opracowany przez A.~Appela i~G.~Jacobsona\footnote{,,The world's fastest Scrabble program'', {\em Communications of the ACM}, 31(5):572--585, 1988.}. Autorzy proponują opisanie słownika za pomocą grafowej stuktury o~nazwie DAWG\footnote{Z~angielskiego Directed Acyclic Word Graph - skierowany, niecykliczny graf słów.}. Jest to odmiana drzewa trie\footnote{Od angielskiego słowa \emph{retrieval}, które oznacza odczyt.}, która charakteryzuje się silną kompresją danych uzyskiwaną dzięki łączeniu krawędziami identycznych sufiksów wyrazów. Przykładowy słownik DAWG został przedstawiony na rysunku \ref{fig:dawg_example}.
+Podstawowym zadaniem sztucznej inteligencji w~grze Scrabble jest wyznaczenie wszystkich kombinacji ruchów w~danej turze, na podstawie zadanego słownika. Odpowiedni algorytm został opracowany przez A.~Appela i~G.~Jacobsona. \cite{worlds_fastest_scrabble_program} Autorzy proponują opisanie słownika za pomocą grafowej stuktury o~nazwie DAWG\footnote{Z~angielskiego Directed Acyclic Word Graph - skierowany, niecykliczny graf słów.}. Jest to odmiana drzewa trie\footnote{Od angielskiego słowa \emph{retrieval}, które oznacza odczyt.}, która charakteryzuje się silną kompresją danych uzyskiwaną dzięki łączeniu krawędziami identycznych sufiksów wyrazów. Przykładowy słownik DAWG został przedstawiony na rysunku \ref{fig:dawg_example}.
 
 \begin{figure}[ht!]
 	\begin{center}
@@ -610,7 +610,7 @@ Następnie rozwijana jest prawa część wyrazu, która uwzględnia kotwicę ora
 
 Algorytm Appela-Jacobsona jest wydajny, posiada jednak narzut obliczeniowy związany z~wyznaczaniem lewostronnych dopełnień wyrazów. Zakładając, że kotwica jest również ostatnią literą nowego wyrazu, należy zbadać $6! = 720$ lewostronnych kombinacji. W~pesymistycznym przypadku, kiedy na stojaku znajdują się dwa blanki\footnote{Blank - płytka, która nie posiada wartości punktowej, ale może być zastąpiona dowolną literą.}, liczba badanych kombinacji wzrasta do $\frac{4! \times 32^{2}}{2} = 12288$, co jest znaczącym narzutem, biorąc pod uwagę fakt, że większość wyznaczonych prefiksów w~ogóle nie będzie występować w~słowniku.
 
-Powyższa obserwacja stała się podstawą zmodyfikowanego algorytmu, zaprezentowanego przez Stevena Gordona\footnote{A Faster Scrabble Move Generation Algorithm, \em{Software - Practice and Experience}, 24(2):219--232, 1994.}. Autor nie zmienia kroków algorytmu wykorzystywanych do generacji wszystkich kombinacji ruchów. Zaproponowana modyfikacja obejmuje wykorzystanie struktury GADDAG\footnote{Autor nie podaje rozwinięcia tego skrótu, jednak ze względu na postać przechowywanych w~strukturze danych, można domyślać się, że jest ona wariacją nazwy DAG (z~angielskiego Directed Acyclic Graph - skierowany, acykliczny graf).}, w~miejsce słownika DAWG. 
+Powyższa obserwacja stała się podstawą zmodyfikowanego algorytmu, zaprezentowanego przez Stevena Gordona. \cite{faster_move_generation_algorithm} Autor nie zmienia kroków algorytmu wykorzystywanych do generacji wszystkich kombinacji ruchów. Zaproponowana modyfikacja obejmuje wykorzystanie struktury GADDAG\footnote{Autor nie podaje rozwinięcia tego skrótu, jednak ze względu na postać przechowywanych w~strukturze danych, można domyślać się, że jest ona wariacją nazwy DAG (z~angielskiego Directed Acyclic Graph - skierowany, acykliczny graf).}, w~miejsce słownika DAWG. 
 
 GADDAG jest odmianą drzewa trie, która jest nastawiona na szybkie prefiksowanie wyrazów. Każdy opisany wyraz podzielony jest na dwie części - prefiks oraz sufiks. Wychodząc od korzenia drzewa, kolejne wierzchołki opisują prefiks wyrazu czytany od tyłu. Dalej występuje znak zakończenia prefiksu (oznaczany $\gg$), a~następnie sufiks wyrazu czytany w~normalnej kolejności. Kształt struktury jest silnie powiązany z~algorytmem Appela-Jacobsona. Wychodząc od kotwicy w~lewą stronę wyrazu, napotykamy kolejne litery prefiksu w~odwróconej kolejności. Następnie przechodzimy do kotwicy i~analizujemy sufiks w~normalnej kolejności. Ilustruje to rysunek \ref{fig:gaddag_basis}. 
 
@@ -722,12 +722,12 @@ Przykładowa struktura GADDAG opisująca wyraz narta została zaprezentowana na 
 Rozgrywkę w~Scrabble można podzielić na trzy fazy gry:
 
 \begin{description}
- \item [MG (mid-game)] trwa od rozpoczęcia rozgrywki, do rozpoczęcia fazy \emph{PEG},
+ \item [MG (mid-game)] trwa od rozpoczęcia rozgrywki do rozpoczęcia fazy \emph{PEG},
  \item [PEG (pre-endgame)] rozpoczyna się, kiedy do pobrania pozostają wyłącznie jedna (lub, w~zależności od definicji) dwie płytki,
  \item [EG (end-game)] rozpoczyna się, kiedy nie ma już płytek do pobrania, a~więc gracze znają wzajemnie własne płytki.
 \end{description}
 
-W~fazie \emph{MG} liczba możliwych kombinacji płytek przeciwnika oraz ruchów jest tak duża, że nie jest możliwa analiza przestrzeni stanów. Podejściem stosowanym w~tej fazie rozgrywki jest wykorzystanie metod heurystycznych i~symulacji do wyboru najlepszego ruchu. Schemat postępowania zostanie opisany na przykładzie algorytmu wykorzystywanego w~programie \emph{Quackle}\footnote{\url{http://people.csail.mit.edu/jasonkb/quackle/doc/how_quackle_plays_scrabble.html}} - uznawanego za najlepszego komputerowego gracza Scrabble na świecie. Diagram ilustrujący algorytm został przedstawiony na rysunku \ref{fig:quackle_schema}.
+W~fazie \emph{MG} liczba możliwych kombinacji płytek przeciwnika oraz ruchów jest tak duża, że nie jest możliwa analiza przestrzeni stanów. Podejściem stosowanym w~tej fazie rozgrywki jest wykorzystanie metod heurystycznych i~symulacji do wyboru najlepszego ruchu. Schemat postępowania zostanie opisany na przykładzie algorytmu wykorzystywanego w~programie \emph{Quackle} - uznawanego za najlepszego komputerowego gracza Scrabble na świecie. \cite{quackle_algorithm} Diagram ilustrujący algorytm został przedstawiony na rysunku \ref{fig:quackle_schema}.
 
 \begin{figure}[ht!]
  	\begin{center}
@@ -822,7 +822,7 @@ W~fazach \emph{PEG} oraz \emph{EG} stosowane jest inne podejście. Liczba scenar
 
 Na etapach \emph{PEG} oraz \emph{EG} wciąż nie jest możliwe dokonanie pełnego przeszukiwania przestrzeni stanów, nie można więc skorzystać z~algorytmów $\alpha - \beta$, czy $A^{*}$. Użyteczne są algorytmy pozwalające przeszukiwać przestrzeń stanów z~ograniczeniami (przykładowo: $B^{*}$) istnieje bowiem sposób na wyznaczenie dobrego przybliżenia zarówno górnego, jak i~dolnego przedziału wartości punktowych, które pozwolą odnieść zwycięstwo w~rozgrywce. Dodatkowo, przeszukiwanie powinno być prowadzone w~sposób progresywny, a~więc rozpoczynając od miejsc, w~których najszybciej możemy zakończyć przeszukiwanie. Miejsca takie związane są z~możliwie małą ilością zagrań, a~tym samym możliwie długimi układanymi wyrazami.
 
-Przeszukiwanie przestrzeni stanów jest podejściem, które pozwala wygrać każdą rozgrywkę, o~ile warunki początkowe przy wchodzeniu w~fazę \emph{EG} pozwalają na zwycięstwo. Świadczą o~tym wyniki uzyskiwane przez komputerowych graczy Scrabble przeciwko najlepszym ludziom. Podczas turnieju, w~którym najlepsze algorytmy sztucznej inteligencji rywalizowały przeciwko ludziom, \emph{Quackle} uzyskał rezultat 32 wygranych i~4 porażek, a~następnie pokonał ówczesnego mistrza świata - Davida Boysa - rezultatem 3 do 2\footnote{Jacek Mandziuk, ,,Knowledge-Free and Learning-Based Methods in Intelligent Game Playing''. Wydawnictwo Springer, strona 46, styczeń 2010.}.
+Przeszukiwanie przestrzeni stanów jest podejściem, które pozwala wygrać każdą rozgrywkę, o~ile warunki początkowe przy wchodzeniu w~fazę \emph{EG} pozwalają na zwycięstwo. Świadczą o~tym wyniki uzyskiwane przez komputerowych graczy Scrabble przeciwko najlepszym ludziom. Podczas turnieju, w~którym najlepsze algorytmy sztucznej inteligencji rywalizowały przeciwko ludziom, \emph{Quackle} uzyskał rezultat 32 wygranych i~4 porażek, a~następnie pokonał ówczesnego mistrza świata - Davida Boysa - rezultatem 3 do 2. \cite{intelligent_game_playing}
 
 \section*{Podsumowanie}
 
@@ -831,5 +831,23 @@ Artykuł przedstawia wyniki wykonanych przez autora badań statystycznych na pol
 Na podstawie zaprezentowanych informacji, autor artykułu zbuduje algorytm sztucznej inteligencji dostosowany do polskiego słownika wyrazów do gier. W~trakcie prac szczególny nacisk zostanie położony na wykorzystanie wyników badań statystycznych zaprezentowanych w~artykule. W~ramach budowania algorytmu, autor zbada możliwość wprowadzenia poprawek do metod wykorzystywanych obecnie do realizacji automatów grających w~Scrabble. 
 
 Przedstawione w~artykule informacje posłużą także do rozbudowy oprogramowania o~elementy analizujące daną partię. Analizie będzie można poddać dowolną rozgrywkę, tak aby oprogramowanie mogło zostać wykorzystane jako osobisty trener. 
+
+\begin{thebibliography}{9}
+	\small
+	\bibitem{scrabble_definition} 
+		\emph{Wielki słownik ortograficzny PWN}, pod red. Edwarda Polańskiego, Wyd. 3 popr. i~uzup., Warszawa, Wydawnictwo Naukowe PWN, 2012, ISBN 978-83-01-16405-8.
+	\bibitem{scrabble_word_rules}
+		\emph{Zasady dopuszczalności słów} [online], Polska Federacja Scrabble [dostęp: 19 grudnia 2013], Dostępny w~Internecie: \href{http://www.pfs.org.pl/zds.php}{\nolinkurl{<http://www.pfs.org.pl/zds.php>}}.
+	\bibitem{game_dictionary_definition}
+		Anna Andrzejczuk, \emph{Słowniki do gier słownych jako nowy typ wydawnictw leksykograficznych}, pod kierownictwem dr hab. R. Pawelec, Warszawa, 2006. 
+	\bibitem{worlds_fastest_scrabble_program}
+		A.~Appel, G.~Jacobson, \emph{The world's fastest Scrabble program}, ,,Communications of the ACM'' 1988, 31(5), strony 572-585.
+	\bibitem{faster_move_generation_algorithm}
+		S.~Gordon, \emph{A Faster Scrabble Move Generation Algorithm}, ,,Software - Practice and Experience'' 1994, 24(2), strony 219-232.
+	\bibitem{quackle_algorithm}
+		Jason Katz-Brown, John O'Laughlin, \emph{How Quackle Plays Scrabble} [online], Quackle [dostęp: 19 grudnia 2013], Dostępny w~Internecie: \href{http://people.csail.mit.edu/jasonkb/quackle/doc/how_quackle_plays_scrabble.html}{\nolinkurl{<http://people.csail.mit.edu/jasonkb/quackle/doc/how\_quackle\_plays\_scrabble.html>}}.
+	\bibitem{intelligent_game_playing}
+		Jacek Mańdziuk, \emph{Knowledge-Free and Learning-Based Methods in Intelligent Game Playing}, Wydawnictwo Springer, 2010, ISBN 978-3-642-11677-3.
+\end{thebibliography}
 
 \end{document}
