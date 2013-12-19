@@ -504,8 +504,9 @@ Interesującą statystyką są najlepsze otwarcia (czyli pierwsze zagrania w~grz
 
 Dokonując statycznej analizy słownika, warto wziąć pod uwagę najbardziej opłacalne kombinacje liter. W~trakcie rozgrywki gracze dążą do układania wyrazów, które wymagają użycia wszystkich siedmiu płytek znajdujących się na stojaku. Zagranie takie jest bowiem punktowane dodatkową premią w~wysokości 50 punktów. Stąd przez najbardziej opłacalną kombinację liter należy rozumieć taką zawartość stojaka, która pozwala ułożyć jak najwięcej wyrazów siedmioliterowych. Duża liczba kombinacji powoduje, że ułożony wyraz uda się wpasować w~istniejące na planszy ułożenie płytek z~większym prawdopodobieństwem. Autor przeanalizował najlepsze kombinacje liter dla Słownika alternatywnego. Wyniki zebrane są w~tabeli \ref{tab:best_letter_combos}.
 
-\begin{figure}
+\begin{figure}[ht!]
 	\begin{center}
+				\scalebox{0.9}{
 				\begin{tabular}{|c|c|}
 					\hline
 					Litery	&	Liczba możliwych do	 \\
@@ -523,11 +524,199 @@ Dokonując statycznej analizy słownika, warto wziąć pod uwagę najbardziej op
 					A, I, K, L, M, N, O&	10 słów	\\
 					\hline
 				\end{tabular}
+				}
 			\caption{Najlepsze kombinacje liter dla Słownika alternatywnego.}
 			\label{tab:best_letter_combos}
 	\end{center}
 \end{figure}
 
 Najbardziej opłacalne kombinacje liter można wykorzystać do strategicznego planowania zagrań. Wykonując poszczególne ruchy korzystnie jest dążyć do uzyskania jednego z~przedstawionych układów liter na stojaku. Można tego dokonać poprzez usuwanie płytek, które nie zostały uwzględnione w~tych kombinacjach, jak również usuwanie płytek zduplikowanych (częstą sytuacją jest posiadanie kilku płytek z~tą samą samogłoską).
+
+\section*{Wyznaczanie wszystkich legalnych ruchów}
+
+Podstawowym zadaniem sztucznej inteligencji w~grze Scrabble jest wyznaczenie wszystkich kombinacji ruchów w~danej turze, na podstawie zadanego słownika. Odpowiedni algorytm został opracowany przez A.~Appela i~G.~Jacobsona\footnote{,,The world's fastest Scrabble program'', {\em Communications of the ACM}, 31(5):572--585, 1988.}. Autorzy proponują opisanie słownika za pomocą grafowej stuktury o~nazwie DAWG\footnote{Z~angielskiego Directed Acyclic Word Graph - skierowany, niecykliczny graf słów.}. Jest to odmiana drzewa trie\footnote{Od angielskiego słowa \emph{retrieval}, które oznacza odczyt.}, która charakteryzuje się silną kompresją danych uzyskiwaną dzięki łączeniu krawędziami identycznych sufiksów wyrazów. Przykładowy słownik DAWG został przedstawiony na rysunku \ref{fig:dawg_example}.
+
+\begin{figure}[ht!]
+	\begin{center}
+			\begin{tikzpicture}
+				\tikzstyle{every node}=[draw, shape=circle, minimum width = 15pt, minimum height = 15pt, text height = 0pt];
+				\node [fill=UniGreen] (root) at (0,0) {};
+				\node (n01) at (-1.3,-1) {};
+				\node (n02) at (0, -1) {};
+				\node (n03) at (1.3, -1) {};
+				\node [draw=none] (t01) at (-0.8, -0.5) {F};
+				\node [draw=none] (t02) at (-0.15, -0.6) {K};
+				\node [draw=none] (t01) at (0.9, -0.5) {N};
+				\draw[->] (root) -- (n01);
+				\draw[->] (root) -- (n02);
+				\draw[->] (root) -- (n03);
+				\node (n11) at (-1.5, -2) {};
+				\node (n12) at (0, -2) {};
+				\node [draw=none] (t11) at (-1.6, -1.55) {L};
+				\node [draw=none] (t12) at (-0.2, -1.6) {W};
+				\node [draw=none] (t23) at (0.6, -1.7) {A};
+				\draw[->] (n01) -- (n11);
+				\draw[->] (n02) -- (n12);
+				\node (n21) at (-1.7, -3) {};
+				\node (n22) at (0, -3) {};
+				\node [draw=none] (t21) at (-1.8, -2.6) {O};
+				\node [draw=none] (t22) at (-0.8, -2.35) {O};
+				\node [draw=none] (t23) at (-0.2, -2.6) {A};
+				\draw[->] (n11) -- (n21);
+				\draw[->, color=UniGreen, thick] (n12) -- (n21);
+				\draw[->] (n12) -- (n22);
+				\draw[->, color=UniGreen, thick] (n03) -- (n22);
+				\node (n31) at (-1.9, -4) {};
+				\node (n32) at (0, -4) {};
+				\node [draw=none] (t31) at (-2.0, -3.55) {T};
+				\node [draw=none] (t32) at (-0.2, -3.6) {R};
+				\draw[->] (n21) -- (n31);
+				\draw[->] (n22) -- (n32);
+				\node [fill=black] (n41) at (-2.1, -5) {};
+				\node (n42) at (0, -5) {};
+				\node [draw=none] (t41) at (-2.2, -4.55) {A};
+				\node [draw=none] (t42) at (-0.2, -4.6) {T};
+				\draw[->] (n31) -- (n41);
+				\draw[->] (n32) -- (n42);
+				\node [fill=black] (n51) at (0, -6) {};
+				\node [draw=none] (t51) at (-0.2, -5.6) {A};
+				\draw[->] (n42) -- (n51);
+			\end{tikzpicture}
+			\caption{Struktura DAWG, która opisuje wyrazy flota, kwota, kwarta oraz narta.}
+			\label{fig:dawg_example}
+	\end{center}
+\end{figure}
+
+Autorzy wybrali tę strukturę ze względu na bardzo szybkie przeszukiwanie słów po ich prefiksie, a~także na dobry współczynnik kompresji słownika. Pełen słownik do gier dla języka angielskiego opisany przy pomocy DAWG zajmuje około $2.5$ MB pamięci.
+
+Korzystając ze słownika DAWG, autorzy przedstawili czterokrokowy algorytm (zwany dalej algorytmem Appela-Jacobsona), który umożliwia wyznaczenie wszystkich możliwych ruchów przy danym stanie planszy i~określonych dostępnych do wykorzystania literach:
+
+\begin{enumerate}
+ \item Redukcja złożoności problemu do jednego wymiaru. Algorytm rozpatruje ruchy wyłącznie w~jednym kierunku (pionowo lub poziomo), ograniczając się do jednego wiersza lub kolumny. Rozumowanie to jest powtarzane dla każdego wiersza (lub kolumny), a~następnie plansza do gry jest transponowana i~algorytm wykonywany jest dla drugiego kierunku. W~dalszym opisie autor artykułu zakłada, że rozpatrujemy wyłącznie wiersze, a~nie kolumny, planszy.
+ \item Ograniczanie zbioru znaków, które można legalnie wstawić w~daną komórkę. W~tym kroku wykorzystuje się fakt, że tworzenie wyrazów w~danym kierunku może skutkować utworzeniem nowych słów w~kierunku przeciwnym, ale tylko poprzez dodanie jednego znaku. Jest to trywialny do sprawdzenia przypadek, który znacząco ogranicza liczbę możliwych do wykonania legalnych ruchów.
+ \item Wyznaczenie kotwic\footnote{W~oryginalnej pracy termin ten został wprowadzony przy pomocy angielskiego zwrotu \emph{anchor}.}. Kotwica jest to najbardziej wysunięta na lewo płytka nowego wyrazu, która przylega do innej, znajdującej się na planszy płytki. Zgodnie z~zasadami gry w~Scrabble, każdy nowo utworzony wyraz musi posiadać dokładnie jedną kotwicę.
+ \item Rozwijanie możliwych do utworzenia wyrazów, poprzez wyjście od wyznaczonych w~punkcie trzecim kotwic, a~także uwzględnienie wyznaczonych w~punkcie drugim ograniczeń. 
+\end{enumerate}
+
+Rozwijanie możliwych wyrazów rozpoczyna się od płytek znajdujących się po lewej stronie kotwicy. Rozpatrywane są trzy przypadki:
+
+\begin{itemize}
+ \item Trywialny - na lewo od kotwicy nie ma żadnych płytek.
+ \item Trywialny - część wyrazu na lewo od kotwicy składa się wyłącznie z~płytek znajdujących się już na planszy.
+ \item Lewa część wyrazu składa się z~liter znajdujących się na stojaku i~dostępnych do zagrania. Należy zbadać wszystkie możliwe kombinacje.
+\end{itemize}
+
+Następnie rozwijana jest prawa część wyrazu, która uwzględnia kotwicę oraz wszystkie płytki na prawo od niej. W~tym celu wyszukuje się w~słowniku poprawne sufiksy, które składają się z~dostępnych na stojaku liter oraz spełniają wyznaczone ograniczenia.
+
+Algorytm Appela-Jacobsona jest wydajny, jednak posiada narzut wydajnościowy związany z~wyznaczaniem lewostronnych dopełnień wyrazów. Zakładając, że kotwica jest również ostatnią literą nowego wyrazu, należy zbadać $6! = 720$ lewostronnych kombinacji. W~pesymistycznym przypadku, kiedy na stojaku znajdują się dwa blanki\footnote{Blank - płytka, która nie posiada wartości punktowej, ale może być zastąpiona dowolną literą.}, liczba badanych kombinacji wzrasta do $\frac{4! \times 32^{2}}{2} = 12288$, co jest znaczącym narzutem, biorąc pod uwagę fakt, że większość wyznaczonych prefiksów w~ogóle nie będzie występować w~słowniku.
+
+Powyższa obserwacja stała się podstawą zmodyfikowanego algorytmu, zaprezentowanego przez Stevena Gordona\footnote{A Faster Scrabble Move Generation Algorithm, \em{Software - Practice and Experience}, 24(2):219--232, 1994.}. Autor nie zmienia kroków algorytmu wykorzystywanych do generacji wszystkich kombinacji ruchów. Zaproponowana modyfikacja obejmuje wykorzystanie struktury GADDAG\footnote{Autor nie podaje rozwinięcia tego skrótu, jednak ze względu na postać przechowywanych w~strukturze danych, można domyślać się, że jest ona wariacją nazwy DAG (z~angielskiego Directed Acyclic Graph - skierowany, acykliczny graf).}, w~miejsce słownika DAWG. 
+
+GADDAG jest wariacją drzewa trie, która jest nastawiona na szybkie prefiksowanie wyrazów. Każdy opisany wyraz podzielony jest na dwie części - prefiks oraz sufiks. Wychodząc od korzenia drzewa, kolejne wierzchołki opisują prefiks wyrazu czytany od tyłu. Następnie występuje znak zakończenia prefiksu (oznaczany $\gg$), a~później sufiks wyrazu czytany w~normalnej kolejności. Kształt struktury jest silnie powiązany z~algorytmem Appela-Jacobsona. Wychodząc od kotwicy w~lewą stronę wyrazu, napotykamy kolejne litery prefiksu w~odwróconej kolejności. Następnie przechodzimy do kotwicy i~analizujemy sufiks w~normalnej kolejności. Ilustruje to rysunek \ref{fig:gaddag_basis}. 
+
+\begin{figure}[ht!]
+	\begin{center}
+			\begin{tikzpicture}
+			\tikzstyle{every node}=[draw, shape=rectangle, rounded corners = 1pt, minimum width = 20pt, minimum height = 20pt, align=center, text height = 7pt];
+			\node [fill=Tile] (n) at (0, 0) {N};
+			\node [fill=Tile] (a1) at (1.0, 0) {A};
+			\node [fill=UniGreen] (r) at (2.0, 0) {R};
+			\node [fill=Tile] (t) at (3.0, 0) {T};
+			\node [fill=Tile] (a2) at (4.0, 0) {A};
+			\path (r) edge[out=270,in=270,->, thick] node[below, draw=none, fill=none]{$1$} (a1);
+			\draw (a1) edge[out=270,in=270,->, thick] node[below, draw=none, fill=none]{$2$} (n);
+			\draw (n) edge[out=90,in=90,->, thick, distance=0.5cm] node[above, draw=none, fill=none]{$3$} (r);
+			\draw (r) edge[out=90,in=90,->, thick] node[above, draw=none, fill=none]{$4$} (t);
+			\draw (t) edge[out=90,in=90,->, thick] node[above, draw=none, fill=none]{$5$} (a2);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Kolejność analizowania pól w~algorytmie Appela-Jacobsona. Kotwica oznaczona jest na niebiesko.}
+	\label{fig:gaddag_basis}
+\end{figure}
+
+Przykładowa struktura GADDAG opisująca wyraz narta została zaprezentowana na rysunku \ref{fig:gaddag_example}. Należy zauważyć, że sprawdzenie występowania wyrazu w~słowniku wymaga dodatkowego kroku - należy go odwrócić. Dla podanego przykładu, sprawdzenie legalności wyrazu narta wymaga poszukiwania frazy $ATRAN \gg$. 
+
+\begin{figure}[ht!]
+	\begin{center}
+	\scalebox{0.85}{
+			\begin{tikzpicture}
+		\tikzstyle{every node}=[draw, shape=circle, minimum width = 15pt, minimum height = 15pt, text height = 7pt, text width = 7pt, align = center];
+		\node [fill=UniGreen] (root) at (0,0) {};
+		\node (n01) at (1.25, 1.5) {N};
+		\node (n02) at (1.25, 0.5) {A};
+		\node (n03) at (1.25, -0.5) {R};
+		\node (n04) at (1.25, -1.5) {T};
+		\node (n11) at (2.5, 2) {$\gg$};
+		\node (n12) at (2.5, 1) {N};
+		\node (n13) at (2.5, 0) {T};
+		\node (n14) at (2.5, -1) {A};
+		\node (n15) at (2.5, -2) {R};
+		\node (n21) at (3.75, 2) {A};
+		\node (n22) at (3.75, 1) {$\gg$};
+		\node (n23) at (3.75, 0) {R};
+		\node (n24) at (3.75, -1) {N};
+		\node (n25) at (3.75, -2) {A};
+		\node (n31) at (5, 2) {R};
+		\node (n32) at (5, 1) {R};
+		\node (n33) at (5, 0) {A};
+		\node (n34) at (5, -1) {$\gg$};
+		\node (n35) at (5, -2) {N};
+		\node (n41) at (6.25, 2) {T};
+		\node (n42) at (6.25, 1) {T};
+		\node (n43) at (6.25, 0) {N};
+		\node (n44) at (6.25, -1) {T};
+		\node (n45) at (6.25, -2) {$\gg$};
+		\node (n51) at (7.5, 2) {A};
+		\node (n52) at (7.5, 1) {A};
+		\node (n53) at (7.5, 0) {$\gg$};
+		\node (n54) at (7.5, -1) {A};
+		\node (n55) at (7.5, -2) {A};
+		\node [fill=black] (n61) at (8.75, 2) {};
+		\node [fill=black] (n62) at (8.75, 1) {};
+		\node [fill=black] (n63) at (8.75, 0) {};
+		\node [fill=black] (n64) at (8.75, -1) {};
+		\node [fill=black] (n65) at (8.75, -2) {};
+		\draw[->] (root) -- (n01);
+		\draw[->] (root) -- (n02);
+		\draw[->] (root) -- (n03);
+		\draw[->] (root) -- (n04);
+		\draw[->] (n01) -- (n11);
+		\draw[->] (n02) -- (n12);
+		\draw[->] (n02) -- (n13);
+		\draw[->] (n03) -- (n14);
+		\draw[->] (n04) -- (n15);
+		\draw[->] (n11) -- (n21);
+		\draw[->] (n12) -- (n22);
+		\draw[->] (n13) -- (n23);
+		\draw[->] (n14) -- (n24);
+		\draw[->] (n15) -- (n25);
+		\draw[->] (n21) -- (n31);
+		\draw[->] (n22) -- (n32);
+		\draw[->] (n23) -- (n33);
+		\draw[->] (n24) -- (n34);
+		\draw[->] (n25) -- (n35);
+		\draw[->] (n31) -- (n41);
+		\draw[->] (n32) -- (n42);
+		\draw[->] (n33) -- (n43);
+		\draw[->] (n34) -- (n44);
+		\draw[->] (n35) -- (n45);
+		\draw[->] (n41) -- (n51);
+		\draw[->] (n42) -- (n52);
+		\draw[->] (n43) -- (n53);
+		\draw[->] (n44) -- (n54);
+		\draw[->] (n45) -- (n55);
+		\draw[->] (n51) -- (n61);
+		\draw[->] (n52) -- (n62);
+		\draw[->] (n53) -- (n63);
+		\draw[->] (n54) -- (n64);
+		\draw[->] (n55) -- (n65);
+	\end{tikzpicture}
+	}
+		\caption{Przykład struktury GADDAG dla wyrazu narta.}
+		\label{fig:gaddag_example}
+	\end{center}
+
+\end{figure}
+
 
 \end{document}
