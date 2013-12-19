@@ -4,6 +4,7 @@
 *.backup
 *.tex~
 *.synctex.gz
+*.out
 
 # Linux
 .gitignore~
