@@ -28,14 +28,14 @@
 \maketitle
 
 \begin{abstract}
-Celem artykułu jest opisanie zbioru koncepcji, które posłużą do implementacji algorytmu sztucznej inteligencji grającego w~grę Scrabble w~języku polskim. Artykuł analizuje i~porównuje dane zawarte w~dwóch głównych słownikach wyrazów do gier dla języka polskiego, przedstawia dane statystyczne ułatwiające wprowadzanie heurystyk do algorytmu, a~także opisuje metody niezbędne do wyznaczania wszystkich możliwych kombinacji ruchów w~danej turze. Autor omawia również podział rozgrywki na fazy gry i~przybliża podejście, które pozwala uzyskiwać najlepsze wyniki dla każdej fazy gry.
+Celem artykułu jest opisanie zbioru koncepcji, które posłużą do implementacji algorytmu sztucznej inteligencji grającego w~grę Scrabble w~języku polskim. W~artykule zostały przeanalizowane i~porównane dane zawarte w~dwóch głównych słownikach wyrazów do gier dla języka polskiego, przedstawione dane statystyczne ułatwiające wprowadzanie heurystyk do algorytmu, a~także opisane metody niezbędne do wyznaczania wszystkich możliwych kombinacji ruchów w~danej turze. Autor omawia również podział rozgrywki na fazy gry i~przybliża podejście, które pozwala uzyskiwać najlepsze wyniki na każdym etapie rozgrywki.
 \end{abstract}
 
 \section*{Wstęp}
 
 Scrabble to ,,gra słowna polegająca na układaniu na określonej planszy wyrazów z~losowanych liter''. \cite{scrabble_definition} Jest to bardzo ogólna definicja, którą należy uściślić. Scrabble jest grą przeznaczoną dla 2-4 osób. Akcesoriami do gry są: kwadratowa plansza o~stałym rozmiarze $15 \times 15$, torebka wypełniona płytkami, na których nadrukowane są litery oraz ich wartości punktowe, a~także stojaki, na których gracze umieszczają płytki, którymi w~danej chwili dysponują.
 
-Gra rozgrywana jest w~turach. Zadaniem graczy jest układanie wyrazów na planszy, w~taki sposób aby tworzyły one poprawne słowa w~języku, w~którym prowadzona jest rozgrywka, w~układzie krzyżówkowym. Układ krzyżówkowy został przedstawiony na rysunkach \ref{fig:crossword_first} oraz \ref{fig:crossword_second}:
+Gra rozgrywana jest w~turach. Zadaniem graczy jest układanie wyrazów na planszy w~taki sposób, aby tworzyły one poprawne słowa w~języku, w~którym prowadzona jest rozgrywka, w~układzie krzyżówkowym. Układ krzyżówkowy został przedstawiony na rysunkach \ref{fig:crossword_first} oraz \ref{fig:crossword_second}:
 
 \begin{description}
  \item [Rysunek \ref{fig:crossword_first}] Pokazuje sytuację początkową obrazującą pewien moment rozgrywki.
@@ -110,7 +110,7 @@ Gra rozgrywana jest w~turach. Zadaniem graczy jest układanie wyrazów na plansz
 			\node [fill=DoubleWordBonus] at (4.8, -4.8) {2x};
 			\node [fill=Board] at (5.6, -4.8) {};
 		\end{tikzpicture}
-		\caption{Fragment planszy. Gracze ułożyli kolejno słowa: ,,wyraz'' oraz ''mama''.}
+		\caption{Fragment planszy. Gracze ułożyli kolejno słowa: ,,wyraz'' oraz ,,mama''.}
 		\label{fig:crossword_first}
 	\end{center}
 \end{figure}
@@ -195,15 +195,15 @@ W~trakcie jednego ruchu zawodnik może układać płytki tylko w~jednym kierunku
 Punktacja za dane zagranie jest obliczana jako suma punktów za wszystkie płytki, które wchodzą w~skład utworzonych wyrazów (a~więc również tych, które przed zagraniem znajdowały się na planszy), z~uwzględnieniem niewykorzystanych premii wynikających z~pozycji płytki na planszy:
 
 \begin{description}
- \item [Premia literowa] Podwaja lub potraja wartość danej płytki.
- \item [Premia słowna] Podwaja lub potraja wartość całego wyrazu.
+ \item [Premia literowa] podwaja lub potraja wartość danej płytki.
+ \item [Premia słowna] podwaja lub potraja wartość całego wyrazu.
 \end{description}
 
 \section*{Słowniki do gier}
 
 Reguły Scrabble dopuszczają układanie ,,wszystkich słów występujących w~słownikach języka polskiego oraz wszystkich ich prawidłowych form gramatycznych, z~wyjątkiem takich słów, które rozpoczynają się od wielkiej litery, są skrótami, bądź słowami wymagającymi cudzysłowu lub łącznika''. \cite{scrabble_word_rules} 
 
-Brak zamkniętej listy słów możliwych do wykorzystania w~grze prowadzi do konfliktu interesów, ponieważ gracze sami muszą rozstrzygnąć między sobą, czy dany wyraz jest legalny, bądź nie. Aby możliwa była uczciwa rozgrywka, konieczne było stworzenie słownika do gier. Słownik wyrazów do gier jest to lista wszystkich słów, wraz ze wszystkimi poprawnymi odmianami, dopuszczalnych do wykorzystania w~grach słownych. \cite{game_dictionary_definition}
+Brak zamkniętej listy słów możliwych do wykorzystania w~grze prowadzi do konfliktu interesów, ponieważ gracze sami muszą rozstrzygnąć między sobą, czy dany wyraz jest dopuszczalny, czy nie. Aby umożliwić uczciwą rozgrywkę konieczne było stworzenie zbioru, który zawiera listę słów, wraz ze wszystkimi poprawnymi odmianami, dopuszczalnych do wykorzystania w~grach słownych. W~taki sposób zaczęły powstawać słowniki wyrazów do gier. \cite{game_dictionary_definition}
 
 W~chwili obecnej istnieją dwa duże polskie słowniki do gier:
 
@@ -212,11 +212,11 @@ W~chwili obecnej istnieją dwa duże polskie słowniki do gier:
  \item[Słownik alternatywny] Przygotowany na potrzeby serwisu z~grami internetowymi \url{http://kurnik.pl}. Jest rozwijany przez administratorów serwisu przy współpracy z~internautami. Dopuszcza użycie wyrazów znajdujących się w~słownikach dowolnego wydawnictwa wydanych po roku 1980, z~wyłączeniem czarnej listy słowników\footnote{Jest to lista słowników, które nie zostały dopuszczone jako źródło wyrazów ze względu na niedostateczną jakość opracowania.}. 
 \end{description}
 
-Poza dopuszczalnymi źródłami informacji, słowniki posiadają jeszcze jedną znaczącą różnicę. Oficjalny Słownik Polskiego Scrabblisty jest dystrybuowany jako program umieszczony na płycie CD, który nie udostępnia listy wszystkich wyrazów zawartych w~słowniku. Program pozwala wyłącznie sprawdzić, czy dane słowo jest legalne, bądź nie. Słownik alternatywny dostępny jest w Internecie również w~postaci listy wszystkich dopuszczalnych wyrazów zebranych w~pliku tekstowym. Pozwala to na przeprowadzenie analiz statystycznych. Stąd w~dalszej części artykułu autor rozważa wyłącznie Słownik alternatywny.
+Poza dopuszczalnymi źródłami informacji słowniki posiadają jeszcze jedną znaczącą różnicę. Oficjalny Słownik Polskiego Scrabblisty jest dystrybuowany jako program umieszczony na płycie CD, który nie udostępnia listy wszystkich wyrazów zawartych w~słowniku. Program pozwala jedynie sprawdzić, czy dane słowo jest dopuszczalne. Słownik alternatywny dostępny jest w Internecie również w~postaci listy wszystkich dopuszczalnych wyrazów zebranych w~pliku tekstowym. Pozwala to na przeprowadzenie analiz statystycznych, stąd w~dalszej części artykułu autor rozważa wyłącznie Słownik alternatywny.
 
 \section*{Analiza statystyczna}
 
-W~celu wyznaczenia heurystyk mogących wspomóc sztuczną inteligencję grającą w~Scrabble, autor przeanalizował dane zawarte w~Słowniku alternatywnym. Pierwszą analizowaną informacją jest częstotliwość występowania poszczególnych liter w~słowniku. Wynika to z~faktu, że zasady gry Scrabble są oparte na rozkładzie prawdopodobieństwa występowania liter w~danym języku. Możliwe jest, że badanie statystyczne słownika przyniesie informacje o~literach, których warto używać w~pierwszej kolejności.
+W~celu wyznaczenia heurystyk mogących wspomóc sztuczną inteligencję grającą w~Scrabble autor przeanalizował dane zawarte w~Słowniku alternatywnym. Pierwszą analizowaną informacją jest częstotliwość występowania poszczególnych liter w~słowniku. Wynika to z~faktu, że zasady gry Scrabble są oparte na rozkładzie prawdopodobieństwa występowania liter w~danym języku. Możliwe jest, że badanie statystyczne słownika przyniesie informacje o~literach, których warto używać w~pierwszej kolejności.
 
 \begin{figure}[ht!]
 	\begin{center}
@@ -344,7 +344,7 @@ W~celu wyznaczenia heurystyk mogących wspomóc sztuczną inteligencję grając�
 	\end{center}
 \end{figure}
 
-Wykres przedstawiony na rysunku \ref{fig:letter_probability_distribution} dostarcza nam informacji, że autorzy polskich reguł do gry Scrabble nie oszacowali poprawnie częstotliwości występowania wszystkich liter. Przykładowo litera \textbf{o} występuje w~słowniku częściej niż litera \textbf{e}, natomiast prawdopodobieństwo wylosowania odpowiadających płytek w~grze kształtuje się odwrotnie. Wynika z~tego, że porównując dwa podobnie punktowane zagrania, warto wybrać to, które wykorzystuje więcej samogłosek \textbf{e} niż \textbf{o}. Podobną zależność można stwierdzić w~przypadku litery \textbf{h}, której częstotliwość występowania została przez autorów zasad znacząco zawyżona. Korzytnie jest wybierać zagrania, które powodują wyłożenie płytek z~literą \textbf{h}.
+Wykres przedstawiony na rysunku \ref{fig:letter_probability_distribution} dostarcza nam informacji, że autorzy polskich reguł do gry Scrabble nie oszacowali poprawnie częstotliwości występowania wszystkich liter. Przykładowo litera \textbf{o} występuje w~słowniku częściej niż litera \textbf{e}, natomiast prawdopodobieństwo wylosowania odpowiadających tym literom płytek w~grze kształtuje się odwrotnie. Wynika z~tego, że porównując dwa podobnie punktowane zagrania, warto wybrać to, które wykorzystuje więcej samogłosek \textbf{e} niż \textbf{o}. Podobną zależność można stwierdzić w~przypadku litery \textbf{h}, której częstotliwość występowania została przez autorów zasad znacząco zawyżona. Korzytnie jest wybierać zagrania, które powodują wyłożenie płytek z~literą \textbf{h}.
 
 Interesującą statystyką są najlepsze otwarcia (czyli pierwsze zagrania w~grze). Pozwalają one, przy wylosowaniu szczęśliwej kombinacji płytek, zagrać w~najbardziej opłacalny sposób (na początku rozgrywki nie ma ryzyka pozostawienia przeciwnikowi ,,otwartej gry''). Statystyka ta jest szczególnie przydatna dla ludzi, chociaż również sztuczna inteligencja może wykorzystać ją do pominięcia zbędnych obliczeń. Najlepsze otwarcia dla słownika alternatywnego zebrano na rysunku \ref{fig:best_openings}.
 
@@ -502,7 +502,7 @@ Interesującą statystyką są najlepsze otwarcia (czyli pierwsze zagrania w~grz
 	\end{center}
 \end{figure}
 
-Dokonując statystycznej analizy słownika, warto wziąć pod uwagę najbardziej opłacalne kombinacje liter. W~trakcie rozgrywki gracze dążą do układania wyrazów, które wymagają użycia wszystkich siedmiu płytek znajdujących się na stojaku. Zagranie takie jest bowiem nagradzane dodatkową premią w~wysokości 50 punktów. Stąd przez najbardziej opłacalną kombinację liter należy rozumieć taką zawartość stojaka, która pozwala ułożyć jak najwięcej wyrazów siedmioliterowych. Duża liczba kombinacji sprawia, że z~większym prawdopodobieństwem uda nam się dopasować wyraz do istniejącego układu płytek na planszy. Autor przeanalizował najlepsze kombinacje liter dla Słownika alternatywnego. Wyniki zebrane są w~tabeli \ref{tab:best_letter_combos}.
+Dokonując statystycznej analizy słownika warto wziąć pod uwagę najbardziej opłacalne kombinacje liter. W~trakcie rozgrywki gracze dążą do układania wyrazów, które wymagają użycia wszystkich siedmiu płytek znajdujących się na stojaku. Zagranie takie jest bowiem nagradzane dodatkową premią w~wysokości 50 punktów. Stąd przez najbardziej opłacalną kombinację liter należy rozumieć taką zawartość stojaka, która pozwala ułożyć jak najwięcej wyrazów siedmioliterowych. Duża liczba kombinacji sprawia, że z~większym prawdopodobieństwem uda nam się dopasować wyraz do istniejącego układu płytek na planszy. Autor przeanalizował najlepsze kombinacje liter dla Słownika alternatywnego. Wyniki zebrane są w~tabeli \ref{tab:best_letter_combos}.
 
 \begin{figure}[ht!]
 	\begin{center}
@@ -532,9 +532,9 @@ Dokonując statystycznej analizy słownika, warto wziąć pod uwagę najbardziej
 
 Najbardziej opłacalne kombinacje liter można wykorzystać do strategicznego planowania zagrań. Wykonując poszczególne ruchy korzystnie jest dążyć do uzyskania jednego z~przedstawionych układów liter na stojaku. Można tego dokonać poprzez usuwanie płytek, które nie zostały uwzględnione w~tych kombinacjach, jak również usuwanie płytek zduplikowanych (częstą sytuacją jest posiadanie kilku płytek z~tą samą samogłoską).
 
-\section*{Wyznaczanie wszystkich legalnych ruchów}
+\section*{Wyznaczanie wszystkich dopuszczalnych ruchów}
 
-Podstawowym zadaniem sztucznej inteligencji w~grze Scrabble jest wyznaczenie wszystkich kombinacji ruchów w~danej turze, na podstawie zadanego słownika. Odpowiedni algorytm został opracowany przez A.~Appela i~G.~Jacobsona. \cite{worlds_fastest_scrabble_program} Autorzy proponują opisanie słownika za pomocą grafowej stuktury o~nazwie DAWG\footnote{Z~angielskiego Directed Acyclic Word Graph - skierowany, niecykliczny graf słów.}. Jest to odmiana drzewa trie\footnote{Od angielskiego słowa \emph{retrieval}, które oznacza odczyt.}, która charakteryzuje się silną kompresją danych uzyskiwaną dzięki łączeniu krawędziami identycznych sufiksów wyrazów. Przykładowy słownik DAWG został przedstawiony na rysunku \ref{fig:dawg_example}.
+Podstawowym zadaniem sztucznej inteligencji w~grze Scrabble jest wyznaczenie (na podstawie zadanego słownika) wszystkich dopuszczalnych ruchów w~danej turze. Odpowiedni algorytm został opracowany przez A.~Appela i~G.~Jacobsona. \cite{worlds_fastest_scrabble_program} Autorzy proponują opisanie słownika za pomocą grafowej stuktury o~nazwie DAWG\footnote{Z~angielskiego Directed Acyclic Word Graph - skierowany, niecykliczny graf słów.}. Jest to odmiana drzewa trie\footnote{Od angielskiego słowa \emph{retrieval}, które oznacza odczyt.}, która charakteryzuje się silną kompresją danych uzyskiwaną dzięki łączeniu krawędziami identycznych sufiksów wyrazów. Przykładowy słownik DAWG został przedstawiony na rysunku \ref{fig:dawg_example}.
 
 \begin{figure}[ht!]
 	\begin{center}
@@ -582,20 +582,20 @@ Podstawowym zadaniem sztucznej inteligencji w~grze Scrabble jest wyznaczenie wsz
 				\node [draw=none] (t51) at (-0.2, -5.6) {A};
 				\draw[->] (n42) -- (n51);
 			\end{tikzpicture}
-			\caption{Struktura DAWG, która opisuje wyrazy flota, kwota, kwarta oraz narta.}
+			\caption{Struktura DAWG, która opisuje wyrazy \emph{flota}, \emph{kwota}, \emph{kwarta} oraz \emph{narta}.}
 			\label{fig:dawg_example}
 	\end{center}
 \end{figure}
 
-Autorzy wybrali tę strukturę ze względu na bardzo szybkie przeszukiwanie słów po ich prefiksie, a~także na dobry współczynnik kompresji słownika. Pełen słownik do gier dla języka angielskiego opisany przy pomocy DAWG zajmuje około $2.5$ MB pamięci.
+Autorzy wybrali tę strukturę ze względu na bardzo szybkie wyszukiwanie słów po ich prefiksie, a~także na dobry współczynnik kompresji słownika. Pełen słownik do gier dla języka angielskiego opisany przy pomocy DAWG zajmuje około $2.5$ MB pamięci.
 
-Korzystając ze słownika DAWG, autorzy przedstawili czterokrokowy algorytm (zwany dalej algorytmem Appela-Jacobsona), który umożliwia wyznaczenie wszystkich możliwych ruchów przy danym stanie planszy i~dostępnych do wykorzystania literach:
+Autorzy przedstawili czterokrokowy algorytm (zwany dalej algorytmem Appela-Jacobsona) wykorzystujący słownik DAWG, który umożliwia wyznaczenie wszystkich możliwych ruchów przy danym stanie planszy i~dostępnych do wykorzystania literach:
 
 \begin{enumerate}
  \item Redukcja złożoności problemu do jednego wymiaru. Algorytm rozpatruje ruchy wyłącznie w~jednym kierunku (pionowo lub poziomo), ograniczając się do jednego wiersza lub kolumny. Rozumowanie to jest powtarzane dla każdego wiersza (lub kolumny), a~następnie plansza do gry jest transponowana i~algorytm wykonywany jest dla drugiego kierunku. W~dalszym opisie autor artykułu zakłada, że rozpatrujemy wyłącznie wiersze, a~nie kolumny, planszy.
  \item Ograniczanie zbioru znaków, które można legalnie wstawić w~daną komórkę. W~tym kroku wykorzystuje się fakt, że tworzenie wyrazów w~danym kierunku może skutkować utworzeniem nowych słów w~kierunku przeciwnym, ale tylko poprzez dodanie jednego znaku. Jest to trywialny do sprawdzenia przypadek, który znacząco ogranicza liczbę możliwych do wykonania legalnych ruchów.
  \item Wyznaczenie kotwic\footnote{W~oryginalnej pracy termin ten został wprowadzony przy pomocy angielskiego zwrotu \emph{anchor}.}. Kotwica jest to najbardziej wysunięta na lewo płytka nowego wyrazu, która przylega do innej, znajdującej się na planszy płytki. Zgodnie z~zasadami gry w~Scrabble, każdy nowo utworzony wyraz musi posiadać dokładnie jedną kotwicę.
- \item Rozwijanie możliwych do utworzenia wyrazów, poprzez wyjście od wyznaczonych w~punkcie trzecim kotwic, a~także uwzględnienie wyznaczonych w~punkcie drugim ograniczeń. 
+ \item Rozwijanie możliwych do utworzenia wyrazów poprzez wyjście od wyznaczonych w~punkcie trzecim kotwic, a~także uwzględnienie wyznaczonych w~punkcie drugim ograniczeń. 
 \end{enumerate}
 
 Rozwijanie możliwych wyrazów rozpoczyna się od płytek znajdujących się po lewej stronie kotwicy. Rozpatrywane są trzy przypadki:
@@ -608,11 +608,11 @@ Rozwijanie możliwych wyrazów rozpoczyna się od płytek znajdujących się po 
 
 Następnie rozwijana jest prawa część wyrazu, która uwzględnia kotwicę oraz wszystkie płytki na prawo od niej. W~tym celu wyszukuje się w~słowniku poprawne sufiksy, które składają się z~dostępnych na stojaku liter oraz spełniają wyznaczone ograniczenia.
 
-Algorytm Appela-Jacobsona jest wydajny, posiada jednak narzut obliczeniowy związany z~wyznaczaniem lewostronnych dopełnień wyrazów. Zakładając, że kotwica jest również ostatnią literą nowego wyrazu, należy zbadać $6! = 720$ lewostronnych kombinacji. W~pesymistycznym przypadku, kiedy na stojaku znajdują się dwa blanki\footnote{Blank - płytka, która nie posiada wartości punktowej, ale może być zastąpiona dowolną literą.}, liczba badanych kombinacji wzrasta do $\frac{4! \times 32^{2}}{2} = 12288$, co jest znaczącym narzutem, biorąc pod uwagę fakt, że większość wyznaczonych prefiksów w~ogóle nie będzie występować w~słowniku.
+Algorytm Appela-Jacobsona jest wydajny, posiada jednak narzut obliczeniowy związany z~wyznaczaniem lewostronnych dopełnień wyrazów. Zakładając, że kotwica jest również ostatnią literą nowego wyrazu, należy zbadać $6! = 720$ lewostronnych kombinacji. W~pesymistycznym przypadku, kiedy na stojaku znajdują się dwa blanki\footnote{Blank - płytka, która nie posiada wartości punktowej, ale może być zastąpiona dowolną literą.}, liczba badanych kombinacji wzrasta do $\frac{4! \times 32^{2}}{2} = 12288$. Biorąc pod uwagę fakt, że większość wyznaczonych prefiksów w~ogóle nie będzie występować w~słowniku, jest to znaczący narzut.
 
-Powyższa obserwacja stała się podstawą zmodyfikowanego algorytmu, zaprezentowanego przez Stevena Gordona. \cite{faster_move_generation_algorithm} Autor nie zmienia kroków algorytmu wykorzystywanych do generacji wszystkich kombinacji ruchów. Zaproponowana modyfikacja obejmuje wykorzystanie struktury GADDAG\footnote{Autor nie podaje rozwinięcia tego skrótu, jednak ze względu na postać przechowywanych w~strukturze danych, można domyślać się, że jest ona wariacją nazwy DAG (z~angielskiego Directed Acyclic Graph - skierowany, acykliczny graf).}, w~miejsce słownika DAWG. 
+Powyższa obserwacja stała się podstawą zmodyfikowanego algorytmu zaprezentowanego przez Stevena Gordona. \cite{faster_move_generation_algorithm} Autor nie zmienia kroków algorytmu wykorzystywanych do generacji wszystkich kombinacji ruchów. Zaproponowana modyfikacja obejmuje wykorzystanie struktury GADDAG\footnote{Autor nie podaje rozwinięcia tego skrótu, jednak ze względu na postać przechowywanych w~strukturze danych można domyślać się, że jest ona wariacją nazwy DAG (z~angielskiego Directed Acyclic Graph - skierowany, acykliczny graf).}, w~miejsce słownika DAWG. 
 
-GADDAG jest odmianą drzewa trie, która jest nastawiona na szybkie prefiksowanie wyrazów. Każdy opisany wyraz podzielony jest na dwie części - prefiks oraz sufiks. Wychodząc od korzenia drzewa, kolejne wierzchołki opisują prefiks wyrazu czytany od tyłu. Dalej występuje znak zakończenia prefiksu (oznaczany $\gg$), a~następnie sufiks wyrazu czytany w~normalnej kolejności. Kształt struktury jest silnie powiązany z~algorytmem Appela-Jacobsona. Wychodząc od kotwicy w~lewą stronę wyrazu, napotykamy kolejne litery prefiksu w~odwróconej kolejności. Następnie przechodzimy do kotwicy i~analizujemy sufiks w~normalnej kolejności. Ilustruje to rysunek \ref{fig:gaddag_basis}. 
+GADDAG jest odmianą drzewa trie, która jest nastawiona na szybkie prefiksowanie wyrazów. Każdy opisany wyraz podzielony jest na dwie części: prefiks oraz sufiks. Wychodząc od korzenia drzewa kolejne wierzchołki opisują prefiks wyrazu czytany od tyłu. Dalej występuje znak zakończenia prefiksu (oznaczany $\gg$), a~następnie sufiks wyrazu czytany w~normalnej kolejności. Kształt struktury jest silnie powiązany z~algorytmem Appela-Jacobsona. Wychodząc od kotwicy w~kierunku lewej strony wyrazu analizowane są kolejne litery prefiksu w~odwróconej kolejności. Dalej następuje przejście do kotwicy i~rozpatrywany jest sufiks w~normalnej kolejności. Ilustruje to rysunek \ref{fig:gaddag_basis}. 
 
 \begin{figure}[ht!]
 	\begin{center}
@@ -634,7 +634,7 @@ GADDAG jest odmianą drzewa trie, która jest nastawiona na szybkie prefiksowani
 	\label{fig:gaddag_basis}
 \end{figure}
 
-Przykładowa struktura GADDAG opisująca wyraz narta została zaprezentowana na rysunku \ref{fig:gaddag_example}. Należy zauważyć, że sprawdzenie występowania wyrazu w~słowniku wymaga dodatkowego kroku - słowo należy odwrócić. Dla podanego przykładu, sprawdzenie legalności wyrazu narta wymaga poszukiwania frazy $ATRAN \gg$. 
+Przykładowa struktura GADDAG opisująca wyraz ,,narta'' została zaprezentowana na rysunku \ref{fig:gaddag_example}. Należy zauważyć, że sprawdzenie występowania wyrazu w~słowniku wymaga dodatkowego kroku - słowo należy odwrócić. Dla podanego przykładu sprawdzenie poprawności wyrazu narta wymaga poszukiwania frazy $ATRAN \gg$. 
 
 \begin{figure}[ht!]
 	\begin{center}
@@ -712,7 +712,7 @@ Przykładowa struktura GADDAG opisująca wyraz narta została zaprezentowana na 
 		\draw[->] (n55) -- (n65);
 	\end{tikzpicture}
 	}
-		\caption{Przykład struktury GADDAG dla wyrazu narta.}
+		\caption{Przykład struktury GADDAG dla wyrazu \emph{narta}.}
 		\label{fig:gaddag_example}
 	\end{center}
 \end{figure}
@@ -783,7 +783,7 @@ W~fazie \emph{MG} liczba możliwych kombinacji płytek przeciwnika oraz ruchów 
  \item Symulacja przeprowadzana dla 23 najlepszych ruchów. Dla wylosowanego układu płytek przeciwnika symulowana jest rozgrywka na dwa kroki w~przód. Do oceny wykorzystuje się stan punktów po przeprowadzeniu symulacji.
  \item Na podstawie aktualnego wyniku rozgrywki i~liczby płytek pozostałych do pobrania szacowane jest prawdopodobieństwo wygranej dla każdego z~zasymulowanych ruchów.
  \item Wybieranych jest 10 ruchów dających największe prawdopodobieństwo wygranej.
- \item Na podstawie dodatkowych czynników (przykładowo: zestawu wykorzystanych w~danym ruchu liter) wybierana jest najlepsza możliwość.
+ \item Na podstawie dodatkowych czynników (przykładowo: zestawu wykorzystanych w~danym ruchu liter) wybierany jest najlepszy ruch.
 \end{enumerate}
 
 W~fazach \emph{PEG} oraz \emph{EG} stosowane jest inne podejście. Liczba scenariuszy rozgrywki znacząco spada, dlatego możliwe staje się analizowanie przestrzeni stanów, która została poglądowo zaprezentowana na rysunku \ref{fig:state_space}. 
@@ -820,17 +820,17 @@ W~fazach \emph{PEG} oraz \emph{EG} stosowane jest inne podejście. Liczba scenar
 	\end{center}
 \end{figure}
 
-Na etapach \emph{PEG} oraz \emph{EG} wciąż nie jest możliwe dokonanie pełnego przeszukiwania przestrzeni stanów, nie można więc skorzystać z~algorytmów $\alpha - \beta$, czy $A^{*}$. Użyteczne są algorytmy pozwalające przeszukiwać przestrzeń stanów z~ograniczeniami (przykładowo: $B^{*}$) istnieje bowiem sposób na wyznaczenie dobrego przybliżenia zarówno górnego, jak i~dolnego przedziału wartości punktowych, które pozwolą odnieść zwycięstwo w~rozgrywce. Dodatkowo, przeszukiwanie powinno być prowadzone w~sposób progresywny, a~więc rozpoczynając od miejsc, w~których najszybciej możemy zakończyć przeszukiwanie. Miejsca takie związane są z~możliwie małą ilością zagrań, a~tym samym możliwie długimi układanymi wyrazami.
+Na etapach \emph{PEG} oraz \emph{EG} wciąż nie jest możliwe dokonanie pełnego przeszukiwania przestrzeni stanów, nie można więc skorzystać z~algorytmów $\alpha - \beta$, czy $A^{*}$. Użyteczne są algorytmy pozwalające przeszukiwać przestrzeń stanów z~ograniczeniami (przykładowo: $B^{*}$) istnieje bowiem sposób na wyznaczenie dobrego przybliżenia zarówno górnego, jak i~dolnego przedziału wartości punktowych, które pozwolą odnieść zwycięstwo w~rozgrywce. Dodatkowo przeszukiwanie powinno być prowadzone w~sposób progresywny, a~więc rozpoczynając od miejsc, w~których najszybciej możemy zakończyć przeszukiwanie. Miejsca takie związane są z~możliwie małą ilością zagrań, a~tym samym możliwie długimi układanymi wyrazami.
 
 Przeszukiwanie przestrzeni stanów jest podejściem, które pozwala wygrać każdą rozgrywkę, o~ile warunki początkowe przy wchodzeniu w~fazę \emph{EG} pozwalają na zwycięstwo. Świadczą o~tym wyniki uzyskiwane przez komputerowych graczy Scrabble przeciwko najlepszym ludziom. Podczas turnieju, w~którym najlepsze algorytmy sztucznej inteligencji rywalizowały przeciwko ludziom, \emph{Quackle} uzyskał rezultat 32 wygranych i~4 porażek, a~następnie pokonał ówczesnego mistrza świata - Davida Boysa - rezultatem 3 do 2. \cite{intelligent_game_playing}
 
 \section*{Podsumowanie}
 
-Artykuł przedstawia wyniki wykonanych przez autora badań statystycznych na polskim słowniku wyrazów do gier. Wyniki tych badań mogą zostać wykorzystane nie tylko przez graczy Scrabble, ale również w~szerokim zakresie nauk związanych z~eksploracją danych tekstowych. Ponadto, w~artykule zostały zebrane informacje niezbędne do zbudowania sztucznej inteligencji grającej w~Scrabble. Informacje te pokazują, że możliwe jest zbudowanie zaawansowanej sztucznej inteligencji, która będzie zdolna pokonywać oponentów klasy mistrzowskiej.
+Artykuł przedstawia wyniki wykonanych przez autora badań statystycznych na polskim słowniku wyrazów do gier. Wyniki tych badań mogą zostać wykorzystane nie tylko przez graczy Scrabble, ale również w~szerokim zakresie nauk związanych z~eksploracją danych tekstowych. Ponadto w~artykule zostały zebrane informacje niezbędne do zbudowania sztucznej inteligencji grającej w~Scrabble. Informacje te pokazują, że możliwe jest zbudowanie zaawansowanej sztucznej inteligencji, która będzie zdolna pokonywać oponentów klasy mistrzowskiej.
 
-Na podstawie zaprezentowanych informacji, autor artykułu zbuduje algorytm sztucznej inteligencji dostosowany do polskiego słownika wyrazów do gier. W~trakcie prac szczególny nacisk zostanie położony na wykorzystanie wyników badań statystycznych zaprezentowanych w~artykule. W~ramach budowania algorytmu, autor zbada możliwość wprowadzenia poprawek do metod wykorzystywanych obecnie do realizacji automatów grających w~Scrabble. 
+Na podstawie zaprezentowanych informacji autor artykułu zbuduje algorytm sztucznej inteligencji dostosowany do polskiego słownika wyrazów do gier. W~trakcie prac szczególny nacisk zostanie położony na wykorzystanie wyników badań statystycznych zaprezentowanych w~artykule. W~ramach budowania algorytmu autor zbada możliwość wprowadzenia poprawek do metod wykorzystywanych obecnie do realizacji automatów grających w~Scrabble. 
 
-Przedstawione w~artykule informacje posłużą także do rozbudowy oprogramowania o~elementy analizujące daną partię. Analizie będzie można poddać dowolną rozgrywkę, tak aby oprogramowanie mogło zostać wykorzystane jako osobisty trener. 
+Przedstawione w~artykule informacje posłużą także do rozbudowy oprogramowania o~elementy analizujące daną partię. Analizie będzie można poddać dowolną rozgrywkę tak, aby oprogramowanie mogło zostać wykorzystane jako osobisty trener. 
 
 \begin{thebibliography}{9}
 	\small
