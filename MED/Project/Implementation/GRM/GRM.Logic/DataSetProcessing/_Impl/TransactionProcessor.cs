@@ -8,7 +8,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
         public void AppendTransaction(int transactionId, string transaction, DataSetRepresentationBuildState buildState)
         {
             var items = transaction.Split(',');
-            var decision = items[items.Length - 2];
+            var decision = items[items.Length - 1];
 
             for (int i = 0; i < items.Length - 1; i++)
             {
