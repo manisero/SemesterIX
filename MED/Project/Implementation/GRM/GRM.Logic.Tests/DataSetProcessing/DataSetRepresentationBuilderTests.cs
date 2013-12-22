@@ -6,7 +6,7 @@ using Xunit;
 
 namespace GRM.Logic.Tests.DataSetProcessing
 {
-    public class DataSetRepresentationBuilderTests
+    public class DataSetRepresentationBuilderTests : TestsBase
     {
         private DataSetRepresentation Execute(string dataSet, ITransactionProcessor transactionProcessor)
         {
