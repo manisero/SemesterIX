@@ -10,12 +10,34 @@ namespace GRM.Logic.DataSetProcessing._Impl
             var items = transaction.Split(',');
             var decision = items[items.Length - 1];
 
+            var decisionId = GetDecisionID(buildState, decision);
+            buildState.TransactionDecisions.Add(transactionId, decisionId);
+
             for (int i = 0; i < items.Length - 1; i++)
             {
                 var itemId = GetItemID(buildState, i, items[i]);
 
-                AppendItem(buildState, itemId, transactionId, decision);
+                AppendItem(buildState, itemId, transactionId, decisionId);
             }
+        }
+
+        private int GetDecisionID(DataSetRepresentationBuildState buildState, string decision)
+        {
+            int decisionId;
+
+            if (!buildState.DecisionIDs.ContainsKey(decision))
+            {
+                decisionId = buildState.DecisionMappingCounter;
+
+                buildState.DecisionIDs.Add(decision, decisionId);
+                buildState.DecisionMappingCounter++;
+            }
+            else
+            {
+                decisionId = buildState.DecisionIDs[decision];
+            }
+
+            return decisionId;
         }
 
         private ItemID GetItemID(DataSetRepresentationBuildState buildState, int attributeId, string attributeValue)
@@ -47,7 +69,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
             return itemId;
         }
 
-        private void AppendItem(DataSetRepresentationBuildState buildState, ItemID itemId, int transactionId, string decision)
+        private void AppendItem(DataSetRepresentationBuildState buildState, ItemID itemId, int transactionId, int decisionId)
         {
             if (!buildState.ItemInfos.ContainsKey(itemId))
             {
@@ -55,7 +77,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
                     {
                         TransactionIDs = new List<int> { transactionId },
                         IsDecisive = true,
-                        Decision = decision
+                        DecisionID = decisionId
                     });
             }
             else
@@ -65,7 +87,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
                 if (itemInfo.IsDecisive)
                 {
-                    itemInfo.IsDecisive = decision == itemInfo.Decision;
+                    itemInfo.IsDecisive = decisionId == itemInfo.DecisionID;
                 }
             }
         }

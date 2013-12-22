@@ -8,6 +8,6 @@ namespace GRM.Logic.DataSetProcessing.Entities
 
         public bool IsDecisive { get; set; }
 
-        public string Decision { get; set; }
+        public int DecisionID { get; set; }
     }
 }

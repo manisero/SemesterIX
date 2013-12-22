@@ -27,6 +27,8 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
             return new DataSetRepresentation
                 {
+                    DecisionIDs = buildState.DecisionIDs,
+                    TransactionDecisions = buildState.TransactionDecisions,
                     ItemIDs = buildState.ItemIDs,
                     ItemInfos = buildState.ItemInfos
                 };
