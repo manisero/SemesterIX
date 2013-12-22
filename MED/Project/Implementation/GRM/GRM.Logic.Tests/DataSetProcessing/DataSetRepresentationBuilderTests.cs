@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
-using GRM.Logic.DatabaseProcessing.Entities;
-using GRM.Logic.DatabaseProcessing._Impl;
+using GRM.Logic.DataSetProcessing.Entities;
+using GRM.Logic.DataSetProcessing._Impl;
 using Xunit;
 using System.Linq;
 
-namespace GRM.Logic.Tests.DatabaseProcessing
+namespace GRM.Logic.Tests.DataSetProcessing
 {
-    public class DatabaseRepresentationBuilderTests
+    public class DataSetRepresentationBuilderTests
     {
-        private DatabaseRepresentation Execute(IEnumerable<ConcreteItem> database)
+        private DataSetRepresentation Execute(IEnumerable<ConcreteItem> dataSet)
         {
-            return new DatabaseRepresentationBuilder().Build(database);
+            return new DataSetRepresentationBuilder().Build(dataSet);
         }
 
-        private void AssertItemRepresentation(Item item, int exptectedNameId, int exptectedValueId, int[] expectedFrequencies, DatabaseRepresentation actualRepresentation)
+        private void AssertItemRepresentation(Item item, int exptectedNameId, int exptectedValueId, int[] expectedFrequencies, DataSetRepresentation actualRepresentation)
         {
             var expectedId = new ItemID { NameID = exptectedNameId, ValueID = exptectedValueId };
 
@@ -30,7 +30,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
             // Arrange
             var item = new Item { Name = "Name", Value = "Value" };
 
-            var database = new[]
+            var dataSet = new[]
                 {
                     new ConcreteItem
                         {
@@ -40,7 +40,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
                 };
 
             // Act
-            var result = Execute(database);
+            var result = Execute(dataSet);
 
             // Assert
             Assert.Equal(1, result.ItemIDs.Count);
@@ -55,7 +55,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
             var item1 = new Item { Name = "Name1", Value = "Value1" };
             var item2= new Item { Name = "Name2", Value = "Value2" };
 
-            var database = new[]
+            var dataSet = new[]
                 {
                     new ConcreteItem
                         {
@@ -70,7 +70,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
                 };
 
             // Act
-            var result = Execute(database);
+            var result = Execute(dataSet);
 
             // Assert
             Assert.Equal(2, result.ItemIDs.Count);
@@ -85,7 +85,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
             // Arrange
             var item = new Item { Name = "Name", Value = "Value" };
 
-            var database = new[]
+            var dataSet = new[]
                 {
                     new ConcreteItem
                         {
@@ -100,7 +100,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
                 };
 
             // Act
-            var result = Execute(database);
+            var result = Execute(dataSet);
 
             // Assert
             Assert.Equal(1, result.ItemIDs.Count);
@@ -115,7 +115,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
             var item1 = new Item { Name = "Name", Value = "Value1" };
             var item2 = new Item { Name = "Name", Value = "Value2" };
 
-            var database = new[]
+            var dataSet = new[]
                 {
                     new ConcreteItem
                         {
@@ -130,7 +130,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
                 };
 
             // Act
-            var result = Execute(database);
+            var result = Execute(dataSet);
 
             // Assert
             Assert.Equal(2, result.ItemIDs.Count);
@@ -146,7 +146,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
             var item1 = new Item { Name = "Name1", Value = "Value1" };
             var item2 = new Item { Name = "Name2", Value = "Value2" };
 
-            var database = new[]
+            var dataSet = new[]
                 {
                     new ConcreteItem
                         {
@@ -171,7 +171,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
                 };
 
             // Act
-            var result = Execute(database);
+            var result = Execute(dataSet);
 
             // Assert
             Assert.Equal(2, result.ItemIDs.Count);
@@ -188,7 +188,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
             var item2 = new Item { Name = "Name2", Value = "Value2" };
             var item1_2 = new Item { Name = "Name1", Value = "Value2" };
 
-            var database = new[]
+            var dataSet = new[]
                 {
                     new ConcreteItem
                         {
@@ -223,7 +223,7 @@ namespace GRM.Logic.Tests.DatabaseProcessing
                 };
 
             // Act
-            var result = Execute(database);
+            var result = Execute(dataSet);
 
             // Assert
             Assert.Equal(3, result.ItemIDs.Count);

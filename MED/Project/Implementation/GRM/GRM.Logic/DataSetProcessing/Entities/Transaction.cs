@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GRM.Logic.DatabaseProcessing.Entities
+namespace GRM.Logic.DataSetProcessing.Entities
 {
     public class Transaction
     {

@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseProcessing\Entities\ConcreteItem.cs" />
-    <Compile Include="DatabaseProcessing\Entities\DatabaseRepresentation.cs" />
-    <Compile Include="DatabaseProcessing\Entities\Item.cs" />
-    <Compile Include="DatabaseProcessing\Entities\ItemID.cs" />
-    <Compile Include="DatabaseProcessing\IDatabaseRepresentationBuilder.cs" />
-    <Compile Include="DatabaseProcessing\_Impl\DatabaseRepresentationBuilder.cs" />
+    <Compile Include="DataSetProcessing\Entities\ConcreteItem.cs" />
+    <Compile Include="DataSetProcessing\Entities\DataSet.cs" />
+    <Compile Include="DataSetProcessing\Entities\DataSetRepresentation.cs" />
+    <Compile Include="DataSetProcessing\Entities\Item.cs" />
+    <Compile Include="DataSetProcessing\Entities\ItemID.cs" />
+    <Compile Include="DataSetProcessing\Entities\Transaction.cs" />
+    <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
+    <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

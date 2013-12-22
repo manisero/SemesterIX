@@ -1,19 +1,19 @@
 using System.Collections.Generic;
-using GRM.Logic.DatabaseProcessing.Entities;
+using GRM.Logic.DataSetProcessing.Entities;
 
-namespace GRM.Logic.DatabaseProcessing._Impl
+namespace GRM.Logic.DataSetProcessing._Impl
 {
-    public class DatabaseRepresentationBuilder : IDatabaseRepresentationBuilder
+    public class DataSetRepresentationBuilder : IDataSetRepresentationBuilder
     {
-        public DatabaseRepresentation Build(IEnumerable<ConcreteItem> database)
+        public DataSetRepresentation Build(IEnumerable<ConcreteItem> dataSet)
         {
-            var result = new DatabaseRepresentation();
+            var result = new DataSetRepresentation();
             var itemNamesIds = new Dictionary<string, int>();
 
             var itemNameMappingCounter = 1;
             var itemValueMappingCounter = 1;
 
-            foreach (var item in database)
+            foreach (var item in dataSet)
             {
                 ItemID itemId;
 
