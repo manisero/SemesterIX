@@ -148,5 +148,24 @@ namespace GRM.Logic.Tests.DataSetProcessing
             Assert.Equal(3, buildState.ItemInfos.Count);
             AssertItemState(0, "value3", 3, new[] { 2 }, true, "decision", buildState);
         }
+
+        [Fact]
+        public void assigns_IsDecisive_correctly()
+        {
+            // Arrange
+            var transactionId = 2;
+            var transaction = "value,decision2";
+            var buildState = new DataSetRepresentationBuildState();
+            buildState.ItemIDs[new Item { AttributeID = 0, Value = "value" }] = new ItemID { AttributeID = 0, ValueID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, Decision = "decision1" };
+
+            // Act
+            Execute(transactionId, transaction, buildState);
+
+            // Assert
+            Assert.Equal(1, buildState.ItemIDs.Count);
+            Assert.Equal(1, buildState.ItemInfos.Count);
+            AssertItemState(0, "value", 1, new[] { 1, 2 }, false, "decision1", buildState);
+        }
     }
 }
