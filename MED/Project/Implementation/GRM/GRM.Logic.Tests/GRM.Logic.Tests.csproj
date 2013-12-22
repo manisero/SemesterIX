@@ -41,6 +41,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSetProcessing\DataSetRepresentationBuilderTests.cs" />
     <Compile Include="DataSetProcessing\TransactionProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
