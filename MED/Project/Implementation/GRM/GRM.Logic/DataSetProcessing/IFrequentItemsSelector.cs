@@ -5,6 +5,6 @@ namespace GRM.Logic.DataSetProcessing
 {
     public interface IFrequentItemsSelector
     {
-        IDictionary<ItemID, ItemInfo> SelectFrequentItems(IEnumerable<ItemInfo> items, int minimumSupport);
+        IEnumerable<ItemInfo> SelectFrequentItems(IEnumerable<ItemInfo> items, int minimumSupport);
     }
 }
