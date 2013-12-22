@@ -75,6 +75,8 @@ namespace GRM.Logic.DataSetProcessing._Impl
             {
                 buildState.ItemInfos.Add(itemId, new ItemInfo
                     {
+                        AttributeID = itemId.AttributeID,
+                        ValueID = itemId.ValueID,
                         TransactionIDs = new List<int> { transactionId },
                         IsDecisive = true,
                         DecisionID = decisionId

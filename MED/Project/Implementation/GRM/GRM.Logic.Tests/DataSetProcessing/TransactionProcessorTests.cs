@@ -34,6 +34,8 @@ namespace GRM.Logic.Tests.DataSetProcessing
             Assert.Equal(expectedId, actualBuildState.ItemIDs[expectedItem]);
 
             Assert.True(actualBuildState.ItemInfos.ContainsKey(expectedId));
+            Assert.Equal(attributeId, actualBuildState.ItemInfos[expectedId].AttributeID);
+            Assert.Equal(exptectedValueId, actualBuildState.ItemInfos[expectedId].ValueID);
             Assert.Equal(expectedFrequencies, actualBuildState.ItemInfos[expectedId].TransactionIDs.ToArray());
             Assert.Equal(expectedIsDecisive, actualBuildState.ItemInfos[expectedId].IsDecisive);
             Assert.Equal(expectedDecisionId, actualBuildState.ItemInfos[expectedId].DecisionID);
@@ -120,7 +122,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var transaction = "value,decision";
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value" }] = new ItemID { AttributeID = 0, ValueID = 1 };
-            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { AttributeID  = 0, ValueID = 1, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
 
             // Act
             Execute(transactionId, transaction, buildState);
@@ -139,7 +141,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var transaction = "value2,decision";
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value1" }] = new ItemID { AttributeID = 0, ValueID = 1 };
-            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { AttributeID = 0, ValueID = 1, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
             buildState.ItemValueMappingCounter = 2;
 
             // Act
@@ -161,8 +163,8 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value1" }] = new ItemID { AttributeID = 0, ValueID = 1 };
             buildState.ItemIDs[new Item { AttributeID = 1, Value = "value2" }] = new ItemID { AttributeID = 1, ValueID = 2 };
-            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
-            buildState.ItemInfos[new ItemID { AttributeID = 1, ValueID = 2 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { AttributeID = 0, ValueID = 1, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 1, ValueID = 2 }] = new ItemInfo { AttributeID = 1, ValueID = 2, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
             buildState.ItemValueMappingCounter = 3;
 
             // Act
@@ -184,8 +186,8 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value1" }] = new ItemID { AttributeID = 0, ValueID = 1 };
             buildState.ItemIDs[new Item { AttributeID = 1, Value = "value2" }] = new ItemID { AttributeID = 1, ValueID = 2 };
-            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
-            buildState.ItemInfos[new ItemID { AttributeID = 1, ValueID = 2 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { AttributeID = 0, ValueID = 1, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 1, ValueID = 2 }] = new ItemInfo { AttributeID = 1, ValueID = 2, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
             buildState.ItemValueMappingCounter = 3;
 
             // Act
@@ -205,7 +207,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var transaction = "value,decision2";
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value" }] = new ItemID { AttributeID = 0, ValueID = 1 };
-            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { AttributeID = 0, ValueID = 1, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
             buildState.DecisionMappingCounter = 2;
 
             // Act
