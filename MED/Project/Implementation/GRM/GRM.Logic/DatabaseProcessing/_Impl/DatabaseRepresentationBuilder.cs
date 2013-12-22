@@ -8,17 +8,39 @@ namespace GRM.Logic.DatabaseProcessing._Impl
         public DatabaseRepresentation Build(IEnumerable<ConcreteItem> database)
         {
             var result = new DatabaseRepresentation();
-            var mappingCounter = 1;
+            var itemNamesIds = new Dictionary<string, int>();
+
+            var itemNameMappingCounter = 1;
+            var itemValueMappingCounter = 1;
 
             foreach (var item in database)
             {
-                int itemId;
+                ItemID itemId;
 
                 if (!result.ItemIDs.ContainsKey(item.Item))
                 {
-                    result.ItemIDs.Add(item.Item, mappingCounter);
-                    itemId = mappingCounter;
-                    mappingCounter++;
+                    int itemNameId;
+
+                    if (!itemNamesIds.ContainsKey(item.Item.Name))
+                    {
+                        itemNameId = itemNameMappingCounter;
+                        itemNamesIds.Add(item.Item.Name, itemNameMappingCounter);
+
+                        itemNameMappingCounter++;
+                    }
+                    else
+                    {
+                        itemNameId = itemNamesIds[item.Item.Name];
+                    }
+
+                    itemId = new ItemID
+                        {
+                            NameID = itemNameId,
+                            ValueID = itemValueMappingCounter
+                        };
+
+                    result.ItemIDs.Add(item.Item, itemId);
+                    itemValueMappingCounter++;
                 }
                 else
                 {

@@ -4,14 +4,14 @@ namespace GRM.Logic.DatabaseProcessing.Entities
 {
     public class DatabaseRepresentation
     {
-        public IDictionary<Item, int> ItemIDs { get; private set; }
+        public IDictionary<Item, ItemID> ItemIDs { get; private set; }
 
-        public IDictionary<int, IList<int>> ItemTransactions { get; private set; }
+        public IDictionary<ItemID, IList<int>> ItemTransactions { get; private set; }
 
         public DatabaseRepresentation()
         {
-            ItemIDs = new Dictionary<Item, int>();
-            ItemTransactions = new Dictionary<int, IList<int>>();
+            ItemIDs = new Dictionary<Item, ItemID>();
+            ItemTransactions = new Dictionary<ItemID, IList<int>>();
         }
     }
 }
