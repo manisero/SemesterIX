@@ -40,13 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetProcessing\Entities\ConcreteItem.cs" />
-    <Compile Include="DataSetProcessing\Entities\DataSet.cs" />
     <Compile Include="DataSetProcessing\Entities\DataSetRepresentation.cs" />
     <Compile Include="DataSetProcessing\Entities\DataSetRepresentationBuildState.cs" />
     <Compile Include="DataSetProcessing\Entities\Item.cs" />
     <Compile Include="DataSetProcessing\Entities\ItemID.cs" />
-    <Compile Include="DataSetProcessing\Entities\Transaction.cs" />
     <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
     <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />
