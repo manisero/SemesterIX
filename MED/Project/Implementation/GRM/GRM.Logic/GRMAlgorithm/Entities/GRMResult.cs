@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.DataSetProcessing.Entities;
 
-namespace GRM.Logic
+namespace GRM.Logic.GRMAlgorithm.Entities
 {
     public class GRMResult
     {

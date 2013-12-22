@@ -54,10 +54,12 @@
     <Compile Include="DataSetProcessing\_Impl\TransactionProcessor.cs" />
     <Compile Include="GRMAlgorithm\Entities\Node.cs" />
     <Compile Include="GRMAlgorithm\Entities\Tree.cs" />
+    <Compile Include="GRMAlgorithm\IResultBuilder.cs" />
     <Compile Include="GRMAlgorithm\ITreeBuilder.cs" />
+    <Compile Include="GRMAlgorithm\_Impl\ResultBuilder.cs" />
     <Compile Include="GRMAlgorithm\_Impl\TreeBuilder.cs" />
     <Compile Include="GRMFacade.cs" />
-    <Compile Include="GRMResult.cs" />
+    <Compile Include="GRMAlgorithm\Entities\GRMResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
