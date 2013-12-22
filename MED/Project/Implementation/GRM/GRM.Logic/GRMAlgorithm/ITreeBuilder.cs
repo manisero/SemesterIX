@@ -6,6 +6,6 @@ namespace GRM.Logic.GRMAlgorithm
 {
     public interface ITreeBuilder
     {
-        Tree Build(IEnumerable<ItemInfo> frequentItems, IDictionary<int, int> transactionDecisions);
+        Tree Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions);
     }
 }

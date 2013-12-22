@@ -57,6 +57,7 @@
     <Compile Include="GRMAlgorithm\ITreeBuilder.cs" />
     <Compile Include="GRMAlgorithm\_Impl\TreeBuilder.cs" />
     <Compile Include="GRMFacade.cs" />
+    <Compile Include="GRMResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class TreeBuilder : ITreeBuilder
     {
-        public Tree Build(IEnumerable<ItemInfo> frequentItems, IDictionary<int, int> transactionDecisions)
+        public Tree Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
         {
             var root = CreateRoot(transactionDecisions);
 
@@ -27,7 +27,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             return new Tree
                 {
                     Root = root,
-                    TransactionDecisions = transactionDecisions
+                    TransactionDecisions = transactionDecisions,
+                    Generators = GetGenerators(decisionIds, root)
                 };
         }
 
@@ -42,6 +43,31 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };
+        }
+
+        private IDictionary<int, IEnumerable<ItemID>> GetGenerators(IEnumerable<int> decisionIds, Node root)
+        {
+            var result = new Dictionary<int, IEnumerable<ItemID>>();
+
+            foreach (var decisionId in decisionIds)
+            {
+                result.Add(decisionId, null);
+            }
+
+            foreach (var child in root.Children)
+            {
+                if (child.IsDecisive)
+                {
+                    result[child.DecisionID] = child.Items;
+                }
+            }
+
+            if (root.IsDecisive)
+            {
+                result[root.DecisionID] = root.Items;
+            }
+
+            return result;
         }
     }
 }
