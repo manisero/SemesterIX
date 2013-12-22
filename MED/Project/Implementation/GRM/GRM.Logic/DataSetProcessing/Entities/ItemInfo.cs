@@ -2,7 +2,7 @@
 
 namespace GRM.Logic.DataSetProcessing.Entities
 {
-    public struct ItemInfo
+    public class ItemInfo
     {
         public IList<int> TransactionIDs { get; set; }
 
