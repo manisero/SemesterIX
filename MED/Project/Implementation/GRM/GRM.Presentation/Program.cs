@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using GRM.Logic;
+using GRM.Logic.DataSetProcessing;
 
 namespace GRM.Presentation
 {
@@ -19,7 +20,12 @@ namespace GRM.Presentation
                 return;
             }
 
-            new GRMFacade().ExecuteGRM(args[0], minimumSupport);
+            var progressInfo = new ProgressInfo(step => Console.WriteLine(step),
+                                                (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
+
+            new GRMFacade().ExecuteGRM(args[0], minimumSupport, progressInfo);
+
+            Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
         }
     }
 }

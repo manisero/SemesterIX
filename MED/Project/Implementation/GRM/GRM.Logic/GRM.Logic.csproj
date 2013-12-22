@@ -48,6 +48,7 @@
     <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\IFrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
+    <Compile Include="DataSetProcessing\ProgressInfo.cs" />
     <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\_Impl\FrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\_Impl\TransactionProcessor.cs" />
