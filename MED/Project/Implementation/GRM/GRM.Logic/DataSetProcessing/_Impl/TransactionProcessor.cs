@@ -5,59 +5,58 @@ namespace GRM.Logic.DataSetProcessing._Impl
 {
     public class TransactionProcessor : ITransactionProcessor
     {
-        public DataSetRepresentation Build(IEnumerable<ConcreteItem> dataSet)
+        public void AppendTransaction(int transactionId, string transaction, DataSetRepresentationBuildState buildState)
         {
-            var result = new DataSetRepresentation();
-            var itemNamesIds = new Dictionary<string, int>();
+            var items = transaction.Split(',');
+            var decision = items[items.Length - 2];
 
-            var itemNameMappingCounter = 1;
-            var itemValueMappingCounter = 1;
-
-            foreach (var item in dataSet)
+            for (int i = 0; i < items.Length - 1; i++)
             {
-                ItemID itemId;
+                var itemId = GetItemID(buildState, i, items[i]);
 
-                if (!result.ItemIDs.ContainsKey(item.Item))
+                AppendItem(buildState, itemId, transactionId, decision);
+            }
+        }
+
+        private ItemID GetItemID(DataSetRepresentationBuildState buildState, int attributeId, string attributeValue)
+        {
+            var item = new Item
                 {
-                    int itemNameId;
+                    AttributeID = attributeId,
+                    Value = attributeValue
+                };
 
-                    if (!itemNamesIds.ContainsKey(item.Item.Name))
+            ItemID itemId;
+
+            if (!buildState.ItemIDs.ContainsKey(item))
+            {
+                itemId = new ItemID
                     {
-                        itemNameId = itemNameMappingCounter;
-                        itemNamesIds.Add(item.Item.Name, itemNameMappingCounter);
+                        AttributeID = attributeId,
+                        ValueID = buildState.ItemValueMappingCounter
+                    };
 
-                        itemNameMappingCounter++;
-                    }
-                    else
-                    {
-                        itemNameId = itemNamesIds[item.Item.Name];
-                    }
-
-                    itemId = new ItemID
-                        {
-                            NameID = itemNameId,
-                            ValueID = itemValueMappingCounter
-                        };
-
-                    result.ItemIDs.Add(item.Item, itemId);
-                    itemValueMappingCounter++;
-                }
-                else
-                {
-                    itemId = result.ItemIDs[item.Item];
-                }
-
-                if (!result.ItemTransactions.ContainsKey(itemId))
-                {
-                    result.ItemTransactions.Add(itemId, new List<int> { item.TransactionID });
-                }
-                else
-                {
-                    result.ItemTransactions[itemId].Add(item.TransactionID);
-                }
+                buildState.ItemIDs.Add(item, itemId);
+                buildState.ItemValueMappingCounter++;
+            }
+            else
+            {
+                itemId = buildState.ItemIDs[item];
             }
 
-            return result;
+            return itemId;
+        }
+
+        private void AppendItem(DataSetRepresentationBuildState buildState, ItemID itemId, int transactionId, string decision)
+        {
+            if (!buildState.ItemTransactions.ContainsKey(itemId))
+            {
+                buildState.ItemTransactions.Add(itemId, new List<int> { transactionId });
+            }
+            else
+            {
+                buildState.ItemTransactions[itemId].Add(transactionId);
+            }
         }
     }
 }

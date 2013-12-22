@@ -2,34 +2,35 @@
 using System.Text;
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing.Entities;
+using GRM.Logic.DataSetProcessing._Impl;
+using Moq;
 using Xunit;
 
 namespace GRM.Logic.Tests.DataSetProcessing
 {
     public class DataSetRepresentationBuilderTests : TestsBase
     {
-        private DataSetRepresentation Execute(string dataSet, ITransactionProcessor transactionProcessor)
+        private DataSetRepresentation Execute(string dataSet)
         {
-            var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(dataSet));
-
-            var reader = new StreamReader(dataSetStream);
-            var result = new DataSetRepresentation();
-
-            for (int i = 1; !reader.EndOfStream; i++)
+            using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(dataSet)))
             {
-                var transaction = reader.ReadLine();
+                return AutoMoqer.Resolve<DataSetRepresentationBuilder>().Build(dataSetStream);
             }
-
-            reader.Dispose();
-            dataSetStream.Dispose();
-
-            return result;
         }
 
         [Fact]
-        public void represents_single_transaction()
+        public void processes_single_transaction()
         {
-            var result = Execute("value1,value2,decision\n", null);
+            // Arrange
+            var dataSet = "value1,value2,decision";
+
+            AutoMoqer.GetMock<ITransactionProcessor>().Setup(x => x.AppendTransaction(1, dataSet, It.IsAny<DataSetRepresentationBuildState>()));
+
+            // Act
+            Execute(dataSet);
+
+            // Assert
+            AutoMoqer.GetMock<ITransactionProcessor>().VerifyAll();
         }
     }
 }

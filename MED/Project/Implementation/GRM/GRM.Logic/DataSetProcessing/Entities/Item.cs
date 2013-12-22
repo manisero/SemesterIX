@@ -2,7 +2,7 @@
 {
     public struct Item
     {
-        public string Name { get; set; }
+        public int AttributeID { get; set; }
 
         public string Value { get; set; }
     }
