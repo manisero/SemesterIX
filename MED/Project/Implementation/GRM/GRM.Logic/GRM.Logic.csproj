@@ -46,8 +46,8 @@
     <Compile Include="DataSetProcessing\Entities\Item.cs" />
     <Compile Include="DataSetProcessing\Entities\ItemID.cs" />
     <Compile Include="DataSetProcessing\Entities\Transaction.cs" />
-    <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
-    <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />
+    <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
+    <Compile Include="DataSetProcessing\_Impl\TransactionProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

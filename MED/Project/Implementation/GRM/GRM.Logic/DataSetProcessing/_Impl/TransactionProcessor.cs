@@ -3,7 +3,7 @@ using GRM.Logic.DataSetProcessing.Entities;
 
 namespace GRM.Logic.DataSetProcessing._Impl
 {
-    public class DataSetRepresentationBuilder : IDataSetRepresentationBuilder
+    public class TransactionProcessor : ITransactionProcessor
     {
         public DataSetRepresentation Build(IEnumerable<ConcreteItem> dataSet)
         {

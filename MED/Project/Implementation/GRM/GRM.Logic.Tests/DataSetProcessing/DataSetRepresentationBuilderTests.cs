@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace GRM.Logic.Tests.DataSetProcessing
 {
-    public class DataSetRepresentationBuilderTests
+    public class TransactionProcessorTests
     {
         private DataSetRepresentation Execute(IEnumerable<ConcreteItem> dataSet)
         {
-            return new DataSetRepresentationBuilder().Build(dataSet);
+            return new TransactionProcessor().Build(dataSet);
         }
 
         private void AssertItemRepresentation(Item item, int exptectedNameId, int exptectedValueId, int[] expectedFrequencies, DataSetRepresentation actualRepresentation)
