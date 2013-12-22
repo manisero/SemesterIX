@@ -6,6 +6,6 @@ namespace GRM.Logic.DataSetProcessing.Entities
     {
         public IDictionary<Item, ItemID> ItemIDs { get; set; }
 
-        public IDictionary<ItemID, IList<int>> ItemTransactions { get; set; }
+        public IDictionary<ItemID, ItemInfo> ItemInfos { get; set; }
     }
 }

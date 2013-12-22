@@ -28,7 +28,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
             return new DataSetRepresentation
                 {
                     ItemIDs = buildState.ItemIDs,
-                    ItemTransactions = buildState.ItemTransactions
+                    ItemInfos = buildState.ItemInfos
                 };
         }
     }

@@ -49,13 +49,24 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
         private void AppendItem(DataSetRepresentationBuildState buildState, ItemID itemId, int transactionId, string decision)
         {
-            if (!buildState.ItemTransactions.ContainsKey(itemId))
+            if (!buildState.ItemInfos.ContainsKey(itemId))
             {
-                buildState.ItemTransactions.Add(itemId, new List<int> { transactionId });
+                buildState.ItemInfos.Add(itemId, new ItemInfo
+                    {
+                        TransactionIDs = new List<int> { transactionId },
+                        IsDecisive = true,
+                        Decision = decision
+                    });
             }
             else
             {
-                buildState.ItemTransactions[itemId].Add(transactionId);
+                var itemInfo = buildState.ItemInfos[itemId];
+                itemInfo.TransactionIDs.Add(transactionId);
+
+                if (itemInfo.IsDecisive)
+                {
+                    itemInfo.IsDecisive = decision == itemInfo.Decision;
+                }
             }
         }
     }

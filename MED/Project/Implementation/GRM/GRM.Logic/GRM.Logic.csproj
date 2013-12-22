@@ -44,6 +44,7 @@
     <Compile Include="DataSetProcessing\Entities\DataSetRepresentationBuildState.cs" />
     <Compile Include="DataSetProcessing\Entities\Item.cs" />
     <Compile Include="DataSetProcessing\Entities\ItemID.cs" />
+    <Compile Include="DataSetProcessing\Entities\ItemInfo.cs" />
     <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
     <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />

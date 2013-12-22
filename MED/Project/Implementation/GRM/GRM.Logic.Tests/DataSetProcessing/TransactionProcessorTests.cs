@@ -21,8 +21,8 @@ namespace GRM.Logic.Tests.DataSetProcessing
             Assert.True(actualBuildState.ItemIDs.ContainsKey(expectedItem));
             Assert.Equal(expectedId, actualBuildState.ItemIDs[expectedItem]);
 
-            Assert.True(actualBuildState.ItemTransactions.ContainsKey(expectedId));
-            Assert.Equal(expectedFrequencies, actualBuildState.ItemTransactions[expectedId].ToArray());
+            Assert.True(actualBuildState.ItemInfos.ContainsKey(expectedId));
+            Assert.Equal(expectedFrequencies, actualBuildState.ItemInfos[expectedId].TransactionIDs.ToArray());
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
 
             // Assert
             Assert.Equal(1, buildState.ItemIDs.Count);
-            Assert.Equal(1, buildState.ItemTransactions.Count);
+            Assert.Equal(1, buildState.ItemInfos.Count);
             AssertItemState(0, "value", 1, new[] {1}, buildState);
         }
 
@@ -55,7 +55,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
 
             // Assert
             Assert.Equal(2, buildState.ItemIDs.Count);
-            Assert.Equal(2, buildState.ItemTransactions.Count);
+            Assert.Equal(2, buildState.ItemInfos.Count);
             AssertItemState(0, "value1", 1, new[] { 1 }, buildState);
             AssertItemState(1, "value2", 2, new[] { 1 }, buildState);
         }
@@ -68,14 +68,14 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var transaction = "value,decision";
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value" }] = new ItemID { AttributeID = 0, ValueID = 1 };
-            buildState.ItemTransactions[new ItemID { AttributeID = 0, ValueID = 1 }] = new List<int> { 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 } };
 
             // Act
             Execute(transactionId, transaction, buildState);
 
             // Assert
             Assert.Equal(1, buildState.ItemIDs.Count);
-            Assert.Equal(1, buildState.ItemTransactions.Count);
+            Assert.Equal(1, buildState.ItemInfos.Count);
             AssertItemState(0, "value", 1, new[] { 1, 2 }, buildState);
         }
 
@@ -87,7 +87,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var transaction = "value2,decision";
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value1" }] = new ItemID { AttributeID = 0, ValueID = 1 };
-            buildState.ItemTransactions[new ItemID { AttributeID = 0, ValueID = 1 }] = new List<int> { 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 } };
             buildState.ItemValueMappingCounter = 2;
 
             // Act
@@ -95,7 +95,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
 
             // Assert
             Assert.Equal(2, buildState.ItemIDs.Count);
-            Assert.Equal(2, buildState.ItemTransactions.Count);
+            Assert.Equal(2, buildState.ItemInfos.Count);
             AssertItemState(0, "value1", 1, new[] { 1 }, buildState);
             AssertItemState(0, "value2", 2, new[] { 2 }, buildState);
         }
@@ -109,8 +109,8 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value1" }] = new ItemID { AttributeID = 0, ValueID = 1 };
             buildState.ItemIDs[new Item { AttributeID = 1, Value = "value2" }] = new ItemID { AttributeID = 1, ValueID = 2 };
-            buildState.ItemTransactions[new ItemID { AttributeID = 0, ValueID = 1 }] = new List<int> { 1 };
-            buildState.ItemTransactions[new ItemID { AttributeID = 1, ValueID = 2 }] = new List<int> { 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 } };
+            buildState.ItemInfos[new ItemID { AttributeID = 1, ValueID = 2 }] = new ItemInfo { TransactionIDs = new List<int> { 1 } };
             buildState.ItemValueMappingCounter = 3;
 
             // Act
@@ -118,7 +118,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
 
             // Assert
             Assert.Equal(2, buildState.ItemIDs.Count);
-            Assert.Equal(2, buildState.ItemTransactions.Count);
+            Assert.Equal(2, buildState.ItemInfos.Count);
             AssertItemState(0, "value1", 1, new[] { 1, 2 }, buildState);
             AssertItemState(1, "value2", 2, new[] { 1, 2 }, buildState);
         }
@@ -132,8 +132,8 @@ namespace GRM.Logic.Tests.DataSetProcessing
             var buildState = new DataSetRepresentationBuildState();
             buildState.ItemIDs[new Item { AttributeID = 0, Value = "value1" }] = new ItemID { AttributeID = 0, ValueID = 1 };
             buildState.ItemIDs[new Item { AttributeID = 1, Value = "value2" }] = new ItemID { AttributeID = 1, ValueID = 2 };
-            buildState.ItemTransactions[new ItemID { AttributeID = 0, ValueID = 1 }] = new List<int> { 1 };
-            buildState.ItemTransactions[new ItemID { AttributeID = 1, ValueID = 2 }] = new List<int> { 1 };
+            buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { TransactionIDs = new List<int> { 1 } };
+            buildState.ItemInfos[new ItemID { AttributeID = 1, ValueID = 2 }] = new ItemInfo { TransactionIDs = new List<int> { 1 } };
             buildState.ItemValueMappingCounter = 3;
 
             // Act
@@ -141,7 +141,7 @@ namespace GRM.Logic.Tests.DataSetProcessing
 
             // Assert
             Assert.Equal(3, buildState.ItemIDs.Count);
-            Assert.Equal(3, buildState.ItemTransactions.Count);
+            Assert.Equal(3, buildState.ItemInfos.Count);
             AssertItemState(0, "value3", 3, new[] { 2 }, buildState);
         }
     }

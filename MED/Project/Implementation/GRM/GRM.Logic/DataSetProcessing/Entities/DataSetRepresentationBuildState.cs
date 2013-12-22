@@ -8,6 +8,6 @@ namespace GRM.Logic.DataSetProcessing.Entities
 
         public IDictionary<Item, ItemID> ItemIDs = new Dictionary<Item, ItemID>();
 
-        public IDictionary<ItemID, IList<int>> ItemTransactions = new Dictionary<ItemID, IList<int>>();
+        public IDictionary<ItemID, ItemInfo> ItemInfos = new Dictionary<ItemID, ItemInfo>();
     }
 }
