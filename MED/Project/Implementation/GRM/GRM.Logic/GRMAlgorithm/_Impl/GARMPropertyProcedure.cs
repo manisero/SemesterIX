@@ -54,6 +54,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         {
             if (property == GARMPropertyType.Equality)
             {
+                foreach (var generator in rightChild.Generators)
+                {
+                    leftChild.Generators.Add(generator);
+                }
+
                 parent.Children.Remove(rightChild);
             }
             else if (property == GARMPropertyType.Difference)
@@ -69,7 +74,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 
                 var newChild = new Node
                     {
-                        Generators = MergeGenerators(leftChild.Generators, rightChild.Generators),
+                        Generators = CopyGenerators(rightChild.Generators),
                         TransactionIDs = transactionIds,
                         DecisionID = decisionId,
                         IsDecisive = transactionIds.Skip(1).All(x => transactionDecisions[x] == decisionId)
@@ -84,16 +89,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             return index < transactionIds.Count ? transactionIds[index] : (int?)null;
         }
 
-        private IList<Generator> MergeGenerators(IEnumerable<Generator> leftChildGenerators, IEnumerable<Generator> rightChildGenerators)
+        private IList<Generator> CopyGenerators(IEnumerable<Generator> generators)
         {
             var result = new List<Generator>();
 
-            foreach (var generator in leftChildGenerators)
-            {
-                result.Add(new Generator(generator));
-            }
-
-            foreach (var generator in rightChildGenerators)
+            foreach (var generator in generators)
             {
                 result.Add(new Generator(generator));
             }

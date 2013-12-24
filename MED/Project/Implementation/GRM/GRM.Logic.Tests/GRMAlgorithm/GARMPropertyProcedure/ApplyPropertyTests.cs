@@ -27,8 +27,8 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
         public void on_equality_removes_right_child_from_parent()
         {
             // Arrange
-            var leftChild = new Node();
-            var rightChild = new Node();
+            var leftChild = new Node { Generators = new List<Generator>() };
+            var rightChild = new Node { Generators = new List<Generator>() };
 
             // Act
             var parent = Execute(GARMPropertyType.Equality, leftChild, rightChild);
@@ -36,6 +36,29 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
             // Assert
             Assert.Equal(4, parent.Children.Count);
             Assert.False(parent.Children.Contains(rightChild));
+        }
+
+        [Fact]
+        public void on_equality_adds_right_child_Generators_to_left_child_Generators()
+        {
+            // Arrange
+            var leftChild = new Node
+                {
+                    Generators = new List<Generator> { new Generator { new ItemID { AttributeID = 1, ValueID = 1 } } }
+                };
+
+            var rightChild = new Node
+                {
+                    Generators = new List<Generator> { new Generator { new ItemID { AttributeID = 2, ValueID = 2 } } },
+                };
+
+            // Act
+            Execute(GARMPropertyType.Equality, leftChild, rightChild);
+
+            // Assert
+            Assert.Equal(2, leftChild.Generators.Count);
+            Assert.Equal(new Generator { new ItemID { AttributeID = 1, ValueID = 1 } }, leftChild.Generators[0]);
+            Assert.Equal(new Generator { new ItemID { AttributeID = 2, ValueID = 2 } }, leftChild.Generators[1]);
         }
 
         [Fact]
@@ -117,7 +140,11 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
 
             var rightChild = new Node
                 {
-                    Generators = new List<Generator> { new Generator { new ItemID { AttributeID = 2, ValueID = 2 } } },
+                    Generators = new List<Generator>
+                        {
+                            new Generator { new ItemID { AttributeID = 2, ValueID = 2 } },
+                            new Generator { new ItemID { AttributeID = 3, ValueID = 3 } }
+                        },
                     TransactionIDs = new[] { 1 }
                 };
 
@@ -128,8 +155,8 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
 
             // Assert
             Assert.Equal(2, leftChild.Children[0].Generators.Count);
-            Assert.Equal(new Generator { new ItemID { AttributeID = 1, ValueID = 1 } }, leftChild.Children[0].Generators[0]);
-            Assert.Equal(new Generator { new ItemID { AttributeID = 2, ValueID = 2 } }, leftChild.Children[0].Generators[1]);
+            Assert.Equal(new Generator { new ItemID { AttributeID = 2, ValueID = 2 } }, leftChild.Children[0].Generators[0]);
+            Assert.Equal(new Generator { new ItemID { AttributeID = 3, ValueID = 3 } }, leftChild.Children[0].Generators[1]);
         }
 
         [Fact]
