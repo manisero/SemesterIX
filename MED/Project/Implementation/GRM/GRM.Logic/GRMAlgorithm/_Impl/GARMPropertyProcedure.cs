@@ -51,7 +51,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
         }
 
-        public void ApplyProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild)
+        public void ApplyProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild, IDictionary<int,int> transactionDecisions, int minimalSupport)
         {
             if (property == GARMPropertyType.Equality)
             {
@@ -59,11 +59,24 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
             else if (property == GARMPropertyType.Difference)
             {
-                leftChild.Children.Add(new Node
+                var transactionIds = leftChild.TransactionIDs.Intersect(rightChild.TransactionIDs).ToList();
+
+                if (transactionIds.Count <= minimalSupport)
+                {
+                    return;
+                }
+
+                var decisionId = transactionDecisions[transactionIds[0]];
+
+                var newChild = new Node
                     {
                         Generator = new Generator(rightChild.Generator),
-                        TransactionIDs = leftChild.TransactionIDs.Intersect(rightChild.TransactionIDs).ToList()
-                    });
+                        TransactionIDs = transactionIds,
+                        DecisionID = decisionId,
+                        IsDecisive = transactionIds.Skip(1).All(x => transactionDecisions[x] == decisionId)
+                    };
+
+                leftChild.Children.Add(newChild);
             }
         }
 

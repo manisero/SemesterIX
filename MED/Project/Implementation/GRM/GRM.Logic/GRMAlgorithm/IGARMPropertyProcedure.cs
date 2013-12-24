@@ -7,6 +7,6 @@ namespace GRM.Logic.GRMAlgorithm
     {
         GARMPropertyType GetProperty(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds);
 
-        void ApplyProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild);
+        void ApplyProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions, int minimalSupport);
     }
 }
