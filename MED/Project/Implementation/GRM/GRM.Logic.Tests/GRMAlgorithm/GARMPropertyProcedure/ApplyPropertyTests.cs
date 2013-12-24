@@ -79,15 +79,18 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
         public void on_difference_adds_right_child_copy_to_left_node_children()
         {
             // Arrange
+            var existingLeftChildChild = new Node();
+
             var leftChild = new Node
                 {
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 1 },
-                    Children = new List<Node> { new Node() }
+                    Children = new List<Node> { existingLeftChildChild }
                 };
 
             var rightChild = new Node
                 {
-                    Generators = new List<Generator> { new Generator { new ItemID { AttributeID = 1, ValueID = 1 }, new ItemID { AttributeID = 2, ValueID = 2 } } },
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 1 }
                 };
 
@@ -98,8 +101,35 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
 
             // Assert
             Assert.Equal(2, leftChild.Children.Count);
-            Assert.Equal(new[] { new Generator { new ItemID { AttributeID = 1, ValueID = 1 }, new ItemID { AttributeID = 2, ValueID = 2 } } },
-                         leftChild.Children[1].Generators);
+            Assert.Same(existingLeftChildChild, leftChild.Children[0]);
+        }
+
+        [Fact]
+        public void on_difference_left_node_childs_Generators_is_sum_of_left_child_and_right_child_Generators()
+        {
+            // Arrange
+            var leftChild = new Node
+                {
+                    Generators = new List<Generator> { new Generator { new ItemID { AttributeID = 1, ValueID = 1 } } },
+                    TransactionIDs = new[] { 1 },
+                    Children = new List<Node>()
+                };
+
+            var rightChild = new Node
+                {
+                    Generators = new List<Generator> { new Generator { new ItemID { AttributeID = 2, ValueID = 2 } } },
+                    TransactionIDs = new[] { 1 }
+                };
+
+            var transactionIds = new Dictionary<int, int> { { 1, 1 } };
+
+            // Act
+            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+
+            // Assert
+            Assert.Equal(2, leftChild.Children[0].Generators.Count);
+            Assert.Equal(new Generator { new ItemID { AttributeID = 1, ValueID = 1 } }, leftChild.Children[0].Generators[0]);
+            Assert.Equal(new Generator { new ItemID { AttributeID = 2, ValueID = 2 } }, leftChild.Children[0].Generators[1]);
         }
 
         [Fact]
@@ -108,13 +138,14 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
             // Arrange
             var leftChild = new Node
                 {
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 1, 2, 3 },
-                    Children = new List<Node> { new Node() }
+                    Children = new List<Node>()
                 };
 
             var rightChild = new Node
                 {
-                    Generators = new List<Generator> { new Generator() },
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 2, 3, 5 }
                 };
 
@@ -124,7 +155,7 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
             Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
-            Assert.Equal(new[] { 2, 3 }, leftChild.Children[1].TransactionIDs.ToArray());
+            Assert.Equal(new[] { 2, 3 }, leftChild.Children[0].TransactionIDs.ToArray());
         }
 
         [Fact]
@@ -133,13 +164,14 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
             // Arrange
             var leftChild = new Node
                 {
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 1, 2 },
-                    Children = new List<Node> { new Node() }
+                    Children = new List<Node>()
                 };
 
             var rightChild = new Node
                 {
-                    Generators = new List<Generator> { new Generator() },
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 1, 2 }
                 };
 
@@ -149,8 +181,8 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
             Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
-            Assert.True(leftChild.Children[1].IsDecisive);
-            Assert.Equal(0, leftChild.Children[1].DecisionID);
+            Assert.True(leftChild.Children[0].IsDecisive);
+            Assert.Equal(0, leftChild.Children[0].DecisionID);
         }
 
         [Fact]
@@ -159,13 +191,14 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
             // Arrange
             var leftChild = new Node
                 {
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 1, 2 },
-                    Children = new List<Node> { new Node() }
+                    Children = new List<Node>()
                 };
 
             var rightChild = new Node
                 {
-                    Generators = new List<Generator> { new Generator() },
+                    Generators = new List<Generator>(),
                     TransactionIDs = new[] { 1, 2 }
                 };
 
@@ -175,8 +208,8 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
             Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
-            Assert.False(leftChild.Children[1].IsDecisive);
-            Assert.Equal(1, leftChild.Children[1].DecisionID);
+            Assert.False(leftChild.Children[0].IsDecisive);
+            Assert.Equal(1, leftChild.Children[0].DecisionID);
         }
     }
 }
