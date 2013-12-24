@@ -7,29 +7,36 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class ResultBuilder : IResultBuilder
     {
-        public bool CanBuildResult(IDictionary<int, Generator> generators)
+        public bool CanBuildResult(IDictionary<int, IList<Generator>> generators)
         {
-            return generators.All(x => x.Value != null);
+            return generators.All(x => x.Value != null && x.Value.Count != 0);
         }
 
-        public GRMResult Build(IDictionary<int, Generator> generators, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
+        public GRMResult Build(IDictionary<int, IList<Generator>> generators, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
         {
             var rules = new List<Rule>();
 
-            foreach (var generator in generators)
+            foreach (var decisionGenerators in generators)
             {
-                var items = new List<Item>();
-
-                foreach (var itemId in generator.Value)
+                var rule = new Rule
                 {
-                    items.Add(itemIds.Single(x => x.Value.Equals(itemId)).Key);
+                    Decision = decisionIds.Single(x => x.Value == decisionGenerators.Key).Key,
+                    Generators = new List<IEnumerable<Item>>()
+                };
+
+                foreach (var generator in decisionGenerators.Value)
+                {
+                    var ruleGenerator = new List<Item>();
+
+                    foreach (var itemId in generator)
+                    {
+                        ruleGenerator.Add(itemIds.Single(x => x.Value.Equals(itemId)).Key);
+                    }
+
+                    rule.Generators.Add(ruleGenerator);
                 }
-
-                rules.Add(new Rule
-                {
-                    Items = items,
-                    Decision = decisionIds.Single(x => x.Value == generator.Key).Key
-                });
+                
+                rules.Add(rule);
             }
 
             return new GRMResult { Rules = rules };

@@ -21,7 +21,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 var child = new Node
                     {
-                        Generator = new Generator { new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID } },
+                        Generators = new List<Generator> { new Generator(new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID }) },
                         IsDecisive = item.IsDecisive,
                         DecisionID = item.DecisionID,
                         TransactionIDs = item.TransactionIDs
@@ -44,16 +44,16 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
             return new Node
                 {
-                    Generator = new Generator(),
+                    Generators = new List<Generator> { new Generator() },
                     TransactionIDs = transactionDecisions.Keys.ToList(),
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };
         }
 
-        private IDictionary<int, Generator> GetRuleGenerators(IEnumerable<int> decisionIds, Node root)
+        private IDictionary<int, IList<Generator>> GetRuleGenerators(IEnumerable<int> decisionIds, Node root)
         {
-            var result = new Dictionary<int, Generator>();
+            var result = new Dictionary<int, IList<Generator>>();
 
             foreach (var decisionId in decisionIds)
             {
@@ -64,13 +64,13 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 if (child.IsDecisive)
                 {
-                    result[child.DecisionID] = child.Generator;
+                    result[child.DecisionID] = child.Generators;
                 }
             }
 
             if (root.IsDecisive)
             {
-                result[root.DecisionID] = root.Generator;
+                result[root.DecisionID] = root.Generators;
             }
 
             return result;

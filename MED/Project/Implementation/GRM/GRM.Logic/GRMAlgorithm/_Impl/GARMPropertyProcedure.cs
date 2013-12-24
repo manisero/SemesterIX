@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
@@ -67,10 +66,10 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 }
 
                 var decisionId = transactionDecisions[transactionIds[0]];
-
+                
                 var newChild = new Node
                     {
-                        Generator = new Generator(rightChild.Generator),
+                        Generators = MergeGenerators(leftChild.Generators, rightChild.Generators),
                         TransactionIDs = transactionIds,
                         DecisionID = decisionId,
                         IsDecisive = transactionIds.Skip(1).All(x => transactionDecisions[x] == decisionId)
@@ -83,6 +82,23 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         private int? GetTransactionID(IList<int> transactionIds, int index)
         {
             return index < transactionIds.Count ? transactionIds[index] : (int?)null;
+        }
+
+        private IList<Generator> MergeGenerators(IEnumerable<Generator> leftChildGenerators, IEnumerable<Generator> rightChildGenerators)
+        {
+            var result = new List<Generator>();
+
+            foreach (var generator in leftChildGenerators)
+            {
+                result.Add(new Generator(generator));
+            }
+
+            foreach (var generator in rightChildGenerators)
+            {
+                result.Add(new Generator(generator));
+            }
+
+            return result;
         }
     }
 }

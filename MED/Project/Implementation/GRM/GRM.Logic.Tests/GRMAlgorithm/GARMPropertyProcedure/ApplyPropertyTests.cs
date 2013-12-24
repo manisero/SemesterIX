@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
-using GRM.Logic.GRMAlgorithm._Impl;
 using Xunit;
 using System.Linq;
 
@@ -58,15 +57,15 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
         {
             // Arrange
             var leftChild = new Node
-            {
-                TransactionIDs = new int[0]
-            };
+                {
+                    TransactionIDs = new int[0]
+                };
 
             var rightChild = new Node
-            {
-                Generator = new Generator(),
-                TransactionIDs = new int[0]
-            };
+                {
+                    Generators = new List<Generator> { new Generator() },
+                    TransactionIDs = new int[0]
+                };
 
             // Act
             var parent = Execute(GARMPropertyType.Difference, leftChild, rightChild);
@@ -88,7 +87,7 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
 
             var rightChild = new Node
                 {
-                    Generator = new Generator { new ItemID { AttributeID = 1, ValueID = 1 }, new ItemID { AttributeID = 2, ValueID = 2 } },
+                    Generators = new List<Generator> { new Generator { new ItemID { AttributeID = 1, ValueID = 1 }, new ItemID { AttributeID = 2, ValueID = 2 } } },
                     TransactionIDs = new[] { 1 }
                 };
 
@@ -99,7 +98,8 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
 
             // Assert
             Assert.Equal(2, leftChild.Children.Count);
-            Assert.Equal(new Generator { new ItemID { AttributeID = 1, ValueID = 1 }, new ItemID { AttributeID = 2, ValueID = 2 } }, leftChild.Children[1].Generator);
+            Assert.Equal(new[] { new Generator { new ItemID { AttributeID = 1, ValueID = 1 }, new ItemID { AttributeID = 2, ValueID = 2 } } },
+                         leftChild.Children[1].Generators);
         }
 
         [Fact]
@@ -107,16 +107,16 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
         {
             // Arrange
             var leftChild = new Node
-            {
-                TransactionIDs = new[] { 1, 2, 3 },
-                Children = new List<Node> { new Node() }
-            };
+                {
+                    TransactionIDs = new[] { 1, 2, 3 },
+                    Children = new List<Node> { new Node() }
+                };
 
             var rightChild = new Node
-            {
-                Generator = new Generator(),
-                TransactionIDs = new[] { 2, 3, 5 }
-            };
+                {
+                    Generators = new List<Generator> { new Generator() },
+                    TransactionIDs = new[] { 2, 3, 5 }
+                };
 
             var transactionIds = new Dictionary<int, int> { { 2, 2 }, { 3, 3 } };
 
@@ -132,16 +132,16 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
         {
             // Arrange
             var leftChild = new Node
-            {
-                TransactionIDs = new[] { 1, 2 },
-                Children = new List<Node> { new Node() }
-            };
+                {
+                    TransactionIDs = new[] { 1, 2 },
+                    Children = new List<Node> { new Node() }
+                };
 
             var rightChild = new Node
-            {
-                Generator = new Generator(),
-                TransactionIDs = new[] { 1, 2 }
-            };
+                {
+                    Generators = new List<Generator> { new Generator() },
+                    TransactionIDs = new[] { 1, 2 }
+                };
 
             var transactionIds = new Dictionary<int, int> { { 1, 0 }, { 2, 0 } };
 
@@ -158,16 +158,16 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
         {
             // Arrange
             var leftChild = new Node
-            {
-                TransactionIDs = new[] { 1, 2 },
-                Children = new List<Node> { new Node() }
-            };
+                {
+                    TransactionIDs = new[] { 1, 2 },
+                    Children = new List<Node> { new Node() }
+                };
 
             var rightChild = new Node
-            {
-                Generator = new Generator(),
-                TransactionIDs = new[] { 1, 2 }
-            };
+                {
+                    Generators = new List<Generator> { new Generator() },
+                    TransactionIDs = new[] { 1, 2 }
+                };
 
             var transactionIds = new Dictionary<int, int> { { 1, 1 }, { 2, 2 } };
 

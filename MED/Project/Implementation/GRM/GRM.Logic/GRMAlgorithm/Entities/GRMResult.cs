@@ -10,8 +10,8 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 
     public class Rule
     {
-        public IEnumerable<Item> Items { get; set; }
-
         public string Decision { get; set; }
+
+        public IList<IEnumerable<Item>> Generators { get; set; }
     }
 }
