@@ -22,6 +22,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 {
                     var rightChild = node.Children[rightChildIndex];
 
+                    if (AreGeneratorsConflicted(leftChild.Generators, rightChild.Generators))
+                    {
+                        continue;
+                    }
+
                     var property = _garmProperty.GetProperty(leftChild.TransactionIDs, rightChild.TransactionIDs);
                     _garmProperty.ApplyProperty(property, node, leftChild, rightChild, transactionDecisions, minimalSupport);
                 }
@@ -41,6 +46,28 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 Execute(leftChild, transactionDecisions, ruleGenerators, minimalSupport);
             }
+        }
+
+        private bool AreGeneratorsConflicted(IEnumerable<Generator> generators1, IEnumerable<Generator> generators2)
+        {
+            foreach (var generator1 in generators1)
+            {
+                foreach (var itemId1 in generator1)
+                {
+                    foreach (var generator2 in generators2)
+                    {
+                        foreach (var itemId2 in generator2)
+                        {
+                            if (itemId1.AttributeID == itemId2.AttributeID && itemId1.ValueID != itemId2.ValueID)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
