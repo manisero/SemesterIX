@@ -40,9 +40,9 @@ namespace GRM.Logic
             var tree = _treeBuilder.Build(frequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
             progressInfo.EndStep();
 
-            if (_resultBuilder.CanBuildResult(tree.Generators))
+            if (_resultBuilder.CanBuildResult(tree.RuleGenerators))
             {
-                return _resultBuilder.Build(tree.Generators, representation.DecisionIDs, representation.ItemIDs);
+                return _resultBuilder.Build(tree.RuleGenerators, representation.DecisionIDs, representation.ItemIDs);
             }
 
             progressInfo.EndTask();

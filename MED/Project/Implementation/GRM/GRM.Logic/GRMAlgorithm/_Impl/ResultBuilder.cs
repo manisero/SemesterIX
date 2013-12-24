@@ -7,12 +7,12 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class ResultBuilder : IResultBuilder
     {
-        public bool CanBuildResult(IDictionary<int, IEnumerable<ItemID>> generators)
+        public bool CanBuildResult(IDictionary<int, Generator> generators)
         {
             return generators.All(x => x.Value != null);
         }
 
-        public GRMResult Build(IDictionary<int, IEnumerable<ItemID>> generators, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
+        public GRMResult Build(IDictionary<int, Generator> generators, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
         {
             var rules = new List<Rule>();
 

@@ -21,7 +21,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 var child = new Node
                     {
-                        Items = new List<ItemID> { new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID } },
+                        Generator = new Generator { new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID } },
                         IsDecisive = item.IsDecisive,
                         DecisionID = item.DecisionID,
                         TransactionIDs = item.TransactionIDs
@@ -34,7 +34,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 {
                     Root = root,
                     TransactionDecisions = transactionDecisions,
-                    Generators = GetGenerators(decisionIds, root)
+                    RuleGenerators = GetRuleGenerators(decisionIds, root)
                 };
         }
 
@@ -44,16 +44,16 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
             return new Node
                 {
-                    Items = new ItemID[0],
+                    Generator = new Generator(),
                     TransactionIDs = transactionDecisions.Keys,
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };
         }
 
-        private IDictionary<int, IEnumerable<ItemID>> GetGenerators(IEnumerable<int> decisionIds, Node root)
+        private IDictionary<int, Generator> GetRuleGenerators(IEnumerable<int> decisionIds, Node root)
         {
-            var result = new Dictionary<int, IEnumerable<ItemID>>();
+            var result = new Dictionary<int, Generator>();
 
             foreach (var decisionId in decisionIds)
             {
@@ -64,13 +64,13 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 if (child.IsDecisive)
                 {
-                    result[child.DecisionID] = child.Items;
+                    result[child.DecisionID] = child.Generator;
                 }
             }
 
             if (root.IsDecisive)
             {
-                result[root.DecisionID] = root.Items;
+                result[root.DecisionID] = root.Generator;
             }
 
             return result;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GRM.Logic.DataSetProcessing.Entities;
+using GRM.Logic.GRMAlgorithm._Impl;
 
 namespace GRM.Logic.GRMAlgorithm.Entities
 {
@@ -9,6 +9,6 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 
         public IDictionary<int, int> TransactionDecisions { get; set; }
 
-        public IDictionary<int, IEnumerable<ItemID>> Generators { get; set; }
+        public IDictionary<int, Generator> RuleGenerators { get; set; }
     }
 }

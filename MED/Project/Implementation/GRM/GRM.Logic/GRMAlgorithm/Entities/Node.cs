@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using GRM.Logic.DataSetProcessing.Entities;
+using GRM.Logic.GRMAlgorithm._Impl;
 
 namespace GRM.Logic.GRMAlgorithm.Entities
 {
     public class Node
     {
-        public IEnumerable<ItemID> Items;
+        public Generator Generator;
 
         public IEnumerable<int> TransactionIDs { get; set; }
 
