@@ -18,7 +18,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 for (int rightChildIndex = leftChildIndex + 1; rightChildIndex < node.Children.Count; rightChildIndex++)
                 {
-                    _garmProperty.Execute(node, node.Children[leftChildIndex], node.Children[rightChildIndex]);
+                    var leftChild = node.Children[leftChildIndex];
+                    var rightChild = node.Children[rightChildIndex];
+
+                    var property = _garmProperty.GetProperty(leftChild.TransactionIDs, rightChild.TransactionIDs);
+                    _garmProperty.AdjustProperty(property, node, leftChild, rightChild);
                 }
             }
 
