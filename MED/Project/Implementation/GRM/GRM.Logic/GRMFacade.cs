@@ -13,6 +13,7 @@ namespace GRM.Logic
         private readonly IFrequentItemsSelector _frequentItemsSelector;
         private readonly ITreeBuilder _treeBuilder;
         private readonly IResultBuilder _resultBuilder;
+        private readonly IGARMProcedure _garmProcedure;
 
         public GRMFacade()
         {
@@ -20,6 +21,7 @@ namespace GRM.Logic
             _frequentItemsSelector = new FrequentItemsSelector();
             _treeBuilder = new TreeBuilder();
             _resultBuilder = new ResultBuilder();
+            _garmProcedure = new GARMProcedure(new GARMPropertyProcedure());
         }
 
         public GRMResult ExecuteGRM(string dataFilePath, int minimumSupport, ProgressInfo progressInfo)
@@ -44,6 +46,10 @@ namespace GRM.Logic
             {
                 return _resultBuilder.Build(tree.RuleGenerators, representation.DecisionIDs, representation.ItemIDs);
             }
+
+            progressInfo.BeginStep("Running GARM procedure");
+            _garmProcedure.Execute(tree.Root, tree.TransactionDecisions, tree.RuleGenerators, minimumSupport);
+            progressInfo.EndStep();
 
             progressInfo.EndTask();
             return null;

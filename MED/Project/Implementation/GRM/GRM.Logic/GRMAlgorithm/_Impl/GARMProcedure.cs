@@ -12,7 +12,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             _garmProperty = garmProperty;
         }
 
-        public void Execute(Node node, IDictionary<int, int> transactionDecisions, IDictionary<int, Generator> ruleGenerators, int minimalSupport)
+        public void Execute(Node node, IDictionary<int, int> transactionDecisions, IDictionary<int, IList<Generator>> ruleGenerators, int minimalSupport)
         {
             for (int leftChildIndex = 0; leftChildIndex < node.Children.Count; leftChildIndex++)
             {
