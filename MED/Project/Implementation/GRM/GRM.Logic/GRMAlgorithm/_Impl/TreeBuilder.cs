@@ -45,7 +45,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             return new Node
                 {
                     Generator = new Generator(),
-                    TransactionIDs = transactionDecisions.Keys,
+                    TransactionIDs = transactionDecisions.Keys.ToList(),
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };

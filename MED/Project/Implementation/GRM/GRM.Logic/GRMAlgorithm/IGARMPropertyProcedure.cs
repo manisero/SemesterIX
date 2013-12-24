@@ -5,7 +5,7 @@ namespace GRM.Logic.GRMAlgorithm
 {
     public interface IGARMPropertyProcedure
     {
-        GARMPropertyType GetProperty(IEnumerable<int> leftChildTransactionIds, IEnumerable<int> rightChildTransactionIds);
+        GARMPropertyType GetProperty(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds);
 
         void AdjustProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild);
     }

@@ -7,7 +7,7 @@ namespace GRM.Logic.GRMAlgorithm.Entities
     {
         public Generator Generator;
 
-        public IEnumerable<int> TransactionIDs { get; set; }
+        public IList<int> TransactionIDs { get; set; }
 
         public bool IsDecisive { get; set; }
 
