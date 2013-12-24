@@ -54,6 +54,7 @@
     <Compile Include="DataSetProcessing\_Impl\TransactionProcessor.cs" />
     <Compile Include="GRMAlgorithm\Entities\Node.cs" />
     <Compile Include="GRMAlgorithm\Entities\Tree.cs" />
+    <Compile Include="GRMAlgorithm\IGARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\IGARMPropertyProcedure.cs" />
     <Compile Include="GRMAlgorithm\IResultBuilder.cs" />
     <Compile Include="GRMAlgorithm\ITreeBuilder.cs" />
