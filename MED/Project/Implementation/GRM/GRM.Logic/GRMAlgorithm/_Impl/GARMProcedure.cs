@@ -16,17 +16,25 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         {
             for (int leftChildIndex = 0; leftChildIndex < node.Children.Count; leftChildIndex++)
             {
+                var leftChild = node.Children[leftChildIndex];
+
                 for (int rightChildIndex = leftChildIndex + 1; rightChildIndex < node.Children.Count; rightChildIndex++)
                 {
-                    var leftChild = node.Children[leftChildIndex];
                     var rightChild = node.Children[rightChildIndex];
 
                     var property = _garmProperty.GetProperty(leftChild.TransactionIDs, rightChild.TransactionIDs);
                     _garmProperty.ApplyProperty(property, node, leftChild, rightChild, transactionDecisions, minimalSupport);
                 }
-            }
 
-            // TODO: Implement
+                foreach (var generator in node.Generators)
+                {
+                    leftChild.Generators.Add(new Generator(generator));
+                }
+
+                // TODO: Update ruleGenerators
+
+                Execute(leftChild, transactionDecisions, ruleGenerators, minimalSupport);
+            }
         }
     }
 }
