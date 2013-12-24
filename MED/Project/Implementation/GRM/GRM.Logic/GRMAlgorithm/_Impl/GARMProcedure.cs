@@ -26,9 +26,15 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     _garmProperty.ApplyProperty(property, node, leftChild, rightChild, transactionDecisions, minimalSupport);
                 }
 
-                foreach (var generator in node.Generators)
+                foreach (var parentGenerator in node.Generators)
                 {
-                    leftChild.Generators.Add(new Generator(generator));
+                    foreach (var itemId in parentGenerator)
+                    {
+                        foreach (var childGenerator in leftChild.Generators)
+                        {
+                            childGenerator.Add(itemId);
+                        }
+                    }
                 }
 
                 // TODO: Update ruleGenerators
