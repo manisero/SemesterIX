@@ -10,9 +10,15 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         public Tree Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
         {
             var root = CreateRoot(transactionDecisions);
+            var numberOfTransactions = transactionDecisions.Count;
 
             foreach (var item in frequentItems)
             {
+                if (item.TransactionIDs.Count == numberOfTransactions)
+                {
+                    continue;
+                }
+
                 var child = new Node
                     {
                         Items = new List<ItemID> { new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID } },
