@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
+using System.Linq;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {
@@ -50,9 +51,20 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
         }
 
-        public void AdjustProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild)
+        public void ApplyProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild)
         {
-            // TODO: Implement
+            if (property == GARMPropertyType.Equality)
+            {
+                parent.Children.Remove(rightChild);
+            }
+            else if (property == GARMPropertyType.Difference)
+            {
+                leftChild.Children.Add(new Node
+                    {
+                        Generator = new Generator(rightChild.Generator),
+                        TransactionIDs = leftChild.TransactionIDs.Intersect(rightChild.TransactionIDs).ToList()
+                    });
+            }
         }
 
         private int? GetTransactionID(IList<int> transactionIds, int index)
