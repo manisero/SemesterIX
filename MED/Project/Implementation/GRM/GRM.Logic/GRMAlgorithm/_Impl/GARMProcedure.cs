@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
+using System.Linq;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {
@@ -31,18 +32,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     _garmProperty.ApplyProperty(property, node, leftChild, rightChild, transactionDecisions, minimalSupport);
                 }
 
-                foreach (var parentGenerator in node.Generators)
-                {
-                    foreach (var itemId in parentGenerator)
-                    {
-                        foreach (var childGenerator in leftChild.Generators)
-                        {
-                            childGenerator.Add(itemId);
-                        }
-                    }
-                }
-
-                // TODO: Update ruleGenerators
+                UpdateChildGenerators(node.Generators, leftChild);
 
                 Execute(leftChild, transactionDecisions, ruleGenerators, minimalSupport);
             }
@@ -68,6 +58,20 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
 
             return false;
+        }
+
+        private void UpdateChildGenerators(IEnumerable<Generator> parentGenerators, Node child)
+        {
+            foreach (var parentGenerator in parentGenerators)
+            {
+                foreach (var itemId in parentGenerator)
+                {
+                    foreach (var childGenerator in child.Generators)
+                    {
+                        childGenerator.Add(itemId);
+                    }
+                }
+            }
         }
     }
 }
