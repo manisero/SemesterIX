@@ -52,7 +52,20 @@
     <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\_Impl\FrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\_Impl\TransactionProcessor.cs" />
+    <Compile Include="GRMAlgorithm\Entities\GARMPropertyType.cs" />
+    <Compile Include="GRMAlgorithm\Entities\Node.cs" />
+    <Compile Include="GRMAlgorithm\Entities\Tree.cs" />
+    <Compile Include="GRMAlgorithm\IGARMProcedure.cs" />
+    <Compile Include="GRMAlgorithm\IGARMPropertyProcedure.cs" />
+    <Compile Include="GRMAlgorithm\IResultBuilder.cs" />
+    <Compile Include="GRMAlgorithm\ITreeBuilder.cs" />
+    <Compile Include="GRMAlgorithm\_Impl\GARMProcedure.cs" />
+    <Compile Include="GRMAlgorithm\_Impl\GARMPropertyProcedure.cs" />
+    <Compile Include="GRMAlgorithm\Entities\Generator.cs" />
+    <Compile Include="GRMAlgorithm\_Impl\ResultBuilder.cs" />
+    <Compile Include="GRMAlgorithm\_Impl\TreeBuilder.cs" />
     <Compile Include="GRMFacade.cs" />
+    <Compile Include="GRMAlgorithm\Entities\GRMResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
