@@ -1,20 +1,27 @@
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
-using System.Linq;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMProcedure : IGARMProcedure
     {
+        private readonly IResultBuilder _resultBuilder;
         private readonly IGARMPropertyProcedure _garmProperty;
 
-        public GARMProcedure(IGARMPropertyProcedure garmProperty)
+        public GARMProcedure(IResultBuilder resultBuilder, IGARMPropertyProcedure garmProperty)
         {
+            _resultBuilder = resultBuilder;
             _garmProperty = garmProperty;
         }
 
         public void Execute(Node node, IDictionary<int, int> transactionDecisions, IDictionary<int, IList<Generator>> ruleGenerators, int minimalSupport)
         {
+            if (node.IsDecisive)
+            {
+                _resultBuilder.AppendDecisionGenerators(node.DecisionID, node.Generators);
+                return;
+            }
+
             for (int leftChildIndex = 0; leftChildIndex < node.Children.Count; leftChildIndex++)
             {
                 var leftChild = node.Children[leftChildIndex];

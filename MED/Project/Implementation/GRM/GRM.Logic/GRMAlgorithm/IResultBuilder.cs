@@ -6,8 +6,8 @@ namespace GRM.Logic.GRMAlgorithm
 {
     public interface IResultBuilder
     {
-        bool CanBuildResult(IDictionary<int, IList<Generator>> generators);
+        void AppendDecisionGenerators(int decisionId, IList<Generator> generators);
 
-        GRMResult Build(IDictionary<int, IList<Generator>> generators, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds);
+        GRMResult GetResult(IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds);
     }
 }

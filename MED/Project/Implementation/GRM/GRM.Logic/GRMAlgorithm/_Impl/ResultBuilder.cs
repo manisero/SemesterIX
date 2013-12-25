@@ -7,16 +7,30 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class ResultBuilder : IResultBuilder
     {
-        public bool CanBuildResult(IDictionary<int, IList<Generator>> generators)
+        private readonly GRMResultBuildState _buildState = new GRMResultBuildState();
+
+        public void AppendDecisionGenerators(int decisionId, IList<Generator> generators)
         {
-            return generators.All(x => x.Value != null && x.Value.Count != 0);
+            if (!_buildState.DecisionGenerators.ContainsKey(decisionId))
+            {
+                _buildState.DecisionGenerators.Add(decisionId, generators);
+            }
+            else
+            {
+                var decisionGenerators = _buildState.DecisionGenerators[decisionId];
+
+                foreach (var generator in generators)
+                {
+                    decisionGenerators.Add(generator);
+                }
+            }
         }
 
-        public GRMResult Build(IDictionary<int, IList<Generator>> generators, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
+        public GRMResult GetResult(IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
         {
             var rules = new List<Rule>();
 
-            foreach (var decisionGenerators in generators)
+            foreach (var decisionGenerators in _buildState.DecisionGenerators)
             {
                 var rule = new Rule
                 {

@@ -21,7 +21,7 @@ namespace GRM.Logic
             _frequentItemsSelector = new FrequentItemsSelector();
             _treeBuilder = new TreeBuilder();
             _resultBuilder = new ResultBuilder();
-            _garmProcedure = new GARMProcedure(new GARMPropertyProcedure());
+            _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure());
         }
 
         public GRMResult ExecuteGRM(string dataFilePath, int minimumSupport, ProgressInfo progressInfo)
@@ -42,17 +42,16 @@ namespace GRM.Logic
             var tree = _treeBuilder.Build(frequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
             progressInfo.EndStep();
 
-            if (_resultBuilder.CanBuildResult(tree.RuleGenerators))
-            {
-                return _resultBuilder.Build(tree.RuleGenerators, representation.DecisionIDs, representation.ItemIDs);
-            }
-
             progressInfo.BeginStep("Running GARM procedure");
             _garmProcedure.Execute(tree.Root, tree.TransactionDecisions, tree.RuleGenerators, minimumSupport);
             progressInfo.EndStep();
 
+            progressInfo.BeginStep("Building result");
+            var result = _resultBuilder.GetResult(representation.DecisionIDs, representation.ItemIDs);
+            progressInfo.EndStep();
+
             progressInfo.EndTask();
-            return null;
+            return result;
         }
     }
 }
