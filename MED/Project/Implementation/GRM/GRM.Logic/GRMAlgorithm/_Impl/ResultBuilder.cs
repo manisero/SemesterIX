@@ -42,7 +42,10 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
             foreach (var generator in generators)
             {
-                
+                if (subgenerator.All(generator.Contains))
+                {
+                    supergenerators.Add(generator);
+                }
             }
 
             foreach (var supergenerator in supergenerators)
