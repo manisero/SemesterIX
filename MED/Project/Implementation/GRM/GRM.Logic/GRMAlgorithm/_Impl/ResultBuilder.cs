@@ -24,11 +24,30 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 var decisionGenerators = _buildState.DecisionGenerators[decisionId];
 
-                // TODO: Check for subsets
+                foreach (var generator in generators)
+                {
+                    RemoveSupersets(generator, decisionGenerators);
+                }
+
                 foreach (var generator in generators)
                 {
                     decisionGenerators.Add(generator);
                 }
+            }
+        }
+
+        private void RemoveSupersets(Generator subgenerator, IList<Generator> generators)
+        {
+            var supergenerators = new List<Generator>();
+
+            foreach (var generator in generators)
+            {
+                
+            }
+
+            foreach (var supergenerator in supergenerators)
+            {
+                generators.Remove(supergenerator);
             }
         }
 
