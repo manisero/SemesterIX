@@ -2,6 +2,7 @@
 using System.IO;
 using GRM.Logic;
 using GRM.Logic.DataSetProcessing;
+using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Presentation
 {
@@ -20,12 +21,27 @@ namespace GRM.Presentation
                 return;
             }
 
+            var dataFilePath = args[0];
+
             var progressInfo = new ProgressInfo(step => Console.WriteLine(step),
                                                 (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
-
-            new GRMFacade().ExecuteGRM(args[0], minimumSupport, progressInfo);
-
+            
+            var result = new GRMFacade().ExecuteGRM(dataFilePath, minimumSupport, progressInfo);
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
+
+            var outputFilePath = WriteGRMResult(result, dataFilePath);
+            Console.WriteLine("Result saved to {0}", outputFilePath);
+        }
+
+        private static string WriteGRMResult(GRMResult result, string dataFilePath)
+        {
+            var outputDirectoryName = Path.GetDirectoryName(dataFilePath);
+            var outputFileName = Path.GetFileNameWithoutExtension(dataFilePath) + "_rules.txt";
+            var outputFilePath = Path.Combine(outputDirectoryName, outputFileName);
+
+            new GRMResultWriter().WriteResult(result, outputFilePath);
+
+            return outputFilePath;
         }
     }
 }
