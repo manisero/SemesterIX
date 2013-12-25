@@ -7,7 +7,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class TreeBuilder : ITreeBuilder
     {
-        public Tree Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
+        public Node Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
         {
             var root = CreateRoot(transactionDecisions);
             var numberOfTransactions = transactionDecisions.Count;
@@ -30,11 +30,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 root.Children.Add(child);
             }
 
-            return new Tree
-                {
-                    Root = root,
-                    TransactionDecisions = transactionDecisions
-                };
+            return root;
         }
 
         private Node CreateRoot(IDictionary<int, int> transactionDecisions)
