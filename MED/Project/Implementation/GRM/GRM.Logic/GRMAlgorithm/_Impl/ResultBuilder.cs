@@ -24,6 +24,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 var decisionGenerators = _buildState.DecisionGenerators[decisionId];
 
+                // TODO: Check for subsets
                 foreach (var generator in generators)
                 {
                     decisionGenerators.Add(generator);

@@ -47,6 +47,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private bool AreGeneratorsConflicted(IEnumerable<Generator> generators1, IEnumerable<Generator> generators2)
         {
+            // TODO: Optimize
             foreach (var generator1 in generators1)
             {
                 foreach (var itemId1 in generator1)
@@ -69,16 +70,20 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private void UpdateChildGenerators(IEnumerable<Generator> parentGenerators, Node child)
         {
+            var newGenerators = new List<Generator>();
+
             foreach (var parentGenerator in parentGenerators)
             {
-                foreach (var itemId in parentGenerator)
+                foreach (var childGenerator in child.Generators)
                 {
-                    foreach (var childGenerator in child.Generators)
-                    {
-                        childGenerator.Add(itemId);
-                    }
+                    var newGenerator = new Generator(parentGenerator);
+                    newGenerator.AddRange(childGenerator);
+
+                    newGenerators.Add(newGenerator);
                 }
             }
+
+            child.Generators = newGenerators;
         }
     }
 }
