@@ -33,8 +33,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             return new Tree
                 {
                     Root = root,
-                    TransactionDecisions = transactionDecisions,
-                    RuleGenerators = GetRuleGenerators(decisionIds, root)
+                    TransactionDecisions = transactionDecisions
                 };
         }
 
@@ -49,31 +48,6 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };
-        }
-
-        private IDictionary<int, IList<Generator>> GetRuleGenerators(IEnumerable<int> decisionIds, Node root)
-        {
-            var result = new Dictionary<int, IList<Generator>>();
-
-            foreach (var decisionId in decisionIds)
-            {
-                result.Add(decisionId, null);
-            }
-
-            foreach (var child in root.Children)
-            {
-                if (child.IsDecisive)
-                {
-                    result[child.DecisionID] = child.Generators;
-                }
-            }
-
-            if (root.IsDecisive)
-            {
-                result[root.DecisionID] = root.Generators;
-            }
-
-            return result;
         }
     }
 }

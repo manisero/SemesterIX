@@ -7,7 +7,5 @@ namespace GRM.Logic.GRMAlgorithm.Entities
         public Node Root { get; set; }
 
         public IDictionary<int, int> TransactionDecisions { get; set; }
-
-        public IDictionary<int, IList<Generator>> RuleGenerators { get; set; }
     }
 }

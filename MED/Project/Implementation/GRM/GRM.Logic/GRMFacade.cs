@@ -43,7 +43,7 @@ namespace GRM.Logic
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Running GARM procedure");
-            _garmProcedure.Execute(tree.Root, tree.TransactionDecisions, tree.RuleGenerators, minimumSupport);
+            _garmProcedure.Execute(tree.Root, tree.TransactionDecisions, minimumSupport);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Building result");
