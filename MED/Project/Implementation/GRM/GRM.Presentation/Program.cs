@@ -27,7 +27,10 @@ namespace GRM.Presentation
 
             var progressInfo = new ProgressInfo(step => Console.WriteLine(step),
                                                 (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
-            
+
+            Console.WriteLine("Executing GRM for file '{0}' with minimum support = {1} and sorting strategy = '{2}'", dataFilePath, minimumSupport, sortingStrategy);
+            Console.WriteLine();
+
             var result = new GRMFacade().ExecuteGRM(dataFilePath, minimumSupport, sortingStrategy, progressInfo);
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
 
@@ -39,7 +42,7 @@ namespace GRM.Presentation
         {
             if (args.Length < 3)
             {
-                result = SortingStrategyType.Lexicographical;
+                result = 0;
                 return true;
             }
 
@@ -47,18 +50,16 @@ namespace GRM.Presentation
 
             if (int.TryParse(args[2], out strategyType))
             {
-                try
+                var possibleValues = Enum.GetValues(typeof(SortingStrategyType));
+
+                if (strategyType >= 0 && strategyType < possibleValues.Length)
                 {
                     result = (SortingStrategyType)strategyType;
                     return true;
                 }
-                catch (InvalidCastException)
-                {
-                    // Do nothing, return false eventually
-                }
             }
 
-            result = SortingStrategyType.Lexicographical;
+            result = 0;
             return false;
         }
 
