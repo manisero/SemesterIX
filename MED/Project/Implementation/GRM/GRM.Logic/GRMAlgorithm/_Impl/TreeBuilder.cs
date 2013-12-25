@@ -7,7 +7,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class TreeBuilder : ITreeBuilder
     {
-        public Tree Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
+        public Node Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
         {
             var root = CreateRoot(transactionDecisions);
             var numberOfTransactions = transactionDecisions.Count;
@@ -30,12 +30,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 root.Children.Add(child);
             }
 
-            return new Tree
-                {
-                    Root = root,
-                    TransactionDecisions = transactionDecisions,
-                    RuleGenerators = GetRuleGenerators(decisionIds, root)
-                };
+            return root;
         }
 
         private Node CreateRoot(IDictionary<int, int> transactionDecisions)
@@ -49,31 +44,6 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };
-        }
-
-        private IDictionary<int, IList<Generator>> GetRuleGenerators(IEnumerable<int> decisionIds, Node root)
-        {
-            var result = new Dictionary<int, IList<Generator>>();
-
-            foreach (var decisionId in decisionIds)
-            {
-                result.Add(decisionId, null);
-            }
-
-            foreach (var child in root.Children)
-            {
-                if (child.IsDecisive)
-                {
-                    result[child.DecisionID] = child.Generators;
-                }
-            }
-
-            if (root.IsDecisive)
-            {
-                result[root.DecisionID] = root.Generators;
-            }
-
-            return result;
         }
     }
 }

@@ -50,6 +50,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
         }
 
+        private int? GetTransactionID(IList<int> transactionIds, int index)
+        {
+            return index < transactionIds.Count ? transactionIds[index] : (int?)null;
+        }
+
         public void ApplyProperty(GARMPropertyType property, Node parent, Node leftChild, Node rightChild, IDictionary<int,int> transactionDecisions, int minimalSupport)
         {
             if (property == GARMPropertyType.Equality)
@@ -82,11 +87,6 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 leftChild.Children.Add(newChild);
             }
-        }
-
-        private int? GetTransactionID(IList<int> transactionIds, int index)
-        {
-            return index < transactionIds.Count ? transactionIds[index] : (int?)null;
         }
 
         private IList<Generator> CopyGenerators(IEnumerable<Generator> generators)

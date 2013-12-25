@@ -5,6 +5,6 @@ namespace GRM.Logic.GRMAlgorithm
 {
     public interface IGARMProcedure
     {
-        void Execute(Node node, IDictionary<int, int> transactionDecisions, IDictionary<int, IList<Generator>> ruleGenerators, int minimalSupport);
+        void Execute(Node node, IDictionary<int, int> transactionDecisions, int minimalSupport);
     }
 }

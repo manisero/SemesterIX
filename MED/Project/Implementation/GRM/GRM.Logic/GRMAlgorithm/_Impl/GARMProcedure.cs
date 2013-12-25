@@ -14,7 +14,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             _garmProperty = garmProperty;
         }
 
-        public void Execute(Node node, IDictionary<int, int> transactionDecisions, IDictionary<int, IList<Generator>> ruleGenerators, int minimalSupport)
+        public void Execute(Node node, IDictionary<int, int> transactionDecisions, int minimalSupport)
         {
             if (node.IsDecisive)
             {
@@ -41,12 +41,13 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 UpdateChildGenerators(node.Generators, leftChild);
 
-                Execute(leftChild, transactionDecisions, ruleGenerators, minimalSupport);
+                Execute(leftChild, transactionDecisions, minimalSupport);
             }
         }
 
         private bool AreGeneratorsConflicted(IEnumerable<Generator> generators1, IEnumerable<Generator> generators2)
         {
+            // TODO: Optimize?
             foreach (var generator1 in generators1)
             {
                 foreach (var itemId1 in generator1)
@@ -69,16 +70,20 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private void UpdateChildGenerators(IEnumerable<Generator> parentGenerators, Node child)
         {
+            var newGenerators = new List<Generator>();
+
             foreach (var parentGenerator in parentGenerators)
             {
-                foreach (var itemId in parentGenerator)
+                foreach (var childGenerator in child.Generators)
                 {
-                    foreach (var childGenerator in child.Generators)
-                    {
-                        childGenerator.Add(itemId);
-                    }
+                    var newGenerator = new Generator(parentGenerator);
+                    newGenerator.AddRange(childGenerator);
+
+                    newGenerators.Add(newGenerator);
                 }
             }
+
+            child.Generators = newGenerators;
         }
     }
 }

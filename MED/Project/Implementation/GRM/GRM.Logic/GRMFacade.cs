@@ -39,11 +39,11 @@ namespace GRM.Logic
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Building GRM tree");
-            var tree = _treeBuilder.Build(frequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
+            var root = _treeBuilder.Build(frequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Running GARM procedure");
-            _garmProcedure.Execute(tree.Root, tree.TransactionDecisions, tree.RuleGenerators, minimumSupport);
+            _garmProcedure.Execute(root, representation.TransactionDecisions, minimumSupport);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Building result");
