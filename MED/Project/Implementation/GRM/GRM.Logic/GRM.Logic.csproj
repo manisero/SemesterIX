@@ -53,7 +53,6 @@
     <Compile Include="DataSetProcessing\_Impl\FrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\_Impl\TransactionProcessor.cs" />
     <Compile Include="GRMAlgorithm\Entities\GARMPropertyType.cs" />
-    <Compile Include="GRMAlgorithm\Entities\GRMResultBuildState.cs" />
     <Compile Include="GRMAlgorithm\Entities\Node.cs" />
     <Compile Include="GRMAlgorithm\Entities\Tree.cs" />
     <Compile Include="GRMAlgorithm\IGARMProcedure.cs" />

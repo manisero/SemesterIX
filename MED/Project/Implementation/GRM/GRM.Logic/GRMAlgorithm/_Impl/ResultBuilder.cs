@@ -7,6 +7,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class ResultBuilder : IResultBuilder
     {
+        private class GRMResultBuildState
+        {
+            public readonly IDictionary<int, IList<Generator>> DecisionGenerators = new Dictionary<int, IList<Generator>>();
+        }
+
         private readonly GRMResultBuildState _buildState = new GRMResultBuildState();
 
         public void AppendDecisionGenerators(int decisionId, IList<Generator> generators)
