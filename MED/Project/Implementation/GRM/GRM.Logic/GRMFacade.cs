@@ -3,7 +3,10 @@ using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing._Impl;
 using GRM.Logic.GRMAlgorithm;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.GRMAlgorithm.ItemsSorting;
+using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
+using System.Linq;
 
 namespace GRM.Logic
 {
@@ -11,6 +14,7 @@ namespace GRM.Logic
     {
         private readonly IDataSetRepresentationBuilder _dataSetRepresentationBuilder;
         private readonly IFrequentItemsSelector _frequentItemsSelector;
+        private readonly ISortingStrategyFactory _sortingStrategyFactory;
         private readonly ITreeBuilder _treeBuilder;
         private readonly IResultBuilder _resultBuilder;
         private readonly IGARMProcedure _garmProcedure;
@@ -19,12 +23,13 @@ namespace GRM.Logic
         {
             _dataSetRepresentationBuilder = new DataSetRepresentationBuilder(new TransactionProcessor());
             _frequentItemsSelector = new FrequentItemsSelector();
+            _sortingStrategyFactory = new SortingStrategyFactory();
             _treeBuilder = new TreeBuilder();
             _resultBuilder = new ResultBuilder();
             _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure());
         }
 
-        public GRMResult ExecuteGRM(string dataFilePath, int minimumSupport, ProgressInfo progressInfo)
+        public GRMResult ExecuteGRM(string dataFilePath, int minimumSupport, SortingStrategyType sortingStrategy, ProgressInfo progressInfo)
         {
             progressInfo.BeginTask();
 
@@ -38,8 +43,12 @@ namespace GRM.Logic
             var frequentItems = _frequentItemsSelector.SelectFrequentItems(representation.ItemInfos.Values, minimumSupport);
             progressInfo.EndStep();
 
+            progressInfo.BeginStep("Sorting frequent items");
+            var sortedFrequentItems = _sortingStrategyFactory.Create(sortingStrategy).Apply(frequentItems);
+            progressInfo.EndStep();
+
             progressInfo.BeginStep("Building GRM tree");
-            var root = _treeBuilder.Build(frequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
+            var root = _treeBuilder.Build(sortedFrequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Running GARM procedure");
