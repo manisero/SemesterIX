@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
 
@@ -27,8 +29,7 @@ namespace GRM.Presentation
 
                     foreach (var generator in rule.Generators)
                     {
-                        // TODO: Handle rules with not full sets of attributes
-                        stringBuilder.AppendLine(string.Join(",", generator.OrderBy(x => x.AttributeID).Select(x => x.Value).ToArray()));
+                        stringBuilder.AppendLine(FormatGenerator(generator));
                     }
 
                     stringBuilder.AppendLine();
@@ -36,6 +37,29 @@ namespace GRM.Presentation
 
                 writer.Write(stringBuilder.ToString());
             }
+        }
+
+        private string FormatGenerator(IEnumerable<Item> generator)
+        {
+            var items = generator.OrderBy(x => x.AttributeID);
+            var maxAttributeId = items.Last().AttributeID;
+
+            var attributeValues = new List<string>();
+
+            for (int i = 0; i <= maxAttributeId; i++)
+            {
+                if (generator.Any(x => x.AttributeID == i))
+                {
+                    var item = generator.Single(x => x.AttributeID == i);
+                    attributeValues.Add(item.Value);
+                }
+                else
+                {
+                    attributeValues.Add(string.Empty);
+                }
+            }
+
+            return string.Join(",", attributeValues.ToArray());
         }
     }
 }
