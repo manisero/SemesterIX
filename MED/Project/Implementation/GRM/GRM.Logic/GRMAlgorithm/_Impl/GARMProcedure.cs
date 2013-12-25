@@ -60,14 +60,14 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                         {
                             if (itemId1.AttributeID == itemId2.AttributeID && itemId1.ValueID != itemId2.ValueID)
                             {
-                                return false;
+                                return true;
                             }
                         }
                     }
                 }
             }
 
-            return true;
+            return false;
         }
     }
 }
