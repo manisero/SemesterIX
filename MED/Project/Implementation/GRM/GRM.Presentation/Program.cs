@@ -31,7 +31,8 @@ namespace GRM.Presentation
             Console.WriteLine("Executing GRM for file '{0}' with minimum support = {1} and sorting strategy = '{2}'", dataFilePath, minimumSupport, sortingStrategy);
             Console.WriteLine();
 
-            var result = new GRMFacade().ExecuteGRM(dataFilePath, minimumSupport, sortingStrategy, progressInfo);
+            var dataSetStream = new FileStream(dataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var result = new GRMFacade().ExecuteGRM(dataSetStream, minimumSupport, sortingStrategy, progressInfo);
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
 
             var outputFilePath = WriteGRMResult(result, dataFilePath);

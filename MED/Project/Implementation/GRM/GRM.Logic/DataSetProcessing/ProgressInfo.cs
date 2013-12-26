@@ -8,8 +8,12 @@ namespace GRM.Logic.DataSetProcessing
         private string _step;
         private readonly Action<string> _onStepStart;
         private readonly Action<string, TimeSpan> _onStepEnd;
-        private Stopwatch _taskStopwatch = new Stopwatch();
-        private Stopwatch _stepStopwatch = new Stopwatch();
+        private readonly Stopwatch _taskStopwatch = new Stopwatch();
+        private readonly Stopwatch _stepStopwatch = new Stopwatch();
+
+        public ProgressInfo()
+        {
+        }
 
         public ProgressInfo(Action<string> onStepStart, Action<string, TimeSpan> onStepEnd)
         {
@@ -28,7 +32,11 @@ namespace GRM.Logic.DataSetProcessing
             _stepStopwatch.Reset();
 
             _step = step;
-            _onStepStart(_step);
+
+            if (_onStepStart != null)
+            {
+                _onStepStart(_step);
+            }
 
             _stepStopwatch.Start();
         }
@@ -36,7 +44,11 @@ namespace GRM.Logic.DataSetProcessing
         public void EndStep()
         {
             _stepStopwatch.Stop();
-            _onStepEnd(_step, _stepStopwatch.Elapsed);
+
+            if (_onStepEnd != null)
+            {
+                _onStepEnd(_step, _stepStopwatch.Elapsed);
+            }
 
             _step = null;
         }

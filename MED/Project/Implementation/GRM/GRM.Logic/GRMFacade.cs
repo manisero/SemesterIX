@@ -6,7 +6,6 @@ using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
-using System.Linq;
 
 namespace GRM.Logic
 {
@@ -29,14 +28,12 @@ namespace GRM.Logic
             _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure());
         }
 
-        public GRMResult ExecuteGRM(string dataFilePath, int minimumSupport, SortingStrategyType sortingStrategy, ProgressInfo progressInfo)
+        public GRMResult ExecuteGRM(Stream dataSetStream, int minimumSupport, SortingStrategyType sortingStrategy, ProgressInfo progressInfo)
         {
             progressInfo.BeginTask();
 
-            var stream = new FileStream(dataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-
             progressInfo.BeginStep("Creating data set representation");
-            var representation = _dataSetRepresentationBuilder.Build(stream);
+            var representation = _dataSetRepresentationBuilder.Build(dataSetStream);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Selecting frequent items");
