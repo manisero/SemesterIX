@@ -57,6 +57,14 @@
     <Compile Include="GRMAlgorithm\IGARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\IGARMPropertyProcedure.cs" />
     <Compile Include="GRMAlgorithm\IResultBuilder.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\ISortingStrategy.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\ISortingStrategyFactory.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\AscendingSupportSortingStrategy.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\DescendingSupportSortingStrategy.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\LexicographicalSortingStrategy.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\ReverseLexicographicalSortingStrategy.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategyType.cs" />
+    <Compile Include="GRMAlgorithm\ItemsSorting\_Impl\SortingStrategyFactory.cs" />
     <Compile Include="GRMAlgorithm\ITreeBuilder.cs" />
     <Compile Include="GRMAlgorithm\_Impl\GARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\_Impl\GARMPropertyProcedure.cs" />
@@ -67,6 +75,7 @@
     <Compile Include="GRMAlgorithm\Entities\GRMResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
