@@ -8,7 +8,7 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
     {
         private GARMPropertyType Execute(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
-            return new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure().GetProperty(leftChildTransactionIds, rightChildTransactionIds);
+            return new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure(null).GetProperty(leftChildTransactionIds, rightChildTransactionIds);
         }
 
         [Fact]

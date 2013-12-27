@@ -25,9 +25,11 @@ namespace GRM.Logic
             _dataSetRepresentationBuilder = new DataSetRepresentationBuilder(new TransactionProcessor());
             _frequentItemsSelector = new FrequentItemsSelector();
             _sortingStrategy = new SortingStrategyFactory().Create(sortingStrategy);
-            _treeBuilder = new TreeBuilder(new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy));
+
+            var storageStrategy = new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy);
+            _treeBuilder = new TreeBuilder(storageStrategy);
             _resultBuilder = new ResultBuilder();
-            _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure());
+            _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
         }
 
         public GRMResult ExecuteGRM(Stream dataSetStream, int minimumSupport, ProgressInfo progressInfo)

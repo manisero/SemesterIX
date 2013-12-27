@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies;
 using Xunit;
 using System.Linq;
 
@@ -17,8 +18,8 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
                 };
 
             // Act
-            new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure().ApplyProperty(property, parent, leftChild, rightChild,
-                                                                               transactionDecisions ?? new Dictionary<int, int>(), minimalSupport);
+            new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure(new TIDSetsStorageStrategy()).ApplyProperty(property, parent, leftChild, rightChild,
+                                                                                                           transactionDecisions ?? new Dictionary<int, int>(), minimalSupport);
 
             return parent;
         }

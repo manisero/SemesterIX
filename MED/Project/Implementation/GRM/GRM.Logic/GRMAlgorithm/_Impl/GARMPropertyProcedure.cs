@@ -1,11 +1,19 @@
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMPropertyProcedure : IGARMPropertyProcedure
     {
+        private readonly ITransactionIDsStorageStrategy _transactionIdsStorageStrategy;
+
+        public GARMPropertyProcedure(ITransactionIDsStorageStrategy transactionIdsStorageStrategy)
+        {
+            _transactionIdsStorageStrategy = transactionIdsStorageStrategy;
+        }
+
         public GARMPropertyType GetProperty(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
             var leftToRightSubsumption = true;
@@ -68,23 +76,23 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
             else if (property == GARMPropertyType.Difference)
             {
-                var transactionIds = leftChild.TransactionIDs.Intersect(rightChild.TransactionIDs).ToList();
-                var support = transactionIds.Count;
+                var newChildTransactionIds = _transactionIdsStorageStrategy.GetChildTransactionIDs(leftChild.TransactionIDs, rightChild.TransactionIDs);
+                var newChildSupport = _transactionIdsStorageStrategy.GetChildSupport(leftChild.Support, newChildTransactionIds);
 
-                if (support < minimalSupport)
+                if (newChildSupport < minimalSupport)
                 {
                     return;
                 }
 
-                var decisionId = transactionDecisions[transactionIds[0]];
+                var decisionId = transactionDecisions[newChildTransactionIds[0]];
                 
                 var newChild = new Node
                     {
                         Generators = CopyGenerators(rightChild.Generators),
-                        TransactionIDs = transactionIds,
-                        Support = support,
+                        TransactionIDs = newChildTransactionIds,
+                        Support = newChildSupport,
                         DecisionID = decisionId,
-                        IsDecisive = transactionIds.Skip(1).All(x => transactionDecisions[x] == decisionId)
+                        IsDecisive = newChildTransactionIds.Skip(1).All(x => transactionDecisions[x] == decisionId)
                     };
 
                 leftChild.Children.Add(newChild);
