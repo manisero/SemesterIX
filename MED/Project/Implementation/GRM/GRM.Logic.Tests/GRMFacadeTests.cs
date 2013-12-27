@@ -4,6 +4,7 @@ using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using Xunit;
 using System.Linq;
 
@@ -11,11 +12,11 @@ namespace GRM.Logic.Tests
 {
     public class GRMFacadeTests
     {
-        private GRMResult Execute(string dataSet, int minimumSupport, SortingStrategyType sortingStrategy)
+        private GRMResult Execute(string dataSet, int minimumSupport, SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(dataSet)))
             {
-                return new GRMFacade().ExecuteGRM(dataSetStream, minimumSupport, sortingStrategy, new ProgressInfo());
+                return new GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, minimumSupport, new ProgressInfo());
             }
         }
 
@@ -28,7 +29,7 @@ namespace GRM.Logic.Tests
         public void for_car_data_set_finds_rules_for_unacc_and_acc()
         {
             // Act
-            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport);
+            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
 
             // Assert
             Assert.Equal(2, result.Rules.Count());
@@ -40,7 +41,7 @@ namespace GRM.Logic.Tests
         public void for_car_data_set_finds_generators_for_unacc()
         {
             // Act
-            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport);
+            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
 
             // Assert
             var rule = result.Rules.Single(x => x.Decision == "unacc");
@@ -92,7 +93,7 @@ namespace GRM.Logic.Tests
         public void for_car_data_set_finds_generators_for_acc()
         {
             // Act
-            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport);
+            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
 
             // Assert
             var rule = result.Rules.Single(x => x.Decision == "acc");

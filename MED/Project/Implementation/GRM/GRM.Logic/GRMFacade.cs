@@ -5,6 +5,8 @@ using GRM.Logic.GRMAlgorithm;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
 
 namespace GRM.Logic
@@ -13,22 +15,22 @@ namespace GRM.Logic
     {
         private readonly IDataSetRepresentationBuilder _dataSetRepresentationBuilder;
         private readonly IFrequentItemsSelector _frequentItemsSelector;
-        private readonly ISortingStrategyFactory _sortingStrategyFactory;
+        private readonly ISortingStrategy _sortingStrategy;
         private readonly ITreeBuilder _treeBuilder;
         private readonly IResultBuilder _resultBuilder;
         private readonly IGARMProcedure _garmProcedure;
 
-        public GRMFacade()
+        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
             _dataSetRepresentationBuilder = new DataSetRepresentationBuilder(new TransactionProcessor());
             _frequentItemsSelector = new FrequentItemsSelector();
-            _sortingStrategyFactory = new SortingStrategyFactory();
-            _treeBuilder = new TreeBuilder();
+            _sortingStrategy = new SortingStrategyFactory().Create(sortingStrategy);
+            _treeBuilder = new TreeBuilder(new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy));
             _resultBuilder = new ResultBuilder();
             _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure());
         }
 
-        public GRMResult ExecuteGRM(Stream dataSetStream, int minimumSupport, SortingStrategyType sortingStrategy, ProgressInfo progressInfo)
+        public GRMResult ExecuteGRM(Stream dataSetStream, int minimumSupport, ProgressInfo progressInfo)
         {
             progressInfo.BeginTask();
 
@@ -41,7 +43,7 @@ namespace GRM.Logic
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Sorting frequent items");
-            var sortedFrequentItems = _sortingStrategyFactory.Create(sortingStrategy).Apply(frequentItems);
+            var sortedFrequentItems = _sortingStrategy.Apply(frequentItems);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Building GRM tree");

@@ -4,6 +4,7 @@ using GRM.Logic;
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 
 namespace GRM.Presentation
 {
@@ -13,13 +14,14 @@ namespace GRM.Presentation
         {
             int minimumSupport;
             SortingStrategyType sortingStrategy;
+            TransactionIDsStorageStrategyType transactionIdsStorageStrategy;
 
-            if (args.Length < 2 || !int.TryParse(args[1], out minimumSupport) || !TryGetSortingStrategy(args, out sortingStrategy))
+            if (args.Length < 2 || !int.TryParse(args[1], out minimumSupport) || !TryGetSortingStrategy(args, out sortingStrategy) || !TryGetTransactionIDsStorageStrategy(args, out transactionIdsStorageStrategy))
             {
                 Console.WriteLine("Usage:");
 
                 var applicationPath = Environment.GetCommandLineArgs()[0];
-                Console.WriteLine("{0} <data file path> <minimum support [integer]> <sorting strategy [0-3]>", Path.GetFileName(applicationPath));
+                Console.WriteLine("{0} <data file path> <minimum support [integer]> <sorting strategy [0-3]> <transaction IDs storage strategy [TIDSets|DiffSets]>", Path.GetFileName(applicationPath));
                 return;
             }
 
@@ -32,7 +34,7 @@ namespace GRM.Presentation
             Console.WriteLine();
 
             var dataSetStream = new FileStream(dataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var result = new GRMFacade().ExecuteGRM(dataSetStream, minimumSupport, sortingStrategy, progressInfo);
+            var result = new GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, minimumSupport, progressInfo);
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
 
             var outputFilePath = WriteGRMResult(result, dataFilePath);
@@ -60,6 +62,28 @@ namespace GRM.Presentation
                 }
             }
 
+            result = 0;
+            return false;
+        }
+
+        private static bool TryGetTransactionIDsStorageStrategy(string[] args, out TransactionIDsStorageStrategyType result)
+        {
+            if (args.Length < 4)
+            {
+                result = 0;
+                return true;
+            }
+
+            try
+            {
+                result = (TransactionIDsStorageStrategyType)Enum.Parse(typeof(TransactionIDsStorageStrategyType), args[3], true);
+                return true;
+            }
+            catch
+            {
+                // Do notning, return false eventually
+            }
+            
             result = 0;
             return false;
         }

@@ -2,11 +2,19 @@ using System.Collections.Generic;
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class TreeBuilder : ITreeBuilder
     {
+        private readonly ITransactionIDsStorageStrategy _transactionIdsStorageStrategy;
+
+        public TreeBuilder(ITransactionIDsStorageStrategy transactionIdsStorageStrategy)
+        {
+            _transactionIdsStorageStrategy = transactionIdsStorageStrategy;
+        }
+
         public Node Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
         {
             var root = CreateRoot(transactionDecisions);
@@ -41,8 +49,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             return new Node
                 {
                     Generators = new List<Generator> { new Generator() },
-                    TransactionIDs = transactionDecisions.Keys.ToList(),
-                    Support = transactionDecisions.Keys.Count,
+                    TransactionIDs = _transactionIdsStorageStrategy.GetTreeRootTransactionIDs(transactionDecisions.Keys.ToList()),
+                    Support = _transactionIdsStorageStrategy.GetTreeRootSupport(transactionDecisions.Keys.Count),
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };
