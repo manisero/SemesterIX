@@ -8,6 +8,10 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
 
         int GetTreeRootSupport(int allTransactionIdsCount);
 
+        IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds);
+
+        int GetFirstLevelChildSupport(int itemTransactionIdsCount);
+        
         IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds);
 
         int GetChildSupport(int parentSupport, IList<int> childTransactionIds);

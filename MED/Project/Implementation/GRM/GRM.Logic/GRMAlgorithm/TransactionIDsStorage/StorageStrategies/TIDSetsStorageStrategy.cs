@@ -15,6 +15,16 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return allTransactionIdsCount;
         }
 
+        public IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
+        {
+            return itemTransactionIds;
+        }
+
+        public int GetFirstLevelChildSupport(int itemTransactionIdsCount)
+        {
+            return itemTransactionIdsCount;
+        }
+
         public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)
         {
             return parentTransactionIds.Intersect(parentSiblingTransactionIds).ToList();
