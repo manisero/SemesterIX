@@ -75,6 +75,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TestsBase.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildSupportTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildTransactionIDsTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetTreeRootSupportTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetTreeRootTransactionIDsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GRM.Logic\GRM.Logic.csproj">
