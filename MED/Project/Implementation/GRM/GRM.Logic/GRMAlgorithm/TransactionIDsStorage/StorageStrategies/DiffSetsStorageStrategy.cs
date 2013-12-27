@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 {
@@ -6,22 +7,22 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
     {
         public IList<int> GetTreeRootTransactionIDs(IList<int> allTransactionIds)
         {
-            throw new System.NotImplementedException();
+            return new List<int>();
         }
 
         public int GetTreeRootSupport(int allTransactionIdsCount)
         {
-            throw new System.NotImplementedException();
+            return allTransactionIdsCount;
         }
 
         public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)
         {
-            throw new System.NotImplementedException();
+            return parentSiblingTransactionIds.Except(parentTransactionIds).ToList();
         }
 
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
         {
-            throw new System.NotImplementedException();
+            return parentSupport - childTransactionIds.Count;
         }
     }
 }

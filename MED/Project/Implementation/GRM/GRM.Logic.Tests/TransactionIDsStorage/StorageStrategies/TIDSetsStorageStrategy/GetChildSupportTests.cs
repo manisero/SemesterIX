@@ -11,7 +11,7 @@ namespace GRM.Logic.Tests.TransactionIDsStorage.StorageStrategies.TIDSetsStorage
         }
 
         [Fact]
-        public void retunrs_child_transactionIds_count()
+        public void returns_child_transactionIds_count()
         {
             // Arrange
             var childTransactionIds = new List<int> { 3, 5, 7 };

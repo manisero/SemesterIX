@@ -75,6 +75,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TestsBase.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetChildSupportTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetChildTransactionIDsTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetTreeRootSupportTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetTreeRootTransactionIDsTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildSupportTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildTransactionIDsTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetTreeRootSupportTests.cs" />
