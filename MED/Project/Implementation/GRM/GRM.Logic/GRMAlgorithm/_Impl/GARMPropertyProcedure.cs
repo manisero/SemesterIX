@@ -69,8 +69,9 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             else if (property == GARMPropertyType.Difference)
             {
                 var transactionIds = leftChild.TransactionIDs.Intersect(rightChild.TransactionIDs).ToList();
+                var support = transactionIds.Count;
 
-                if (transactionIds.Count <= minimalSupport)
+                if (support < minimalSupport)
                 {
                     return;
                 }
@@ -81,6 +82,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     {
                         Generators = CopyGenerators(rightChild.Generators),
                         TransactionIDs = transactionIds,
+                        Support = support,
                         DecisionID = decisionId,
                         IsDecisive = transactionIds.Skip(1).All(x => transactionDecisions[x] == decisionId)
                     };

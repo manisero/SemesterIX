@@ -8,7 +8,7 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
 {
     public class ApplyPropertyTests
     {
-        private Node Execute(GARMPropertyType property, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions = null, int minimalSupport = 0)
+        private Node Execute(GARMPropertyType property, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions = null, int minimalSupport = 1)
         {
             // Arrange
             var parent = new Node
@@ -183,6 +183,32 @@ namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
 
             // Assert
             Assert.Equal(new[] { 2, 3 }, leftChild.Children[0].TransactionIDs.ToArray());
+        }
+
+        [Fact]
+        public void on_difference_left_node_childs_Support_is_equal_to_cardinality_of_intersection_of_left_child_and_right_child_TransactionIDs()
+        {
+            // Arrange
+            var leftChild = new Node
+            {
+                Generators = new List<Generator>(),
+                TransactionIDs = new[] { 1, 2, 3 },
+                Children = new List<Node>()
+            };
+
+            var rightChild = new Node
+            {
+                Generators = new List<Generator>(),
+                TransactionIDs = new[] { 2, 3, 5 }
+            };
+
+            var transactionIds = new Dictionary<int, int> { { 2, 2 }, { 3, 3 } };
+
+            // Act
+            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+
+            // Assert
+            Assert.Equal(2, leftChild.Children[0].Support);
         }
 
         [Fact]

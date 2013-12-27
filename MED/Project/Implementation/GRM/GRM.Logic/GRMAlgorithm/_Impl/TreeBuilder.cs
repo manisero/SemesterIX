@@ -24,7 +24,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                         Generators = new List<Generator> { new Generator(new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID }) },
                         IsDecisive = item.IsDecisive,
                         DecisionID = item.DecisionID,
-                        TransactionIDs = item.TransactionIDs
+                        TransactionIDs = item.TransactionIDs,
+                        Support = item.TransactionIDs.Count
                     };
 
                 root.Children.Add(child);
@@ -41,6 +42,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 {
                     Generators = new List<Generator> { new Generator() },
                     TransactionIDs = transactionDecisions.Keys.ToList(),
+                    Support = transactionDecisions.Keys.Count,
                     DecisionID = decisionId,
                     IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
                 };

@@ -8,6 +8,8 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 
         public IList<int> TransactionIDs { get; set; }
 
+        public int Support { get; set; }
+
         public bool IsDecisive { get; set; }
 
         public int DecisionID { get; set; }
