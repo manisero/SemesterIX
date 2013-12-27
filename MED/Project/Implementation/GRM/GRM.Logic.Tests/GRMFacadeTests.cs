@@ -12,12 +12,109 @@ namespace GRM.Logic.Tests
 {
     public class GRMFacadeTests
     {
-        private GRMResult Execute(string dataSet, int minimumSupport, SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
+        private void Execute(string dataSet, int minimumSupport, SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
+            GRMResult result;
+
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(dataSet)))
             {
-                return new GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, minimumSupport, new ProgressInfo());
+                result = new GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, minimumSupport, new ProgressInfo());
             }
+
+            Assert.Equal(2, result.Rules.Count());
+
+            // Assert rule for unacc
+            Assert.True(result.Rules.Any(x => x.Decision == "unacc"));
+            var unaccRule = result.Rules.Single(x => x.Decision == "unacc");
+            Assert.Equal(9, unaccRule.Generators.Count);
+
+            AssertGeneratorIsInRule(unaccRule, new Item { AttributeID = 3, Value = "2" });
+
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 1, Value = "vhigh" },
+                                    new Item { AttributeID = 4, Value = "small" },
+                                    new Item { AttributeID = 5, Value = "med" });
+
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 0, Value = "med" },
+                                    new Item { AttributeID = 1, Value = "high" },
+                                    new Item { AttributeID = 4, Value = "small" },
+                                    new Item { AttributeID = 5, Value = "med" });
+
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 0, Value = "high" },
+                                    new Item { AttributeID = 4, Value = "small" },
+                                    new Item { AttributeID = 5, Value = "med" });
+
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 2, Value = "2" },
+                                    new Item { AttributeID = 3, Value = "more" },
+                                    new Item { AttributeID = 4, Value = "small" });
+
+            AssertGeneratorIsInRule(unaccRule, new Item { AttributeID = 5, Value = "low" });
+
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 1, Value = "vhigh" },
+                                    new Item { AttributeID = 2, Value = "2" },
+                                    new Item { AttributeID = 4, Value = "med" },
+                                    new Item { AttributeID = 5, Value = "med" });
+
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 0, Value = "high" },
+                                    new Item { AttributeID = 2, Value = "2" },
+                                    new Item { AttributeID = 4, Value = "med" },
+                                    new Item { AttributeID = 5, Value = "med" });
+
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 0, Value = "high" },
+                                    new Item { AttributeID = 1, Value = "vhigh" });
+
+            // Assert rule for acc
+            Assert.True(result.Rules.Any(x => x.Decision == "acc"));
+            var accRule = result.Rules.Single(x => x.Decision == "acc");
+            Assert.Equal(7, accRule.Generators.Count);
+
+            AssertGeneratorIsInRule(accRule,
+                                    new Item { AttributeID = 0, Value = "low" },
+                                    new Item { AttributeID = 1, Value = "high" },
+                                    new Item { AttributeID = 3, Value = "4" },
+                                    new Item { AttributeID = 5, Value = "med" });
+
+            AssertGeneratorIsInRule(accRule,
+                                    new Item { AttributeID = 0, Value = "med" },
+                                    new Item { AttributeID = 1, Value = "med" },
+                                    new Item { AttributeID = 3, Value = "4" },
+                                    new Item { AttributeID = 5, Value = "med" });
+
+            AssertGeneratorIsInRule(accRule,
+                                    new Item { AttributeID = 0, Value = "med" },
+                                    new Item { AttributeID = 1, Value = "vhigh" },
+                                    new Item { AttributeID = 3, Value = "4" },
+                                    new Item { AttributeID = 5, Value = "high" });
+
+            AssertGeneratorIsInRule(accRule,
+                                    new Item { AttributeID = 0, Value = "high" },
+                                    new Item { AttributeID = 1, Value = "high" },
+                                    new Item { AttributeID = 3, Value = "4" },
+                                    new Item { AttributeID = 5, Value = "high" });
+
+            AssertGeneratorIsInRule(accRule,
+                                    new Item { AttributeID = 0, Value = "med" },
+                                    new Item { AttributeID = 1, Value = "high" },
+                                    new Item { AttributeID = 3, Value = "4" },
+                                    new Item { AttributeID = 5, Value = "high" });
+
+            AssertGeneratorIsInRule(accRule,
+                                    new Item { AttributeID = 0, Value = "high" },
+                                    new Item { AttributeID = 1, Value = "med" },
+                                    new Item { AttributeID = 3, Value = "4" },
+                                    new Item { AttributeID = 5, Value = "high" });
+
+            AssertGeneratorIsInRule(accRule,
+                                    new Item { AttributeID = 0, Value = "high" },
+                                    new Item { AttributeID = 1, Value = "low" },
+                                    new Item { AttributeID = 3, Value = "4" },
+                                    new Item { AttributeID = 5, Value = "high" });
         }
 
         private void AssertGeneratorIsInRule(Rule rule, params Item[] expectedGenerator)
@@ -26,120 +123,51 @@ namespace GRM.Logic.Tests
         }
 
         [Fact]
-        public void for_car_data_set_finds_rules_for_unacc_and_acc()
+        public void works_properly_for_sorting_by_DescendingSupport_and_TIDSets_storage()
         {
-            // Act
-            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
-
-            // Assert
-            Assert.Equal(2, result.Rules.Count());
-            Assert.True(result.Rules.Any(x => x.Decision == "unacc"));
-            Assert.True(result.Rules.Any(x => x.Decision == "acc"));
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
         }
 
         [Fact]
-        public void for_car_data_set_finds_generators_for_unacc()
+        public void works_properly_for_sorting_by_AscendingSupport_and_TIDSets_storage()
         {
-            // Act
-            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
-
-            // Assert
-            var rule = result.Rules.Single(x => x.Decision == "unacc");
-            Assert.Equal(9, rule.Generators.Count);
-
-            AssertGeneratorIsInRule(rule, new Item { AttributeID = 3, Value = "2" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 1, Value = "vhigh" },
-                                    new Item { AttributeID = 4, Value = "small" },
-                                    new Item { AttributeID = 5, Value = "med" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "med" },
-                                    new Item { AttributeID = 1, Value = "high" },
-                                    new Item { AttributeID = 4, Value = "small" },
-                                    new Item { AttributeID = 5, Value = "med" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "high" },
-                                    new Item { AttributeID = 4, Value = "small" },
-                                    new Item { AttributeID = 5, Value = "med" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 2, Value = "2" },
-                                    new Item { AttributeID = 3, Value = "more" },
-                                    new Item { AttributeID = 4, Value = "small" });
-
-            AssertGeneratorIsInRule(rule, new Item { AttributeID = 5, Value = "low" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 1, Value = "vhigh" },
-                                    new Item { AttributeID = 2, Value = "2" },
-                                    new Item { AttributeID = 4, Value = "med" },
-                                    new Item { AttributeID = 5, Value = "med" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "high" },
-                                    new Item { AttributeID = 2, Value = "2" },
-                                    new Item { AttributeID = 4, Value = "med" },
-                                    new Item { AttributeID = 5, Value = "med" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "high" },
-                                    new Item { AttributeID = 1, Value = "vhigh" });
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.TIDSets);
         }
 
         [Fact]
-        public void for_car_data_set_finds_generators_for_acc()
+        public void works_properly_for_sorting_Lexicographically_and_TIDSets_storage()
         {
-            // Act
-            var result = Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.TIDSets);
+        }
 
-            // Assert
-            var rule = result.Rules.Single(x => x.Decision == "acc");
-            Assert.Equal(7, rule.Generators.Count);
+        [Fact]
+        public void works_properly_for_sorting_ReverseLexicographically_and_TIDSets_storage()
+        {
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.TIDSets);
+        }
 
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "low" },
-                                    new Item { AttributeID = 1, Value = "high" },
-                                    new Item { AttributeID = 3, Value = "4" },
-                                    new Item { AttributeID = 5, Value = "med" });
+        [Fact]
+        public void works_properly_for_sorting_by_DescendingSupport_and_DiffSets_storage()
+        {
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets);
+        }
 
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "med" },
-                                    new Item { AttributeID = 1, Value = "med" },
-                                    new Item { AttributeID = 3, Value = "4" },
-                                    new Item { AttributeID = 5, Value = "med" });
+        [Fact]
+        public void works_properly_for_sorting_by_AscendingSupport_and_DiffSets_storage()
+        {
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.DiffSets);
+        }
 
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "med" },
-                                    new Item { AttributeID = 1, Value = "vhigh" },
-                                    new Item { AttributeID = 3, Value = "4" },
-                                    new Item { AttributeID = 5, Value = "high" });
+        [Fact]
+        public void works_properly_for_sorting_Lexicographically_and_DiffSets_storage()
+        {
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.DiffSets);
+        }
 
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "high" },
-                                    new Item { AttributeID = 1, Value = "high" },
-                                    new Item { AttributeID = 3, Value = "4" },
-                                    new Item { AttributeID = 5, Value = "high" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "med" },
-                                    new Item { AttributeID = 1, Value = "high" },
-                                    new Item { AttributeID = 3, Value = "4" },
-                                    new Item { AttributeID = 5, Value = "high" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "high" },
-                                    new Item { AttributeID = 1, Value = "med" },
-                                    new Item { AttributeID = 3, Value = "4" },
-                                    new Item { AttributeID = 5, Value = "high" });
-
-            AssertGeneratorIsInRule(rule,
-                                    new Item { AttributeID = 0, Value = "high" },
-                                    new Item { AttributeID = 1, Value = "low" },
-                                    new Item { AttributeID = 3, Value = "4" },
-                                    new Item { AttributeID = 5, Value = "high" });
+        [Fact]
+        public void works_properly_for_sorting_ReverseLexicographically_and_DiffSets_storage()
+        {
+            Execute(Resources.CarDataSet, 10, SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.DiffSets);
         }
     }
 }
