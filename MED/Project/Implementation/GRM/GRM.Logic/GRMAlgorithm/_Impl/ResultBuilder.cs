@@ -18,7 +18,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         {
             if (!_buildState.DecisionGenerators.ContainsKey(decisionId))
             {
-                _buildState.DecisionGenerators.Add(decisionId, generators);
+                _buildState.DecisionGenerators.Add(decisionId, new List<Generator>(generators));
             }
             else
             {

@@ -15,7 +15,14 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
             for (int i = 0; i < items.Length - 1; i++)
             {
-                var itemId = GetItemID(buildState, i, items[i]);
+                var item = items[i];
+
+                if (item.Trim().Length == 0)
+                {
+                    continue;
+                }
+
+                var itemId = GetItemID(buildState, i, item);
 
                 AppendItem(buildState, itemId, transactionId, decisionId);
             }

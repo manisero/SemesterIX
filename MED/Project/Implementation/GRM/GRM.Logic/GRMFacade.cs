@@ -5,8 +5,9 @@ using GRM.Logic.GRMAlgorithm;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
-using System.Linq;
 
 namespace GRM.Logic
 {
@@ -14,29 +15,29 @@ namespace GRM.Logic
     {
         private readonly IDataSetRepresentationBuilder _dataSetRepresentationBuilder;
         private readonly IFrequentItemsSelector _frequentItemsSelector;
-        private readonly ISortingStrategyFactory _sortingStrategyFactory;
+        private readonly ISortingStrategy _sortingStrategy;
         private readonly ITreeBuilder _treeBuilder;
         private readonly IResultBuilder _resultBuilder;
         private readonly IGARMProcedure _garmProcedure;
 
-        public GRMFacade()
+        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
             _dataSetRepresentationBuilder = new DataSetRepresentationBuilder(new TransactionProcessor());
             _frequentItemsSelector = new FrequentItemsSelector();
-            _sortingStrategyFactory = new SortingStrategyFactory();
-            _treeBuilder = new TreeBuilder();
+            _sortingStrategy = new SortingStrategyFactory().Create(sortingStrategy);
+
+            var storageStrategy = new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy);
+            _treeBuilder = new TreeBuilder(storageStrategy);
             _resultBuilder = new ResultBuilder();
-            _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure());
+            _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
         }
 
-        public GRMResult ExecuteGRM(string dataFilePath, int minimumSupport, SortingStrategyType sortingStrategy, ProgressInfo progressInfo)
+        public GRMResult ExecuteGRM(Stream dataSetStream, int minimumSupport, ProgressInfo progressInfo)
         {
             progressInfo.BeginTask();
 
-            var stream = new FileStream(dataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-
             progressInfo.BeginStep("Creating data set representation");
-            var representation = _dataSetRepresentationBuilder.Build(stream);
+            var representation = _dataSetRepresentationBuilder.Build(dataSetStream);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Selecting frequent items");
@@ -44,7 +45,7 @@ namespace GRM.Logic
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Sorting frequent items");
-            var sortedFrequentItems = _sortingStrategyFactory.Create(sortingStrategy).Apply(frequentItems);
+            var sortedFrequentItems = _sortingStrategy.Apply(frequentItems);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Building GRM tree");

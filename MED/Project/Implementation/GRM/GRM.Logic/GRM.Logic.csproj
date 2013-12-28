@@ -66,6 +66,12 @@
     <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategyType.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\_Impl\SortingStrategyFactory.cs" />
     <Compile Include="GRMAlgorithm\ITreeBuilder.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\ITransactionIDsStorageStrategy.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\ITransactionIDsStorageStrategyFactory.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\TransactionIDsStorageStrategyType.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\_Impl\TransactionIDsStorageStrategyFactory.cs" />
     <Compile Include="GRMAlgorithm\_Impl\GARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\_Impl\GARMPropertyProcedure.cs" />
     <Compile Include="GRMAlgorithm\Entities\Generator.cs" />
