@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E9B7C3
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GRM.Logic.PerformanceTests", "GRM.Logic.PerformanceTests\GRM.Logic.PerformanceTests.csproj", "{E692B7FF-B37D-4B36-8CBF-5A0C11D67EFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{CB4C7D18-96D9-4016-9903-37215D904603}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB4C7D18-96D9-4016-9903-37215D904603}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB4C7D18-96D9-4016-9903-37215D904603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E692B7FF-B37D-4B36-8CBF-5A0C11D67EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E692B7FF-B37D-4B36-8CBF-5A0C11D67EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E692B7FF-B37D-4B36-8CBF-5A0C11D67EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E692B7FF-B37D-4B36-8CBF-5A0C11D67EFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
