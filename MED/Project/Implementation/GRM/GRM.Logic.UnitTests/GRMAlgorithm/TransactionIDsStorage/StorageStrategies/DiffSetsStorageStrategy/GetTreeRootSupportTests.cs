@@ -1,12 +1,12 @@
 ﻿using Xunit;
 
-namespace GRM.Logic.UnitTests.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy
+namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
 {
     public class GetTreeRootSupportTests
     {
         private int Execute(int allTransactionIdsCount)
         {
-            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().GetTreeRootSupport(allTransactionIdsCount);
+            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().GetTreeRootSupport(allTransactionIdsCount);
         }
 
         [Fact]

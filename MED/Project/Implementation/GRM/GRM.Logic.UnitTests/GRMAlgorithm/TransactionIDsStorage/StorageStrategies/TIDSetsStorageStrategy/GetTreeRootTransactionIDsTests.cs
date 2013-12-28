@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using Xunit;
 
-namespace GRM.Logic.UnitTests.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
+namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy
 {
     public class GetTreeRootTransactionIDsTests
     {
         private IList<int> Execute(IList<int> allTransactionIds)
         {
-            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().GetTreeRootTransactionIDs(allTransactionIds);
+            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().GetTreeRootTransactionIDs(allTransactionIds);
         }
 
         [Fact]
-        public void returns_empty_set()
+        public void returns_back_all_transaction_IDs()
         {
             // Arrange
             var allTransactionIds = new List<int> { 3, 5, 7 };
@@ -20,7 +20,7 @@ namespace GRM.Logic.UnitTests.TransactionIDsStorage.StorageStrategies.DiffSetsSt
             var result = Execute(allTransactionIds);
 
             // Assert
-            Assert.Equal(new List<int>(), result);
+            Assert.Equal(allTransactionIds, result);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Xunit;
 
-namespace GRM.Logic.UnitTests.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
+namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy
 {
     public class GetFirstLevelChildSupportTests
     {
         private int Execute(int itemTransactionIdsCount)
         {
-            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().GetFirstLevelChildSupport(itemTransactionIdsCount);
+            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().GetFirstLevelChildSupport(itemTransactionIdsCount);
         }
 
         [Fact]

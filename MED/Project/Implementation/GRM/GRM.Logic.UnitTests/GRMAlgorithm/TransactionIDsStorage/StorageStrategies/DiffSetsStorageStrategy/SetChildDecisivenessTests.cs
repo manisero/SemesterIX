@@ -2,7 +2,7 @@
 using GRM.Logic.GRMAlgorithm.Entities;
 using Xunit;
 
-namespace GRM.Logic.UnitTests.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
+namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
 {
     public class SetChildDecisivenessTests
     {
