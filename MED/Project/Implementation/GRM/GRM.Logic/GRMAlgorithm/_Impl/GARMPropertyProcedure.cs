@@ -27,12 +27,12 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 var leftChildTransactionId = GetTransactionID(leftChildTransactionIds, leftIndex);
                 var rightChildTransactionId = GetTransactionID(rightChildTransactionIds, rightIndex);
 
-                if (leftChildTransactionId > rightChildTransactionId)
+                if (leftChildTransactionId == null || leftChildTransactionId > rightChildTransactionId)
                 {
                     rightToLeftSubsumption = false;
                     rightIndex++;
                 }
-                else if (rightChildTransactionId > leftChildTransactionId)
+                else if (rightChildTransactionId == null || rightChildTransactionId > leftChildTransactionId)
                 {
                     leftToRightSubsumption = false;
                     leftIndex++;
