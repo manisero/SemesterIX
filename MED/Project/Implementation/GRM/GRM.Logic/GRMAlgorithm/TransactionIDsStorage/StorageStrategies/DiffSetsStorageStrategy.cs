@@ -16,7 +16,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return allTransactionIdsCount;
         }
 
-        public void SetTreeRootDecisiveness(IDictionary<int, int> transactionDecisions, Node root)
+        public void SetTreeRootDecisiveness(Node root, IDictionary<int, int> transactionDecisions)
         {
             var decisionId = transactionDecisions.Values.First();
 
@@ -34,6 +34,27 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
         public int GetFirstLevelChildSupport(int itemTransactionIdsCount)
         {
             return itemTransactionIdsCount;
+        }
+
+        public IDictionary<int, IList<int>> GetFirstLevelChildDecisionTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
+        {
+            var result = new Dictionary<int, IList<int>>();
+
+            foreach (var transactionId in itemTransactionIds)
+            {
+                var decisionId = transactionDecisions[transactionId];
+
+                if (!result.ContainsKey(decisionId))
+                {
+                    result.Add(decisionId, new List<int> { transactionId });
+                }
+                else
+                {
+                    result[decisionId].Add(transactionId);
+                }
+            }
+
+            return result;
         }
 
         public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)

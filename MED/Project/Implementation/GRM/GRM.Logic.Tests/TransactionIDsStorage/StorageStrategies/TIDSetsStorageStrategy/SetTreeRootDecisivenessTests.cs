@@ -6,20 +6,20 @@ namespace GRM.Logic.Tests.TransactionIDsStorage.StorageStrategies.TIDSetsStorage
 {
     public class SetTreeRootDecisivenessTests
     {
-        private void Execute(IDictionary<int, int> transactionDecisions, Node root)
+        private void Execute(Node root, IDictionary<int, int> transactionDecisions)
         {
-            new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().SetTreeRootDecisiveness(transactionDecisions, root);
+            new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().SetTreeRootDecisiveness(root, transactionDecisions);
         }
 
         [Fact]
         public void sets_decisiveness_for_equal_decisions()
         {
             // Arrange
-            var transactionDecisions = new Dictionary<int, int> { { 1, 1 }, { 2, 1 }, { 3, 1 } };
             var root = new Node();
+            var transactionDecisions = new Dictionary<int, int> { { 1, 1 }, { 2, 1 }, { 3, 1 } };
 
             // Act
-            Execute(transactionDecisions, root);
+            Execute(root, transactionDecisions);
 
             // Assert
             Assert.True(root.IsDecisive);
@@ -30,11 +30,11 @@ namespace GRM.Logic.Tests.TransactionIDsStorage.StorageStrategies.TIDSetsStorage
         public void sets_decisiveness_for_not_equal_decisions()
         {
             // Arrange
-            var transactionDecisions = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 1 } };
             var root = new Node();
+            var transactionDecisions = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 1 } };
 
             // Act
-            Execute(transactionDecisions, root);
+            Execute(root, transactionDecisions);
 
             // Assert
             Assert.False(root.IsDecisive);
@@ -45,11 +45,11 @@ namespace GRM.Logic.Tests.TransactionIDsStorage.StorageStrategies.TIDSetsStorage
         public void does_not_set_DecisionTransactionIDs()
         {
             // Arrange
-            var transactionDecisions = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 1 } };
             var root = new Node();
+            var transactionDecisions = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 1 } };
 
             // Act
-            Execute(transactionDecisions, root);
+            Execute(root, transactionDecisions);
 
             // Assert
             Assert.Null(root.DecisionTransactionIDs);

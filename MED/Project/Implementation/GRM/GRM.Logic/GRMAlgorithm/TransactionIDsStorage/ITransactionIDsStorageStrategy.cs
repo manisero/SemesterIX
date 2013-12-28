@@ -9,11 +9,13 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
 
         int GetTreeRootSupport(int allTransactionIdsCount);
 
-        void SetTreeRootDecisiveness(IDictionary<int, int> transactionDecisions, Node root);
+        void SetTreeRootDecisiveness(Node root, IDictionary<int, int> transactionDecisions);
 
         IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds);
 
         int GetFirstLevelChildSupport(int itemTransactionIdsCount);
+
+        IDictionary<int, IList<int>> GetFirstLevelChildDecisionTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions);
         
         IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds);
 
