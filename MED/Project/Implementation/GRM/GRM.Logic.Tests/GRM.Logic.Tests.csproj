@@ -82,12 +82,14 @@
     <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetFirstLevelChildTransactionIDsTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetTreeRootSupportTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetTreeRootTransactionIDsTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\SetTreeRootDecisivenessTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildSupportTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildTransactionIDsTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetFirstLevelChildSupportTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetFirstLevelChildTransactionIDsTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetTreeRootSupportTests.cs" />
     <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetTreeRootTransactionIDsTests.cs" />
+    <Compile Include="TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\SetTreeRootDecisivenessTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GRM.Logic\GRM.Logic.csproj">

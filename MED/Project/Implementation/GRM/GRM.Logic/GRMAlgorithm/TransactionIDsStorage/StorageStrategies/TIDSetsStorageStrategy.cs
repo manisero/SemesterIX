@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 {
@@ -13,6 +14,14 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
         public int GetTreeRootSupport(int allTransactionIdsCount)
         {
             return allTransactionIdsCount;
+        }
+
+        public void SetTreeRootDecisiveness(IDictionary<int, int> transactionDecisions, Node root)
+        {
+            var decisionId = transactionDecisions.Values.First();
+
+            root.DecisionID = decisionId;
+            root.IsDecisive = transactionDecisions.Values.All(x => x == decisionId);
         }
 
         public IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)

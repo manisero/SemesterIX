@@ -15,6 +15,8 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 
         public int DecisionID { get; set; }
 
+        public IDictionary<int, IList<int>> DecisionTransactionIDs { get; set; }
+
         public IList<Node> Children { get; set; }
 
         public Node()
