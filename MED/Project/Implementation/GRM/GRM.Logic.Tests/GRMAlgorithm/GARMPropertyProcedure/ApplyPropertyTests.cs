@@ -5,7 +5,7 @@ using GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies;
 using Xunit;
 using System.Linq;
 
-namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
+namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
 {
     public class ApplyPropertyTests
     {

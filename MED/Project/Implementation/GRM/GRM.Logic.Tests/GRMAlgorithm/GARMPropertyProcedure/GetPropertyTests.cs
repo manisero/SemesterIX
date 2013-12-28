@@ -2,7 +2,7 @@
 using GRM.Logic.GRMAlgorithm.Entities;
 using Xunit;
 
-namespace GRM.Logic.Tests.GRMAlgorithm.GARMPropertyProcedure
+namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
 {
     public class GetPropertyTests
     {

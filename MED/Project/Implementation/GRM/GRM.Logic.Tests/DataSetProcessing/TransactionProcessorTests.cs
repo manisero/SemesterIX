@@ -4,7 +4,7 @@ using GRM.Logic.DataSetProcessing._Impl;
 using Xunit;
 using System.Linq;
 
-namespace GRM.Logic.Tests.DataSetProcessing
+namespace GRM.Logic.UnitTests.DataSetProcessing
 {
     public class TransactionProcessorTests
     {

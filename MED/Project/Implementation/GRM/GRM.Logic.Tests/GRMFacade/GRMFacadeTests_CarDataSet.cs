@@ -8,7 +8,7 @@ using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using Xunit;
 using System.Linq;
 
-namespace GRM.Logic.Tests.GRMFacade
+namespace GRM.Logic.UnitTests.GRMFacade
 {
     public class GRMFacadeTests_CarDataSet
     {

@@ -3,7 +3,7 @@ using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.DataSetProcessing._Impl;
 using Xunit;
 
-namespace GRM.Logic.Tests.DataSetProcessing
+namespace GRM.Logic.UnitTests.DataSetProcessing
 {
     public class FrequentItemsSelectorTests
     {

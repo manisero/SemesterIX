@@ -1,6 +1,6 @@
 ﻿using AutoMoq;
 
-namespace GRM.Logic.Tests
+namespace GRM.Logic.UnitTests
 {
     public abstract class TestsBase
     {

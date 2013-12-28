@@ -6,7 +6,7 @@ using GRM.Logic.DataSetProcessing._Impl;
 using Moq;
 using Xunit;
 
-namespace GRM.Logic.Tests.DataSetProcessing
+namespace GRM.Logic.UnitTests.DataSetProcessing
 {
     public class DataSetRepresentationBuilderTests : TestsBase
     {

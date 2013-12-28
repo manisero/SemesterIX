@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace GRM.Logic.Tests.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy
+namespace GRM.Logic.UnitTests.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy
 {
     public class GetFirstLevelChildSupportTests
     {

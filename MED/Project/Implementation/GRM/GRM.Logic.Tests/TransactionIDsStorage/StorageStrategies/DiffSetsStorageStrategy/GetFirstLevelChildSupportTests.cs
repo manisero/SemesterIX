@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace GRM.Logic.Tests.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
+namespace GRM.Logic.UnitTests.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
 {
     public class GetFirstLevelChildSupportTests
     {
