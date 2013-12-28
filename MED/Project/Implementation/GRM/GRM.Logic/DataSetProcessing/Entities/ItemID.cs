@@ -5,5 +5,10 @@
         public int AttributeID { get; set; }
 
         public int ValueID { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("({0},{1})", AttributeID, ValueID);
+        }
     }
 }
