@@ -34,6 +34,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                         Generators = new List<Generator> { new Generator(new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID }) },
                         IsDecisive = item.IsDecisive,
                         DecisionID = item.DecisionID,
+                        DecisionTransactionIDs = _transactionIdsStorageStrategy.GetFirstLevelChildDecisionTransactionIDs(item.TransactionIDs, transactionDecisions),
                         TransactionIDs = childTransactionIds,
                         Support = _transactionIdsStorageStrategy.GetFirstLevelChildSupport(item.TransactionIDs.Count)
                     };
@@ -46,16 +47,16 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private Node CreateRoot(IList<int> transactionIds, IDictionary<int, int> transactionDecisions)
         {
-            var decisionId = transactionDecisions.Values.First();
-
-            return new Node
+            var root = new Node
                 {
                     Generators = new List<Generator> { new Generator() },
                     TransactionIDs = _transactionIdsStorageStrategy.GetTreeRootTransactionIDs(transactionIds),
-                    Support = _transactionIdsStorageStrategy.GetTreeRootSupport(transactionIds.Count),
-                    DecisionID = decisionId,
-                    IsDecisive = transactionDecisions.Values.All(x => x == decisionId)
+                    Support = _transactionIdsStorageStrategy.GetTreeRootSupport(transactionIds.Count)
                 };
+
+            _transactionIdsStorageStrategy.SetTreeRootDecisiveness(root, transactionDecisions);
+
+            return root;
         }
     }
 }

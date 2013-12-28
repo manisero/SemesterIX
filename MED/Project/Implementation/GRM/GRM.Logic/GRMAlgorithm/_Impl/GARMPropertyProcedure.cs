@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
-using System.Linq;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
@@ -83,17 +82,15 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 {
                     return;
                 }
-
-                var decisionId = transactionDecisions[newChildTransactionIds[0]];
                 
                 var newChild = new Node
                     {
                         Generators = CopyGenerators(rightChild.Generators),
                         TransactionIDs = newChildTransactionIds,
-                        Support = newChildSupport,
-                        DecisionID = decisionId,
-                        IsDecisive = newChildTransactionIds.Skip(1).All(x => transactionDecisions[x] == decisionId)
+                        Support = newChildSupport
                     };
+
+                _transactionIdsStorageStrategy.SetChildDecisiveness(newChild, leftChild.DecisionTransactionIDs, transactionDecisions);
 
                 leftChild.Children.Add(newChild);
             }
