@@ -1847,4 +1847,12 @@ low,low,5more,more,big,low,unacc
 low,low,5more,more,big,med,good
 low,low,5more,more,big,high,vgood</value>
   </data>
+  <data name="ResearchReportDataSet" xml:space="preserve">
+    <value>a,b,c,d,e, ,g, ,-
+a,b,c,d,e,f, , ,+
+a,b,c,d,e, , ,h,-
+a,b, ,d,e, , , ,+
+a, ,c,d,e, , ,h,-
+ ,b,c, ,e, , , ,+</value>
+  </data>
 </root>

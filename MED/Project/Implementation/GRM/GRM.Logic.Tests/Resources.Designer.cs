@@ -83,5 +83,19 @@ namespace GRM.Logic.Tests {
                 return ResourceManager.GetString("CarDataSet", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a,b,c,d,e, ,g, ,-
+        ///a,b,c,d,e,f, , ,+
+        ///a,b,c,d,e, , ,h,-
+        ///a,b, ,d,e, , , ,+
+        ///a, ,c,d,e, , ,h,-
+        /// ,b,c, ,e, , , ,+.
+        /// </summary>
+        internal static string ResearchReportDataSet {
+            get {
+                return ResourceManager.GetString("ResearchReportDataSet", resourceCulture);
+            }
+        }
     }
 }

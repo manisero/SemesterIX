@@ -47,7 +47,6 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private bool AreGeneratorsConflicted(IEnumerable<Generator> generators1, IEnumerable<Generator> generators2)
         {
-            // TODO: Optimize?
             foreach (var generator1 in generators1)
             {
                 foreach (var itemId1 in generator1)

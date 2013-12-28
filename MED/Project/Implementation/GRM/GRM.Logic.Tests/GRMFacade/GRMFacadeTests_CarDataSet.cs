@@ -8,17 +8,17 @@ using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using Xunit;
 using System.Linq;
 
-namespace GRM.Logic.Tests
+namespace GRM.Logic.Tests.GRMFacade
 {
-    public class GRMFacadeTests
+    public class GRMFacadeTests_CarDataSet
     {
-        private void Execute(string dataSet, int minimumSupport, SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
+        private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
             GRMResult result;
 
-            using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(dataSet)))
+            using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(Resources.CarDataSet)))
             {
-                result = new GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, minimumSupport, new ProgressInfo());
+                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, 10, new ProgressInfo());
             }
 
             Assert.Equal(2, result.Rules.Count());
@@ -125,49 +125,49 @@ namespace GRM.Logic.Tests
         [Fact]
         public void works_properly_for_sorting_by_DescendingSupport_and_TIDSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
+            Execute(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
         }
 
         [Fact]
         public void works_properly_for_sorting_by_AscendingSupport_and_TIDSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.TIDSets);
+            Execute(SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.TIDSets);
         }
 
         [Fact]
         public void works_properly_for_sorting_Lexicographically_and_TIDSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.TIDSets);
+            Execute(SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.TIDSets);
         }
 
         [Fact]
         public void works_properly_for_sorting_ReverseLexicographically_and_TIDSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.TIDSets);
+            Execute(SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.TIDSets);
         }
 
         [Fact]
         public void works_properly_for_sorting_by_DescendingSupport_and_DiffSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets);
+            Execute(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets);
         }
 
         [Fact]
         public void works_properly_for_sorting_by_AscendingSupport_and_DiffSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.DiffSets);
+            Execute(SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.DiffSets);
         }
 
         [Fact]
         public void works_properly_for_sorting_Lexicographically_and_DiffSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.DiffSets);
+            Execute(SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.DiffSets);
         }
 
         [Fact]
         public void works_properly_for_sorting_ReverseLexicographically_and_DiffSets_storage()
         {
-            Execute(Resources.CarDataSet, 10, SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.DiffSets);
+            Execute(SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.DiffSets);
         }
     }
 }

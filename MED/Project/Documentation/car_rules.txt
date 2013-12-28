@@ -1,24 +1,23 @@
 ====================
 Decision: 'unacc':
 --------------------
-,,,2
-,vhigh,,,small,med
-med,high,,,small,med
-high,,,,small,med
-,,2,more,small
-,,,,,low
-,vhigh,2,,med,med
-high,,2,,med,med
 high,vhigh
+high,,2,,med,med
+high,,,,small,med
+med,high,,,small,med
+,vhigh,2,,med,med
+,vhigh,,,small,med
+,,2,more,small
+,,,2
+,,,,,low
 
 ====================
 Decision: 'acc':
 --------------------
-low,high,,4,,med
-med,med,,4,,med
-med,vhigh,,4,,high
 high,high,,4,,high
-med,high,,4,,high
 high,med,,4,,high
 high,low,,4,,high
+med,high,,4,,high
+med,med,,4,,med
+low,high,,4,,med
 
