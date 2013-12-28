@@ -85,12 +85,12 @@ namespace GRM.Logic.Tests {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a,b,c,d,e, ,g, ,-
-        ///a,b,c,d,e,f, , ,+
+        ///   Looks up a localized string similar to a,b,c,d,e, ,g, ,+
+        ///a,b,c,d,e,f, , ,-
         ///a,b,c,d,e, , ,h,-
-        ///a,b, ,d,e, , , ,+
-        ///a, ,c,d,e, , ,h,-
-        /// ,b,c, ,e, , , ,+.
+        ///a,b, ,d,e, , , ,-
+        ///a, ,c,d,e, , ,h,+
+        /// ,b,c, ,e, , , ,-.
         /// </summary>
         internal static string ResearchReportDataSet {
             get {
