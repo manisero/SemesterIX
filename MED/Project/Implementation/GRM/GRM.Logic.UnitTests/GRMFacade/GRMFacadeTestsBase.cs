@@ -20,17 +20,18 @@ namespace GRM.Logic.UnitTests.GRMFacade
         {
             // Act
             GRMResult result;
+            var progressInfo = new ProgressInfo();
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
             {
-                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, MinimumSupport, new ProgressInfo());
+                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, MinimumSupport, progressInfo);
             }
 
             // Assert
-            AssertResult(result);
+            AssertResult(result, progressInfo);
         }
 
-        protected abstract void AssertResult(GRMResult result);
+        protected abstract void AssertResult(GRMResult result, ProgressInfo progressInfo);
 
         protected void AssertGeneratorIsInRule(Rule rule, params Item[] expectedGenerator)
         {

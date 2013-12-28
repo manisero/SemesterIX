@@ -1,4 +1,5 @@
-﻿using GRM.Logic.DataSetProcessing.Entities;
+﻿using GRM.Logic.DataSetProcessing;
+using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using Xunit;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
             get { return 10; }
         }
 
-        protected override void AssertResult(GRMResult result)
+        protected override void AssertResult(GRMResult result, ProgressInfo progressInfo)
         {
             Assert.Equal(2, result.Rules.Count());
 
