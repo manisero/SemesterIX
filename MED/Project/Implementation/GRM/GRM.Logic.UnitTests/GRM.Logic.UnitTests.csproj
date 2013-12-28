@@ -67,6 +67,7 @@
     <Compile Include="DataSetProcessing\TransactionProcessorTests.cs" />
     <Compile Include="GRMAlgorithm\GARMPropertyProcedure\ApplyPropertyTests.cs" />
     <Compile Include="GRMAlgorithm\GARMPropertyProcedure\GetPropertyTests.cs" />
+    <Compile Include="GRMFacade\GRMFacadeTestsBase.cs" />
     <Compile Include="GRMFacade\GRMFacadeTests_ResearchReportDataSet.cs" />
     <Compile Include="GRMFacade\GRMFacadeTests_CarDataSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

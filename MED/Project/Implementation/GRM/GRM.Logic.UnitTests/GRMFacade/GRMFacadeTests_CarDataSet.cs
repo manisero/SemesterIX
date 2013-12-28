@@ -1,28 +1,24 @@
-﻿using System.IO;
-using System.Text;
-using GRM.Logic.DataSetProcessing;
-using GRM.Logic.DataSetProcessing.Entities;
+﻿using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
-using GRM.Logic.GRMAlgorithm.ItemsSorting;
-using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using Xunit;
 using System.Linq;
 
 namespace GRM.Logic.UnitTests.GRMFacade
 {
-    public class GRMFacadeTests_CarDataSet
+    public class GRMFacadeTests_CarDataSet : GRMFacadeTestsBase
     {
-        private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
+        protected override string DataSet
         {
-            // Act
-            GRMResult result;
+            get { return Resources.CarDataSet; }
+        }
 
-            using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(Resources.CarDataSet)))
-            {
-                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, 10, new ProgressInfo());
-            }
+        protected override int MinimumSupport
+        {
+            get { return 10; }
+        }
 
-            // Assert
+        protected override void AssertResult(GRMResult result)
+        {
             Assert.Equal(2, result.Rules.Count());
 
             // Assert rule for unacc
@@ -154,59 +150,6 @@ namespace GRM.Logic.UnitTests.GRMFacade
                                     new Item { AttributeID = 1, Value = "low" },
                                     new Item { AttributeID = 3, Value = "4" },
                                     new Item { AttributeID = 5, Value = "high" });
-        }
-
-        private void AssertGeneratorIsInRule(Rule rule, params Item[] expectedGenerator)
-        {
-            Assert.True(rule.Generators.Any(x => x.Count() == expectedGenerator.Length && x.All(expectedGenerator.Contains)));
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_by_DescendingSupport_and_TIDSets_storage()
-        {
-            Execute(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.TIDSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_by_AscendingSupport_and_TIDSets_storage()
-        {
-            Execute(SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.TIDSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_Lexicographically_and_TIDSets_storage()
-        {
-            Execute(SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.TIDSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_ReverseLexicographically_and_TIDSets_storage()
-        {
-            Execute(SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.TIDSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_by_DescendingSupport_and_DiffSets_storage()
-        {
-            Execute(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_by_AscendingSupport_and_DiffSets_storage()
-        {
-            Execute(SortingStrategyType.AscendingSupport, TransactionIDsStorageStrategyType.DiffSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_Lexicographically_and_DiffSets_storage()
-        {
-            Execute(SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.DiffSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_ReverseLexicographically_and_DiffSets_storage()
-        {
-            Execute(SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.DiffSets);
         }
     }
 }
