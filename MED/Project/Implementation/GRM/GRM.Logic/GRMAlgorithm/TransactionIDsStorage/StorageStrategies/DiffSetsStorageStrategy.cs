@@ -66,5 +66,24 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
         {
             return parentSupport - childTransactionIds.Count;
         }
+
+        public void SetChildDecisiveness(Node child, IDictionary<int, IList<int>> parentDecisionTransactionIds, IDictionary<int, int> transactionDecisions)
+        {
+            var decisionTransactionIds = new Dictionary<int, IList<int>>();
+
+            foreach (var parentTransactionIds in parentDecisionTransactionIds)
+            {
+                var transactionIds = parentTransactionIds.Value.Except(child.TransactionIDs).ToList();
+
+                if (transactionIds.Count != 0)
+                {
+                    decisionTransactionIds.Add(parentTransactionIds.Key, transactionIds);
+                }
+            }
+
+            child.DecisionTransactionIDs = decisionTransactionIds;
+            child.DecisionID = decisionTransactionIds.Keys.First();
+            child.IsDecisive = decisionTransactionIds.Count == 1;
+        }
     }
 }

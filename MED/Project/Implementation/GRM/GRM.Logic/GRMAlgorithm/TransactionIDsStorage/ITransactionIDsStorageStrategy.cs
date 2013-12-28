@@ -20,5 +20,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
         IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds);
 
         int GetChildSupport(int parentSupport, IList<int> childTransactionIds);
+
+        void SetChildDecisiveness(Node child, IDictionary<int, IList<int>> parentDecisionTransactionIds, IDictionary<int, int> transactionDecisions);
     }
 }
