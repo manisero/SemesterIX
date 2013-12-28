@@ -14,6 +14,7 @@ namespace GRM.Logic.Tests.GRMFacade
     {
         private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
+            // Act
             GRMResult result;
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(Resources.CarDataSet)))
@@ -21,6 +22,7 @@ namespace GRM.Logic.Tests.GRMFacade
                 result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, 10, new ProgressInfo());
             }
 
+            // Assert
             Assert.Equal(2, result.Rules.Count());
 
             // Assert rule for unacc

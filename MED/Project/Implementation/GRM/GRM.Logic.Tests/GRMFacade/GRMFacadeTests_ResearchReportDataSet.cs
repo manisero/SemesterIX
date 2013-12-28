@@ -14,6 +14,7 @@ namespace GRM.Logic.Tests.GRMFacade
     {
         private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
+            // Act
             GRMResult result;
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(Resources.ResearchReportDataSet)))
@@ -21,30 +22,20 @@ namespace GRM.Logic.Tests.GRMFacade
                 result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, 3, new ProgressInfo());
             }
 
-            //Assert.Equal(2, result.Rules.Count());
+            // Assert
+            Assert.Equal(1, result.Rules.Count());
 
-            //// Assert rule for unacc
-            //Assert.True(result.Rules.Any(x => x.Decision == "unacc"));
-            //var unaccRule = result.Rules.Single(x => x.Decision == "unacc");
-            //Assert.Equal(9, unaccRule.Generators.Count);
+            Assert.True(result.Rules.Any(x => x.Decision == "+"));
+            var unaccRule = result.Rules.Single(x => x.Decision == "+");
+            Assert.Equal(2, unaccRule.Generators.Count);
 
-            //AssertGeneratorIsInRule(unaccRule, new Item { AttributeID = 3, Value = "2" });
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 0, Value = "a" },
+                                    new Item { AttributeID = 1, Value = "b" });
 
-            //AssertGeneratorIsInRule(unaccRule,
-            //                        new Item { AttributeID = 1, Value = "vhigh" },
-            //                        new Item { AttributeID = 4, Value = "small" },
-            //                        new Item { AttributeID = 5, Value = "med" });
-
-            //// Assert rule for acc
-            //Assert.True(result.Rules.Any(x => x.Decision == "acc"));
-            //var accRule = result.Rules.Single(x => x.Decision == "acc");
-            //Assert.Equal(7, accRule.Generators.Count);
-
-            //AssertGeneratorIsInRule(accRule,
-            //                        new Item { AttributeID = 0, Value = "low" },
-            //                        new Item { AttributeID = 1, Value = "high" },
-            //                        new Item { AttributeID = 3, Value = "4" },
-            //                        new Item { AttributeID = 5, Value = "med" });
+            AssertGeneratorIsInRule(unaccRule,
+                                    new Item { AttributeID = 1, Value = "b" },
+                                    new Item { AttributeID = 3, Value = "d" });
         }
 
         private void AssertGeneratorIsInRule(Rule rule, params Item[] expectedGenerator)
