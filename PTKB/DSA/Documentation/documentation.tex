@@ -4,6 +4,7 @@
 \usepackage{fullpage}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{listings}
 
 \title{Dokumentacja końcowa projektu \\ \Large{Algorytm DSA}}
 \author{Jakub Turek}
@@ -130,6 +131,85 @@
             \end{equation*}
             
             \noindent co należało udowodnić.
+
+    \section*{Implementacja}
+    
+        Implementacja została oparta o~sugestie zawarte w~załącznikach do dokumentu FIPS PUB 186. Przedstawiony został w~nich algorytm generacji kluczy. Dodatkowo, do implementacji wykorzystane zostały komponenty biblioteki \verb+PyCrypto+\footnote{\url{https://www.dlitz.net/software/pycrypto/}.}. Dzięki temu możliwe było uniknięcie implementacji funkcjonalności, które są przedmiotami innych projektów, takich jak funkcja skrótu \verb+SHA+ czy test pierwszości Millera-Rabina.
+        
+        \paragraph{Generacja liczb p~i~q} Załącznik drugi (punkt 2.2) do dokumentu FIPS PUB 186 sugeruje, aby w pierwszej kolejności wygenerować liczbę $q$, w~oparciu o~dowolną sekwencję długości przynajmniej 160 bitów nazwaną ziarnem. 
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+seed = os.urandom(20)
+
+
+hash1 = SHA.new(seed).digest()
+hash2 = SHA.new(long_to_bytes(
+    bytes_to_long(seed)+1)).digest()
+    
+q = 0L
+
+for i in range(0, 20):
+    c = ord(hash1[i]) ^ ord(hash2[i])
+
+    if i == 0:
+        c |= 128
+
+    if i == 19:
+        c |= 1
+
+    q = q * 256 + c
+
+
+while not isPrime(q):
+    q += 2
+
+if pow(2, 159L) < q < pow(2, 160L):
+    return seed, q
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Wybieramy losowy ciąg znaków o długości 20 bajtów (160 bitów). \\
+                    
+                    \noindent Obliczamy funkcję skrótu dla ziarna...
+                    
+                    \noindent ... oraz ziarna powiększonego o~1. \\ \\ \\ \\
+                                        
+                    \noindent Dla każdego bajtu ziarna...
+                    
+                    \noindent ... obliczamy wartość funkcji XOR. \\
+                    
+                    \noindent Jeżeli najbardziej znaczący bajt...
+                    
+                    \noindent ... to ustawiamy jeden na pierwszym bicie. \\
+                    
+                    \noindent Jeżeli najmniej znaczący bajt...
+                    
+                    \noindent ... to ustawiamy jeden na ostatnim bicie. \\
+                    
+                    \noindent Przesuwamy obliczoną liczbę o~bajt w~lewo i~dołączamy z~prawej obliczony w~pętli bajt. \\
+                    
+                    \noindent Dodajemy kolejne dwójki (nie zmienia się ostatni bit) aż do uzyskania liczby pierwszej. \\
+                    
+                    \noindent Jeżeli uzyskane $q$ zawiera się w~narzuconym przedziale to zwracamy ziarno oraz $q$.
+                    
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
+        
+        W~stosunku do części algorytmu generacji $q$ przedstawionej w~krokach 1. - 5. zastosowano jedną optymalizację. W~przypadku, gdy obliczone w~operacji XOR $q$ nie jest pierwsze, wtedy poszukiwana jest kolejna (większa od znalezionej) liczba pierwsza. W~oryginalnym dokumencie algorytm byłby powtarzany od nowa.
+        
+        Kolejnym krokiem jest generacja liczby $p$. 
+
             
     \section*{Testy}
     

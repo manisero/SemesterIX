@@ -17,31 +17,31 @@ class DSAKey:
             raise ValueError('Key is too short!')
 
         while True:
-            s, self.q = self._generate_q()
+            seed, self.q = self._generate_q()
             n = divmod(bits - 1, 160)[0]
-            c, N, v = 0, 2, {}
+            counter, offset, v = 0, 2, {}
             b = self.q >> 5 & 15
-            powb = pow(2L, b)
-            powL1 = pow(2L, bits - 1)
+            two_power_b = pow(2L, b)
+            two_power_bits_minus_one = pow(2L, bits - 1)
 
-            while c < 4096:
+            while counter < 4096:
                 for k in range(0, n+1):
-                    v[k] = bytes_to_long(SHA.new(s + str(N) + str(k)).digest())
+                    v[k] = bytes_to_long(SHA.new(seed + str(offset) + str(k)).digest())
 
-                w = v[n] % powb
+                w = v[n] % two_power_b
 
                 for k in range(n - 1, -1, -1):
                     w = (w << 160L) + v[k]
 
-                x = w + powL1
+                x = w + two_power_bits_minus_one
                 self.p = x - (x % (2 * self.q) - 1)
 
-                if powL1 <= self.p and isPrime(self.p):
+                if two_power_bits_minus_one <= self.p and isPrime(self.p):
                     break
 
-                c, N = c + 1, N + n + 1
+                counter, offset = counter + 1, offset + n + 1
 
-            if c < 4069:
+            if counter < 4069:
                 break
 
         power = divmod(self.p - 1, self.q)[0]
@@ -62,9 +62,9 @@ class DSAKey:
         self.y = pow(self.g, self.x, self.p)
 
     def _generate_q(self):
-        s = os.urandom(20)
-        hash1 = SHA.new(s).digest()
-        hash2 = SHA.new(long_to_bytes(bytes_to_long(s)+1)).digest()
+        seed = os.urandom(20)
+        hash1 = SHA.new(seed).digest()
+        hash2 = SHA.new(long_to_bytes(bytes_to_long(seed)+1)).digest()
         q = 0L
 
         for i in range(0, 20):
@@ -82,7 +82,7 @@ class DSAKey:
             q += 2
 
         if pow(2, 159L) < q < pow(2, 160L):
-            return s, q
+            return seed, q
 
         raise ValueError('Bad q value generated')
 
