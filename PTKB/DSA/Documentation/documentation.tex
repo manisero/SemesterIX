@@ -21,10 +21,8 @@
         
     \subsection*{Algorytm}
     
-        \paragraph*{Generacja kluczy}
-    
-        Wybierz parametry:
-            
+        \paragraph*{Generacja kluczy} Należy wybrać parametry:
+                    
         \begin{itemize}
             \item Liczba pierwsza $p$ w~pierścieniu reszt modulo $a$, gdzie $2^{L-1} < p < 2^{L}$ oraz $512 \leq L \leq 1024$ i~$L$ jest wielokrotnością 64.
             \item Liczba pierwsza $q$ będąca dzielnikiem liczby $p - 1$ w~pierścieniu reszt modulo $a$, gdzie $2^{159} < q < 2^{160}$.
@@ -48,5 +46,23 @@
         \noindent gdzie $k^{-1}$ jest odwrotnością liczby $k$ w~pierścieniu reszt modulo $q$ (czyt. $k \cdot k^{-1} \equiv 1 \pmod q$). 
         
         Opcjonalnie można zweryfikować, czy $r \neq 0$ i~$s \neq 0$. Jeżeli jeden z~warunków nie jest spełniony, należy wygenerować podpis od nowa. Sytuacja taka nie powinna się jednak zdarzyć dla prawidłowo wygenerowanych kluczy.
+        
+        \paragraph*{Weryfikacja podpisu} Zakładamy, że otrzymaliśmy zestaw $(M', (r', s'))$ składający się z~wiadomości oraz podpisu tej wiadomości. Aby zweryfikować podpis należy:
+        
+        \begin{enumerate}
+            \item Dokonać sprawdzenia, że $0 < r' < q$, a~ponadto $0 < s' < q$.
+            \item Obliczyć poniższe wartości:
+            
+                \begin{equation*}
+                    \begin{array}{lcl}
+                        w & = & (s')^{-1} \pmod q \\
+                        u_{1} & = & SHA(M') \cdot w \pmod q \\
+                        u_{2} & = & r' \cdot w \pmod q \\
+                        v & = & (g^{u_{1}} \cdot y^{u_{2}} \mod p) \pmod q \\
+                    \end{array}
+                \end{equation*}
+            \item Sprawdzić, czy $v = r'$.
+            \item Podpis jest prawidłowy, jeżeli warunek z~punktu 3. jest spełniony.
+        \end{enumerate}
         
 \end{document}
