@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage[MeX]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\title{Dokumentacja końcowa projektu \\ \Large{Algorytm DSA}}
+\author{Jakub Turek}
+\date{}
+
+\begin{document}
+
+    \maketitle
+
+    \section*{Podstawy teoretyczne}
+    
+        FIPS\footnote{Skrót od \textbf{F}ederal \textbf{I}nformation \textbf{P}rocessing \textbf{S}tandard (ang. federalny standard przetwarzania informacji).} jest zbiorem, w~którym opisane są publiczne standardy bezpieczeństwa używane przez federalny rząd Stanów Zjednoczonych. Oficjalnym standardem podpisywania wiadomości cyfrowych zamieszczonym w~FIPS jest DSS (ang. Digital Signature Standard). DSS opiera się o~algorytm DSA (ang. Digital Signature Algorithm).
+    
+        Standard DSS (wraz z~algorytmem DSA) został opisany w~dokumencie FIPS PUB 186\footnote{\url{http://www.itl.nist.gov/fipspubs/fip186.htm}.}. Na potrzeby projektu zaimplementowany został oryginalny algorytm opublikowany w~1994 roku, który wykorzystuje funkcję skrótu SHA.
+        
+    \subsection*{Algorytm}
+    
+        \paragraph*{Generacja kluczy} Należy wybrać parametry:
+                    
+        \begin{itemize}
+            \item Liczba pierwsza $p$ w~pierścieniu reszt modulo $a$, gdzie $2^{L-1} < p < 2^{L}$ oraz $512 \leq L \leq 1024$ i~$L$ jest wielokrotnością 64.
+            \item Liczba pierwsza $q$ będąca dzielnikiem liczby $p - 1$ w~pierścieniu reszt modulo $a$, gdzie $2^{159} < q < 2^{160}$.
+            \item Liczba $g = h^{\frac{p-1}{q}} \pmod p$, gdzie $h$ jest dowolną liczbą naturalną spełniającą warunek $1 < h < p - 1$ taką, że $h^{\frac{p-1}{q}} \pmod p > 1$ (czyli $g$ ma rząd $q \pmod p$).
+            \item Losowo wygenerowana liczba $x$ z~przedziału $0 < x < q$.
+            \item Liczba $y = g^{x} \pmod p$.
+            \item Losowo wygenerowana liczba $k$ z~przedziału $0 < k < q$.
+        \end{itemize}
+            
+        Liczby $p$, $q$ oraz $g$ są publiczne. Klucz prywatny użytkownika to $x$, natomiast klucz publiczny użytkownika to $y$. Parametr $k$ musi być obliczany dla każdego nowego podpisu. Klucze są wielokrotnego użytku.
+        
+        \paragraph*{Podpisywanie wiadomości} Podpisem wiadomości $M$ jest para liczb $(r, s)$ obliczanych według poniższego wzoru:
+        
+        \begin{equation*}
+            \begin{array}{lcl}
+                r & = & (g^{k} \mod p) \mod q \\
+                s & = & (k^{-1} (SHA(M) + xr)) \mod q \\
+            \end{array}
+        \end{equation*}
+        
+        \noindent gdzie $k^{-1}$ jest odwrotnością liczby $k$ w~pierścieniu reszt modulo $q$ (czyt. $k \cdot k^{-1} \equiv 1 \pmod q$). 
+        
+        Opcjonalnie można zweryfikować, czy $r \neq 0$ i~$s \neq 0$. Jeżeli jeden z~warunków nie jest spełniony, należy wygenerować podpis od nowa. Sytuacja taka nie powinna się jednak zdarzyć dla prawidłowo wygenerowanych kluczy.
+        
+        \paragraph*{Weryfikacja podpisu} Zakładamy, że otrzymaliśmy zestaw $(M', (r', s'))$ składający się z~wiadomości oraz podpisu tej wiadomości. Aby zweryfikować podpis należy:
+        
+        \begin{enumerate}
+            \item Dokonać sprawdzenia, że $0 < r' < q$, a~ponadto $0 < s' < q$.
+            \item Obliczyć poniższe wartości:
+            
+                \begin{equation*}
+                    \begin{array}{lcl}
+                        w & = & (s')^{-1} \pmod q \\
+                        u_{1} & = & SHA(M') \cdot w \pmod q \\
+                        u_{2} & = & r' \cdot w \pmod q \\
+                        v & = & (g^{u_{1}} \cdot y^{u_{2}} \mod p) \pmod q \\
+                    \end{array}
+                \end{equation*}
+            \item Sprawdzić, czy $v = r'$.
+            \item Podpis jest prawidłowy, jeżeli warunek z~punktu 3. jest spełniony.
+        \end{enumerate}
+
+    \section*{Testy}
+    
+        Scenariusz testów opisany jest testami jednostkowymi klasy \verb+DSAKey+. Znajdują się one w~module \verb+DSAKeyTests+.
+        
+        Podstawowym testem na poprawne działanie algorytmu jest podpisanie wiadomości kluczem prywatnym z~wykorzystaniem algorytmu DSA, a~następnie zweryfikowanie podpisu tej samej wiadomości przy użyciu klucza publicznego. Opisuje to scenariusz \verb+test_positive_workflow()+. W~scenariuszu tym:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ uzyskany w~punkcie 2.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis był prawidłowy.
+        \end{enumerate}
+
+        W~dalszej kolejności należy upewnić się, że jakakolwiek modyfikacja wiadomości powoduje, że podpis przestaje być ważny. Sprawdzenie takie wykonywane jest w~trzech osobnych scenariuszach:
+        
+        \begin{itemize}
+            \item Zmodyfikowana wiadomość posiada zmienioną literę na jednej pozycji.
+            \item Zmodyfikowana wiadomość ma zamienioną kolejność dwóch liter.
+            \item Zmodyfikowana wiadomość została skrócona.
+        \end{itemize}
+        
+\noindent Scenariusze te mają za zadanie sprawdzić, że każda drobna modyfikacja wiadomości powoduje, iż podpis traci ważność.
+
+        Pierwszy ze scenariuszy negatywnych (zmieniona litera na jednej pozycji) przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości uzyskany w~punkcie 2., przy czym wiadomość $M$ zostaje zastąpiona treścią \verb+Best message+.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis został odrzucony.
+        \end{enumerate}
+
+        Kolejny ze scenariuszy negatywnych (zamieniona kolejność dwóch liter) przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości uzyskany w~punkcie 2., przy czym wiadomość $M$ zostaje zastąpiona treścią \verb+Tset message+.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis został odrzucony.
+        \end{enumerate}        
+        
+        Ostatni ze scenariuszy negatywnych (skrócona wiadomość) przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości uzyskany w~punkcie 2., przy czym wiadomość $M$ zostaje zastąpiona treścią \verb+message+.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis został odrzucony.
+        \end{enumerate}
+        
+        Dodatkowo należy upewnić się, że zmiana podpisu wiadomości (a~więc jednej lub obu liczb z~pary $(r, s)$) również spowoduje, że podpis zostanie odrzucony. Testowane są trzy przypadki:
+        
+        \begin{itemize}
+            \item Wybierana jest losowa wartość $r'$.
+            \item Wybierana jest losowa wartość $s'$.
+            \item Wybierana jest losowa wartość pary $(r', s')$.
+        \end{itemize}
+
+        \noindent Aby ,,uprawdopodobnić'', że losowa wartość klucza (lub jego części) zostanie uznana za poprawną w~każdym teście generowane są zmienione liczby o~długości bitowej zgodnej z~oryginalnymi długościami bitowymi $(r, s)$.
+
+        Pierwszy ze scenariuszy negatywnych dla zmienionego podpisu $(r, s)$ wiadomości przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Generowana jest losowa wartość $r'$ o~długości bitowej równej długości bitowej $r$.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ o~wartości $(r', s)$.
+            \item Test zakończy się poprawnie wtedy i~tylko wtedy, gdy weryfikacja zakończy się tym samym wynikiem co porównanie $r' == r$.
+        \end{enumerate}
+        
+        Kolejny ze scenariuszy negatywnych dla zmienionego podpisu $(r, s)$ wiadomości przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Generowana jest losowa wartość $s'$ o~długości bitowej równej długości bitowej $s$.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ o~wartości $(r, s')$.
+            \item Test zakończy się poprawnie wtedy i~tylko wtedy, gdy weryfikacja zakończy się tym samym wynikiem co porównanie $s' == s$.
+        \end{enumerate}
+        
+        Ostatni ze scenariuszy negatywnych dla zmienionego podpisu $(r, s)$ wiadomości przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Generowana jest losowa wartość $r'$ o~długości bitowej równej długości bitowej $r$.
+            \item Generowana jest losowa wartość $s'$ o~długości bitowej równej długości bitowej $s$.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ o~wartości $(r', s')$.
+            \item Test zakończy się poprawnie wtedy i~tylko wtedy, gdy weryfikacja zakończy się tym samym wynikiem co porównanie $r' == r \wedge s' == s$.
+        \end{enumerate}
+        
+\end{document}
