@@ -208,8 +208,152 @@ if pow(2, 159L) < q < pow(2, 160L):
         
         W~stosunku do części algorytmu generacji $q$ przedstawionej w~krokach 1. - 5. zastosowano jedną optymalizację. W~przypadku, gdy obliczone w~operacji XOR $q$ nie jest pierwsze, wtedy poszukiwana jest kolejna (większa od znalezionej) liczba pierwsza. W~oryginalnym dokumencie algorytm byłby powtarzany od nowa.
         
-        Kolejnym krokiem jest generacja liczby $p$. 
+        Kolejnym krokiem jest generacja liczby $p$. Liczba $p$ dla danej liczby $q$ może zostać wygenerowana przy pomocy kroków 6. - 15. algorytmu przedstawionego w~sekcji 2.2 załącznika drugiego do dokumentu FIPS PUB 186.
+        
+        \pagebreak
 
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+while True:
+    seed, q = generate_q()
+    n = divmod(bits - 1, 160)[0]
+    counter, offset, v = 0, 2, {}
+    b = q >> 5 & 15
+    twopowbitsone = pow(2L, bits - 1)
+
+    while counter < 4096:
+        for k in range(0, n+1):
+            v[k] = bytes_to_long(SHA.new(
+                seed + str(offset) + 
+                str(k)).digest())
+
+
+
+            w = v[n] % pow(2L, b)
+
+            for k in range(n - 1, -1, -1):
+                w = (w << 160L) + v[k]
+
+            x = w + twopowbitsone
+            
+            c = x % (2 * self.q)
+            
+            p = x - (c - 1)
+
+            if twopowbitsone <= p and 
+                isPrime(p):
+                break
+
+            counter += 1
+            
+            offset += n + 1
+
+    if counter < 4069:
+        break
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Powtarzamy aż do generacji poprawnego $p$. \\
+                    
+                    \noindent Obliczamy $n$ ze wzoru $L - 1 = n * 160 + b$. \\
+                    
+                    \noindent Obliczamy $b$. \\ \\
+                                        
+                    \noindent Dla danego $q$ generujemy $p$ ($2^{12}$ prób). \\
+                    
+                    \noindent Obliczamy $V[k]$ ze wzoru $V[k] = [SHA(SEED + offset + k) \mod 2^{g}]$. \\
+                    
+                    \noindent Obliczamy W ze wzoru $V_{0} + V_{1} * 2^{160} + \cdots + (V_{n} \mod 2^{b}) \cdot 2^{n \cdot 160}$... \\
+                    
+                    \noindent ... najpierw obliczając skrajnie prawy wyraz... \\
+                    
+                    \noindent ... a~następnie obliczając kolejne wyrazy idąc w~lewą stronę. \\
+                    
+                    \noindent Obliczamy $X = W + 2^{L-1}$. \\
+                    
+                    \noindent Obliczamy $c = X \mod 2 \cdot q$. \\
+                    
+                    \noindent Obliczamy $p = X - (c - 1)$. \\
+                    
+                    \noindent Jeśli uzyskana liczba jest pierwsza to poprawnie wygenerowaliśmy $p$ i~przerywamy algorytm. \\ \\
+                    
+                    \noindent Inkrementujemy licznik. \\
+                    
+                    \noindent Zwiększamy przesunięcie.  \\
+                    
+                    \noindent Jeżeli liczba $p$ jest poprawna dla danego $q$ to kontynuujemy generację klucza.
+                    
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
+        \paragraph{Generacja klucza} Po wygenerowaniu liczb $p$ oraz $q$ przystępujemy do generacji $(g, x, y)$. 
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+while True:
+    h = bytes_to_long(os.urandom(bits)) 
+        % (p - 1)
+    g = pow(h, divmod(p - 1, q)[0], p)
+
+    if 1 < h < p - 1 and g > 1:
+        break
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Generujemy losowe $h$ z~pierścienia modulo $p - 1$. \\
+                    
+                    \noindent Obliczamy $g$ jako $h$ podniesione do części całkowitej z~dzielenia $\frac{p-1}{q}$ w~pierścieniu modulo $p$. \\
+                    
+                    \noindent Sprawdzamy czy $g$~i~$h$ spełniają zadane warunki.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+            
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+while True:
+    x = bytes_to_long(os.urandom(20))
+
+    if 0 < x < q:
+        break
+
+y = pow(g, x, p)
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Generujemy losową liczbę $x$... \\
+                    
+                    \noindent ... która spełnia warunek $0 < x < q$. \\ \\
+                    
+                    \noindent Obliczamy klucz publiczny $y$.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
             
     \section*{Testy}
     

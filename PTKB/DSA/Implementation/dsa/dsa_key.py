@@ -26,7 +26,8 @@ class DSAKey:
 
             while counter < 4096:
                 for k in range(0, n+1):
-                    v[k] = bytes_to_long(SHA.new(seed + str(offset) + str(k)).digest())
+                    v[k] = bytes_to_long(SHA.new(
+                        seed + str(offset) + str(k)).digest())
 
                 w = v[n] % two_power_b
 
@@ -34,12 +35,14 @@ class DSAKey:
                     w = (w << 160L) + v[k]
 
                 x = w + two_power_bits_minus_one
-                self.p = x - (x % (2 * self.q) - 1)
+                c = x % (2 * self.q)
+                self.p = x - (c - 1)
 
                 if two_power_bits_minus_one <= self.p and isPrime(self.p):
                     break
 
-                counter, offset = counter + 1, offset + n + 1
+                counter += 1
+                offset += n + 1
 
             if counter < 4069:
                 break
