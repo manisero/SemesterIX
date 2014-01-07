@@ -1,10 +1,14 @@
-import random
-from dsa.dsa import DSA
+from dsa.dsa_key import DSAKey
 
 
 def main():
-    dsa = DSA()
-    print 'q = ' + str(dsa.generate_q(random.getrandbits(160)))
+    key = DSAKey.generate_instance(2048)
+
+    print 'y = ' + str(key.y)
+    print 'g = ' + str(key.g)
+    print 'p = ' + str(key.p)
+    print 'q = ' + str(key.q)
+    print 'x = ' + str(key.x)
 
 if __name__ == '__main__':
     main()
