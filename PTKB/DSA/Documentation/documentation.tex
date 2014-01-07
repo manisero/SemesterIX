@@ -2,6 +2,7 @@
 \usepackage[MeX]{polski}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
+\usepackage{hyperref}
 
 \title{Dokumentacja końcowa projektu \\ \Large{Algorytm DSA}}
 \author{Jakub Turek}
@@ -11,8 +12,10 @@
 
     \maketitle
 
-    \section*{Section stub}
-
-    Sentence stub.
-
+    \section*{Podstawy teoretyczne}
+    
+        FIPS\footnote{Skrót od \textbf{F}ederal \textbf{I}nformation \textbf{P}rocessing \textbf{S}tandard (ang. federalny standard przetwarzania informacji).} jest zbiorem, w~którym opisane są publiczne standardy bezpieczeństwa używane przez federalny rząd Stanów Zjednoczonych. Oficjalnym standardem podpisywania wiadomości cyfrowych zamieszczonym w~FIPS jest DSS (ang. Digital Signature Standard). DSS opiera się o~algorytm DSA (ang. Digital Signature Algorithm).
+    
+        Standard DSS (wraz z~algorytmem DSA) został opisany w~dokumencie FIPS PUB 186\footnote{\url{http://www.itl.nist.gov/fipspubs/fip186.htm}.}. Na potrzeby projektu zaimplementowany został oryginalny algorytm opublikowany w~1994 roku, który wykorzystuje funkcję skrótu SHA.
+        
 \end{document}
