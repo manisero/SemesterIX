@@ -354,7 +354,93 @@ y = pow(g, x, p)
             
             \end{tabular}
         \end{table}
+        
+        \paragraph{Podpisywanie wiadomości} Podpisywanie wiadomości zostało zaimplementowane zgodnie z~założeniami algorytmu DSA.
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+def sign(self, message):
+    m = bytes_to_long(SHA.new(message)
+        .digest())
+    k = randint(1, q - 1)
+    
+    inverse_k = inverse(k, q)
+    
+    r = pow(g, k, p) % q
+    
+    s = (inverse_k * (m + x * r)) % q
+
+    return r, s
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Obliczamy wartość skrótu wiadomości \verb+message+. \\
+                    
+                    \noindent Wybieramy losowe $k$ z~przedziału $(0, q)$. \\
+                    
+                    \noindent Obliczamy odwrotność $k$ w~pierścieniu modulo $q$. \\
+                    
+                    \noindent Obliczamy $r = (g^{k} \mod p) \mod q$. \\
+                    
+                    \noindent Obliczamy $s = (k^{-1} (SHA(M) + xr)) \mod q$.
+                \end{minipage}
             
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
+        \paragraph{Weryfikacja podpisu} Podobnie, weryfikacja podpisu również została zaimplementowana zgodnie z~założeniami algorytmu DSA.
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+def verify(self, message, r, s):
+    m = bytes_to_long(SHA.new(message)
+        .digest())
+
+    if not (0 < r < q) or not (0 < s < q):
+        return False
+
+    w = inverse(s, q)
+    
+    u1 = (m * w) % q
+    u2 = (r * w) % q
+    
+    v = ((pow(g, u1, p) * pow(y, u2, p)) 
+        % p) % q
+
+    return v == r
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Obliczamy skrót wiadomości $message$. \\ \\
+                    
+                    \noindent Jeżeli $r$ lub $s$ nie znajdują się w~zadanych przedziałach, to podpis jest nieprawidłowy. \\
+                    
+                    \noindent Obliczamy $w = s^{-1} \mod q$. \\
+                    
+                    \noindent Obliczamy $u_{1} oraz u_{2}$. \\ \\
+                    
+                    \noindent Obliczamy $v = (g^{u_{1}} \cdot y^{u_{2}} \mod p) \mod q$. \\ \\
+                    
+                    \noindent Dokonujemy weryfikacji.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
     \section*{Testy}
     
         Scenariusz testów opisany jest testami jednostkowymi klasy \verb+DSAKey+. Znajdują się one w~module \verb+DSAKeyTests+.
