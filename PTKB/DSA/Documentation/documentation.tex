@@ -4,6 +4,7 @@
 \usepackage{fullpage}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{listings}
 
 \title{Dokumentacja końcowa projektu \\ \Large{Algorytm DSA}}
 \author{Jakub Turek}
@@ -64,7 +65,382 @@
             \item Sprawdzić, czy $v = r'$.
             \item Podpis jest prawidłowy, jeżeli warunek z~punktu 3. jest spełniony.
         \end{enumerate}
+        
+    \subsection*{Dowód poprawności}
+    
+        \paragraph{Lemat} 
+            
+            Niech $p$ i~$q$ będą liczbami pierwszymi takimi, że $q$ dzieli $p - 1$, $h$ jest dodatnią liczbą całkowitą mniejszą niż $p$ i~spełnione jest równanie $g = h^{\frac{p-1}{q}} \mod p$. Wtedy $g^{q} \mod p = 1$ i, jeżeli $m \mod q = n \mod q$, wtedy $g^{m} \mod p = g^{n} \mod p$.
+            
+        \paragraph{Dowód} 
+        
+            Z~Małego Twierdzenia Fermata wynika równość: 
+            
+            \begin{equation*}
+                g^{q} \mod p = (h^{\frac{p - 1}{q}} \mod p) q \mod p = h^{p-1} \mod p = 1                            
+            \end{equation*}
 
+            Jeśli $m \mod q = n \mod q$, przykładowo $m = n + kq$ dla pewnej liczby całkowitej $k$. Wtedy:
+
+            \begin{equation*}
+                g^{m} \mod p = g^{n+kq} \mod p = (g^{n}g^{kq}) \mod p = ((g^{n} \mod p)(g^{q} \mod p)^{k}) \mod p = g^{n} \mod p
+            \end{equation*}
+
+            \noindent ponieważ $g^{q} \mod p = 1$.
+            
+        \paragraph{Twierdzenie}
+        
+            Jeżeli $M' = M$, $r' = r$ oraz $s' = s$ w~podpisie DSA, wtedy $v = r'$.
+            
+        \paragraph{Dowód}
+        
+            Mamy:
+            
+            \begin{equation*}
+                \begin{array}{rcl}
+                    w = & (s')^{-1} \mod q & = s^{-1} \mod q \\ 
+                    u_{1} = & (SHA(M') \cdot w) \mod q & = (SHA(M) \cdot w) \mod q \\
+                    u_{2} = & (r' \cdot w) \mod q & = r \cdot w \mod q
+                \end{array}
+            \end{equation*}
+            
+            \noindent $y = g^{x} \mod p$, zatem wykorzystując lemat:
+            
+            \begin{equation*}
+                \begin{array}{rl}
+                    v = & (g^{u_{1}} y^{u_{2}} \mod p) \mod q = \\
+                    = & (g^{SHA(M) \cdot w} y^{r \cdot w} \mod p) \mod q = \\
+                    = & (g^{SHA(M) \cdot w} g^{xrw} \mod p) \mod q = \\
+                    = & (g^{(SHA(M) + xr) \cdot w} \mod p) \mod q\\
+                \end{array}
+            \end{equation*}
+            
+            Ponadto wiemy, że $s = (k^{-1} (SHA(M) + xr)) \mod q$. Stąd wynika, że:
+            
+            \begin{equation*}
+                \begin{array}{c}
+                    w = (k(SHA(M) + xr)^{-1}) \mod q \\
+                    ((SHA(M) + xr) \cdot w) \mod q = k \mod q
+                \end{array}
+            \end{equation*}      
+            
+            Zatem, powołując się na lemat, możemy stwierdzić, że:
+            
+            \begin{equation*}
+                v = (g^{k} \mod p) \mod q = r = r'
+            \end{equation*}
+            
+            \noindent co należało udowodnić.
+
+    \section*{Implementacja}
+    
+        Implementacja została oparta o~sugestie zawarte w~załącznikach do dokumentu FIPS PUB 186. Przedstawiony został w~nich algorytm generacji kluczy. Dodatkowo, do implementacji wykorzystane zostały komponenty biblioteki \verb+PyCrypto+\footnote{\url{https://www.dlitz.net/software/pycrypto/}.}. Dzięki temu możliwe było uniknięcie implementacji funkcjonalności, które są przedmiotami innych projektów, takich jak funkcja skrótu \verb+SHA+ czy test pierwszości Millera-Rabina.
+        
+        \paragraph{Generacja liczb p~i~q} Załącznik drugi (punkt 2.2) do dokumentu FIPS PUB 186 sugeruje, aby w pierwszej kolejności wygenerować liczbę $q$, w~oparciu o~dowolną sekwencję długości przynajmniej 160 bitów nazwaną ziarnem. 
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+seed = os.urandom(20)
+
+
+hash1 = SHA.new(seed).digest()
+hash2 = SHA.new(long_to_bytes(
+    bytes_to_long(seed)+1)).digest()
+    
+q = 0L
+
+for i in range(0, 20):
+    c = ord(hash1[i]) ^ ord(hash2[i])
+
+    if i == 0:
+        c |= 128
+
+    if i == 19:
+        c |= 1
+
+    q = q * 256 + c
+
+
+while not isPrime(q):
+    q += 2
+
+if pow(2, 159L) < q < pow(2, 160L):
+    return seed, q
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Wybieramy losowy ciąg znaków o długości 20 bajtów (160 bitów). \\
+                    
+                    \noindent Obliczamy funkcję skrótu dla ziarna...
+                    
+                    \noindent ... oraz ziarna powiększonego o~1. \\ \\ \\ \\
+                                        
+                    \noindent Dla każdego bajtu ziarna...
+                    
+                    \noindent ... obliczamy wartość funkcji XOR. \\
+                    
+                    \noindent Jeżeli najbardziej znaczący bajt...
+                    
+                    \noindent ... to ustawiamy jeden na pierwszym bicie. \\
+                    
+                    \noindent Jeżeli najmniej znaczący bajt...
+                    
+                    \noindent ... to ustawiamy jeden na ostatnim bicie. \\
+                    
+                    \noindent Przesuwamy obliczoną liczbę o~bajt w~lewo i~dołączamy z~prawej obliczony w~pętli bajt. \\
+                    
+                    \noindent Dodajemy kolejne dwójki (nie zmienia się ostatni bit) aż do uzyskania liczby pierwszej. \\
+                    
+                    \noindent Jeżeli uzyskane $q$ zawiera się w~narzuconym przedziale to zwracamy ziarno oraz $q$.
+                    
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
+        
+        W~stosunku do części algorytmu generacji $q$ przedstawionej w~krokach 1. - 5. zastosowano jedną optymalizację. W~przypadku, gdy obliczone w~operacji XOR $q$ nie jest pierwsze, wtedy poszukiwana jest kolejna (większa od znalezionej) liczba pierwsza. W~oryginalnym dokumencie algorytm byłby powtarzany od nowa.
+        
+        Kolejnym krokiem jest generacja liczby $p$. Liczba $p$ dla danej liczby $q$ może zostać wygenerowana przy pomocy kroków 6. - 15. algorytmu przedstawionego w~sekcji 2.2 załącznika drugiego do dokumentu FIPS PUB 186.
+        
+        \pagebreak
+
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+while True:
+    seed, q = generate_q()
+    n = divmod(bits - 1, 160)[0]
+    counter, offset, v = 0, 2, {}
+    b = q >> 5 & 15
+    twopowbitsone = pow(2L, bits - 1)
+
+    while counter < 4096:
+        for k in range(0, n+1):
+            v[k] = bytes_to_long(SHA.new(
+                seed + str(offset) + 
+                str(k)).digest())
+
+
+
+            w = v[n] % pow(2L, b)
+
+            for k in range(n - 1, -1, -1):
+                w = (w << 160L) + v[k]
+
+            x = w + twopowbitsone
+            
+            c = x % (2 * self.q)
+            
+            p = x - (c - 1)
+
+            if twopowbitsone <= p and 
+                isPrime(p):
+                break
+
+            counter += 1
+            
+            offset += n + 1
+
+    if counter < 4069:
+        break
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Powtarzamy aż do generacji poprawnego $p$. \\
+                    
+                    \noindent Obliczamy $n$ ze wzoru $L - 1 = n * 160 + b$. \\
+                    
+                    \noindent Obliczamy $b$. \\ \\
+                                        
+                    \noindent Dla danego $q$ generujemy $p$ ($2^{12}$ prób). \\
+                    
+                    \noindent Obliczamy $V[k]$ ze wzoru $V[k] = [SHA(SEED + offset + k) \mod 2^{g}]$. \\
+                    
+                    \noindent Obliczamy W ze wzoru $V_{0} + V_{1} * 2^{160} + \cdots + (V_{n} \mod 2^{b}) \cdot 2^{n \cdot 160}$... \\
+                    
+                    \noindent ... najpierw obliczając skrajnie prawy wyraz... \\
+                    
+                    \noindent ... a~następnie obliczając kolejne wyrazy idąc w~lewą stronę. \\
+                    
+                    \noindent Obliczamy $X = W + 2^{L-1}$. \\
+                    
+                    \noindent Obliczamy $c = X \mod 2 \cdot q$. \\
+                    
+                    \noindent Obliczamy $p = X - (c - 1)$. \\
+                    
+                    \noindent Jeśli uzyskana liczba jest pierwsza to poprawnie wygenerowaliśmy $p$ i~przerywamy algorytm. \\ \\
+                    
+                    \noindent Inkrementujemy licznik. \\
+                    
+                    \noindent Zwiększamy przesunięcie.  \\
+                    
+                    \noindent Jeżeli liczba $p$ jest poprawna dla danego $q$ to kontynuujemy generację klucza.
+                    
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
+        \paragraph{Generacja klucza} Po wygenerowaniu liczb $p$ oraz $q$ przystępujemy do generacji $(g, x, y)$. 
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+while True:
+    h = bytes_to_long(os.urandom(bits)) 
+        % (p - 1)
+    g = pow(h, divmod(p - 1, q)[0], p)
+
+    if 1 < h < p - 1 and g > 1:
+        break
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Generujemy losowe $h$ z~pierścienia modulo $p - 1$. \\
+                    
+                    \noindent Obliczamy $g$ jako $h$ podniesione do części całkowitej z~dzielenia $\frac{p-1}{q}$ w~pierścieniu modulo $p$. \\
+                    
+                    \noindent Sprawdzamy czy $g$~i~$h$ spełniają zadane warunki.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+            
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+while True:
+    x = bytes_to_long(os.urandom(20))
+
+    if 0 < x < q:
+        break
+
+y = pow(g, x, p)
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Generujemy losową liczbę $x$... \\
+                    
+                    \noindent ... która spełnia warunek $0 < x < q$. \\ \\
+                    
+                    \noindent Obliczamy klucz publiczny $y$.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
+        \paragraph{Podpisywanie wiadomości} Podpisywanie wiadomości zostało zaimplementowane zgodnie z~założeniami algorytmu DSA.
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+def sign(self, message):
+    m = bytes_to_long(SHA.new(message)
+        .digest())
+    k = randint(1, q - 1)
+    
+    inverse_k = inverse(k, q)
+    
+    r = pow(g, k, p) % q
+    
+    s = (inverse_k * (m + x * r)) % q
+
+    return r, s
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Obliczamy wartość skrótu wiadomości \verb+message+. \\
+                    
+                    \noindent Wybieramy losowe $k$ z~przedziału $(0, q)$. \\
+                    
+                    \noindent Obliczamy odwrotność $k$ w~pierścieniu modulo $q$. \\
+                    
+                    \noindent Obliczamy $r = (g^{k} \mod p) \mod q$. \\
+                    
+                    \noindent Obliczamy $s = (k^{-1} (SHA(M) + xr)) \mod q$.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
+        \paragraph{Weryfikacja podpisu} Podobnie, weryfikacja podpisu również została zaimplementowana zgodnie z~założeniami algorytmu DSA.
+        
+        \noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.45\textwidth}
+                    \begin{verbatim}
+def verify(self, message, r, s):
+    m = bytes_to_long(SHA.new(message)
+        .digest())
+
+    if not (0 < r < q) or not (0 < s < q):
+        return False
+
+    w = inverse(s, q)
+    
+    u1 = (m * w) % q
+    u2 = (r * w) % q
+    
+    v = ((pow(g, u1, p) * pow(y, u2, p)) 
+        % p) % q
+
+    return v == r
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}                    
+                    \noindent \\ Obliczamy skrót wiadomości $message$. \\ \\
+                    
+                    \noindent Jeżeli $r$ lub $s$ nie znajdują się w~zadanych przedziałach, to podpis jest nieprawidłowy. \\
+                    
+                    \noindent Obliczamy $w = s^{-1} \mod q$. \\
+                    
+                    \noindent Obliczamy $u_{1} oraz u_{2}$. \\ \\
+                    
+                    \noindent Obliczamy $v = (g^{u_{1}} \cdot y^{u_{2}} \mod p) \mod q$. \\ \\
+                    
+                    \noindent Dokonujemy weryfikacji.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
     \section*{Testy}
     
         Scenariusz testów opisany jest testami jednostkowymi klasy \verb+DSAKey+. Znajdują się one w~module \verb+DSAKeyTests+.
