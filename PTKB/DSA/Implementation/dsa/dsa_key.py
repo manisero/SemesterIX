@@ -89,6 +89,29 @@ class DSAKey:
     def is_private(self):
         return self.x is not None
 
+    def get_private_key(self):
+        if not self.is_private():
+            raise TypeError('Could not convert public key to private key')
+
+        private_key = DSAKey()
+        private_key.y = self.y
+        private_key.g = self.g
+        private_key.p = self.p
+        private_key.q = self.q
+        private_key.x = self.x
+
+        return private_key
+
+    def get_public_key(self):
+        public_key = DSAKey()
+        public_key.y = self.y
+        public_key.g = self.g
+        public_key.p = self.p
+        public_key.q = self.q
+        public_key.x = self.x
+
+        return public_key
+
     def sign(self, message):
         if not self.is_private():
             raise TypeError('Could not sign message with public key')

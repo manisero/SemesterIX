@@ -64,5 +64,96 @@
             \item Sprawdzić, czy $v = r'$.
             \item Podpis jest prawidłowy, jeżeli warunek z~punktu 3. jest spełniony.
         \end{enumerate}
+
+    \section*{Testy}
+    
+        Scenariusz testów opisany jest testami jednostkowymi klasy \verb+DSAKey+. Znajdują się one w~module \verb+DSAKeyTests+.
+        
+        Podstawowym testem na poprawne działanie algorytmu jest podpisanie wiadomości kluczem prywatnym z~wykorzystaniem algorytmu DSA, a~następnie zweryfikowanie podpisu tej samej wiadomości przy użyciu klucza publicznego. Opisuje to scenariusz \verb+test_positive_workflow()+. W~scenariuszu tym:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ uzyskany w~punkcie 2.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis był prawidłowy.
+        \end{enumerate}
+
+        W~dalszej kolejności należy upewnić się, że jakakolwiek modyfikacja wiadomości powoduje, że podpis przestaje być ważny. Sprawdzenie takie wykonywane jest w~trzech osobnych scenariuszach:
+        
+        \begin{itemize}
+            \item Zmodyfikowana wiadomość posiada zmienioną literę na jednej pozycji.
+            \item Zmodyfikowana wiadomość ma zamienioną kolejność dwóch liter.
+            \item Zmodyfikowana wiadomość została skrócona.
+        \end{itemize}
+        
+\noindent Scenariusze te mają za zadanie sprawdzić, że każda drobna modyfikacja wiadomości powoduje, iż podpis traci ważność.
+
+        Pierwszy ze scenariuszy negatywnych (zmieniona litera na jednej pozycji) przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości uzyskany w~punkcie 2., przy czym wiadomość $M$ zostaje zastąpiona treścią \verb+Best message+.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis został odrzucony.
+        \end{enumerate}
+
+        Kolejny ze scenariuszy negatywnych (zamieniona kolejność dwóch liter) przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości uzyskany w~punkcie 2., przy czym wiadomość $M$ zostaje zastąpiona treścią \verb+Tset message+.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis został odrzucony.
+        \end{enumerate}        
+        
+        Ostatni ze scenariuszy negatywnych (skrócona wiadomość) przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości uzyskany w~punkcie 2., przy czym wiadomość $M$ zostaje zastąpiona treścią \verb+message+.
+            \item Do poprawnego zakończenia testu wymagane jest, aby podpis został odrzucony.
+        \end{enumerate}
+        
+        Dodatkowo należy upewnić się, że zmiana podpisu wiadomości (a~więc jednej lub obu liczb z~pary $(r, s)$) również spowoduje, że podpis zostanie odrzucony. Testowane są trzy przypadki:
+        
+        \begin{itemize}
+            \item Wybierana jest losowa wartość $r'$.
+            \item Wybierana jest losowa wartość $s'$.
+            \item Wybierana jest losowa wartość pary $(r', s')$.
+        \end{itemize}
+
+        \noindent Aby ,,uprawdopodobnić'', że losowa wartość klucza (lub jego części) zostanie uznana za poprawną w~każdym teście generowane są zmienione liczby o~długości bitowej zgodnej z~oryginalnymi długościami bitowymi $(r, s)$.
+
+        Pierwszy ze scenariuszy negatywnych dla zmienionego podpisu $(r, s)$ wiadomości przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Generowana jest losowa wartość $r'$ o~długości bitowej równej długości bitowej $r$.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ o~wartości $(r', s)$.
+            \item Test zakończy się poprawnie wtedy i~tylko wtedy, gdy weryfikacja zakończy się tym samym wynikiem co porównanie $r' == r$.
+        \end{enumerate}
+        
+        Kolejny ze scenariuszy negatywnych dla zmienionego podpisu $(r, s)$ wiadomości przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Generowana jest losowa wartość $s'$ o~długości bitowej równej długości bitowej $s$.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ o~wartości $(r, s')$.
+            \item Test zakończy się poprawnie wtedy i~tylko wtedy, gdy weryfikacja zakończy się tym samym wynikiem co porównanie $s' == s$.
+        \end{enumerate}
+        
+        Ostatni ze scenariuszy negatywnych dla zmienionego podpisu $(r, s)$ wiadomości przebiega następująco:
+        
+        \begin{enumerate}
+            \item Generowana jest losowa para kluczy prywatny oraz publiczny.
+            \item Przy pomocy klucza prywatnego podpisywana jest wiadomość \verb+Test message+.
+            \item Generowana jest losowa wartość $r'$ o~długości bitowej równej długości bitowej $r$.
+            \item Generowana jest losowa wartość $s'$ o~długości bitowej równej długości bitowej $s$.
+            \item Przy pomocy klucza publicznego weryfikowany jest podpis wiadomości \verb+Test message+ o~wartości $(r', s')$.
+            \item Test zakończy się poprawnie wtedy i~tylko wtedy, gdy weryfikacja zakończy się tym samym wynikiem co porównanie $r' == r \wedge s' == s$.
+        \end{enumerate}
         
 \end{document}
