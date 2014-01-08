@@ -1,6 +1,6 @@
 import unittest
 from dsa.dsa_key import DSAKey
-from dsa_io.dsa_io import DSAKeyIO
+from dsa_io.dsa_key_io import DSAKeyIO
 from tempfile import NamedTemporaryFile
 
 
