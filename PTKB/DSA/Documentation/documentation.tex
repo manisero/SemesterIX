@@ -440,6 +440,54 @@ def verify(self, message, r, s):
             
             \end{tabular}
         \end{table}
+
+        \paragraph{Aplikacja} Aplikacja została napisana w~języku Python. Do uruchomienia wymagany jest interpreter języka Python w~wersji 2.7.X (testowane dla 2.7.5). Program można uruchomić przechodząc do głównego katalogu projektu i~wywołując z~linii poleceń komendę \verb+python main.py+.
+        
+            Aplikacja pracuje w~trybie interaktywnym. Użytkownik może skorzystać z~trzech różnych funkcji:
+            
+            \begin{enumerate}
+                \item Generacja klucza DSA. Program wygeneruje i~zapisze do plików dwa klucze:
+                \begin{itemize}
+                    \item Klucz prywatny, który służy do podpisywania wiadomości.
+                    \item Klucz publiczny, który służy do weryfikowania podpisu.
+                \end{itemize}
+                
+                \item Podpisywanie wiadomości. Wykorzystanie tej funkcjonalności wymaga wygenerowania klucza prywatnego DSA. Aplikacja wykorzysta go do podpisania wiadomości wprowadzonej przez użytkownika. Podpis, wraz z~wiadomością, zostaną zapisane do pliku.
+                
+                \item Weryfikacja podpisu. Wykorzystanie tej funkcjonalności wymaga wygenerowania klucza publicznego DSA, a~także podpisanej wiadomości. Aplikacja dokona sprawdzenia czy wiadomość została podpisana przez właściciela klucza prywatnego sparowanego z~danym publicznym kluczem DSA.
+
+            \end{enumerate}
+
+            Wybranie pierwszej operacji skutkuje wyświetleniem dwóch monitów do użytkownika:
+            
+            \begin{itemize}
+                \item Za pierwszym razem należy wprowadzić nazwę pliku, do którego zostanie zapisany klucz prywatny.
+                \item Za drugim razem należy wprowadzić nazwę pliku, do którego zostanie zapisany klucz publiczny.
+            \end{itemize}
+
+            Wybranie drugiej operacji skutkuje wyświetleniem trzech monitów do użytkownika:
+            
+            \begin{itemize}
+                \item W~pierwszym kroku należy wprowadzić treść wiadomości, która zostanie podpisana z~wykorzystaniem algorytmu DSA.
+                \item W~drugim kroku należy wprowadzić nazwę pliku, w~którym znajduje się klucz prywatny, którym zostanie podpisana wiadomość. Nazwa musi wskazywać na poprawnie wygenerowany plik klucza. W~przeciwnym przypadku program zakończy się z~komunikatem o~błędzie.
+                \item W~trzecim kroku należy wprowadzić nazwę pliku, do którego zostanie zapisana wiadomość wraz z~podpisem.
+            \end{itemize}
+
+            Wybranie trzeciej operacji skutkuje wyświetleniem dwóch monitów do użytkownika:
+            
+            \begin{itemize}
+                \item W~pierwszym kroku należy wprowadzić nazwę pliku, w~którym znajduje się klucz publiczny, dla którego będziemy weryfikować podpis. Nazwa musi wskazywać na poprawnie wygenerowany plik klucza. W~przeciwnym przypadku program zakończy się z~komunikatem o~błędzie.
+                \item W~drugim kroku należy wprowadzić nazwę pliku, w~którym znajduje się podpisana wiadomość. Nazwa musi wskazywać na poprawnie wygenerowany podpis. W~przeciwnym przypadku program zakończy się z~komunikatem o~błędzie.
+            \end{itemize}
+            
+            W~rezultacie sprawdzenia poprawności podpisu, program wyświetli jeden z~dwóch komunikatów:
+            
+            \begin{itemize}
+                \item \verb+Sign is VALID!+ oznacza, że podpis wiadomości został zweryfikowany pozytywnie.
+                \item \verb+Sign is INVALID!+ oznacza, że podpis wiadomości został odrzucony.
+            \end{itemize}
+     
+            Wszystkie dane eksportowane przez aplikację (klucze, podpis) zapisywane są w~zwykłym formacie tekstowym i~mogą być modyfikowane przez użytkownika w~ramach testowania algorytmu.
         
     \section*{Testy}
     
