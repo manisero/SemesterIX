@@ -111,7 +111,7 @@ class DSAKey:
         public_key.g = self.g
         public_key.p = self.p
         public_key.q = self.q
-        public_key.x = self.x
+        public_key.x = None
 
         return public_key
 
@@ -128,6 +128,9 @@ class DSAKey:
         return r, s
 
     def verify(self, message, r, s):
+        if self.is_private():
+            raise TypeError('Could not verify message with private key')
+
         m = bytes_to_long(SHA.new(message).digest())
 
         if not (0 < r < self.q) or not (0 < s < self.q):
