@@ -1,3 +1,6 @@
+from dsa.dsa_key import DSAKey
+
+
 class DSAKeyIO:
     def __init__(self):
         pass
@@ -21,4 +24,23 @@ class DSAKeyIO:
 
     @staticmethod
     def import_key(filename):
-        pass
+        with open(filename, 'r') as import_file:
+            import_file_contents = import_file.readlines()
+
+            if len(import_file_contents) < 5:
+                raise IOError('Invalid file contents')
+
+            dsa_key = DSAKey()
+
+            try:
+                dsa_key.p = long(import_file_contents[1].strip())
+                dsa_key.q = long(import_file_contents[2].strip())
+                dsa_key.g = long(import_file_contents[3].strip())
+                dsa_key.y = long(import_file_contents[4].strip())
+
+                if len(import_file_contents) >= 6:
+                    dsa_key.x = long(import_file_contents[5].strip())
+            except:
+                raise IOError('Invalid file contents')
+
+            return dsa_key
