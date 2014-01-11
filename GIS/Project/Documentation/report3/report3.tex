@@ -226,5 +226,63 @@ Ponadto klasa \verb+CostEvaluator+ posiada metodę \verb+evaluate_score_for_perm
 
 \noindent Korzystając z~powyższych parametrów metoda wyznacza funkcję kosztu dokonując pojedynczego przejścia po wierzchołku oraz wszystkich jego sąsiadach, a~nie po całym grafie. Pozwala to znacząco zredukować czas szacowania funkcji kosztu dla permutacji.
 
+\subsection*{Pamięć}
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class Memory:
+  def __init__(self, short_term_memory_size):
+    self.memory = []
+    self.short_term_memory_size = 
+      short_term_memory_size
+
+  def add_to_memory(self, node, color):
+    self.memory.append((node.node_id, color))
+
+  def clear_memory(self):
+    self.memory = []
+
+  def get_short_term_memory(self):
+    return self.memory[
+      -self.short_term_memory_size:]
+    
+  def get_long_term_memory(self):
+    return self.memory
+
+  def is_in_short_term_memory(self, node, color):
+    return (node.node_id, color) in 
+      self.get_short_term_memory()
+
+  def is_in_long_term_memory(self, node, color):
+    return (node.node_id, color) in 
+      self.get_long_term_memory()
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Klasa \verb+Memory+ realizuje pamięć poprzez przechowywanie par $(id_{wierzchołka}, kolor)$ w~liście \verb+memory+. Pamięć krótkoterminowa i~długoterminowa jest realizowana z~wykorzystaniem jednej pamięci fizycznej. \\ 
+                    
+                    \noindent Dodanie wpisu do pamięci polega na dopisaniu pary $(id_{wierzchołka}, kolor)$ na końcu pamięci. \\ 
+                    
+                    \noindent Metoda \verb+clear_memory+ czyści zawartość pamięci. \\
+                    
+                    \noindent Pamięć krótkoterminowa to $n$ ostatnich wpisów listy, gdzie $n$ to rozmiar tabu i~jest definiowany zmienną \verb+short_term_memory_size+. \\
+                    
+                    \noindent Pamięć długoterminowa to cała zawartość pamięci. \\
+                    
+                    \noindent Metoda \verb+is_in_short_term_memory+ sprawdza, czy dana kombinacja znajduje się w~pamięci krótkoterminowej. \\
+                    
+                    \noindent Metoda \verb+is_in_long_term_memory+ oferuje analogiczną funkcjonalność dla pamięci długoterminowej.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
 
 \end{document}
