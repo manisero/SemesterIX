@@ -32,8 +32,10 @@ namespace GRM.Logic
             _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
         }
 
-        public GRMResult ExecuteGRM(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex, int minimumSupport, ProgressInfo progressInfo)
+        public GRMResult ExecuteGRM(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex, int minimumSupport)
         {
+            var progressInfo = ProgressInfoContainer.CurrentProgressInfo;
+
             progressInfo.BeginTask();
 
             progressInfo.BeginStep("Creating data set representation");

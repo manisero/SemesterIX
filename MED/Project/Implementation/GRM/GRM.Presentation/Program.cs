@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using GRM.Logic;
-using GRM.Logic.DataSetProcessing;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Presentation.ResultWriting;
 using NDesk.Options;
@@ -22,14 +21,22 @@ namespace GRM.Presentation
 
             WriteGRMParameters(options);
 
-            var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var progressInfo = new ProgressInfo(step => Console.WriteLine(step),
                                                 (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
 
-            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex,
-                                                                                                                  options.MinimumSupport.Value, progressInfo);
+            ProgressInfoContainer.CurrentProgressInfo = progressInfo;
+
+            var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
 
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
+            Console.WriteLine("Step duration details:");
+
+            foreach (var duration in progressInfo.GetSubstepsDurations())
+            {
+                Console.WriteLine("{0}: {1}", duration.Key, duration.Value);
+            }
+
             Console.WriteLine();
             
             WriteGRMResult(result, options.DataFilePath);

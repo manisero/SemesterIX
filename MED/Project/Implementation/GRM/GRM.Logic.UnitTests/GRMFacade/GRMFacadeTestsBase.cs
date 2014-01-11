@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text;
-using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
@@ -21,10 +20,11 @@ namespace GRM.Logic.UnitTests.GRMFacade
             // Act
             GRMResult result;
             var progressInfo = new ProgressInfo();
+            ProgressInfoContainer.CurrentProgressInfo = progressInfo;
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
             {
-                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, false, null, MinimumSupport, progressInfo);
+                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, false, null, MinimumSupport);
             }
 
             // Assert
