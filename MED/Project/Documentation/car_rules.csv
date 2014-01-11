@@ -1,0 +1,24 @@
+Attribute 1;Attribute 2;Attribute 3;Attribute 4;Attribute 5;Attribute 6;Decision
+;;;2;;;unacc
+vhigh;;;;small;med;unacc
+;vhigh;;;small;med;unacc
+med;high;;;small;med;unacc
+high;;;;small;med;unacc
+;;2;more;small;;unacc
+;;;;;low;unacc
+vhigh;;2;;med;med;unacc
+;vhigh;2;;med;med;unacc
+high;;2;;med;med;unacc
+vhigh;vhigh;;;;;unacc
+vhigh;high;;;;;unacc
+high;vhigh;;;;;unacc
+low;high;;4;;med;acc
+med;med;;4;;med;acc
+vhigh;med;;4;;high;acc
+vhigh;low;;4;;high;acc
+med;vhigh;;4;;high;acc
+low;vhigh;;4;;high;acc
+high;high;;4;;high;acc
+med;high;;4;;high;acc
+high;med;;4;;high;acc
+high;low;;4;;high;acc

@@ -54,12 +54,12 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
         }
 
-        public GRMResult GetResult(int attributesCount, int decisiveAttributeIndex, IDictionary<int, string> attributeNames, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
+        public GRMResult GetResult(int attributesCount, int decisionAttributeIndex, IDictionary<int, string> attributeNames, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
         {
             var result = new GRMResult
             {
                 AttributesCount = attributesCount,
-                DecisiveAttributeIndex = decisiveAttributeIndex,
+                DecisionAttributeIndex = decisionAttributeIndex,
                 AttributeNames = attributeNames
             };
 

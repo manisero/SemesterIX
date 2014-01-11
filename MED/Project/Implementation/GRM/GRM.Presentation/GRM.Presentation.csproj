@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResultWriting\CSVResultWriter.cs" />
     <Compile Include="ResultWriting\TextResultWriter.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="ArgsParser.cs" />

@@ -23,20 +23,16 @@ namespace GRM.Presentation
                                                                                                                   options.MinimumSupport.Value, progressInfo);
 
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
-
+            Console.WriteLine();
+            
             WriteGRMResult(result, options.DataFilePath);
         }
 
         private static void WriteGRMParameters(Options options)
         {
             Console.WriteLine("Executing GRM for file '{0}'.", options.DataFilePath);
-
-            if (options.DataFileContainsHeaders)
-            {
-                Console.WriteLine("The file is expected to contain attributes names.");
-            }
-
-            Console.WriteLine("Decision attribute: {0}.", options.DecisionAttributeIndex.HasValue ? options.DecisionAttributeIndex.ToString() : "last");
+            Console.WriteLine("The file is{0}expected to contain attribute names.", options.DataFileContainsHeaders ? " " : " not ");
+            Console.WriteLine("Decision attribute: {0}.", options.DecisionAttributeIndex.HasValue ? (options.DecisionAttributeIndex + 1).ToString() : "last");
             Console.WriteLine("Minimum support: {0}.", options.MinimumSupport);
             Console.WriteLine("Sorting strategy: '{0}'.", options.SortingStrategy);
             Console.WriteLine("Transaction IDs storage strategy: '{0}'.", options.TransactionIdsStorageStrategy);
@@ -54,6 +50,13 @@ namespace GRM.Presentation
             new TextResultWriter().WriteResult(result, textOutputFilePath);
 
             Console.WriteLine("Text result saved to {0}", textOutputFilePath);
+
+            var csvOutputFileName = dataFilename + "_rules.csv";
+            var csvOutputFilePath = Path.Combine(outputDirectoryName, csvOutputFileName);
+
+            new CSVResultWriter().WriteResult(result, csvOutputFilePath);
+
+            Console.WriteLine("CSV result saved to {0}", csvOutputFilePath);
         }
     }
 }

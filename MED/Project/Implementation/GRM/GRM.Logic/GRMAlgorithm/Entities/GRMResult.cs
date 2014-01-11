@@ -9,7 +9,7 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 
         public IDictionary<int, string> AttributeNames { get; set; }
 
-        public int DecisiveAttributeIndex { get; set; }
+        public int DecisionAttributeIndex { get; set; }
 
         public IEnumerable<Rule> Rules { get; set; }
     }
