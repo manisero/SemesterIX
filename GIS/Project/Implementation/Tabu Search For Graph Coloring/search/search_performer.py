@@ -1,12 +1,12 @@
 from evaluation.cost_evaluator import CostEvaluator
 from memory.memory import Memory
-from permutation.color_permutator import ColorPermutator
+from permutation.fast_color_permutator import FastColorPermutator
 
 
 class GraphColoringSearchPerformer:
     def __init__(self, stop_criteria, memory_size, progress_writer=None):
         self.stop_criteria = stop_criteria
-        self.color_permutator = ColorPermutator()
+        self.color_permutator = FastColorPermutator()
         self.memory = Memory(memory_size)
         self.cost_evaluator = CostEvaluator()
         self.best_score = None
@@ -25,7 +25,7 @@ class GraphColoringSearchPerformer:
             self.progress_writer.start_task(iteration_task, True)
             self.progress_writer.start_subtask('finding permutations', True)
 
-        permutations = self.find_permutations(node, color_set)
+        permutations, score = self.find_permutations(node, color_set)
 
         if len(permutations) == 0:
             return self.return_score()
@@ -34,8 +34,7 @@ class GraphColoringSearchPerformer:
             self.progress_writer.stop_subtask('finding permutations', '', True)
             self.progress_writer.start_subtask('evaluating scores for permutations', True)
 
-        permutations_to_scores = {permutation: self.cost_evaluator.evaluate(permutation, color_set) for permutation in
-                                  permutations}
+        permutations_to_scores = {permutation: score for permutation in permutations}
 
         if self.progress_writer:
             self.progress_writer.stop_subtask('evaluating scores for permutations', '', True)
@@ -61,31 +60,24 @@ class GraphColoringSearchPerformer:
         return 'tabu search {0} iteration'.format(self.stop_criteria.current_iterations + 1)
 
     def find_permutations(self, node, color_set):
-        permutations = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
+        permutations, score = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
 
         for index in range(1, len(self.memory.get_short_term_memory())):
             if len(permutations) > 0:
                 break
 
-            permutations = self.color_permutator.permutate(node, color_set,
-                                                           self.memory.get_short_term_memory()[1:])
+            permutations, score = self.color_permutator.permutate(node, color_set,
+                                                                  self.memory.get_short_term_memory()[1:])
 
-        return permutations
+        return permutations, score
 
     def return_score(self):
         return self.best_score[0]
 
-    def get_best_score_for_iteration(self, permutations_to_scores_list):
-        permutations_to_scores_sorted = sorted(permutations_to_scores_list, key=lambda t: t[1])
-        best_score = permutations_to_scores_sorted[0]
-        best_scores = filter(lambda t: t[1] == best_score[1], permutations_to_scores_sorted)
+    def get_best_score_for_iteration(self, permutations_to_scores):
+        permutation_to_return = permutations_to_scores[0], None
 
-        if len(best_scores) == 0:
-            return best_score
-
-        permutation_to_return = best_score, None
-
-        for score in best_scores:
+        for score in permutations_to_scores:
             node_usages = sum(1 for _ in filter(lambda t: t[0] == score[0].node_id, self.memory.get_long_term_memory()))
 
             if permutation_to_return[1] is None or node_usages < permutation_to_return[1]:

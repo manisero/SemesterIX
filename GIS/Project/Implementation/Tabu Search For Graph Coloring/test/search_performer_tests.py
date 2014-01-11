@@ -115,19 +115,19 @@ class SearchPerformerTests(unittest.TestCase):
         n3.add_edges([n4])
         n4.add_edges([n5])
 
-        first_permutations = search_performer.find_permutations(n1, ['black', 'red'])
+        first_permutations = search_performer.find_permutations(n1, ['black', 'red'])[0]
         first_node = first_permutations[0]
         search_performer.memory.add_to_memory(first_node, first_node.previous_color)
-        second_permutations = search_performer.find_permutations(first_node, ['black', 'red'])
+        second_permutations = search_performer.find_permutations(first_node, ['black', 'red'])[0]
         second_node = second_permutations[0]
         search_performer.memory.add_to_memory(second_node, second_node.previous_color)
-        third_permutations = search_performer.find_permutations(second_node, ['black', 'red'])
+        third_permutations = search_performer.find_permutations(second_node, ['black', 'red'])[0]
         third_node = third_permutations[0]
         search_performer.memory.add_to_memory(third_node, third_node.previous_color)
-        fourth_permutations = search_performer.find_permutations(third_node, ['black', 'red'])
+        fourth_permutations = search_performer.find_permutations(third_node, ['black', 'red'])[0]
         fourth_node = fourth_permutations[0]
         search_performer.memory.add_to_memory(fourth_node, fourth_node.previous_color)
-        fifth_permutations = search_performer.find_permutations(fourth_node, ['black', 'red'])
+        fifth_permutations = search_performer.find_permutations(fourth_node, ['black', 'red'])[0]
         fifth_node = fifth_permutations[0]
 
         self.assertEqual(1, len(first_permutations))
