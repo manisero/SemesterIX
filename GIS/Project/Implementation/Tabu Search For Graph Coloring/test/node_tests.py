@@ -33,3 +33,17 @@ class NodeTests(unittest.TestCase):
         node_count = n1.node_count()
 
         self.assertEqual(node_count, 5)
+
+    def test_color_classes_method(self):
+        n1 = Node(color='#')
+        n2 = Node(color='*')
+        n3 = Node(color='#')
+        n4 = Node(color='$')
+        n1.add_edges([n2, n3, n4])
+        n2.add_edges([n1, n3, n4])
+        n3.add_edges([n1, n2, n4])
+        n4.add_edges([n1, n2, n3])
+
+        color_classes = n1.get_colors_count()
+
+        self.assertEqual(3, color_classes)
