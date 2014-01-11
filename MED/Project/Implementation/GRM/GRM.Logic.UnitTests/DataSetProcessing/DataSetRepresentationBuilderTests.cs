@@ -31,7 +31,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
 
             // Assert
             Assert.Equal(3, result.AttributesCount);
-            Assert.Equal(2, result.DecisiveAttributeIndex);
+            Assert.Equal(2, result.DecisionAttributeIndex);
             Assert.Equal(null, result.AttributeNames);
 
             AutoMoqer.GetMock<ITransactionProcessor>().VerifyAll();

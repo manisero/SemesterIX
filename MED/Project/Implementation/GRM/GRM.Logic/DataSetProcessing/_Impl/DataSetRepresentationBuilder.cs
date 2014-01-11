@@ -13,7 +13,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
             _transactionProcessor = transactionProcessor;
         }
 
-        public DataSetRepresentation Build(Stream dataSetStream, bool dataContainsHeaders, int? decisiveAttributeIndex)
+        public DataSetRepresentation Build(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex)
         {
             var buildState = new DataSetRepresentationBuildState();
             int attributesCount;
@@ -34,7 +34,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
                 var firstTransaction = reader.ReadLine();
                 attributesCount = firstTransaction.Split(',').Length;
-                decisionIndex = decisiveAttributeIndex ?? attributesCount - 1;
+                decisionIndex = decisionAttributeIndex ?? attributesCount - 1;
                 _transactionProcessor.AppendTransaction(1, firstTransaction, decisionIndex, buildState);
 
                 for (int i = 2; !reader.EndOfStream; i++)
@@ -47,7 +47,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
             return new DataSetRepresentation
                 {
                     AttributesCount = attributesCount,
-                    DecisiveAttributeIndex = decisionIndex,
+                    DecisionAttributeIndex = decisionIndex,
                     AttributeNames = attributeNames,
                     DecisionIDs = buildState.DecisionIDs,
                     TransactionDecisions = buildState.TransactionDecisions,

@@ -43,7 +43,7 @@ namespace GRM.Presentation
             optionSet.Add("f|file=", "Data file path. Required.", x => options.DataFilePath = x);
             optionSet.Add("sup|minSup=", "Minimum support. Required.", (int x) => options.MinimumSupport = x);
             optionSet.Add("h|headers", "Indicates that the first row of data file contains attribute names (headers). Optional.", x => options.DataFileContainsHeaders = true);
-            optionSet.Add("dec|decAttr=", "Decisive attribute index. Optional.", (int x) => options.DecisiveAttributeIndex = x);
+            optionSet.Add("dec|decAttr=", "Decision attribute index (0 = first attribute, 1 = second attribute...). Optional (if not provided, last attribute is be considered as decision).", (int x) => options.DecisionAttributeIndex = x);
             optionSet.Add("sort=", "Sorting strategy. Optional. Valid values: DescendingSupport (or 0; default), AscendingSupport (or 1), Lexicographical (or 2), ReverseLexicographical (or 3).", x => options.SortingStrategy = ParseEnum<SortingStrategyType>(x));
             optionSet.Add("store=", "Transaction IDs storage strategy. Optional. Valid values: TIDSets (or 0; default), DiffSets (or 1).", x => options.TransactionIdsStorageStrategy = ParseEnum<TransactionIDsStorageStrategyType>(x));
 

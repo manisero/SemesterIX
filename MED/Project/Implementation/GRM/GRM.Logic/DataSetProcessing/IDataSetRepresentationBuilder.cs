@@ -5,6 +5,6 @@ namespace GRM.Logic.DataSetProcessing
 {
     public interface IDataSetRepresentationBuilder
     {
-        DataSetRepresentation Build(Stream dataSetStream, bool dataContainsHeaders, int? decisiveAttributeIndex);
+        DataSetRepresentation Build(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex);
     }
 }

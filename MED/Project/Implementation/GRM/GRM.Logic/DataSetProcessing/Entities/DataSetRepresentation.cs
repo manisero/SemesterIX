@@ -6,7 +6,7 @@ namespace GRM.Logic.DataSetProcessing.Entities
     {
         public int AttributesCount { get; set; }
 
-        public int DecisiveAttributeIndex { get; set; }
+        public int DecisionAttributeIndex { get; set; }
 
         public IDictionary<int, string> AttributeNames { get; set; }
 

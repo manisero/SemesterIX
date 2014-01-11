@@ -11,7 +11,7 @@ namespace GRM.Presentation
 
         public bool DataFileContainsHeaders { get; set; }
 
-        public int? DecisiveAttributeIndex { get; set; }
+        public int? DecisionAttributeIndex { get; set; }
 
         public SortingStrategyType SortingStrategy { get; set; }
 

@@ -5,17 +5,17 @@ namespace GRM.Logic.DataSetProcessing._Impl
 {
     public class TransactionProcessor : ITransactionProcessor
     {
-        public void AppendTransaction(int transactionId, string transaction, int decisiveAttributeIndex, DataSetRepresentationBuildState buildState)
+        public void AppendTransaction(int transactionId, string transaction, int decisionAttributeIndex, DataSetRepresentationBuildState buildState)
         {
             var items = transaction.Split(',');
-            var decision = items[decisiveAttributeIndex];
+            var decision = items[decisionAttributeIndex];
 
             var decisionId = GetDecisionID(buildState, decision);
             buildState.TransactionDecisions.Add(transactionId, decisionId);
 
             for (int i = 0; i < items.Length; i++)
             {
-                if (i == decisiveAttributeIndex)
+                if (i == decisionAttributeIndex)
                 {
                     continue;
                 }
