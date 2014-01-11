@@ -20,3 +20,11 @@ class Memory:
 
     def get_short_term_memory(self):
         return self.memory[-self.short_term_memory_size:]
+
+    def __str__(self):
+        short_term_memory_as_string = ''
+
+        for memory_entry in self.get_short_term_memory():
+            short_term_memory_as_string += str(memory_entry[0]) + ' - ' + str(memory_entry[1]) + '\n'
+
+        return short_term_memory_as_string

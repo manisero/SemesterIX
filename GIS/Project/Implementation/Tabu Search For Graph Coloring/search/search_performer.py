@@ -4,13 +4,13 @@ from permutation.color_permutator import ColorPermutator
 
 
 class GraphColoringSearchPerformer:
-    def __init__(self, stop_criteria, memory_size, output_writer=None):
+    def __init__(self, stop_criteria, memory_size, progress_writer=None):
         self.stop_criteria = stop_criteria
         self.color_permutator = ColorPermutator()
         self.memory = Memory(memory_size)
         self.cost_evaluator = CostEvaluator()
         self.best_score = None
-        self.output_writer = output_writer
+        self.progress_writer = progress_writer
 
     def search(self, root_node, color_set):
         self.memory.clear_memory()
@@ -19,13 +19,26 @@ class GraphColoringSearchPerformer:
         return self.recursive_search(root_node, color_set)
 
     def recursive_search(self, node, color_set):
+        iteration_task = self.tabu_search_task_name()
+
+        if self.progress_writer:
+            self.progress_writer.start_task(iteration_task, True)
+            self.progress_writer.start_subtask('finding permutations', True)
+
         permutations = self.find_permutations(node, color_set)
 
         if len(permutations) == 0:
             return self.return_score()
 
+        if self.progress_writer:
+            self.progress_writer.stop_subtask('finding permutations', '', True)
+            self.progress_writer.start_subtask('evaluating scores for permutations', True)
+
         permutations_to_scores = {permutation: self.cost_evaluator.evaluate(permutation, color_set) for permutation in
                                   permutations}
+
+        if self.progress_writer:
+            self.progress_writer.stop_subtask('evaluating scores for permutations', '', True)
 
         iteration_best_score = self.get_best_score_for_iteration(permutations_to_scores.items())
 
@@ -36,19 +49,16 @@ class GraphColoringSearchPerformer:
 
         self.stop_criteria.next_iteration(self.best_score)
 
-        if self.output_writer is not None:
-            self.output_writer.write_iteration_info(self.stop_criteria.current_iterations,
-                                                    self.stop_criteria.current_iterations_without_score_change,
-                                                    iteration_best_score[1],
-                                                    self.best_score[1],
-                                                    self.memory,
-                                                    iteration_best_score[0],
-                                                    True)
+        if self.progress_writer:
+            self.progress_writer.stop_task(iteration_task, self.get_iteration_summary(iteration_best_score), True)
 
         if self.stop_criteria.should_stop():
             return self.return_score()
 
         return self.recursive_search(iteration_best_score[0], color_set)
+
+    def tabu_search_task_name(self):
+        return 'tabu search {0} iteration'.format(self.stop_criteria.current_iterations + 1)
 
     def find_permutations(self, node, color_set):
         permutations = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
@@ -82,3 +92,13 @@ class GraphColoringSearchPerformer:
                 permutation_to_return = score, node_usages
 
         return permutation_to_return[0]
+
+    def get_iteration_summary(self, iteration_best_score):
+        summary = 'iterations without score change: {0}\n'.format(
+            self.stop_criteria.current_iterations_without_score_change)
+        summary += 'iteration\'s best score: {0}\n'.format(iteration_best_score[1])
+        summary += 'overall best score: {0}\n'.format(self.best_score[1])
+        summary += 'memory: {0}'.format(self.memory)
+        summary += 'permutation: {0}'.format(iteration_best_score[0])
+
+        return summary

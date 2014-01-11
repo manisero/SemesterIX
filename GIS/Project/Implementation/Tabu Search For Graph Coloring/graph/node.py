@@ -40,3 +40,11 @@ class Node:
 
     def node_count(self):
         return sum(1 for _ in self.iterator())
+
+    def __str__(self):
+        graph_as_string = ''
+
+        for node in self.iterator():
+            graph_as_string += str(node.node_id) + ' - ' + str(node.color) + '\n'
+
+        return graph_as_string
