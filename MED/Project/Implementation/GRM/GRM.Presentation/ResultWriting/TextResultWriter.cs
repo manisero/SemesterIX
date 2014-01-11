@@ -23,7 +23,7 @@ namespace GRM.Presentation.ResultWriting
                 {
                     stringBuilder.AppendLine(SEPARATOR);
 
-                    stringBuilder.AppendLine(string.Format("Decision: '{0}':", rule.Decision));
+                    stringBuilder.AppendLine(string.Format("{0}: '{1}':", GetDecisionAttributeName(result.DecisionAttributeIndex, result.AttributeNames), rule.Decision));
 
                     stringBuilder.AppendLine(SUBSEPARATOR);
 
@@ -37,6 +37,13 @@ namespace GRM.Presentation.ResultWriting
 
                 writer.Write(stringBuilder.ToString());
             }
+        }
+
+        private string GetDecisionAttributeName(int decisionAttributeIndex, IDictionary<int, string> attributeNames)
+        {
+            return attributeNames != null
+                       ? attributeNames[decisionAttributeIndex]
+                       : "Decision";
         }
 
         private string FormatGenerator(IEnumerable<Item> generator, IDictionary<int, string> attributeNames)
