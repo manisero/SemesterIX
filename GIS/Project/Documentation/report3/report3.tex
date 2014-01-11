@@ -384,4 +384,33 @@ class AspirationCriteria:
         
         \end{table}
 
+\subsection*{Weryfikacja pokolorowania}
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class ColoringValidator:
+  def is_coloring_valid(root_node):
+    for node in root_node.iterator():
+      for child_node in node.edges:
+        if node.color == child_node.color:
+          return False
+
+    return True
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Metoda \verb+is_coloring_valid+ klasy \verb+ColoringValidator+ sprawdza czy w~grafie nie istnieje krawędź łącząca dwa wierzchołki identycznego koloru.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
+
 \end{document}
