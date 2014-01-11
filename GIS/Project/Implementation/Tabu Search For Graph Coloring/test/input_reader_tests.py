@@ -1,5 +1,6 @@
 import tempfile
 import unittest
+from input.dimacs_input_reader import DIMACSInputReader
 from input.input_reader import InputReader
 
 
@@ -44,3 +45,52 @@ class InputReaderTests(unittest.TestCase):
             self.assertEqual(1, len(e_node.edges))
             self.assertIn(c_node, e_node.edges)
             self.assertIn(e_node.color, range(0, 3))
+
+    def test_dimacs_input_graph_method(self):
+        with tempfile.NamedTemporaryFile() as test_file:
+            input_reader = DIMACSInputReader()
+            test_file.write('c this is...\n')
+            test_file.write('c ... some useless comment\n')
+            test_file.write('p edge 4 5\n')
+            test_file.write('e 1 2\n')
+            test_file.write('e 1 4\n')
+            test_file.write('e 2 1\n')
+            test_file.write('e 2 3\n')
+            test_file.write('e 2 4\n')
+            test_file.write('e 3 2\n')
+            test_file.write('e 3 4\n')
+            test_file.write('e 4 1\n')
+            test_file.write('e 4 2\n')
+            test_file.write('e 4 3\n')
+            test_file.seek(0)
+
+            graph, color_set = input_reader.read_input_graph_and_color_set(test_file.name)
+            first_node = graph.get_node_of_id('1')
+            second_node = graph.get_node_of_id('2')
+            third_node = graph.get_node_of_id('3')
+            fourth_node = graph.get_node_of_id('4')
+
+            self.assertEqual(4, graph.node_count())
+            self.assertEqual(4, len(color_set))
+            self.assertIn(0, color_set)
+            self.assertIn(1, color_set)
+            self.assertIn(2, color_set)
+            self.assertIn(3, color_set)
+            self.assertEqual(2, len(first_node.edges))
+            self.assertIn(second_node, first_node.edges)
+            self.assertIn(fourth_node, first_node.edges)
+            self.assertIn(first_node.color, range(0, 4))
+            self.assertEqual(3, len(second_node.edges))
+            self.assertIn(first_node, second_node.edges)
+            self.assertIn(third_node, second_node.edges)
+            self.assertIn(fourth_node, second_node.edges)
+            self.assertIn(second_node.color, range(0, 4))
+            self.assertEqual(2, len(third_node.edges))
+            self.assertIn(second_node, third_node.edges)
+            self.assertIn(fourth_node, third_node.edges)
+            self.assertIn(third_node.color, range(0, 4))
+            self.assertEqual(3, len(fourth_node.edges))
+            self.assertIn(first_node, fourth_node.edges)
+            self.assertIn(second_node, fourth_node.edges)
+            self.assertIn(third_node, fourth_node.edges)
+            self.assertIn(fourth_node.color, range(0, 4))
