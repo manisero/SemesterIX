@@ -27,24 +27,7 @@ class FastColorPermutator:
                 if node.color == color or (node.node_id, color) in banned_transitions:
                     continue
 
-                c_permutation, e_permutation = self.c.copy(), self.e.copy()
-                c_permutation[node.color] -= 1
-
-                if color not in c_permutation:
-                    c_permutation[color] = 0
-
-                c_permutation[color] += 1
-
-                for child_node in node.edges:
-                    if child_node.color == node.color:
-                        e_permutation[node.color] -= 1
-                    elif child_node.color == color:
-                        if color not in e_permutation:
-                            e_permutation[color] = 0
-
-                        e_permutation[color] += 1
-
-                cost = CostEvaluator.evaluate_cost(color_set, c_permutation, e_permutation)
+                cost = self.permutation_cost(node, color, color_set)
 
                 if self.current_best_score is None or cost <= self.current_best_score:
                     cloned_node = GraphCloner.clone(node)
@@ -56,3 +39,23 @@ class FastColorPermutator:
                         self.permutations = [cloned_node]
 
                     self.current_best_score = cost
+
+    def permutation_cost(self, node, color, color_set):
+        c, e = self.c.copy(), self.e.copy()
+        c[node.color] -= 1
+
+        if color not in c:
+            c[color] = 0
+
+        c[color] += 1
+
+        for child_node in node.edges:
+            if child_node.color == node.color:
+                e[node.color] -= 1
+            elif child_node.color == color:
+                if color not in e:
+                    e[color] = 0
+
+                e[color] += 1
+
+        return CostEvaluator.evaluate_cost(color_set, c, e)
