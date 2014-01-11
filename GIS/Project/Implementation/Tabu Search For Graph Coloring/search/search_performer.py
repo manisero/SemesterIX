@@ -1,3 +1,4 @@
+from aspiration_criteria.aspiration_criteria import AspirationCriteria
 from evaluation.cost_evaluator import CostEvaluator
 from memory.memory import Memory
 from permutation.fast_color_permutator import FastColorPermutator
@@ -60,14 +61,15 @@ class GraphColoringSearchPerformer:
         return 'tabu search {0} iteration'.format(self.stop_criteria.current_iterations + 1)
 
     def find_permutations(self, node, color_set):
-        permutations, score = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
+        aspiration_criteria = AspirationCriteria(self.memory.get_short_term_memory(), self.best_score)
+        permutations, score = self.color_permutator.permutate(node, color_set, aspiration_criteria)
 
         for index in range(1, len(self.memory.get_short_term_memory())):
             if len(permutations) > 0:
                 break
 
-            permutations, score = self.color_permutator.permutate(node, color_set,
-                                                                  self.memory.get_short_term_memory()[1:])
+            aspiration_criteria = AspirationCriteria(self.memory.get_short_term_memory()[index:], self.best_score)
+            permutations, score = self.color_permutator.permutate(node, color_set, aspiration_criteria)
 
         return permutations, score
 
