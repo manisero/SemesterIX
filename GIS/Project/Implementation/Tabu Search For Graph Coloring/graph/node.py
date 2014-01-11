@@ -48,3 +48,14 @@ class Node:
             graph_as_string += str(node.node_id) + ' - ' + str(node.color) + '\n'
 
         return graph_as_string
+
+    def get_colors_count(self):
+        colors = set()
+        classes = 0
+
+        for node in self.iterator():
+            if node.color not in colors:
+                colors.add(node.color)
+                classes += 1
+
+        return classes
