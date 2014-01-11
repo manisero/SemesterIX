@@ -285,4 +285,65 @@ class Memory:
         
         \end{table}
 
+\subsection*{Kryteria stopu}
+
+Zgodnie z~założeniami przedstawionymi w~poprzednich raportach zaimplementowane zostały dwa kryteria stopu:
+
+\begin{itemize}
+    \item maksymalna liczba iteracji,
+    \item maksymalna liczba iteracji bez zmiany najlepszego wyniku.
+\end{itemize}
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class StopCriteria:
+  def __init__(self, max_iters, 
+      max_iters_without_change):
+    self.max_iters = max_iters
+    self.max_iters_without_change = 
+      max_iters_without_change
+    self.current_iters = 0
+    self.current_iters_without_change = 0
+    self.previous_score = None
+
+  def reset(self):
+    self.current_iters = 0
+    self.current_iters_without_change = 0
+    self.previous_score = None
+
+  def next_iteration(self, score):
+    self.current_iters += 1
+
+    if self.previous_score is None or 
+        self.previous_score != score:
+      self.previous_score = score
+      self.current_iters_without_change = 1
+    else:
+      self.current_iters_without_change += 1
+
+  def should_stop(self):
+    return self.current_iters >= self.max_iters 
+      or self.current_iters_without_change >= 
+        self.max_iters_without_change
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Klasa \verb+StopCriteria+ realizuje kryteria stopu. Zlicza ona liczbę iteracji algorytmu oraz liczbę iteracji bez zmiany wyniku i~porównuje je z~wartościami konfiguracyjnymi ze zmiennych \verb+max_iters+ oraz \verb+max_iters_without_change+. \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 
+                    
+                    \noindent Metoda \verb+next_iteration+ jest wywoływana przy każdej iteracji przeszukiwania z~tabu. Parametrem tej metody jest najlepsza znaleziona wartość funkcji celu. Funkcja sprawdza czy oszacowanie uległo zmianie. \\ \\ \\ \\ \\
+                    
+                    \noindent Metoda \verb+should_stop+ orzeka czy wykonywanie algorytmu powinno zakończyć się na podstawie kryteriów stopu. \\
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
+
 \end{document}
