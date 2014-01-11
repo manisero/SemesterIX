@@ -7,42 +7,7 @@ namespace GRM.Presentation
 {
     public class ArgsParser
     {
-        public Options ParseArgs(string[] args)
-        {
-            var options = new Options();
-            var optionSet = BuildOptionSet(options);
-
-            try
-            {
-                optionSet.Parse(args);
-
-                if (options.HelpRequested)
-                {
-                    PrintParameters(optionSet);
-                }
-
-                if (options.DataFilePath == null)
-                {
-                    throw new OptionException("file parameter is required", "file");
-                }
-
-                if (options.MinimumSupport == null)
-                {
-                    throw new OptionException("minSup parameter is required", "minSup");
-                }
-            }
-            catch (OptionException e)
-            {
-                Console.WriteLine(e);
-                Console.WriteLine();
-                
-                PrintParameters(optionSet);
-            }
-
-            return options;
-        }
-
-        private OptionSet BuildOptionSet(Options options)
+        public OptionSet BuildOptionSet(Options options)
         {
             var optionSet = new OptionSet();
             optionSet.Add("help", "Makes the program display available parameters and terminate. Optional.", x => options.HelpRequested = true);
@@ -54,6 +19,27 @@ namespace GRM.Presentation
             optionSet.Add("store=", "Transaction IDs storage strategy. Optional. Valid values: TIDSets (or 0; default), DiffSets (or 1).", x => options.TransactionIdsStorageStrategy = ParseEnum<TransactionIDsStorageStrategyType>(x));
 
             return optionSet;
+        }
+
+        public void ParseArgs(string[] args, OptionSet optionSet, Options options)
+        {
+            optionSet.Parse(args);
+
+            if (options.DataFilePath == null)
+            {
+                throw new OptionException("file parameter is required", "file");
+            }
+
+            if (options.MinimumSupport == null)
+            {
+                throw new OptionException("minSup parameter is required", "minSup");
+            }
+        }
+
+        public void PrintParameters(OptionSet optionSet)
+        {
+            Console.WriteLine("Parameters:");
+            optionSet.WriteOptionDescriptions(Console.Out);
         }
 
         private TEnum ParseEnum<TEnum>(string value) where TEnum:struct 
@@ -73,12 +59,6 @@ namespace GRM.Presentation
             {
                 return (TEnum)Enum.GetValues(typeof(TEnum)).GetValue(0);
             }
-        }
-
-        private void PrintParameters(OptionSet optionSet)
-        {
-            Console.WriteLine("Parameters:");
-            optionSet.WriteOptionDescriptions(Console.Out);   
         }
     }
 }

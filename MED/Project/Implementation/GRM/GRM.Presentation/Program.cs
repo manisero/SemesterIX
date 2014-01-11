@@ -4,6 +4,7 @@ using GRM.Logic;
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Presentation.ResultWriting;
+using NDesk.Options;
 
 namespace GRM.Presentation
 {
@@ -11,9 +12,10 @@ namespace GRM.Presentation
     {
         static void Main(string[] args)
         {
-            var options = new ArgsParser().ParseArgs(args);
+            bool shouldTerminate;
+            var options = ReadArgs(args, out shouldTerminate);
 
-            if (options.HelpRequested)
+            if (shouldTerminate)
             {
                 return;
             }
@@ -31,6 +33,40 @@ namespace GRM.Presentation
             Console.WriteLine();
             
             WriteGRMResult(result, options.DataFilePath);
+        }
+
+        private static Options ReadArgs(string[] args, out bool shouldTerminate)
+        {
+            var options = new Options();
+
+            var argsParser = new ArgsParser();
+            var optionSet = argsParser.BuildOptionSet(options);
+
+            try
+            {
+                argsParser.ParseArgs(args, optionSet, options);
+            }
+            catch (OptionException e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine();
+
+                argsParser.PrintParameters(optionSet);
+
+                shouldTerminate = true;
+                return null;
+            }
+
+            if (options.HelpRequested)
+            {
+                argsParser.PrintParameters(optionSet);
+
+                shouldTerminate = true;
+                return null;
+            }
+
+            shouldTerminate = false;
+            return options;
         }
 
         private static void WriteGRMParameters(Options options)
