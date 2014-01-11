@@ -64,11 +64,11 @@ class GraphColoringSearchPerformer:
         permutations = self.color_permutator.permutate(node, color_set, self.memory.get_short_term_memory())
 
         for index in range(1, len(self.memory.get_short_term_memory())):
-            permutations = self.color_permutator.permutate(node, color_set,
-                                                           self.memory.get_short_term_memory()[1:])
-
             if len(permutations) > 0:
                 break
+
+            permutations = self.color_permutator.permutate(node, color_set,
+                                                           self.memory.get_short_term_memory()[1:])
 
         return permutations
 

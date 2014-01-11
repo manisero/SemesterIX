@@ -17,9 +17,13 @@ class CostEvaluator:
 
     @staticmethod
     def evaluate(root_node, color_set):
-        cost = 0
-
         c, e = CostEvaluator.evaluate_score_for_colors(root_node)
+
+        return CostEvaluator.evaluate_cost(color_set, c, e)
+
+    @staticmethod
+    def evaluate_cost(color_set, c, e):
+        cost = 0
 
         for color in color_set:
             c_i = 0
