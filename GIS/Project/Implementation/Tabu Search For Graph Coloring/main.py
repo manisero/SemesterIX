@@ -2,6 +2,7 @@ import argparse
 import sys
 from evaluation.cost_evaluator import CostEvaluator
 from input.input_reader import InputReader
+from input.input_reader_factory import InputReaderFactory
 from output.output_writer import OutputWriter
 from search.search_performer import GraphColoringSearchPerformer
 from stop_criteria.stop_criteria import StopCriteria
@@ -17,13 +18,15 @@ def main():
     parser.add_argument('-s', type=int, required=True, help='maximum iterations without changed score',
                         metavar='maximum_iterations_without_score_change')
     parser.add_argument('-m', type=int, required=True, help='memory size', metavar='memory_size')
+    parser.add_argument('--dimacs-compat', required=False, action='store_true', help='DIMACS input compatibility')
     arguments = parser.parse_args()
 
     output_writer = OutputWriter(arguments.o, arguments.verbose)
 
     for file_name in arguments.input_file:
         output_writer.write_analyzed_file_name(file_name)
-        graph, color_set = InputReader().read_input_graph_and_color_set(file_name)
+        input_reader = InputReaderFactory.create_input_reader(arguments.dimacs_compat)
+        graph, color_set = input_reader.read_input_graph_and_color_set(file_name)
         output_writer.write_input(graph, color_set, CostEvaluator.evaluate(graph, color_set), True)
         stop_criteria = StopCriteria(arguments.i, arguments.s)
         best_score = GraphColoringSearchPerformer(stop_criteria, arguments.m, output_writer).search(graph, color_set)
