@@ -8,6 +8,6 @@ namespace GRM.Logic.GRMAlgorithm
     {
         void AppendDecisionGenerators(int decisionId, IList<Generator> generators);
 
-        GRMResult GetResult(IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds);
+        GRMResult GetResult(int attributesCount, int decisiveAttributeIndex, IDictionary<int, string> attributeNames, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds);
     }
 }

@@ -57,7 +57,7 @@ namespace GRM.Logic
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Building result");
-            var result = _resultBuilder.GetResult(representation.DecisionIDs, representation.ItemIDs);
+            var result = _resultBuilder.GetResult(representation.AttributesCount, representation.DecisiveAttributeIndex, representation.AttributeNames, representation.DecisionIDs, representation.ItemIDs);
             progressInfo.EndStep();
 
             progressInfo.EndTask();

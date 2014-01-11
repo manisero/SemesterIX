@@ -54,8 +54,15 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
         }
 
-        public GRMResult GetResult(IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
+        public GRMResult GetResult(int attributesCount, int decisiveAttributeIndex, IDictionary<int, string> attributeNames, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
         {
+            var result = new GRMResult
+            {
+                AttributesCount = attributesCount,
+                DecisiveAttributeIndex = decisiveAttributeIndex,
+                AttributeNames = attributeNames
+            };
+
             var rules = new List<Rule>();
 
             foreach (var decisionGenerators in _buildState.DecisionGenerators)
@@ -81,7 +88,9 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 rules.Add(rule);
             }
 
-            return new GRMResult { Rules = rules };
+            result.Rules = rules;
+
+            return result;
         }
     }
 }

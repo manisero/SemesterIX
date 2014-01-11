@@ -5,6 +5,12 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 {
     public class GRMResult
     {
+        public int AttributesCount { get; set; }
+
+        public IDictionary<int, string> AttributeNames { get; set; }
+
+        public int DecisiveAttributeIndex { get; set; }
+
         public IEnumerable<Rule> Rules { get; set; }
     }
 
