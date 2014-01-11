@@ -1,13 +1,13 @@
 import tempfile
 import unittest
 from graph.node import Node
-from output.output_writer import OutputWriter
+from progress.progress_writer import ProgressWriter
 
 
-class OutputWriterTests(unittest.TestCase):
+class ProgressWriterTests(unittest.TestCase):
     def test_write_graph_method(self):
         with tempfile.NamedTemporaryFile() as test_file:
-            output_writer = OutputWriter(test_file)
+            output_writer = ProgressWriter(test_file)
             n1 = Node(color='red', node_id=1)
             n2 = Node(color='blue', node_id=2)
             n3 = Node(color='green', node_id=3)

@@ -1,4 +1,4 @@
-class OutputWriter:
+class ProgressWriter:
     def __init__(self, output, verbose=False):
         self.output = output
         self.verbose = verbose
