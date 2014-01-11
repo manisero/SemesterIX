@@ -345,5 +345,43 @@ class StopCriteria:
             \end{tabular}
         
         \end{table}
+        
+\subsection*{Kryteria aspiracji}
+
+Kryteria aspiracji orzekają, kiedy wolno pominąć restrykcje ,,tabu''. Zaimplementowane zostało proste kryterium aspiracji, które pomija restrykcje ,,tabu'' wtedy i~tylko wtedy, gdy dana permutacja posiada lepsze oszacowanie funkcji celu niż najlepsze dotychczas odnalezione.
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class AspirationCriteria:
+  def __init__(self, banned_trans, best_score):
+    self.banned_trans = banned_trans
+    self.best_score = best_score
+
+
+  def is_allowed(self, node, color, cost):
+    if (node.node_id, color) not in 
+        self.banned_trans:
+      return True
+
+    return self.best_score is not None and 
+      cost < self.best_score
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Klasa \verb+AspirationCriteria+ orzeka czy należy wziąć pod uwagę restrykcje ,,tabu''. Przechowuje listę zabronionych przejść \verb+banned_trans+ oraz najlepszy znaleziony wynik funkcji celu \verb+best_score+. \\
+                    
+                    \noindent Metoda \verb+is_allowed+ stwierdza czy wolno dokonać dane przejście w~permutacji. Jeżeli przejście nie jest objęte restrykcją ,,tabu'' to zawsze można dokonać tego przejścia. W~przeciwnym wypadku można go dokonać tylko wtedy, gdy oszacowanie funkcji celu dla permutacji jest lepsze niż najlepsze znalezione dotychczas oszacowanie.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
 
 \end{document}
