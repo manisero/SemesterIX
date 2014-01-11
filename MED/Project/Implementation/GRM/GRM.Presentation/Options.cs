@@ -9,6 +9,10 @@ namespace GRM.Presentation
 
         public int? MinimumSupport { get; set; }
 
+        public bool DataFileContainsHeaders { get; set; }
+
+        public int? DecisiveAttributeIndex { get; set; }
+
         public SortingStrategyType SortingStrategy { get; set; }
 
         public TransactionIDsStorageStrategyType TransactionIdsStorageStrategy { get; set; }
