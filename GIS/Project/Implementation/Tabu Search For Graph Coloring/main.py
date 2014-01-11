@@ -44,6 +44,7 @@ def get_input_summary(graph, color_set):
 
 def get_result_summary(best_graph):
     result_summary = 'best score for coloring: \n{0}'.format(best_graph)
+    result_summary += 'colors used: {0}\n'.format(best_graph.get_colors_count())
     result_summary += 'is coloring valid?: {0}\n'.format(ColoringValidator.is_coloring_valid(best_graph))
 
     return result_summary
