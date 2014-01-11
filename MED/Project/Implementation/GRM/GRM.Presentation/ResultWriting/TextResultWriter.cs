@@ -29,7 +29,7 @@ namespace GRM.Presentation.ResultWriting
 
                     foreach (var generator in rule.Generators)
                     {
-                        stringBuilder.AppendLine(FormatGenerator(generator));
+                        stringBuilder.AppendLine(FormatGenerator(generator, result.AttributeNames));
                     }
 
                     stringBuilder.AppendLine();
@@ -39,27 +39,25 @@ namespace GRM.Presentation.ResultWriting
             }
         }
 
-        private string FormatGenerator(IEnumerable<Item> generator)
+        private string FormatGenerator(IEnumerable<Item> generator, IDictionary<int, string> attributeNames)
         {
-            var items = generator.OrderBy(x => x.AttributeID);
-            var maxAttributeId = items.Last().AttributeID;
+            var attributes = new List<string>();
 
-            var attributeValues = new List<string>();
-
-            for (int i = 0; i <= maxAttributeId; i++)
+            foreach (var item in generator.OrderBy(x => x.AttributeID))
             {
-                if (generator.Any(x => x.AttributeID == i))
-                {
-                    var item = generator.Single(x => x.AttributeID == i);
-                    attributeValues.Add(item.Value);
-                }
-                else
-                {
-                    attributeValues.Add(string.Empty);
-                }
+                var attribute = string.Format("{0} ({1})", GetAttributeName(item.AttributeID, attributeNames), item.Value);
+
+                attributes.Add(attribute);
             }
 
-            return string.Join(",", attributeValues.ToArray());
+            return string.Join(", ", attributes.ToArray());
+        }
+
+        private string GetAttributeName(int attributeId, IDictionary<int, string> attributeNames)
+        {
+            return attributeNames != null
+                       ? attributeNames[attributeId]
+                       : string.Format("Attribute {0}", attributeId + 1);
         }
     }
 }
