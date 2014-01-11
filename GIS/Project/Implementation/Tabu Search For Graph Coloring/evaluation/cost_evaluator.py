@@ -19,26 +19,42 @@ class CostEvaluator:
     def evaluate(root_node, color_set):
         cost = 0
 
+        c, e = CostEvaluator.evaluate_score_for_colors(root_node)
+
         for color in color_set:
-            c_i, e_i = CostEvaluator.evaluate_score_for_color(root_node, color)
+            c_i = 0
+            e_i = 0
+
+            if color in c:
+                c_i = c[color]
+
+            if color in e:
+                e_i = e[color]
 
             cost += -1 * c_i ** 2 + 2 * c_i * e_i
 
         return cost
 
     @staticmethod
-    def evaluate_score_for_color(root_node, color):
+    def evaluate_score_for_colors(root_node):
         inspected_edges = []
-        c_i = 0
-        e_i = 0
+        c = {}
+        e = {}
 
         for node in root_node.iterator():
-            if node.color == color:
-                c_i += 1
+            color = node.color
+
+            if color not in c:
+                c[color] = 0
+
+            c[color] += 1
 
             for child_node in node.edges:
-                if {node, child_node} not in inspected_edges and node.color == color and child_node.color == color:
-                    e_i += 1
+                if {node, child_node} not in inspected_edges and color == child_node.color:
+                    if color not in e:
+                        e[color] = 0
+
+                    e[color] += 1
                     inspected_edges.append({node, child_node})
 
-        return c_i, e_i
+        return c, e
