@@ -2,7 +2,6 @@ import unittest
 from mock import Mock
 from aspiration_criteria.aspiration_criteria import AspirationCriteria
 from graph.node import Node
-from memory.memory import Memory
 from permutation.fast_color_permutator import FastColorPermutator
 
 
