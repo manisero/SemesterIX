@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GRMResultWriter.cs" />
+    <Compile Include="ResultWriting\TextResultWriter.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="ArgsParser.cs" />
     <Compile Include="Program.cs" />

@@ -5,9 +5,9 @@ using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
 
-namespace GRM.Presentation
+namespace GRM.Presentation.ResultWriting
 {
-    public class GRMResultWriter
+    public class TextResultWriter
     {
         private const string SEPARATOR = "====================";
         private const string SUBSEPARATOR = "--------------------";

@@ -3,6 +3,7 @@ using System.IO;
 using GRM.Logic;
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Presentation.ResultWriting;
 
 namespace GRM.Presentation
 {
@@ -23,8 +24,7 @@ namespace GRM.Presentation
 
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
 
-            var outputFilePath = WriteGRMResult(result, options.DataFilePath);
-            Console.WriteLine("Result saved to {0}", outputFilePath);
+            WriteGRMResult(result, options.DataFilePath);
         }
 
         private static void WriteGRMParameters(Options options)
@@ -43,15 +43,17 @@ namespace GRM.Presentation
             Console.WriteLine();
         }
 
-        private static string WriteGRMResult(GRMResult result, string dataFilePath)
+        private static void WriteGRMResult(GRMResult result, string dataFilePath)
         {
             var outputDirectoryName = Path.GetDirectoryName(dataFilePath);
-            var outputFileName = Path.GetFileNameWithoutExtension(dataFilePath) + "_rules.txt";
-            var outputFilePath = Path.Combine(outputDirectoryName, outputFileName);
+            var dataFilename = Path.GetFileNameWithoutExtension(dataFilePath);
 
-            new GRMResultWriter().WriteResult(result, outputFilePath);
+            var textOutputFileName = dataFilename + "_rules.txt";
+            var textOutputFilePath = Path.Combine(outputDirectoryName, textOutputFileName);
 
-            return outputFilePath;
+            new TextResultWriter().WriteResult(result, textOutputFilePath);
+
+            Console.WriteLine("Text result saved to {0}", textOutputFilePath);
         }
     }
 }
