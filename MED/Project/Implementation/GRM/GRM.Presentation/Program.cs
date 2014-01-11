@@ -13,6 +13,11 @@ namespace GRM.Presentation
         {
             var options = new ArgsParser().ParseArgs(args);
 
+            if (options.HelpRequested)
+            {
+                return;
+            }
+
             WriteGRMParameters(options);
 
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);

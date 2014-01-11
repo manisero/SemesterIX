@@ -16,6 +16,11 @@ namespace GRM.Presentation
             {
                 optionSet.Parse(args);
 
+                if (options.HelpRequested)
+                {
+                    PrintParameters(optionSet);
+                }
+
                 if (options.DataFilePath == null)
                 {
                     throw new OptionException("file parameter is required", "file");
@@ -30,8 +35,8 @@ namespace GRM.Presentation
             {
                 Console.WriteLine(e);
                 Console.WriteLine();
-                Console.WriteLine("Parameters:");
-                optionSet.WriteOptionDescriptions(Console.Out);
+                
+                PrintParameters(optionSet);
             }
 
             return options;
@@ -40,6 +45,7 @@ namespace GRM.Presentation
         private OptionSet BuildOptionSet(Options options)
         {
             var optionSet = new OptionSet();
+            optionSet.Add("help", "Makes the program display available parameters and terminate. Optional.", x => options.HelpRequested = true);
             optionSet.Add("f|file=", "Data file path. Required.", x => options.DataFilePath = x);
             optionSet.Add("sup|minSup=", "Minimum support. Required.", (int x) => options.MinimumSupport = x);
             optionSet.Add("h|headers", "Indicates that the first row of data file contains attribute names (headers). Optional.", x => options.DataFileContainsHeaders = true);
@@ -67,6 +73,12 @@ namespace GRM.Presentation
             {
                 return (TEnum)Enum.GetValues(typeof(TEnum)).GetValue(0);
             }
+        }
+
+        private void PrintParameters(OptionSet optionSet)
+        {
+            Console.WriteLine("Parameters:");
+            optionSet.WriteOptionDescriptions(Console.Out);   
         }
     }
 }

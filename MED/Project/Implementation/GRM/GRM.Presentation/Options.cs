@@ -5,6 +5,8 @@ namespace GRM.Presentation
 {
     public class Options
     {
+        public bool HelpRequested { get; set; }
+
         public string DataFilePath { get; set; }
 
         public int? MinimumSupport { get; set; }
