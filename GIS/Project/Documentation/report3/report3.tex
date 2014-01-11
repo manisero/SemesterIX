@@ -146,6 +146,85 @@ Klasa \verb+NodeIterator+ dostarcza interfejs iteratora dla wierzchołka grafu. 
 
 Oprócz narzędzia do przeglądania grafu zaimplementowana została też metoda do kopiowania całego grafu. Jest ona zawarta w~metodzie \verb+clone+ klasy \verb+GraphCloner+. Klonowanie grafu jest przydatne podczas wyznaczania możliwych permutacji kolorów. Wystarczy powielić cały graf i~zmienić barwę analizowanego wierzchołka.
 
+\subsection*{Funkcja kosztu}
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class CostEvaluator:
+  def evaluate(root_node, color_set):
+    c, e = self.evaluate_score_for_colors(
+      root_node)
+    return self.evaluate_cost(color_set, c, e)
+
+  def evaluate_score_for_colors(root_node):
+    inspected_edges, c, e = [], {}, {}
+
+    for node in root_node.iterator():
+      if node.color not in c:
+        c[node.color] = 0
+
+      c[node.color] += 1
+
+      for child_node in node.edges:
+        if {node, child_node} not in 
+            inspected_edges and 
+            color == child_node.color:
+          if node.color not in e:
+            e[node.color] = 0
+
+          e[node.color] += 1
+          
+          inspected_edges.append(
+            {node, child_node})
+
+    return c, e
+    
+  def evaluate_cost(color_set, c, e):
+    cost = 0
+
+    for color in color_set:
+      c_i, e_i = 0, 0
+
+      if color in c:
+        c_i = c[color]
+      if color in e:
+        e_i = e[color]
+
+      cost += -1 * c_i ** 2 + 2 * c_i * e_i
+
+    return cost
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Metoda \verb+evaluate+ oblicza wartość funkcji kosztu dla danego grafu. Algorytm wykonywany jest w~dwóch krokach. \\ \\ \\
+                    
+                    \noindent W~pierwszym kroku obliczane są wartości $C_{i}$ oraz $E_{i}$ dla każdego koloru. Metoda \verb+evaluate_score_for_colors+ wykonuje niezbędne obliczenia. Istotne jest, że wszystkie wartości wyznaczane są w~czasie pojedynczego przejścia przez graf, dzięki czemu metoda jest wydajna. \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
+                    
+                    \noindent Następnie zliczane są wyniki dla wszystkich kolorów znajdujących się w~zbiorze. Funkcja \verb+evaluate_cost+ oblicza wartość na podstawie wzoru $f(G) = -\sum_{i=1}^{k} C_i^2 + \sum_{i=1}^{k} 2 C_i E_i$, gdzie $C_{i}$ oznacza liczbę wierzchołków o~kolorze $i$, natomiast $E_{i}$ oznacza liczbę krawędzi, która łączy dwa wierzchołki o~kolorze $i$. \\
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
+        
+Ponadto klasa \verb+CostEvaluator+ posiada metodę \verb+evaluate_score_for_permutation+. Pozwala ona na szybkie obliczanie funkcji celu dla permutacji pokolorowania grafu. Metoda przyjmuje parametry:
+
+\begin{itemize}
+    \item \verb+node+ wierzchołek, którego kolorowanie ulegnie zmianie w~trakcie permutacji.
+    \item \verb+target_color+ docelowy kolor dla wierzchołka (po permutacji).
+    \item \verb+base_c+ słownik wartości $C_{i}$ przed wykonaniem permutacji.
+    \item \verb+base_e+ słownik wartości $E_{i}$ przed wykonaniem permutacji.
+    \item \verb+color_set+ zbiór wszystkich kolorów.
+\end{itemize}
+
+\noindent Korzystając z~powyższych parametrów metoda wyznacza funkcję kosztu dokonując pojedynczego przejścia po wierzchołku oraz wszystkich jego sąsiadach, a~nie po całym grafie. Pozwala to znacząco zredukować czas szacowania funkcji kosztu dla permutacji.
 
 
 \end{document}
