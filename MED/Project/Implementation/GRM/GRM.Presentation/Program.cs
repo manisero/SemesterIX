@@ -34,7 +34,7 @@ namespace GRM.Presentation
 
             foreach (var duration in progressInfo.GetSubstepsDurations())
             {
-                Console.WriteLine("{0}: {1}", duration.Key, duration.Value);
+                Console.WriteLine("- {0}: {1}", duration.Key, duration.Value);
             }
 
             Console.WriteLine();
