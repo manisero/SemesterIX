@@ -12,6 +12,8 @@ namespace GRM.Presentation
     {
         static void Main(string[] args)
         {
+            var options = new ArgsParser().ParseArgs(args);
+
             int minimumSupport;
             SortingStrategyType sortingStrategy;
             TransactionIDsStorageStrategyType transactionIdsStorageStrategy;

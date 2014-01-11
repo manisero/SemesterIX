@@ -7,7 +7,7 @@ namespace GRM.Presentation
     {
         public string DataFilePath { get; set; }
 
-        public int MinimumSupport { get; set; }
+        public int? MinimumSupport { get; set; }
 
         public SortingStrategyType SortingStrategy { get; set; }
 
