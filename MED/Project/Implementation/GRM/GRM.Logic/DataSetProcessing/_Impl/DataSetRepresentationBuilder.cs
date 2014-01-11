@@ -24,6 +24,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
             {
                 if (dataContainsHeaders)
                 {
+                    attributeNames = new Dictionary<int, string>();
                     var headers = reader.ReadLine().Split(',');
 
                     for (int i = 0; i < headers.Length; i++)
