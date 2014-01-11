@@ -51,11 +51,8 @@ class Node:
 
     def get_colors_count(self):
         colors = set()
-        classes = 0
 
         for node in self.iterator():
-            if node.color not in colors:
-                colors.add(node.color)
-                classes += 1
+            colors.add(node.color)
 
-        return classes
+        return len(colors)

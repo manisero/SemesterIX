@@ -1,0 +1,151 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[MeX]{polski}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{fullpage}
+\usepackage{dirtree}
+
+\title{Grafy i Sieci. Sprawozdanie 3. \\ \small{SK11 Kolorowanie grafu za pomocą przeszukiwania z tabu.}}
+\author{Michał Aniserowicz, Jakub Turek}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Temat projektu}
+
+SK11 Kolorowanie grafu za pomocą przeszukiwania z tabu.
+
+\section*{Dokumentacja kodu źródłowego}
+
+Kod źródłowy projektu został stworzony w~języku Python. Program jest kompatybilny z~wersją \verb+2.7.x+ interpretera. Aplikacja testowana była w~Pythonie w~wersji \verb+2.7.5+, pod kontrolą systemu \verb+OS X 10.9+ (\verb+Mavericks+). Do uruchomienia testów jednostkowych wymagane jest zainstalowanie biblioteki \verb+Mock+\footnote{Biblioteka została wcielona do specyfikacji języka począwszy od wersji 3.3.} w~wersji \verb+1.0.1+.
+
+Ogólna struktura kodu źródłowego została przedstawiona na poniższym diagramie.
+
+\dirtree{% .1 /. .2 aspiration\_criteria.
+ .3 aspiration\_criteria.py. .2 evaluation.
+ .3 cost\_evaluator.py. 
+ .2 graph.
+ .3 graph\_cloner.py.
+ .3 node.py.
+ .3 node\_iterator.py.
+ .2 input.
+ .3 dimacs\_input\_reader.py.
+ .3 input\_reader.py.
+ .3 input\_reader\_factory.py.
+ .2 memory.
+ .3 memory.py.
+ .2 permutation.
+ .3 color\_permutator.py.
+ .3 fast\_color\_permutator.py.
+ .2 progress.
+ .3 progress\_writer.py.
+ .2 search.
+ .3 search\_performer.py.
+ .2 stop\_criteria.
+ .3 stop\_criteria.py.
+ .2 test.
+ .3 ....
+ .2 validation.
+ .3 coloring\_validator.py.
+ .3 connection\_validator.py.
+ .2 main.py.}
+ 
+\subsection*{Reprezentacja grafu}
+
+Graf reprezentowany jest z~wykorzystaniem klasy \verb+Node+ reprezentującej wierzchołek. Ponieważ, z~założenia, aplikacja operuje wyłącznie na grafach spójnych nie ma znaczenia, od którego wierzchołka rozpoczynamy analizę struktury.
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class Node:
+  Id = 0
+
+  def __init__(self, color=None, 
+    node_id=None, previous_color=None):
+    
+    self.edges = []
+    self.color = color
+
+    if node_id is not None:
+      self.node_id = node_id
+    else:
+      self.node_id = Node.Id
+      Node.Id += 1
+
+    self.previous_color = self.color
+
+    if previous_color is not None:
+      self.previous_color = previous_color
+
+  def add_edges(self, nodes):
+    for node in nodes:
+      if node not in self.edges:
+        self.edges.append(node)
+
+      if self not in node.edges:
+        node.edges.append(self)
+
+  def iterator(self):
+    return NodeIterator(self)
+
+  def get_node_of_id(self, node_id):
+    for node in self.iterator():
+      if node.node_id == node_id:
+        return node
+
+  def node_count(self):
+    return sum(1 for _ in self.iterator())
+
+  def get_colors_count(self):
+    colors = set()
+
+    for node in self.iterator():
+      colors.add(node.color)
+
+    return len(colors)
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Metoda \verb+init+ służy do konstrukcji węzła. Węzeł posiada następujące składowe:
+                    \begin{itemize}
+                        \item \verb+edges+ lista wierzchołków połączonych z~danym węzłem,
+                        \item \verb+color+ kolor wierzchołka,
+                        \item \verb+node_id+ identyfikator wierzchołka,
+                        \item \verb+previous_color+ poprzedni kolor wierzchołka używany do wyznaczania permutacji.
+                    \end{itemize}
+\\
+                    
+                    \noindent Identyfikator, jak również kolor wierzchołka, mogą być dowolnego typu (liczba, ciąg znaków...). Identyfikatory mogą, ale nie muszą być nadawane automatycznie - są wtedy typu liczbowego. Kolejne identyfikatory pobierane są ze zmiennej ,,statycznej'' \verb+Id+. \\ \\
+                    
+                    \noindent Metoda \verb+add_edges+ pozwala na łączenie wierzchołka z~innymi wierzchołkami. Implementacja została przygotowana dla grafów nieskierowanych, a~więc podczas dodawania krawędzi tworzone jest od razu wiązanie dwustronne. \\ \\ \\
+                                        
+                    \noindent Do poruszania się po grafie wykorzystywany jest iterator, który korzysta z~algorytmu DFS. \\
+                    
+                    \noindent Metoda \verb+get_node_of_id+ pozwala na dojście do dowolnego wierzchołka po identyfikatorze. \\ \\ \\
+                    
+                    \noindent Metoda \verb+node_count+ zlicza liczbę wierzchołków w~grafie. \\
+                    
+                    \noindent Metoda \verb+get_colors_count+ zwraca liczbę kolorów, którymi w~chwili obecnej pokolorowany jest graf.
+                                        
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
+        
+Klasa \verb+NodeIterator+ dostarcza interfejs iteratora dla wierzchołka grafu. Udostępnia ona metodę \verb+next+, która dla danego wierzchołka zwraca kolejny w~porządku przeszukiwania w~głąb. Przeszukiwanie w~głąb oznacza, że w~pierwszej kolejności przechodzimy do pierwszego dziecka danego wierzchołka, a~dopiero po powrocie algorytmu do tego samego wierzchołka przeglądamy jego kolejne dziecko. Wykorzystanie wzorca iteratora pozwala na przeglądanie grafu w~wygodny sposób - używając do tego pętli \verb+for+.
+
+Oprócz narzędzia do przeglądania grafu zaimplementowana została też metoda do kopiowania całego grafu. Jest ona zawarta w~metodzie \verb+clone+ klasy \verb+GraphCloner+. Klonowanie grafu jest przydatne podczas wyznaczania możliwych permutacji kolorów. Wystarczy powielić cały graf i~zmienić barwę analizowanego wierzchołka.
+
+
+
+\end{document}
