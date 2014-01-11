@@ -5,6 +5,7 @@ from input.input_reader_factory import InputReaderFactory
 from progress.progress_writer import ProgressWriter
 from search.search_performer import GraphColoringSearchPerformer
 from stop_criteria.stop_criteria import StopCriteria
+from validation.coloring_validator import ColoringValidator
 
 
 def main():
@@ -30,13 +31,22 @@ def main():
         progress_writer.stop_task('reading input file', get_input_summary(graph, color_set), True)
         stop_criteria = StopCriteria(arguments.i, arguments.s)
         best_score = GraphColoringSearchPerformer(stop_criteria, arguments.m, progress_writer).search(graph, color_set)
-        progress_writer.stop_execution(file_name, 'best score for colouring: \n{0}'.format(best_score), False)
+        progress_writer.stop_execution(file_name, get_result_summary(best_score), False)
 
 
 def get_input_summary(graph, color_set):
-    return 'read graph:\n{0}\nread color set:\n{1}\n\ninitial cost: {2}\n'.format(graph, color_set,
-                                                                                  CostEvaluator.evaluate(graph,
-                                                                                                         color_set))
+    input_summary = 'read graph:\n{0}\n'.format(graph)
+    input_summary += 'read color set:\n{0}\n\n'.format(color_set)
+    input_summary += 'initial cost: {0}\n'.format(CostEvaluator.evaluate(graph, color_set))
+
+    return input_summary
+
+
+def get_result_summary(best_graph):
+    result_summary = 'best score for coloring: \n{0}'.format(best_graph)
+    result_summary += 'is coloring valid?: {0}\n'.format(ColoringValidator.is_coloring_valid(best_graph))
+
+    return result_summary
 
 if __name__ == '__main__':
     main()
