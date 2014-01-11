@@ -24,7 +24,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
             {
-                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, MinimumSupport, progressInfo);
+                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, false, null, MinimumSupport, progressInfo);
             }
 
             // Assert

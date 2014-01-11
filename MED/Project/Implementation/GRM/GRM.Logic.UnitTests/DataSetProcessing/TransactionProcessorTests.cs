@@ -8,9 +8,9 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
 {
     public class TransactionProcessorTests
     {
-        private void Execute(int transactionId, string transaction, DataSetRepresentationBuildState buildState)
+        private void Execute(int transactionId, string transaction, int decisiveAttributeIndex, DataSetRepresentationBuildState buildState)
         {
-            new TransactionProcessor().AppendTransaction(transactionId, transaction, buildState);
+            new TransactionProcessor().AppendTransaction(transactionId, transaction, decisiveAttributeIndex, buildState);
         }
 
         private void AssertTransactionDecision(int transactionId, string decision, int expectedDecisionId,
@@ -50,7 +50,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             var buildState = new DataSetRepresentationBuildState();
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 1, buildState);
 
             // Assert
             Assert.Equal(1, buildState.DecisionIDs.Count);
@@ -70,7 +70,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             buildState.DecisionMappingCounter = 2;
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 1, buildState);
 
             // Assert
             Assert.Equal(2, buildState.DecisionIDs.Count);
@@ -88,7 +88,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             var buildState = new DataSetRepresentationBuildState();
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 1, buildState);
 
             // Assert
             Assert.Equal(1, buildState.ItemIDs.Count);
@@ -105,7 +105,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             var buildState = new DataSetRepresentationBuildState();
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 2, buildState);
 
             // Assert
             Assert.Equal(2, buildState.ItemIDs.Count);
@@ -125,7 +125,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             buildState.ItemInfos[new ItemID { AttributeID = 0, ValueID = 1 }] = new ItemInfo { AttributeID  = 0, ValueID = 1, TransactionIDs = new List<int> { 1 }, IsDecisive = true, DecisionID = 1 };
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 1, buildState);
 
             // Assert
             Assert.Equal(1, buildState.ItemIDs.Count);
@@ -145,7 +145,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             buildState.ItemValueMappingCounter = 2;
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 1, buildState);
 
             // Assert
             Assert.Equal(2, buildState.ItemIDs.Count);
@@ -168,7 +168,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             buildState.ItemValueMappingCounter = 3;
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 2, buildState);
 
             // Assert
             Assert.Equal(2, buildState.ItemIDs.Count);
@@ -191,7 +191,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             buildState.ItemValueMappingCounter = 3;
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 1, buildState);
 
             // Assert
             Assert.Equal(3, buildState.ItemIDs.Count);
@@ -211,7 +211,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             buildState.DecisionMappingCounter = 2;
 
             // Act
-            Execute(transactionId, transaction, buildState);
+            Execute(transactionId, transaction, 1, buildState);
 
             // Assert
             Assert.Equal(1, buildState.ItemIDs.Count);

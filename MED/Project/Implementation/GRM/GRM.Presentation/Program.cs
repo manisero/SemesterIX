@@ -19,8 +19,10 @@ namespace GRM.Presentation
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var progressInfo = new ProgressInfo(step => Console.WriteLine(step),
                                                 (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
-            
-            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.MinimumSupport.Value, progressInfo);
+
+            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisiveAttributeIndex,
+                                                                                                                  options.MinimumSupport.Value, progressInfo);
+
             Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
 
             var outputFilePath = WriteGRMResult(result, options.DataFilePath);

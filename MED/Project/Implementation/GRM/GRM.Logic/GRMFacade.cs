@@ -32,12 +32,12 @@ namespace GRM.Logic
             _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
         }
 
-        public GRMResult ExecuteGRM(Stream dataSetStream, int minimumSupport, ProgressInfo progressInfo)
+        public GRMResult ExecuteGRM(Stream dataSetStream, bool dataContainsHeaders, int? decisiveAttributeIndex, int minimumSupport, ProgressInfo progressInfo)
         {
             progressInfo.BeginTask();
 
             progressInfo.BeginStep("Creating data set representation");
-            var representation = _dataSetRepresentationBuilder.Build(dataSetStream);
+            var representation = _dataSetRepresentationBuilder.Build(dataSetStream, dataContainsHeaders, decisiveAttributeIndex);
             progressInfo.EndStep();
 
             progressInfo.BeginStep("Selecting frequent items");

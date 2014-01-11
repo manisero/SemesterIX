@@ -14,7 +14,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
         {
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(dataSet)))
             {
-                return AutoMoqer.Resolve<DataSetRepresentationBuilder>().Build(dataSetStream);
+                return AutoMoqer.Resolve<DataSetRepresentationBuilder>().Build(dataSetStream, false, null);
             }
         }
 
@@ -24,12 +24,16 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
             // Arrange
             var dataSet = "value1,value2,decision";
 
-            AutoMoqer.GetMock<ITransactionProcessor>().Setup(x => x.AppendTransaction(1, dataSet, It.IsAny<DataSetRepresentationBuildState>()));
+            AutoMoqer.GetMock<ITransactionProcessor>().Setup(x => x.AppendTransaction(1, dataSet, 2, It.IsAny<DataSetRepresentationBuildState>()));
 
             // Act
-            Execute(dataSet);
+            var result = Execute(dataSet);
 
             // Assert
+            Assert.Equal(3, result.AttributesCount);
+            Assert.Equal(2, result.DecisiveAttributeIndex);
+            Assert.Equal(null, result.AttributeNames);
+
             AutoMoqer.GetMock<ITransactionProcessor>().VerifyAll();
         }
     }
