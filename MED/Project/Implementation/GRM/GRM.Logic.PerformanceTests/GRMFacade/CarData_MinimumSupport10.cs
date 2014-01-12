@@ -17,9 +17,9 @@ namespace GRM.Logic.PerformanceTests.GRMFacade
             get { return 10; }
         }
 
-        protected override void AssertResult(GRMResult result, IProgressTracker progressTracker)
+        protected override void AssertResult(GRMResult result)
         {
-            Console.WriteLine("Execution lasted: {0}", progressTracker.GetInfo().Duration);
+            Console.WriteLine("Execution lasted: {0}", ProgressTrackerContainer.CurrentProgressTracker.GetInfo().Duration);
         }
     }
 }
