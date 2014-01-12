@@ -39,5 +39,11 @@ namespace GRM.Logic.PerformanceTests.SupergeneratorsRemoval
         {
             Execute(SupergeneratorsRemovalStrategyType.BruteForce);
         }
+
+        [Fact]
+        public void brute_force_LINQ_test()
+        {
+            Execute(SupergeneratorsRemovalStrategyType.BruteForceLINQ);
+        }
     }
 }

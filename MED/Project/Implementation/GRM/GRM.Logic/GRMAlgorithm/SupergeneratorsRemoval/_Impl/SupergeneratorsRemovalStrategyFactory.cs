@@ -10,6 +10,8 @@ namespace GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval._Impl
             {
                 case SupergeneratorsRemovalStrategyType.BruteForce:
                     return new BruteForceSupergeneratorsRemovalStrategy();
+                case SupergeneratorsRemovalStrategyType.BruteForceLINQ:
+                    return new BruteForceLINQSupergeneratorsRemovalStrategy();
                 default:
                     return null;
             }

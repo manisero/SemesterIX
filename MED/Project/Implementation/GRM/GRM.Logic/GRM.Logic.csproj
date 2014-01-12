@@ -50,6 +50,7 @@
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\ISupergeneratorsRemovalStrategy.cs" />
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\ISupergeneratorsRemovalStrategyFactory.cs" />
+    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\RemovalStrategies\BruteForceLINQSupergeneratorsRemovalStrategy.cs" />
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\RemovalStrategies\BruteForceSupergeneratorsRemovalStrategy.cs" />
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\SupergeneratorsRemovalStrategyType.cs" />
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\_Impl\SupergeneratorsRemovalStrategyFactory.cs" />

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval.RemovalStrategies
@@ -12,7 +11,29 @@ namespace GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval.RemovalStrategies
 
             foreach (var generator in generators)
             {
-                if (subgenerator.All(generator.Contains))
+                var isSupergenerator = true;
+
+                foreach (var subitem in subgenerator)
+                {
+                    var containsSubitem = false;
+
+                    foreach (var item in generator)
+                    {
+                        if (item.AttributeID == subitem.AttributeID && item.ValueID == subitem.ValueID)
+                        {
+                            containsSubitem = true;
+                            break;
+                        }
+                    }
+
+                    if (!containsSubitem)
+                    {
+                        isSupergenerator = false;
+                        break;
+                    }
+                }
+
+                if (isSupergenerator)
                 {
                     supergenerators.Add(generator);
                 }
