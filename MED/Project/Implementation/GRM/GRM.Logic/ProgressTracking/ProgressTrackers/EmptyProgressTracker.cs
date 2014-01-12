@@ -4,31 +4,31 @@ namespace GRM.Logic.ProgressTracking.ProgressTrackers
 {
     public class EmptyProgressTracker : IProgressTracker
     {
-        public void BeginTask()
+        public virtual void BeginTask()
         {
         }
 
-        public void EndTask()
+        public virtual void EndTask()
         {
         }
 
-        public void BeginStep(string step)
+        public virtual void BeginStep(string step)
         {
         }
 
-        public void EndStep()
+        public virtual void EndStep()
         {
         }
 
-        public void EnterSubstep(string substep)
+        public virtual void EnterSubstep(string substep)
         {
         }
 
-        public void LeaveSubstep(string substep)
+        public virtual void LeaveSubstep(string substep)
         {
         }
 
-        public TaskInfo GetInfo()
+        public virtual TaskInfo GetInfo()
         {
             return null;
         }

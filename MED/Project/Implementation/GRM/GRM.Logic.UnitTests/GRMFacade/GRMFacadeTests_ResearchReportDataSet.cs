@@ -1,8 +1,6 @@
-﻿using GRM.Logic.DataSetProcessing;
-using GRM.Logic.DataSetProcessing.Entities;
+﻿using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.ProgressTracking;
-using GRM.Logic.ProgressTracking.ProgressTrackers;
 using Xunit;
 using System.Linq;
 
@@ -20,7 +18,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
             get { return 3; }
         }
 
-        protected override void AssertResult(GRMResult result, ProgressTracker progressTracker)
+        protected override void AssertResult(GRMResult result, IProgressTracker progressTracker)
         {
             Assert.Equal(1, result.Rules.Count());
 

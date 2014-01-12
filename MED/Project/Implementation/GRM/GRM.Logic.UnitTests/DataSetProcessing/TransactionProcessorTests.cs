@@ -12,7 +12,7 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
     {
         private void Execute(int transactionId, string transaction, int decisiveAttributeIndex, DataSetRepresentationBuildState buildState)
         {
-            ProgressTrackerContainer.CurrentProgressTracker = new ProgressTracker();
+            ProgressTrackerContainer.CurrentProgressTracker = new EmptyProgressTracker();
 
             new TransactionProcessor().AppendTransaction(transactionId, transaction, decisiveAttributeIndex, buildState);
         }

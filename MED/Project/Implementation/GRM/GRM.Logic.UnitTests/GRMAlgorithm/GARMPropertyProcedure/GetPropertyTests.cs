@@ -10,7 +10,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
     {
         private GARMPropertyType Execute(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
-            ProgressTrackerContainer.CurrentProgressTracker = new ProgressTracker();
+            ProgressTrackerContainer.CurrentProgressTracker = new EmptyProgressTracker();
 
             return new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure(null).GetProperty(leftChildTransactionIds, rightChildTransactionIds);
         }

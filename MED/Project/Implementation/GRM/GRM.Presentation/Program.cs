@@ -23,7 +23,7 @@ namespace GRM.Presentation
 
             PrintGRMParameters(options);
 
-            ProgressTrackerContainer.CurrentProgressTracker = new ProgressTracker();
+            ProgressTrackerContainer.CurrentProgressTracker = new SubstepProgressTracker();
 
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
@@ -82,20 +82,24 @@ namespace GRM.Presentation
             var taskInfo = ProgressTrackerContainer.CurrentProgressTracker.GetInfo();
 
             Console.WriteLine("GRM execution finished. Lasted {0}", taskInfo.Duration);
-            Console.WriteLine("Steps details:");
 
-            var stepNumber = 1;
-
-            foreach (var step in taskInfo.Steps)
+            if (taskInfo.Steps != null)
             {
-                Console.WriteLine("{0}. {1}: {2}", stepNumber, step.Name, step.Duration);
+                Console.WriteLine("Steps details:");
 
-                foreach (var substep in step.Substeps)
+                var stepNumber = 1;
+
+                foreach (var step in taskInfo.Steps)
                 {
-                    Console.WriteLine("\t- {0}: {1} ({2} iterations)", substep.Name, substep.TotalDuration, substep.EntersCount);
-                }
+                    Console.WriteLine("{0}. {1}: {2}", stepNumber, step.Name, step.Duration);
 
-                stepNumber++;
+                    foreach (var substep in step.Substeps)
+                    {
+                        Console.WriteLine("\t- {0}: {1} ({2} iterations)", substep.Name, substep.TotalDuration, substep.EntersCount);
+                    }
+
+                    stepNumber++;
+                }
             }
 
             Console.WriteLine();

@@ -21,7 +21,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
         {
             // Act
             GRMResult result;
-            var progressTracker = new ProgressTracker();
+            var progressTracker = new TaskProgressTracker();
             ProgressTrackerContainer.CurrentProgressTracker = progressTracker;
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
@@ -33,7 +33,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
             AssertResult(result, progressTracker);
         }
 
-        protected abstract void AssertResult(GRMResult result, ProgressTracker progressTracker);
+        protected abstract void AssertResult(GRMResult result, IProgressTracker progressTracker);
 
         protected void AssertGeneratorIsInRule(Rule rule, params Item[] expectedGenerator)
         {
