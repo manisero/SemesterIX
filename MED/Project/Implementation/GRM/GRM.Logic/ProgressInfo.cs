@@ -7,12 +7,50 @@ namespace GRM.Logic
 {
     public class ProgressInfo
     {
+        private class Substep
+        {
+            private int _entersCount;
+            private readonly Stopwatch _stopwatch;
+
+            public Substep()
+            {
+                _entersCount = 0;
+                _stopwatch = new Stopwatch();
+            }
+
+            public void Enter()
+            {
+                _entersCount++;
+                _stopwatch.Start();
+            }
+
+            public void Leave()
+            {
+                _stopwatch.Stop();
+            }
+
+            public SubstepInfo GetInfo()
+            {
+                return new SubstepInfo
+                    {
+                        EntersCount = _entersCount,
+                        TotalDuration = _stopwatch.Elapsed
+                    };
+            }
+        }
+
+        public class SubstepInfo
+        {
+            public int EntersCount { get; set; }
+            public TimeSpan TotalDuration { get; set; }
+        }
+
         private string _step;
         private readonly Action<string> _onStepStart;
         private readonly Action<string, TimeSpan> _onStepEnd;
         private readonly Stopwatch _taskStopwatch = new Stopwatch();
         private readonly Stopwatch _stepStopwatch = new Stopwatch();
-        private readonly IDictionary<string, Stopwatch> _substepStopwatches = new Dictionary<string, Stopwatch>();
+        private readonly IDictionary<string, Substep> _substepStopwatches = new Dictionary<string, Substep>();
 
         public ProgressInfo()
         {
@@ -65,20 +103,20 @@ namespace GRM.Logic
         {
             if (!_substepStopwatches.ContainsKey(substep))
             {
-                _substepStopwatches.Add(substep, new Stopwatch());
+                _substepStopwatches.Add(substep, new Substep());
             }
 
-            _substepStopwatches[substep].Start();
+            _substepStopwatches[substep].Enter();
         }
 
         public void LeaveSubstep(string substep)
         {
-            _substepStopwatches[substep].Stop();
+            _substepStopwatches[substep].Leave();
         }
 
-        public IDictionary<string, TimeSpan> GetSubstepsDurations()
+        public IDictionary<string, SubstepInfo> GetSubstepsDurations()
         {
-            return _substepStopwatches.ToDictionary(x => x.Key, x => x.Value.Elapsed);
+            return _substepStopwatches.ToDictionary(x => x.Key, x => x.Value.GetInfo());
         }
 
         public TimeSpan GetOverallTaskDuration()
