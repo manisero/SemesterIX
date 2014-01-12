@@ -2,7 +2,7 @@
 {
     public enum SupergeneratorsRemovalStrategyType
     {
-        BruteForceLINQ,
-        BruteForce
+        BruteForce,
+        BruteForceLINQ
     }
 }
