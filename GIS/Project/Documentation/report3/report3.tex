@@ -456,6 +456,8 @@ class FastColorPermutator:
         
         \end{table}
         
+        \pagebreak
+        
 \noindent\begin{table}[ht!]
             \begin{tabular}{lr}
                 \begin{minipage}[t]{0.55\textwidth}
@@ -511,4 +513,116 @@ class FastColorPermutator:
         
         \end{table}
 
+\subsection*{Przeszukiwanie z~,,tabu''} 
+
+Ostatnim ogniwem implementacji jest klasa, która spaja wszystkie poprzednie moduły. Dokonuje ona właściwego przeszukiwania z~,,tabu'' i~zwraca graf reprezentujący najlepsze znalezione pokolorowanie dla zadanych parametrów.
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class GraphColoringSearchPerformer:
+  def __init__(self, stop_criteria, memory_size):
+    self.stop_criteria = stop_criteria
+    self.color_permutator = FastColorPermutator()
+    self.memory = Memory(memory_size)
+    self.best_score = None
+
+  def search(self, root_node, color_set):
+    self.memory.clear_memory()
+    self.best_score = (root_node, CostEvaluator
+      .evaluate(root_node, color_set))
+
+
+    return self.recursive_search(root_node, 
+      color_set)
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Klasa \verb+GraphColoringSearchPerformer+ przy pomocy metody \verb+search+ dokonuje przeszukiwania z~,,tabu''. \\ \\ \\ \\ \\ \\
+                    
+                    \noindent Najlepszy znaleziony wynik przechowywany jest w~parze \verb+best_score+, na którą składają się graf oraz wartość funkcji celu dla tego grafu. \\
+                    
+                    \noindent Metoda \verb+search+ wywołuje właściwą funkcję rekurencyjną.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
+        
+\pagebreak
+        
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+  def recursive_search(self, node, color_set):
+    #wywołaj metodę find_permutations do
+    #wyznaczenia najlepszego sąsiedztwa
+        
+    #wybierz najlepszy wynik dla iteracji
+    #przy pomocy metody 
+    #get_best_score_for_iteration
+
+    #dodaj do pamięci najlepszy wynik
+    #dla danej iteracji
+    
+    #jeżeli najlepszy wynik dla danej 
+    #iteracji jest równocześnie najlepszym
+    #globalnym wynikiem to uaktualnij 
+    #najlepszy globalny wynik
+
+    #uaktualnij liczbę iteracji w kryteriach
+    #stopu
+    
+    #jeżeli kryteria stopu są spełnione to
+    #przerwij algorytm i zwróć wynik metody
+    #return_score
+
+    #wywołaj rekurencyjnie metodę
+    #recursive_search
+
+  def find_permutations(self, node, color_set):        
+    #wyznacz permutacje przy pomocy obiektu
+    #FastColorPermutator()
+        
+    #jeżeli nie ma żadnych permutacji to
+    #skróć pamięć tabu o jeden element,
+    #a następnie dla tych danych wyznacz
+    #permutacje przy pomocy obiektu
+    #FastColorPermutator()
+        
+    #powtarzaj powyższe aż do znalezienia 
+    #permutacji lub wyczerpania limitu
+    #skracania tabu
+
+  def return_score(self):
+    #zwróć graf dla najlepszego wyniku
+
+  def get_best_score_for_iteration(self, 
+      permutations_to_scores):
+    #spośród wszystkich znalezionych permutacji
+    #o tej samej wartości celu wybierz jedną,
+    #która występowała do tej pory najrzadziej
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Metoda \verb+recursive_search+ jest nieco zbyt skomplikowana, aby przedstawić ją w~pełnej postaci w~dokumencie. Stąd zostanie ona udokumentowana w~formie opisowej, z~zachowaniem podziału na metody. \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
+                    
+                    \noindent Metoda \verb+find_permutations+ realizuje skracanie pamięci krótkoterminowej w~przypadku, gdy jej wykorzystanie uniemożliwia wyznaczenie przynajmniej jednej dozwolonej permutacji (aspiracja domniemana). \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
+                    
+                    \noindent Metoda \verb+get_best_score_for_iteration+ utylizuje pamięć długoterminową. W~przypadku, gdy poszukiwanie sąsiedztwa zwróci wiele sąsiedztw o~jednakowej wartości funkcji celu, metoda ta wybierze takie sąsiedztwo, które wymaga wykorzystania najrzadziej stosowanego przejścia. Ma to umożliwić opuszczenie minimum lokalnego.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        \end{table}
 \end{document}

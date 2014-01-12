@@ -9,13 +9,12 @@ class GraphColoringSearchPerformer:
         self.stop_criteria = stop_criteria
         self.color_permutator = FastColorPermutator()
         self.memory = Memory(memory_size)
-        self.cost_evaluator = CostEvaluator()
         self.best_score = None
         self.progress_writer = progress_writer
 
     def search(self, root_node, color_set):
         self.memory.clear_memory()
-        self.best_score = (root_node, self.cost_evaluator.evaluate(root_node, color_set))
+        self.best_score = (root_node, CostEvaluator.evaluate(root_node, color_set))
 
         return self.recursive_search(root_node, color_set)
 
