@@ -20,11 +20,16 @@ namespace GRM.Logic.ProgressTracking.ProgressTrackers
         {
         }
 
-        public virtual void EnterSubstep(string substep)
+        public virtual int RegisterSubstep(string substepName)
+        {
+            return 0;
+        }
+
+        public virtual void EnterSubstep(int substepId)
         {
         }
 
-        public virtual void LeaveSubstep(string substep)
+        public virtual void LeaveSubstep(int substepId)
         {
         }
 

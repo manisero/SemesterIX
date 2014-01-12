@@ -8,13 +8,13 @@ namespace GRM.Logic.ProgressTracking.Entities
     {
         public string Name { get; set; }
         public Stopwatch Stopwatch { get; set; }
-        public IDictionary<string, Substep> Substeps { get; set; }
+        public IDictionary<int, Substep> Substeps { get; set; }
 
         public Step(string name)
         {
             Name = name;
             Stopwatch = new Stopwatch();
-            Substeps = new Dictionary<string, Substep>();
+            Substeps = new Dictionary<int, Substep>();
         }
 
         public StepInfo GetInfo()

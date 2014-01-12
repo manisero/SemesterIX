@@ -7,20 +7,24 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMPropertyProcedure : IGARMPropertyProcedure
     {
-        private const string DETERMINING_GARM_PROPERTY_SUBSTEP = "Determining GARM property";
-        private const string APPLYING_GARM_PROPERTY_SETS_EQUAL_SUBSTEP = "Applying GARM property (sets equal)";
-        private const string APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP = "Applying GARM property (sets different)";
+        private readonly int _determiningGARMPropertySubstepId;
+        private readonly int _applyingGARMPropertySetsEqualSubstepId;
+        private readonly int _applyingGARMPropertySetsDifferentSubstepId;
 
         private readonly ITransactionIDsStorageStrategy _transactionIdsStorageStrategy;
 
         public GARMPropertyProcedure(ITransactionIDsStorageStrategy transactionIdsStorageStrategy)
         {
+            _determiningGARMPropertySubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Determining GARM property");
+            _applyingGARMPropertySetsEqualSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets equal)");
+            _applyingGARMPropertySetsDifferentSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets different)");
+
             _transactionIdsStorageStrategy = transactionIdsStorageStrategy;
         }
 
         public GARMPropertyType GetProperty(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(DETERMINING_GARM_PROPERTY_SUBSTEP);
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_determiningGARMPropertySubstepId);
 
             var leftToRightSubsumption = true;
             var rightToLeftSubsumption = true;
@@ -65,7 +69,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 result = GARMPropertyType.Difference;
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(DETERMINING_GARM_PROPERTY_SUBSTEP);
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_determiningGARMPropertySubstepId);
 
             return result;
         }
@@ -79,7 +83,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         {
             if (property == GARMPropertyType.Equality)
             {
-                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(APPLYING_GARM_PROPERTY_SETS_EQUAL_SUBSTEP);
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_applyingGARMPropertySetsEqualSubstepId);
 
                 foreach (var generator in rightChild.Generators)
                 {
@@ -88,18 +92,18 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 parent.Children.Remove(rightChild);
 
-                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(APPLYING_GARM_PROPERTY_SETS_EQUAL_SUBSTEP);
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_applyingGARMPropertySetsEqualSubstepId);
             }
             else if (property == GARMPropertyType.Difference)
             {
-                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP);
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_applyingGARMPropertySetsDifferentSubstepId);
 
                 var newChildTransactionIds = _transactionIdsStorageStrategy.GetChildTransactionIDs(leftChild.TransactionIDs, rightChild.TransactionIDs);
                 var newChildSupport = _transactionIdsStorageStrategy.GetChildSupport(leftChild.Support, newChildTransactionIds);
 
                 if (newChildSupport < minimalSupport)
                 {
-                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP);
+                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_applyingGARMPropertySetsDifferentSubstepId);
                     return;
                 }
                 
@@ -114,7 +118,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 leftChild.Children.Add(newChild);
 
-                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP);
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_applyingGARMPropertySetsDifferentSubstepId);
             }
         }
 

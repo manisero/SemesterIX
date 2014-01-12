@@ -1,23 +1,33 @@
-﻿using GRM.Logic.ProgressTracking.Entities;
+﻿using System.Collections.Generic;
+using GRM.Logic.ProgressTracking.Entities;
 
 namespace GRM.Logic.ProgressTracking.ProgressTrackers
 {
     public class SubstepProgressTracker : StepProgressTracker
     {
-        public override void EnterSubstep(string substep)
-        {
-            if (!CurrentStep.Substeps.ContainsKey(substep))
-            {
-                CurrentStep.Substeps.Add(substep, new Substep(substep));
-            }
+        protected readonly IList<string> SubstepsNames = new List<string>();
 
-            CurrentStep.Substeps[substep].EntersCount++;
-            CurrentStep.Substeps[substep].Stopwatch.Start();
+        public override int RegisterSubstep(string substepName)
+        {
+            SubstepsNames.Add(substepName);
+
+            return SubstepsNames.Count - 1;
         }
 
-        public override void LeaveSubstep(string substep)
+        public override void EnterSubstep(int substepId)
         {
-            CurrentStep.Substeps[substep].Stopwatch.Stop();
+            if (!CurrentStep.Substeps.ContainsKey(substepId))
+            {
+                CurrentStep.Substeps.Add(substepId, new Substep(SubstepsNames[substepId]));
+            }
+
+            CurrentStep.Substeps[substepId].EntersCount++;
+            CurrentStep.Substeps[substepId].Stopwatch.Start();
+        }
+
+        public override void LeaveSubstep(int substepId)
+        {
+            CurrentStep.Substeps[substepId].Stopwatch.Stop();
         }
     }
 }

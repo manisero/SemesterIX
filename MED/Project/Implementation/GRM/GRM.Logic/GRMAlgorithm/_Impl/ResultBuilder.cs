@@ -13,11 +13,18 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             public readonly IDictionary<int, IList<Generator>> DecisionGenerators = new Dictionary<int, IList<Generator>>();
         }
 
+        private readonly int _updatingDecisionGeneratorsSubstepId;
+
         private readonly GRMResultBuildState _buildState = new GRMResultBuildState();
+
+        public ResultBuilder()
+        {
+            _updatingDecisionGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Updating decision generators");
+        }
 
         public void AppendDecisionGenerators(int decisionId, IList<Generator> generators)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Updating decision generators");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_updatingDecisionGeneratorsSubstepId);
 
             if (!_buildState.DecisionGenerators.ContainsKey(decisionId))
             {
@@ -38,7 +45,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 }
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Updating decision generators");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_updatingDecisionGeneratorsSubstepId);
         }
 
         private void RemoveSupersets(Generator subgenerator, IList<Generator> generators)

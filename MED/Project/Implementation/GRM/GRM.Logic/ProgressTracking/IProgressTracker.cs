@@ -10,8 +10,9 @@ namespace GRM.Logic.ProgressTracking
         void BeginStep(string step);
         void EndStep();
 
-        void EnterSubstep(string substep);
-        void LeaveSubstep(string substep);
+        int RegisterSubstep(string substepName);
+        void EnterSubstep(int substepId);
+        void LeaveSubstep(int substepId);
 
         TaskInfo GetInfo();
     }

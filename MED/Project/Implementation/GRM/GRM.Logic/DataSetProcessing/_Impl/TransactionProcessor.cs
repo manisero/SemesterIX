@@ -6,6 +6,17 @@ namespace GRM.Logic.DataSetProcessing._Impl
 {
     public class TransactionProcessor : ITransactionProcessor
     {
+        private readonly int _buildingDecisionDecisionIdDictionarySubstepId;
+        private readonly int _buildingItemItemIDDictionarySybstepId;
+        private readonly int _includingItemInDataSetRepresentationSubstepId;
+
+        public TransactionProcessor()
+        {
+            _buildingDecisionDecisionIdDictionarySubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Building decision -> decision id dictionary");
+            _buildingItemItemIDDictionarySybstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Building item -> item id dictionary");
+            _includingItemInDataSetRepresentationSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Including item in data set representation");
+        }
+
         public void AppendTransaction(int transactionId, string transaction, int decisionAttributeIndex, DataSetRepresentationBuildState buildState)
         {
             var items = transaction.Split(',');
@@ -36,7 +47,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
         private int GetDecisionID(DataSetRepresentationBuildState buildState, string decision)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Building decision -> decision id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_buildingDecisionDecisionIdDictionarySubstepId);
 
             int decisionId;
 
@@ -52,14 +63,14 @@ namespace GRM.Logic.DataSetProcessing._Impl
                 decisionId = buildState.DecisionIDs[decision];
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Building decision -> decision id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_buildingDecisionDecisionIdDictionarySubstepId);
 
             return decisionId;
         }
 
         private ItemID GetItemID(DataSetRepresentationBuildState buildState, int attributeId, string attributeValue)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Building item -> item id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_buildingItemItemIDDictionarySybstepId);
 
             var item = new Item
                 {
@@ -85,14 +96,14 @@ namespace GRM.Logic.DataSetProcessing._Impl
                 itemId = buildState.ItemIDs[item];
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Building item -> item id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_buildingItemItemIDDictionarySybstepId);
 
             return itemId;
         }
 
         private void AppendItem(DataSetRepresentationBuildState buildState, ItemID itemId, int transactionId, int decisionId)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Including item in data set representation");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_includingItemInDataSetRepresentationSubstepId);
 
             if (!buildState.ItemInfos.ContainsKey(itemId))
             {
@@ -116,7 +127,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
                 }
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Including item in data set representation");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_includingItemInDataSetRepresentationSubstepId);
         }
     }
 }

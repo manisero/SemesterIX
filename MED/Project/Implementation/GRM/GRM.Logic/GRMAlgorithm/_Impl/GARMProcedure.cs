@@ -6,11 +6,17 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMProcedure : IGARMProcedure
     {
+        private readonly int _checkingForNodeGeneratorsConflictsSubstepId;
+        private readonly int _includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId;
+
         private readonly IResultBuilder _resultBuilder;
         private readonly IGARMPropertyProcedure _garmProperty;
 
         public GARMProcedure(IResultBuilder resultBuilder, IGARMPropertyProcedure garmProperty)
         {
+            _checkingForNodeGeneratorsConflictsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Checking for node generators conflicts");
+            _includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Including parent node generators in child node generators");
+
             _resultBuilder = resultBuilder;
             _garmProperty = garmProperty;
         }
@@ -48,7 +54,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private bool AreGeneratorsConflicted(IEnumerable<Generator> generators1, IEnumerable<Generator> generators2)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Checking for node generators conflicts");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_checkingForNodeGeneratorsConflictsSubstepId);
 
             var result = false;
 
@@ -69,14 +75,14 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 }
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Checking for node generators conflicts");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_checkingForNodeGeneratorsConflictsSubstepId);
 
             return result;
         }
 
         private void UpdateChildGenerators(IEnumerable<Generator> parentGenerators, Node child)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Including parent node generators in child node generators");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId);
 
             var newGenerators = new List<Generator>();
 
@@ -93,7 +99,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
             child.Generators = newGenerators;
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Including parent node generators in child node generators");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId);
         }
     }
 }
