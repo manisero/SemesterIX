@@ -412,5 +412,103 @@ class ColoringValidator:
             \end{tabular}
         
         \end{table}
+        
+\subsection*{Wyznaczanie permutacji pokolorowań}
+
+Wyznacznie permutacji pokolorowań to część algorytmu, która wymagała największej optymalizacji. W~przypadku podejścia naiwnego, które polegało na wyznaczeniu wszystkich możliwych sąsiedztw, a~następnie oszacowania dla nich wartości funkcji celu, pojedyncze iteracje przeszukiwania z~,,tabu'' (nawet dla stosunkowo małego grafu) trwały około 20 sekund.
+
+Optymalizacja polegała na spostrzeżeniu, że do poprawnego działania algorytmu nie jest potrzebna pełna informacja o~całym możliwym sąsiedztwie. W~kolejnym kroku algorytmu odcinane były bowiem wszystkie permutacje, które w~danej iteracji nie uzyskały maksymalnej wartości funkcji celu. Optymalizacja została dokonana poprzez złączenie ze sobą dwóch kroków algorytmu:
+
+\begin{itemize}
+    \item Dla każdej badanej permutacji od razu dokonywane jest obliczanie wartości funkcji celu. Można zrobić to w~bardzo wydajny sposób. Przed dokonaniem permutacji należy jednokrotnie obliczyć wartość funkcji celu dla całego grafu i~zachować cząstkowe wartości $C_{i}$ oraz $E_{i}$ dla wszystkich kolorów. Następnie, po wykonaniu permutacji koloru jednego wierzchołka, należy przeanalizować w~jaki sposób zmiana ta wpłynęła na wartość funkcji celu. Ponieważ permutacja ma zasięg lokalny, wystarczy zbadać wyłącznie sąsiadów analizowanego wierzchołka, a~nie cały graf.
+    \item Badając każde kolejne sąsiedztwo przechowujemy informację o~wartości funkcji celu dla najlepszej znalezionej do tej pory permutacji. Jeżeli obliczona dla nowej permutacji wartość funkcji celu jest gorsza niż dla już znalezionej, odrzucamy takie sąsiedztwo. W~przypadku, gdyby wartości okazały się identyczne, należy dopisać kolejną permutację do listy zwracanych wartości, a~gdyby nowa permutacja okazała się najlepsza, należy wyczyścić listę pozostałych i~wstawić w~ich miejsce wyłącznie ostatnią. Na wyjściu otrzymujemy wyłącznie najlepsze permutacje dla danej iteracji.
+\end{itemize}
+
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+class FastColorPermutator:
+  def permutate(self, node, color_set, criteria):
+    self.permutations = []
+    self.best_score = None
+    self.c, self.e = CostEvaluator.
+        evaluate_score_for_colors(node)
+    
+    self.find_permutations(node, color_set, 
+      criteria)
+    
+    return self.permutations, self.best_score
+                        \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Klasa \verb+FastColorPermutator+ wyznacza wszystkie najlepsze sąsiedztwa dla danej iteracji, które respektują restrykcje narzucone przez ,,tabu'' oraz spełniają kryteria aspiracji. \\
+                    
+                    \noindent Metoda \verb+permutate+ inicjalizuje zmienne, które przechowują znalezione sąsiedztwa (\verb+permutations+), nalepszy wynik (\verb+best_score+) oraz wartości komponentów funkcji celu $C_{i}$ oraz $E_{i}$ (\verb+c+~i~\verb+e+) dla wszystkich kolorów przed wykonaniem permutacji. Następnie wywołuje właściwe poszukiwanie najlepszego sąsiedztwa.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
+        
+\noindent\begin{table}[ht!]
+            \begin{tabular}{lr}
+                \begin{minipage}[t]{0.55\textwidth}
+                    \begin{verbatim}
+  def find_permutations(self, root_node, 
+      color_set, aspiration_criteria):
+    for node in root_node.iterator():
+      for color in color_set:
+        if node.color == color:
+          continue
+
+        cost = CostEvaluator.
+          evaluate_score_for_permutation(node, 
+            color, self.c, self.e, color_set)
+
+        if not aspiration_criteria.is_allowed(
+            node, color, cost):
+          continue
+
+        if self.current_best_score is None or
+            cost <= self.current_best_score:
+          cloned_node = GraphCloner.clone(node)
+          cloned_node.color = color
+
+          if cost == self.current_best_score:
+            self.permutations.append(cloned_node)
+          else:
+            self.permutations = [cloned_node]
+
+          self.current_best_score = cost
+                    \end{verbatim}
+                \end{minipage}
+                
+                &
+        
+                \begin{minipage}[t]{0.45\textwidth}
+                    \noindent Metoda \verb+find_permutations+ odnajduje wszystkie najlepsze sąsiedztwa dla danej iteracji. Pierwsze dwie pętle \verb+for+ służą do wyznaczenia wszystkich możliwych kombinacji wierzchołków wraz ze wszystkimi kolorami. \\ \\
+                    
+                    \noindent Następnie, szybkim algorytmem, obliczana jest wartość funkcji celu dla wyznaczonej iteracji. \\ \\
+                    
+                    \noindent Sprawdzane jest czy dane przejście nie jest objęte restrykcjami ,,tabu''. Jeśli tak jest to przerywamy analizę permutacji. \\ 
+                    
+                    \noindent Jeżeli permutacja należy do najlepszych w~danej iteracji to tworzymy jej kopię ze zmienionym kolorem wierzchołka. \\ \\
+                    
+                    \noindent Jeśli permutacja jest równie dobra co pozostałe, dopisujemy ją na listę. Jeśli jest najlepsza, usuwamy wszystkie pozostałe z~listy. \\ \\
+                    
+                    \noindent Uaktualniamy oszacowanie dla najlepszej iteracji.
+                \end{minipage}
+            
+                \\
+            
+            \end{tabular}
+        
+        \end{table}
 
 \end{document}
