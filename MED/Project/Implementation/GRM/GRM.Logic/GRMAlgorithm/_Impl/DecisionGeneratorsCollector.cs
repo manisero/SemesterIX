@@ -5,7 +5,7 @@ using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {
-    public class ResultBuilder : IResultBuilder
+    public class DecisionGeneratorsCollector : IDecisionGeneratorsCollector
     {
         private class GRMResultBuildState
         {
@@ -18,7 +18,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private readonly GRMResultBuildState _buildState = new GRMResultBuildState();
 
-        public ResultBuilder(ISupergeneratorsRemovalStrategy supergeneratorsRemovalStrategy)
+        public DecisionGeneratorsCollector(ISupergeneratorsRemovalStrategy supergeneratorsRemovalStrategy)
         {
             _updatingDecisionGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Updating decision generators");
 

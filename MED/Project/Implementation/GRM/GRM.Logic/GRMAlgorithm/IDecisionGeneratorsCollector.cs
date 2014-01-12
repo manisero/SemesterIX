@@ -3,7 +3,7 @@ using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Logic.GRMAlgorithm
 {
-    public interface IResultBuilder
+    public interface IDecisionGeneratorsCollector
     {
         void AppendDecisionGenerators(int decisionId, IList<Generator> generators);
 

@@ -19,7 +19,7 @@ namespace GRM.Logic
         private readonly IFrequentItemsSelector _frequentItemsSelector;
         private readonly ISortingStrategy _sortingStrategy;
         private readonly ITreeBuilder _treeBuilder;
-        private readonly IResultBuilder _resultBuilder;
+        private readonly IDecisionGeneratorsCollector _decisionGeneratorsCollector;
         private readonly IGARMProcedure _garmProcedure;
         private readonly GRMResultBuilder _grmResultBuilder;
 
@@ -31,8 +31,8 @@ namespace GRM.Logic
 
             var storageStrategy = new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy);
             _treeBuilder = new TreeBuilder(storageStrategy);
-            _resultBuilder = new ResultBuilder(new SupergeneratorsRemovalStrategyFactory().Create(supergeneratorsRemovalStrategy));
-            _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
+            _decisionGeneratorsCollector = new DecisionGeneratorsCollector(new SupergeneratorsRemovalStrategyFactory().Create(supergeneratorsRemovalStrategy));
+            _garmProcedure = new GARMProcedure(_decisionGeneratorsCollector, new GARMPropertyProcedure(storageStrategy));
 
             _grmResultBuilder = new GRMResultBuilder();
         }
@@ -64,7 +64,7 @@ namespace GRM.Logic
             progressTracker.EndStep();
 
             progressTracker.BeginStep("Building result");
-            var decisionsGenerators = _resultBuilder.GetDecisionsGenerators();
+            var decisionsGenerators = _decisionGeneratorsCollector.GetDecisionsGenerators();
             var result = _grmResultBuilder.GetResult(representation.AttributesCount, representation.DecisionAttributeIndex, representation.AttributeNames, representation.DecisionIDs, representation.ItemIDs, decisionsGenerators);
             progressTracker.EndStep();
 

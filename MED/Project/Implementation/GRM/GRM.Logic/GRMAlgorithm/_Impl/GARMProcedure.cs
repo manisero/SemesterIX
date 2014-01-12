@@ -9,10 +9,10 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         private readonly int _checkingForNodeGeneratorsConflictsSubstepId;
         private readonly int _includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId;
 
-        private readonly IResultBuilder _resultBuilder;
+        private readonly IDecisionGeneratorsCollector _resultBuilder;
         private readonly IGARMPropertyProcedure _garmProperty;
 
-        public GARMProcedure(IResultBuilder resultBuilder, IGARMPropertyProcedure garmProperty)
+        public GARMProcedure(IDecisionGeneratorsCollector resultBuilder, IGARMPropertyProcedure garmProperty)
         {
             _checkingForNodeGeneratorsConflictsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Checking for node generators conflicts");
             _includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Including parent node generators in child node generators");

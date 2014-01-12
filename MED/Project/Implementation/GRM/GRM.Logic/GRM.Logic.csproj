@@ -70,7 +70,7 @@
     <Compile Include="GRMAlgorithm\Entities\Node.cs" />
     <Compile Include="GRMAlgorithm\IGARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\IGARMPropertyProcedure.cs" />
-    <Compile Include="GRMAlgorithm\IResultBuilder.cs" />
+    <Compile Include="GRMAlgorithm\IDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\ISortingStrategy.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\ISortingStrategyFactory.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\AscendingSupportSortingStrategy.cs" />
@@ -89,7 +89,7 @@
     <Compile Include="GRMAlgorithm\_Impl\GARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\_Impl\GARMPropertyProcedure.cs" />
     <Compile Include="GRMAlgorithm\Entities\Generator.cs" />
-    <Compile Include="GRMAlgorithm\_Impl\ResultBuilder.cs" />
+    <Compile Include="GRMAlgorithm\_Impl\DecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\_Impl\TreeBuilder.cs" />
     <Compile Include="GRMFacade.cs" />
     <Compile Include="GRMResult.cs" />
