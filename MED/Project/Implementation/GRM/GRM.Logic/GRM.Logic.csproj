@@ -49,12 +49,10 @@
     <Compile Include="DataSetProcessing\IFrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceDecisionGeneratorsCollector.cs" />
-    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\ISupergeneratorsRemovalStrategy.cs" />
-    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\ISupergeneratorsRemovalStrategyFactory.cs" />
-    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\RemovalStrategies\BruteForceLINQSupergeneratorsRemovalStrategy.cs" />
-    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\RemovalStrategies\BruteForceSupergeneratorsRemovalStrategy.cs" />
-    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\SupergeneratorsRemovalStrategyType.cs" />
-    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\_Impl\SupergeneratorsRemovalStrategyFactory.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceLINQDecisionGeneratorsCollector.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\IDecisionGeneratorsCollectorFactory.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\_Impl\DecisionGeneratorsCollectorFactory.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\DecisionSupergeneratorsHandlingStrategyType.cs" />
     <Compile Include="GRMResultBuilder.cs" />
     <Compile Include="ProgressTracking\IProgressTracker.cs" />
     <Compile Include="ProgressTracking\IProgressTrackerFactory.cs" />

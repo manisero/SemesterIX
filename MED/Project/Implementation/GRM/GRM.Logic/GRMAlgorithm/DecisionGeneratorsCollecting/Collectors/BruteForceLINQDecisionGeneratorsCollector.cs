@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 {
-    public class BruteForceDecisionGeneratorsCollector : DecisionGeneratorsCollectorBase
+    public class BruteForceLINQDecisionGeneratorsCollector : DecisionGeneratorsCollectorBase
     {
         private readonly IDictionary<int, IList<Generator>> _decisionGenerators = new Dictionary<int, IList<Generator>>();
 
@@ -35,29 +36,7 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
             foreach (var generator in generators)
             {
-                var isSupergenerator = true;
-
-                foreach (var subitem in subgenerator)
-                {
-                    var containsSubitem = false;
-
-                    foreach (var item in generator)
-                    {
-                        if (item.AttributeID == subitem.AttributeID && item.ValueID == subitem.ValueID)
-                        {
-                            containsSubitem = true;
-                            break;
-                        }
-                    }
-
-                    if (!containsSubitem)
-                    {
-                        isSupergenerator = false;
-                        break;
-                    }
-                }
-
-                if (isSupergenerator)
+                if (subgenerator.All(generator.Contains))
                 {
                     supergenerators.Add(generator);
                 }

@@ -48,7 +48,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SupergeneratorsRemoval\SuperGeneratorsRemovalTests.cs" />
+    <Compile Include="DecisionSupergeneratorsHandling\DecisionSupergeneratorsHandlingTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

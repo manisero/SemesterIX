@@ -1,19 +1,19 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
-using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking.ProgressTrackers;
 using System.Linq;
 using Xunit;
 
-namespace GRM.Logic.PerformanceTests.SupergeneratorsRemoval
+namespace GRM.Logic.PerformanceTests.DecisionSupergeneratorsHandling
 {
-    public class SuperGeneratorsRemovalTests
+    public class DecisionSupergeneratorsHandlingTests
     {
-        private void Execute(SupergeneratorsRemovalStrategyType supergeneratorsRemovalStrategy)
+        private void Execute(DecisionSupergeneratorsHandlingStrategyType decisionSupergeneratorsHandlingStrategyType)
         {
             // Arrange
             ProgressTrackerContainer.CurrentProgressTracker = new SubstepProgressTracker();
@@ -21,7 +21,7 @@ namespace GRM.Logic.PerformanceTests.SupergeneratorsRemoval
             // Act
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(Resources.Resources.mushrooms)))
             {
-                new Logic.GRMFacade(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets, supergeneratorsRemovalStrategy).ExecuteGRM(dataSetStream, true, 0, 100);
+                new Logic.GRMFacade(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets, decisionSupergeneratorsHandlingStrategyType).ExecuteGRM(dataSetStream, true, 0, 100);
             }
 
             // Assert
@@ -37,13 +37,13 @@ namespace GRM.Logic.PerformanceTests.SupergeneratorsRemoval
         [Fact]
         public void brute_force_test()
         {
-            Execute(SupergeneratorsRemovalStrategyType.BruteForce);
+            Execute(DecisionSupergeneratorsHandlingStrategyType.BruteForce);
         }
 
         [Fact]
         public void brute_force_LINQ_test()
         {
-            Execute(SupergeneratorsRemovalStrategyType.BruteForceLINQ);
+            Execute(DecisionSupergeneratorsHandlingStrategyType.BruteForceLINQ);
         }
     }
 }

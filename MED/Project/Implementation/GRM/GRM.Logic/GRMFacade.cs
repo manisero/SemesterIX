@@ -3,11 +3,9 @@ using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing._Impl;
 using GRM.Logic.GRMAlgorithm;
 using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting;
-using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors;
+using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
-using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
-using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval._Impl;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
@@ -25,7 +23,7 @@ namespace GRM.Logic
         private readonly IGARMProcedure _garmProcedure;
         private readonly GRMResultBuilder _grmResultBuilder;
 
-        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy, SupergeneratorsRemovalStrategyType supergeneratorsRemovalStrategy)
+        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy, DecisionSupergeneratorsHandlingStrategyType decisionSupergeneratorsHandlingStrategy)
         {
             _dataSetRepresentationBuilder = new DataSetRepresentationBuilder(new TransactionProcessor());
             _frequentItemsSelector = new FrequentItemsSelector();
@@ -33,7 +31,7 @@ namespace GRM.Logic
 
             var storageStrategy = new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy);
             _treeBuilder = new TreeBuilder(storageStrategy);
-            _decisionGeneratorsCollector = new BruteForceDecisionGeneratorsCollector(new SupergeneratorsRemovalStrategyFactory().Create(supergeneratorsRemovalStrategy));
+            _decisionGeneratorsCollector = new DecisionGeneratorsCollectorFactory().Create(decisionSupergeneratorsHandlingStrategy);
             _garmProcedure = new GARMProcedure(_decisionGeneratorsCollector, new GARMPropertyProcedure(storageStrategy));
 
             _grmResultBuilder = new GRMResultBuilder();
