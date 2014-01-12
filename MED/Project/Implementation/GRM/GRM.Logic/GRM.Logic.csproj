@@ -54,6 +54,7 @@
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\RemovalStrategies\BruteForceSupergeneratorsRemovalStrategy.cs" />
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\SupergeneratorsRemovalStrategyType.cs" />
     <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\_Impl\SupergeneratorsRemovalStrategyFactory.cs" />
+    <Compile Include="GRMResultBuilder.cs" />
     <Compile Include="ProgressTracking\IProgressTracker.cs" />
     <Compile Include="ProgressTracking\IProgressTrackerFactory.cs" />
     <Compile Include="ProgressTracking\ProgressTrackers\EmptyProgressTracker.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="GRMAlgorithm\_Impl\ResultBuilder.cs" />
     <Compile Include="GRMAlgorithm\_Impl\TreeBuilder.cs" />
     <Compile Include="GRMFacade.cs" />
-    <Compile Include="GRMAlgorithm\Entities\GRMResult.cs" />
+    <Compile Include="GRMResult.cs" />
     <Compile Include="ProgressTracking\ProgressTrackerContainer.cs" />
     <Compile Include="ProgressTracking\Entities\SubstepInfo.cs" />
     <Compile Include="ProgressTracking\Entities\TaskInfo.cs" />

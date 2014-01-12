@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using GRM.Logic;
-using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking._Impl;
 using GRM.Presentation.ResultWriting;

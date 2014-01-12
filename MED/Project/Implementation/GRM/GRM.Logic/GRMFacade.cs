@@ -2,7 +2,6 @@
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing._Impl;
 using GRM.Logic.GRMAlgorithm;
-using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
 using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
@@ -22,6 +21,7 @@ namespace GRM.Logic
         private readonly ITreeBuilder _treeBuilder;
         private readonly IResultBuilder _resultBuilder;
         private readonly IGARMProcedure _garmProcedure;
+        private readonly GRMResultBuilder _grmResultBuilder;
 
         public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy, SupergeneratorsRemovalStrategyType supergeneratorsRemovalStrategy)
         {
@@ -33,6 +33,8 @@ namespace GRM.Logic
             _treeBuilder = new TreeBuilder(storageStrategy);
             _resultBuilder = new ResultBuilder(new SupergeneratorsRemovalStrategyFactory().Create(supergeneratorsRemovalStrategy));
             _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
+
+            _grmResultBuilder = new GRMResultBuilder();
         }
 
         public GRMResult ExecuteGRM(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex, int minimumSupport)
@@ -62,7 +64,8 @@ namespace GRM.Logic
             progressTracker.EndStep();
 
             progressTracker.BeginStep("Building result");
-            var result = _resultBuilder.GetResult(representation.AttributesCount, representation.DecisionAttributeIndex, representation.AttributeNames, representation.DecisionIDs, representation.ItemIDs);
+            var decisionsGenerators = _resultBuilder.GetDecisionsGenerators();
+            var result = _grmResultBuilder.GetResult(representation.AttributesCount, representation.DecisionAttributeIndex, representation.AttributeNames, representation.DecisionIDs, representation.ItemIDs, decisionsGenerators);
             progressTracker.EndStep();
 
             progressTracker.EndTask();

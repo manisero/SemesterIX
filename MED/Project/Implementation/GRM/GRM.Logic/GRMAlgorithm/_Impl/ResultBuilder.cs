@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
 using GRM.Logic.ProgressTracking;
@@ -22,8 +20,9 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         public ResultBuilder(ISupergeneratorsRemovalStrategy supergeneratorsRemovalStrategy)
         {
-            _supergeneratorsRemovalStrategy = supergeneratorsRemovalStrategy;
             _updatingDecisionGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Updating decision generators");
+
+            _supergeneratorsRemovalStrategy = supergeneratorsRemovalStrategy;
         }
 
         public void AppendDecisionGenerators(int decisionId, IList<Generator> generators)
@@ -52,43 +51,9 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_updatingDecisionGeneratorsSubstepId);
         }
 
-        public GRMResult GetResult(int attributesCount, int decisionAttributeIndex, IDictionary<int, string> attributeNames, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
+        public IDictionary<int, IList<Generator>> GetDecisionsGenerators()
         {
-            var result = new GRMResult
-            {
-                AttributesCount = attributesCount,
-                DecisionAttributeIndex = decisionAttributeIndex,
-                AttributeNames = attributeNames
-            };
-
-            var rules = new List<Rule>();
-
-            foreach (var decisionGenerators in _buildState.DecisionGenerators)
-            {
-                var rule = new Rule
-                {
-                    Decision = decisionIds.Single(x => x.Value == decisionGenerators.Key).Key,
-                    Generators = new List<IEnumerable<Item>>()
-                };
-
-                foreach (var generator in decisionGenerators.Value)
-                {
-                    var ruleGenerator = new List<Item>();
-
-                    foreach (var itemId in generator)
-                    {
-                        ruleGenerator.Add(itemIds.Single(x => x.Value.Equals(itemId)).Key);
-                    }
-
-                    rule.Generators.Add(ruleGenerator);
-                }
-                
-                rules.Add(rule);
-            }
-
-            result.Rules = rules;
-
-            return result;
+            return _buildState.DecisionGenerators;
         }
     }
 }
