@@ -16,6 +16,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         public void AppendDecisionGenerators(int decisionId, IList<Generator> generators)
         {
+            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Updating decision generators");
+
             if (!_buildState.DecisionGenerators.ContainsKey(decisionId))
             {
                 _buildState.DecisionGenerators.Add(decisionId, new List<Generator>(generators));
@@ -34,12 +36,12 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     decisionGenerators.Add(generator);
                 }
             }
+
+            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Updating decision generators");
         }
 
         private void RemoveSupersets(Generator subgenerator, IList<Generator> generators)
         {
-            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Supergenerators removal");
-
             var supergenerators = new List<Generator>();
 
             foreach (var generator in generators)
@@ -54,8 +56,6 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 generators.Remove(supergenerator);
             }
-
-            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Supergenerators removal");
         }
 
         public GRMResult GetResult(int attributesCount, int decisionAttributeIndex, IDictionary<int, string> attributeNames, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)
