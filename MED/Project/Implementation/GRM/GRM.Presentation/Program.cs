@@ -83,16 +83,18 @@ namespace GRM.Presentation
             Console.WriteLine("GRM execution finished. Lasted {0}", taskInfo.Duration);
             Console.WriteLine("Steps details:");
 
+            var stepNumber = 1;
+
             foreach (var step in taskInfo.Steps)
             {
-                Console.WriteLine("{0}: {1}", step.Name, step.Duration);
+                Console.WriteLine("{0}. {1}: {2}", stepNumber, step.Name, step.Duration);
 
                 foreach (var substep in step.Substeps)
                 {
-                    Console.WriteLine("- {0}: {1} ({2} iterations)", substep.Name, substep.TotalDuration, substep.EntersCount);
+                    Console.WriteLine("\t- {0}: {1} ({2} iterations)", substep.Name, substep.TotalDuration, substep.EntersCount);
                 }
 
-                Console.WriteLine();
+                stepNumber++;
             }
 
             Console.WriteLine();
