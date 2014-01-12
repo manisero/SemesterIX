@@ -50,6 +50,7 @@
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceLINQDecisionGeneratorsCollector.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\InvertedListsDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\IDecisionGeneratorsCollectorFactory.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\_Impl\DecisionGeneratorsCollectorFactory.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\DecisionSupergeneratorsHandlingStrategyType.cs" />
