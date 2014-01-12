@@ -6,10 +6,13 @@ namespace GRM.Logic.ProgressTracking
     {
         void BeginTask();
         void EndTask();
+
         void BeginStep(string step);
         void EndStep();
+
         void EnterSubstep(string substep);
         void LeaveSubstep(string substep);
+
         TaskInfo GetInfo();
     }
 }

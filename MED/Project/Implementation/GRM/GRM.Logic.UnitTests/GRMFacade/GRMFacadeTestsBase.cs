@@ -21,7 +21,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
         {
             // Act
             GRMResult result;
-            ProgressTrackerContainer.CurrentProgressTracker = new TaskProgressTracker();
+            ProgressTrackerContainer.CurrentProgressTracker = new SubstepProgressTracker();
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
             {

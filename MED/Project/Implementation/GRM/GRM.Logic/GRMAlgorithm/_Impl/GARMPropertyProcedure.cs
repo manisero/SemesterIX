@@ -7,6 +7,10 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMPropertyProcedure : IGARMPropertyProcedure
     {
+        private const string DETERMINING_GARM_PROPERTY_SUBSTEP = "Determining GARM property";
+        private const string APPLYING_GARM_PROPERTY_SETS_EQUAL_SUBSTEP = "Applying GARM property (sets equal)";
+        private const string APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP = "Applying GARM property (sets different)";
+
         private readonly ITransactionIDsStorageStrategy _transactionIdsStorageStrategy;
 
         public GARMPropertyProcedure(ITransactionIDsStorageStrategy transactionIdsStorageStrategy)
@@ -16,7 +20,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         public GARMPropertyType GetProperty(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Determining GARM property");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(DETERMINING_GARM_PROPERTY_SUBSTEP);
 
             var leftToRightSubsumption = true;
             var rightToLeftSubsumption = true;
@@ -61,7 +65,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 result = GARMPropertyType.Difference;
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Determining GARM property");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(DETERMINING_GARM_PROPERTY_SUBSTEP);
 
             return result;
         }
@@ -75,7 +79,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         {
             if (property == GARMPropertyType.Equality)
             {
-                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Applying GARM property (sets equal)");
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(APPLYING_GARM_PROPERTY_SETS_EQUAL_SUBSTEP);
 
                 foreach (var generator in rightChild.Generators)
                 {
@@ -84,18 +88,18 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 parent.Children.Remove(rightChild);
 
-                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Applying GARM property (sets equal)");
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(APPLYING_GARM_PROPERTY_SETS_EQUAL_SUBSTEP);
             }
             else if (property == GARMPropertyType.Difference)
             {
-                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Applying GARM property (sets different)");
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP);
 
                 var newChildTransactionIds = _transactionIdsStorageStrategy.GetChildTransactionIDs(leftChild.TransactionIDs, rightChild.TransactionIDs);
                 var newChildSupport = _transactionIdsStorageStrategy.GetChildSupport(leftChild.Support, newChildTransactionIds);
 
                 if (newChildSupport < minimalSupport)
                 {
-                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Applying GARM property (sets different)");
+                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP);
                     return;
                 }
                 
@@ -110,7 +114,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 leftChild.Children.Add(newChild);
 
-                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Applying GARM property (sets different)");
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(APPLYING_GARM_PROPERTY_SETS_DIFFERENT_SUBSTEP);
             }
         }
 

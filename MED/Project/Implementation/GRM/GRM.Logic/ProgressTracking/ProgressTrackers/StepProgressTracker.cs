@@ -14,12 +14,13 @@ namespace GRM.Logic.ProgressTracking.ProgressTrackers
             CurrentStep = new Step(step);
             Steps.Add(CurrentStep);
 
-            CurrentStep.Begin();
+            CurrentStep.Stopwatch.Reset();
+            CurrentStep.Stopwatch.Start();
         }
 
         public override void EndStep()
         {
-            CurrentStep.End();
+            CurrentStep.Stopwatch.Stop();
         }
 
         public override TaskInfo GetInfo()

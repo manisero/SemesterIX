@@ -6,48 +6,24 @@ namespace GRM.Logic.ProgressTracking.Entities
 {
     public class Step
     {
-        private readonly string _name;
-        private readonly Stopwatch _stopwatch = new Stopwatch();
-        private readonly IDictionary<string, Substep> _substeps = new Dictionary<string, Substep>();
+        public string Name { get; set; }
+        public Stopwatch Stopwatch { get; set; }
+        public IDictionary<string, Substep> Substeps { get; set; }
 
         public Step(string name)
         {
-            _name = name;
-        }
-
-        public void Begin()
-        {
-            _stopwatch.Reset();
-            _stopwatch.Start();
-        }
-
-        public void End()
-        {
-            _stopwatch.Stop();
-        }
-
-        public void EnterSubstep(string substep)
-        {
-            if (!_substeps.ContainsKey(substep))
-            {
-                _substeps.Add(substep, new Substep(substep));
-            }
-
-            _substeps[substep].Enter();
-        }
-
-        public void LeaveSubstep(string substep)
-        {
-            _substeps[substep].Leave();
+            Name = name;
+            Stopwatch = new Stopwatch();
+            Substeps = new Dictionary<string, Substep>();
         }
 
         public StepInfo GetInfo()
         {
             return new StepInfo
                 {
-                    Name = _name,
-                    Duration = _stopwatch.Elapsed,
-                    Substeps = _substeps.Values.Select(x => x.GetInfo())
+                    Name = Name,
+                    Duration = Stopwatch.Elapsed,
+                    Substeps = Substeps.Values.Select(x => x.GetInfo())
                 };
         }
     }

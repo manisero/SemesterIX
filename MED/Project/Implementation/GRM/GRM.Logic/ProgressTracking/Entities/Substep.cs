@@ -4,33 +4,24 @@ namespace GRM.Logic.ProgressTracking.Entities
 {
     public class Substep
     {
-        private readonly string _name;
-        private int _entersCount;
-        private readonly Stopwatch _stopwatch = new Stopwatch();
+        public string Name { get; set; }
+        public int EntersCount { get; set; }
+        public Stopwatch Stopwatch { get; set; }
 
         public Substep(string name)
         {
-            _name = name;
-        }
-
-        public void Enter()
-        {
-            _entersCount++;
-            _stopwatch.Start();
-        }
-
-        public void Leave()
-        {
-            _stopwatch.Stop();
+            Name = name;
+            EntersCount = 0;
+            Stopwatch = new Stopwatch();
         }
 
         public SubstepInfo GetInfo()
         {
             return new SubstepInfo
                 {
-                    Name = _name,
-                    EntersCount = _entersCount,
-                    TotalDuration = _stopwatch.Elapsed
+                    Name = Name,
+                    EntersCount = EntersCount,
+                    TotalDuration = Stopwatch.Elapsed
                 };
         }
     }
