@@ -21,8 +21,9 @@ namespace GRM.Logic.ProgressTracking.ProgressTrackers
                 CurrentStep.Substeps.Add(substepId, new Substep(SubstepsNames[substepId]));
             }
 
-            CurrentStep.Substeps[substepId].EntersCount++;
-            CurrentStep.Substeps[substepId].Stopwatch.Start();
+            var substep = CurrentStep.Substeps[substepId];
+            substep.EntersCount++;
+            substep.Stopwatch.Start();
         }
 
         public override void LeaveSubstep(int substepId)
