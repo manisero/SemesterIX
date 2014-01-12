@@ -1,5 +1,6 @@
 ﻿using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
+using GRM.Logic.ProgressTracking;
 
 namespace GRM.Presentation
 {
@@ -18,5 +19,12 @@ namespace GRM.Presentation
         public SortingStrategyType SortingStrategy { get; set; }
 
         public TransactionIDsStorageStrategyType TransactionIdsStorageStrategy { get; set; }
+
+        public TrackingLevel TrackingLevel { get; set; }
+
+        public Options()
+        {
+            TrackingLevel = TrackingLevel.Task;
+        }
     }
 }

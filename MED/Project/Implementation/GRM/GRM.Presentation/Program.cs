@@ -3,7 +3,7 @@ using System.IO;
 using GRM.Logic;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.ProgressTracking;
-using GRM.Logic.ProgressTracking.ProgressTrackers;
+using GRM.Logic.ProgressTracking._Impl;
 using GRM.Presentation.ResultWriting;
 using NDesk.Options;
 
@@ -23,7 +23,7 @@ namespace GRM.Presentation
 
             PrintGRMParameters(options);
 
-            ProgressTrackerContainer.CurrentProgressTracker = new SubstepProgressTracker();
+            ProgressTrackerContainer.CurrentProgressTracker = new ProgressTrackerFactory().Create(options.TrackingLevel);
 
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);

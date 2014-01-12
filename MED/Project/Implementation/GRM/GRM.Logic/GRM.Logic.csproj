@@ -49,6 +49,7 @@
     <Compile Include="DataSetProcessing\IFrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
     <Compile Include="ProgressTracking\IProgressTracker.cs" />
+    <Compile Include="ProgressTracking\IProgressTrackerFactory.cs" />
     <Compile Include="ProgressTracking\ProgressTrackers\EmptyProgressTracker.cs" />
     <Compile Include="ProgressTracking\Entities\Step.cs" />
     <Compile Include="ProgressTracking\Entities\StepInfo.cs" />
@@ -89,6 +90,8 @@
     <Compile Include="ProgressTracking\Entities\SubstepInfo.cs" />
     <Compile Include="ProgressTracking\Entities\TaskInfo.cs" />
     <Compile Include="ProgressTracking\ProgressTrackers\TaskProgressTracker.cs" />
+    <Compile Include="ProgressTracking\TrackingLevel.cs" />
+    <Compile Include="ProgressTracking\_Impl\ProgressTrackerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
