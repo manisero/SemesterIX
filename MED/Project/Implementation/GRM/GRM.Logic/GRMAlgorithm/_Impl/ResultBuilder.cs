@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
 using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
@@ -15,10 +16,13 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private readonly int _updatingDecisionGeneratorsSubstepId;
 
+        private readonly ISupergeneratorsRemovalStrategy _supergeneratorsRemovalStrategy;
+
         private readonly GRMResultBuildState _buildState = new GRMResultBuildState();
 
-        public ResultBuilder()
+        public ResultBuilder(ISupergeneratorsRemovalStrategy supergeneratorsRemovalStrategy)
         {
+            _supergeneratorsRemovalStrategy = supergeneratorsRemovalStrategy;
             _updatingDecisionGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Updating decision generators");
         }
 
@@ -36,7 +40,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 foreach (var generator in generators)
                 {
-                    RemoveSupersets(generator, decisionGenerators);
+                    _supergeneratorsRemovalStrategy.Apply(decisionGenerators, generator);
                 }
 
                 foreach (var generator in generators)
@@ -46,24 +50,6 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
 
             ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_updatingDecisionGeneratorsSubstepId);
-        }
-
-        private void RemoveSupersets(Generator subgenerator, IList<Generator> generators)
-        {
-            var supergenerators = new List<Generator>();
-
-            foreach (var generator in generators)
-            {
-                if (subgenerator.All(generator.Contains))
-                {
-                    supergenerators.Add(generator);
-                }
-            }
-
-            foreach (var supergenerator in supergenerators)
-            {
-                generators.Remove(supergenerator);
-            }
         }
 
         public GRMResult GetResult(int attributesCount, int decisionAttributeIndex, IDictionary<int, string> attributeNames, IDictionary<string, int> decisionIds, IDictionary<Item, ItemID> itemIds)

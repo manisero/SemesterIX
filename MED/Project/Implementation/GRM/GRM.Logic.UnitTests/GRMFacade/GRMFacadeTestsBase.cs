@@ -4,6 +4,7 @@ using System.Text;
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
+using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking.ProgressTrackers;
@@ -19,13 +20,15 @@ namespace GRM.Logic.UnitTests.GRMFacade
 
         private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
+            // Arrange
+            ProgressTrackerContainer.CurrentProgressTracker = new TaskProgressTracker();
+
             // Act
             GRMResult result;
-            ProgressTrackerContainer.CurrentProgressTracker = new TaskProgressTracker();
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
             {
-                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, false, null, MinimumSupport);
+                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, false, null, MinimumSupport);
             }
 
             // Assert

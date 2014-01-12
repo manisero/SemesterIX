@@ -26,7 +26,7 @@ namespace GRM.Presentation
             ProgressTrackerContainer.CurrentProgressTracker = new ProgressTrackerFactory().Create(options.TrackingLevel);
 
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
+            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
 
             Console.WriteLine("GRM execution finished");
             PrintPerformanceInfo();

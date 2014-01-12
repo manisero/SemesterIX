@@ -5,6 +5,8 @@ using GRM.Logic.GRMAlgorithm;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
+using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
+using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval._Impl;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
@@ -21,7 +23,7 @@ namespace GRM.Logic
         private readonly IResultBuilder _resultBuilder;
         private readonly IGARMProcedure _garmProcedure;
 
-        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
+        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy, SupergeneratorsRemovalStrategyType supergeneratorsRemovalStrategy)
         {
             _dataSetRepresentationBuilder = new DataSetRepresentationBuilder(new TransactionProcessor());
             _frequentItemsSelector = new FrequentItemsSelector();
@@ -29,7 +31,7 @@ namespace GRM.Logic
 
             var storageStrategy = new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy);
             _treeBuilder = new TreeBuilder(storageStrategy);
-            _resultBuilder = new ResultBuilder();
+            _resultBuilder = new ResultBuilder(new SupergeneratorsRemovalStrategyFactory().Create(supergeneratorsRemovalStrategy));
             _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
         }
 

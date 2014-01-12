@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
+using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking.ProgressTrackers;
@@ -12,7 +13,7 @@ namespace GRM.Logic.PerformanceTests.SupergeneratorsRemoval
 {
     public class SuperGeneratorsRemovalTests
     {
-        private void Execute()
+        private void Execute(SupergeneratorsRemovalStrategyType supergeneratorsRemovalStrategy)
         {
             // Arrange
             ProgressTrackerContainer.CurrentProgressTracker = new SubstepProgressTracker();
@@ -20,7 +21,7 @@ namespace GRM.Logic.PerformanceTests.SupergeneratorsRemoval
             // Act
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(Resources.Resources.mushrooms)))
             {
-                new Logic.GRMFacade(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets).ExecuteGRM(dataSetStream, true, 0, 150);
+                new Logic.GRMFacade(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets, supergeneratorsRemovalStrategy).ExecuteGRM(dataSetStream, true, 0, 100);
             }
 
             // Assert
@@ -34,9 +35,9 @@ namespace GRM.Logic.PerformanceTests.SupergeneratorsRemoval
         }
 
         [Fact]
-        public void test()
+        public void brute_force_test()
         {
-            Execute();
+            Execute(SupergeneratorsRemovalStrategyType.BruteForce);
         }
     }
 }

@@ -48,6 +48,11 @@
     <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\IFrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
+    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\ISupergeneratorsRemovalStrategy.cs" />
+    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\ISupergeneratorsRemovalStrategyFactory.cs" />
+    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\RemovalStrategies\BruteForceSupergeneratorsRemovalStrategy.cs" />
+    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\SupergeneratorsRemovalStrategyType.cs" />
+    <Compile Include="GRMAlgorithm\SupergeneratorsRemoval\_Impl\SupergeneratorsRemovalStrategyFactory.cs" />
     <Compile Include="ProgressTracking\IProgressTracker.cs" />
     <Compile Include="ProgressTracking\IProgressTrackerFactory.cs" />
     <Compile Include="ProgressTracking\ProgressTrackers\EmptyProgressTracker.cs" />
