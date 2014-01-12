@@ -48,6 +48,8 @@
     <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\IFrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
+    <Compile Include="ProgressTracking\Step.cs" />
+    <Compile Include="ProgressTracking\Substep.cs" />
     <Compile Include="ProgressTracking\ProgressTracker.cs" />
     <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\_Impl\FrequentItemsSelector.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="GRMFacade.cs" />
     <Compile Include="GRMAlgorithm\Entities\GRMResult.cs" />
     <Compile Include="ProgressTracking\ProgressTrackerContainer.cs" />
+    <Compile Include="ProgressTracking\SubstepInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

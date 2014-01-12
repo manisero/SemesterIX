@@ -7,44 +7,6 @@ namespace GRM.Logic.ProgressTracking
 {
     public class ProgressTracker
     {
-        private class Substep
-        {
-            private int _entersCount;
-            private readonly Stopwatch _stopwatch;
-
-            public Substep()
-            {
-                _entersCount = 0;
-                _stopwatch = new Stopwatch();
-            }
-
-            public void Enter()
-            {
-                _entersCount++;
-                _stopwatch.Start();
-            }
-
-            public void Leave()
-            {
-                _stopwatch.Stop();
-            }
-
-            public SubstepInfo GetInfo()
-            {
-                return new SubstepInfo
-                    {
-                        EntersCount = _entersCount,
-                        TotalDuration = _stopwatch.Elapsed
-                    };
-            }
-        }
-
-        public class SubstepInfo
-        {
-            public int EntersCount { get; set; }
-            public TimeSpan TotalDuration { get; set; }
-        }
-
         private string _step;
         private readonly Action<string> _onStepStart;
         private readonly Action<string, TimeSpan> _onStepEnd;
@@ -103,7 +65,7 @@ namespace GRM.Logic.ProgressTracking
         {
             if (!_substepStopwatches.ContainsKey(substep))
             {
-                _substepStopwatches.Add(substep, new Substep());
+                _substepStopwatches.Add(substep, new Substep(substep));
             }
 
             _substepStopwatches[substep].Enter();
