@@ -17,7 +17,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         public void AppendDecisionGenerators(int decisionId, IList<Generator> generators)
         {
-            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Updating decision generators");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Updating decision generators");
 
             if (!_buildState.DecisionGenerators.ContainsKey(decisionId))
             {
@@ -38,7 +38,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 }
             }
 
-            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Updating decision generators");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Updating decision generators");
         }
 
         private void RemoveSupersets(Generator subgenerator, IList<Generator> generators)

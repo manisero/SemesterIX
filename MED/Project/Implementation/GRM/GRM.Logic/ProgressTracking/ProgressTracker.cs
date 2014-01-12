@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GRM.Logic.ProgressTracking
 {
-    public class ProgressInfo
+    public class ProgressTracker
     {
         private class Substep
         {
@@ -52,11 +52,11 @@ namespace GRM.Logic.ProgressTracking
         private readonly Stopwatch _stepStopwatch = new Stopwatch();
         private readonly IDictionary<string, Substep> _substepStopwatches = new Dictionary<string, Substep>();
 
-        public ProgressInfo()
+        public ProgressTracker()
         {
         }
 
-        public ProgressInfo(Action<string> onStepStart, Action<string, TimeSpan> onStepEnd)
+        public ProgressTracker(Action<string> onStepStart, Action<string, TimeSpan> onStepEnd)
         {
             _onStepStart = onStepStart;
             _onStepEnd = onStepEnd;

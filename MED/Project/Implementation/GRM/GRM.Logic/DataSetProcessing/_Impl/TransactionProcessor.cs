@@ -36,7 +36,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
         private int GetDecisionID(DataSetRepresentationBuildState buildState, string decision)
         {
-            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Building decision -> decision id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Building decision -> decision id dictionary");
 
             int decisionId;
 
@@ -52,14 +52,14 @@ namespace GRM.Logic.DataSetProcessing._Impl
                 decisionId = buildState.DecisionIDs[decision];
             }
 
-            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Building decision -> decision id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Building decision -> decision id dictionary");
 
             return decisionId;
         }
 
         private ItemID GetItemID(DataSetRepresentationBuildState buildState, int attributeId, string attributeValue)
         {
-            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Building item -> item id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Building item -> item id dictionary");
 
             var item = new Item
                 {
@@ -85,14 +85,14 @@ namespace GRM.Logic.DataSetProcessing._Impl
                 itemId = buildState.ItemIDs[item];
             }
 
-            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Building item -> item id dictionary");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Building item -> item id dictionary");
 
             return itemId;
         }
 
         private void AppendItem(DataSetRepresentationBuildState buildState, ItemID itemId, int transactionId, int decisionId)
         {
-            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Including item in data set representation");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Including item in data set representation");
 
             if (!buildState.ItemInfos.ContainsKey(itemId))
             {
@@ -116,7 +116,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
                 }
             }
 
-            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Including item in data set representation");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Including item in data set representation");
         }
     }
 }

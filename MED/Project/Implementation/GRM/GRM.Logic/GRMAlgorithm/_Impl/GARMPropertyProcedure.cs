@@ -16,7 +16,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         public GARMPropertyType GetProperty(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
-            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Determining GARM property");
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Determining GARM property");
 
             var leftToRightSubsumption = true;
             var rightToLeftSubsumption = true;
@@ -61,7 +61,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 result = GARMPropertyType.Difference;
             }
 
-            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Determining GARM property");
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Determining GARM property");
 
             return result;
         }
@@ -75,7 +75,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         {
             if (property == GARMPropertyType.Equality)
             {
-                ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Applying GARM property (sets equal)");
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Applying GARM property (sets equal)");
 
                 foreach (var generator in rightChild.Generators)
                 {
@@ -84,18 +84,18 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 parent.Children.Remove(rightChild);
 
-                ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Applying GARM property (sets equal)");
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Applying GARM property (sets equal)");
             }
             else if (property == GARMPropertyType.Difference)
             {
-                ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Applying GARM property (sets different)");
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep("Applying GARM property (sets different)");
 
                 var newChildTransactionIds = _transactionIdsStorageStrategy.GetChildTransactionIDs(leftChild.TransactionIDs, rightChild.TransactionIDs);
                 var newChildSupport = _transactionIdsStorageStrategy.GetChildSupport(leftChild.Support, newChildTransactionIds);
 
                 if (newChildSupport < minimalSupport)
                 {
-                    ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Applying GARM property (sets different)");
+                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Applying GARM property (sets different)");
                     return;
                 }
                 
@@ -110,7 +110,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                 leftChild.Children.Add(newChild);
 
-                ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Applying GARM property (sets different)");
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep("Applying GARM property (sets different)");
             }
         }
 

@@ -35,35 +35,35 @@ namespace GRM.Logic
 
         public GRMResult ExecuteGRM(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex, int minimumSupport)
         {
-            var progressInfo = ProgressInfoContainer.CurrentProgressInfo;
+            var progressTracker = ProgressTrackerContainer.CurrentProgressTracker;
 
-            progressInfo.BeginTask();
+            progressTracker.BeginTask();
 
-            progressInfo.BeginStep("Creating data set representation");
+            progressTracker.BeginStep("Creating data set representation");
             var representation = _dataSetRepresentationBuilder.Build(dataSetStream, dataContainsHeaders, decisionAttributeIndex);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Selecting frequent items");
+            progressTracker.BeginStep("Selecting frequent items");
             var frequentItems = _frequentItemsSelector.SelectFrequentItems(representation.ItemInfos.Values, minimumSupport);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Sorting frequent items");
+            progressTracker.BeginStep("Sorting frequent items");
             var sortedFrequentItems = _sortingStrategy.Apply(frequentItems);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Building GRM tree");
+            progressTracker.BeginStep("Building GRM tree");
             var root = _treeBuilder.Build(sortedFrequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Running GARM procedure");
+            progressTracker.BeginStep("Running GARM procedure");
             _garmProcedure.Execute(root, representation.TransactionDecisions, minimumSupport);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Building result");
+            progressTracker.BeginStep("Building result");
             var result = _resultBuilder.GetResult(representation.AttributesCount, representation.DecisionAttributeIndex, representation.AttributeNames, representation.DecisionIDs, representation.ItemIDs);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.EndTask();
+            progressTracker.EndTask();
             return result;
         }
     }

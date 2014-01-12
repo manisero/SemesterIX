@@ -13,7 +13,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
         private Node Execute(GARMPropertyType property, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions = null, int minimalSupport = 1)
         {
             // Arrange
-            ProgressInfoContainer.CurrentProgressInfo = new ProgressInfo();
+            ProgressTrackerContainer.CurrentProgressTracker = new ProgressTracker();
 
             var parent = new Node
                 {

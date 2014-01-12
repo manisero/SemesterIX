@@ -22,18 +22,18 @@ namespace GRM.Presentation
 
             WriteGRMParameters(options);
 
-            var progressInfo = new ProgressInfo(step => Console.WriteLine(step),
-                                                (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
+            var progressTracker = new ProgressTracker(step => Console.WriteLine(step),
+                                                      (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
 
-            ProgressInfoContainer.CurrentProgressInfo = progressInfo;
+            ProgressTrackerContainer.CurrentProgressTracker = progressTracker;
 
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
 
-            Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
+            Console.WriteLine("GRM execution finished. Lasted {0}", progressTracker.GetOverallTaskDuration());
             Console.WriteLine("Step duration details:");
 
-            foreach (var duration in progressInfo.GetSubstepsDurations())
+            foreach (var duration in progressTracker.GetSubstepsDurations())
             {
                 Console.WriteLine("- {0}: {1} ({2} iterations)", duration.Key, duration.Value.TotalDuration, duration.Value.EntersCount);
             }

@@ -19,7 +19,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
             get { return 10; }
         }
 
-        protected override void AssertResult(GRMResult result, ProgressInfo progressInfo)
+        protected override void AssertResult(GRMResult result, ProgressTracker progressTracker)
         {
             Assert.Equal(2, result.Rules.Count());
 
