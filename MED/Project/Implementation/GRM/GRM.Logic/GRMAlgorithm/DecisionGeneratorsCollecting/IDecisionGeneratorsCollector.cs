@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
 
-namespace GRM.Logic.GRMAlgorithm
+namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting
 {
     public interface IDecisionGeneratorsCollector
     {

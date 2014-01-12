@@ -2,6 +2,8 @@
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing._Impl;
 using GRM.Logic.GRMAlgorithm;
+using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting;
+using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
 using GRM.Logic.GRMAlgorithm.SupergeneratorsRemoval;
@@ -31,7 +33,7 @@ namespace GRM.Logic
 
             var storageStrategy = new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy);
             _treeBuilder = new TreeBuilder(storageStrategy);
-            _decisionGeneratorsCollector = new DecisionGeneratorsCollector(new SupergeneratorsRemovalStrategyFactory().Create(supergeneratorsRemovalStrategy));
+            _decisionGeneratorsCollector = new BruteForceDecisionGeneratorsCollector(new SupergeneratorsRemovalStrategyFactory().Create(supergeneratorsRemovalStrategy));
             _garmProcedure = new GARMProcedure(_decisionGeneratorsCollector, new GARMPropertyProcedure(storageStrategy));
 
             _grmResultBuilder = new GRMResultBuilder();
