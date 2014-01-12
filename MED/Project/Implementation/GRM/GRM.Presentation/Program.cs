@@ -28,7 +28,10 @@ namespace GRM.Presentation
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
 
+            Console.WriteLine("GRM execution finished");
             PrintPerformanceInfo();
+            Console.WriteLine();
+
             WriteGRMResult(result, options.DataFilePath);
         }
 
@@ -81,7 +84,12 @@ namespace GRM.Presentation
         {
             var taskInfo = ProgressTrackerContainer.CurrentProgressTracker.GetInfo();
 
-            Console.WriteLine("GRM execution finished. Lasted {0}", taskInfo.Duration);
+            if (taskInfo == null)
+            {
+                return;
+            }
+
+            Console.WriteLine("Lasted {0}", taskInfo.Duration);
 
             if (taskInfo.Steps != null)
             {
@@ -101,8 +109,6 @@ namespace GRM.Presentation
                     stepNumber++;
                 }
             }
-
-            Console.WriteLine();
         }
 
         private static void WriteGRMResult(GRMResult result, string dataFilePath)
