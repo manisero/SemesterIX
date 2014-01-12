@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.ProgressTracking;
+using GRM.Logic.ProgressTracking.ProgressTrackers;
 using Xunit;
 
 namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure

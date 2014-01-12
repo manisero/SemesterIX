@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GRM.Logic.ProgressTracking
+namespace GRM.Logic.ProgressTracking.Entities
 {
     public class TaskInfo
     {

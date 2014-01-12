@@ -6,6 +6,7 @@ using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.ProgressTracking;
+using GRM.Logic.ProgressTracking.ProgressTrackers;
 using Xunit;
 
 namespace GRM.Logic.UnitTests.GRMFacade

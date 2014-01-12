@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace GRM.Logic.ProgressTracking
+namespace GRM.Logic.ProgressTracking.Entities
 {
     public class Substep
     {

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 
-namespace GRM.Logic.ProgressTracking
+namespace GRM.Logic.ProgressTracking.Entities
 {
     public class Step
     {

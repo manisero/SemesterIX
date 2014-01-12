@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using GRM.Logic.ProgressTracking.Entities;
 
-namespace GRM.Logic.ProgressTracking
+namespace GRM.Logic.ProgressTracking.ProgressTrackers
 {
-    public class ProgressTracker
+    public class ProgressTracker : IProgressTracker
     {
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private readonly IList<Step> _steps = new List<Step>();

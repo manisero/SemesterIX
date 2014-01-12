@@ -2,6 +2,7 @@
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.ProgressTracking;
+using GRM.Logic.ProgressTracking.ProgressTrackers;
 using GRM.Logic.UnitTests.GRMFacade;
 
 namespace GRM.Logic.PerformanceTests.GRMFacade

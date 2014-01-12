@@ -2,6 +2,6 @@
 {
     public static class ProgressTrackerContainer
     {
-        public static ProgressTracker CurrentProgressTracker { get; set; }
+        public static IProgressTracker CurrentProgressTracker { get; set; }
     }
 }
