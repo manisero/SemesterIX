@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -7,8 +6,14 @@ namespace GRM.Logic.ProgressTracking
 {
     public class Step
     {
+        private readonly string _name;
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private readonly IDictionary<string, Substep> _substeps = new Dictionary<string, Substep>();
+
+        public Step(string name)
+        {
+            _name = name;
+        }
 
         public void Begin()
         {
@@ -36,14 +41,14 @@ namespace GRM.Logic.ProgressTracking
             _substeps[substep].Leave();
         }
 
-        public TimeSpan GetOverallDuration()
+        public StepInfo GetInfo()
         {
-            return _stopwatch.Elapsed;
-        }
-
-        public IEnumerable<SubstepInfo> GetSubstepsInfo()
-        {
-            return _substeps.Values.Select(x => x.GetInfo());
+            return new StepInfo
+                {
+                    Name = _name,
+                    Duration = _stopwatch.Elapsed,
+                    Substeps = _substeps.Values.Select(x => x.GetInfo())
+                };
         }
     }
 }

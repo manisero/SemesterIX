@@ -20,26 +20,14 @@ namespace GRM.Presentation
                 return;
             }
 
-            WriteGRMParameters(options);
+            PrintGRMParameters(options);
 
-            var progressTracker = new ProgressTracker(step => Console.WriteLine(step),
-                                                      (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
-
-            ProgressTrackerContainer.CurrentProgressTracker = progressTracker;
+            ProgressTrackerContainer.CurrentProgressTracker = new ProgressTracker();
 
             var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
 
-            Console.WriteLine("GRM execution finished. Lasted {0}", progressTracker.GetOverallTaskDuration());
-            Console.WriteLine("Step duration details:");
-
-            foreach (var duration in progressTracker.GetSubstepsDurations())
-            {
-                Console.WriteLine("- {0}: {1} ({2} iterations)", duration.Key, duration.Value.TotalDuration, duration.Value.EntersCount);
-            }
-
-            Console.WriteLine();
-            
+            PrintPerformanceInfo();
             WriteGRMResult(result, options.DataFilePath);
         }
 
@@ -77,14 +65,36 @@ namespace GRM.Presentation
             return options;
         }
 
-        private static void WriteGRMParameters(Options options)
+        private static void PrintGRMParameters(Options options)
         {
-            Console.WriteLine("Executing GRM for file '{0}'.", options.DataFilePath);
-            Console.WriteLine("The file is{0}expected to contain attribute names.", options.DataFileContainsHeaders ? " " : " not ");
-            Console.WriteLine("Decision attribute: {0}.", options.DecisionAttributeIndex.HasValue ? (options.DecisionAttributeIndex + 1).ToString() : "last");
-            Console.WriteLine("Minimum support: {0}.", options.MinimumSupport);
-            Console.WriteLine("Sorting strategy: '{0}'.", options.SortingStrategy);
-            Console.WriteLine("Transaction IDs storage strategy: '{0}'.", options.TransactionIdsStorageStrategy);
+            Console.WriteLine("Executing GRM for file '{0}'", options.DataFilePath);
+            Console.WriteLine("The file is{0}expected to contain attribute names", options.DataFileContainsHeaders ? " " : " not ");
+            Console.WriteLine("Decision attribute: {0}", options.DecisionAttributeIndex.HasValue ? (options.DecisionAttributeIndex + 1).ToString() : "last");
+            Console.WriteLine("Minimum support: {0}", options.MinimumSupport);
+            Console.WriteLine("Sorting strategy: '{0}'", options.SortingStrategy);
+            Console.WriteLine("Transaction IDs storage strategy: '{0}'", options.TransactionIdsStorageStrategy);
+            Console.WriteLine();
+        }
+
+        private static void PrintPerformanceInfo()
+        {
+            var taskInfo = ProgressTrackerContainer.CurrentProgressTracker.GetInfo();
+
+            Console.WriteLine("GRM execution finished. Lasted {0}", taskInfo.Duration);
+            Console.WriteLine("Steps details:");
+
+            foreach (var step in taskInfo.Steps)
+            {
+                Console.WriteLine("{0}: {1}", step.Name, step.Duration);
+
+                foreach (var substep in step.Substeps)
+                {
+                    Console.WriteLine("- {0}: {1} ({2} iterations)", substep.Name, substep.TotalDuration, substep.EntersCount);
+                }
+
+                Console.WriteLine();
+            }
+
             Console.WriteLine();
         }
 
