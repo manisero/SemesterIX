@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace GRM.Logic
+namespace GRM.Logic.ProgressTracking
 {
     public class ProgressInfo
     {

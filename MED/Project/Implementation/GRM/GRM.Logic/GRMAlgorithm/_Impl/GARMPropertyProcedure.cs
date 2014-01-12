@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
+using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {

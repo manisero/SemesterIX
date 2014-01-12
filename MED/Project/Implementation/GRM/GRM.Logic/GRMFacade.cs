@@ -8,6 +8,7 @@ using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
+using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic
 {

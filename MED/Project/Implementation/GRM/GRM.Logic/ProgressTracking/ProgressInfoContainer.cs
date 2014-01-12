@@ -1,4 +1,4 @@
-﻿namespace GRM.Logic
+﻿namespace GRM.Logic.ProgressTracking
 {
     public static class ProgressInfoContainer
     {

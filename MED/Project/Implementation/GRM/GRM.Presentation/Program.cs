@@ -2,6 +2,7 @@
 using System.IO;
 using GRM.Logic;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.ProgressTracking;
 using GRM.Presentation.ResultWriting;
 using NDesk.Options;
 

@@ -2,6 +2,7 @@
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies;
+using GRM.Logic.ProgressTracking;
 using Xunit;
 using System.Linq;
 
