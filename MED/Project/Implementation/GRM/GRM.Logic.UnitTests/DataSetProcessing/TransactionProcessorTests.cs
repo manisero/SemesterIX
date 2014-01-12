@@ -10,6 +10,8 @@ namespace GRM.Logic.UnitTests.DataSetProcessing
     {
         private void Execute(int transactionId, string transaction, int decisiveAttributeIndex, DataSetRepresentationBuildState buildState)
         {
+            ProgressInfoContainer.CurrentProgressInfo = new ProgressInfo();
+
             new TransactionProcessor().AppendTransaction(transactionId, transaction, decisiveAttributeIndex, buildState);
         }
 

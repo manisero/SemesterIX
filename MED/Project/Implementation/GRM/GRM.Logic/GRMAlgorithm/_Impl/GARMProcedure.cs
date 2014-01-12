@@ -47,6 +47,10 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         private bool AreGeneratorsConflicted(IEnumerable<Generator> generators1, IEnumerable<Generator> generators2)
         {
+            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Checking for node generators conflicts");
+
+            var result = false;
+
             foreach (var generator1 in generators1)
             {
                 foreach (var itemId1 in generator1)
@@ -57,18 +61,22 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                         {
                             if (itemId1.AttributeID == itemId2.AttributeID && itemId1.ValueID != itemId2.ValueID)
                             {
-                                return true;
+                                result = true;
                             }
                         }
                     }
                 }
             }
 
-            return false;
+            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Checking for node generators conflicts");
+
+            return result;
         }
 
         private void UpdateChildGenerators(IEnumerable<Generator> parentGenerators, Node child)
         {
+            ProgressInfoContainer.CurrentProgressInfo.EnterSubstep("Including parent node generators in child node generators");
+
             var newGenerators = new List<Generator>();
 
             foreach (var parentGenerator in parentGenerators)
@@ -83,6 +91,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             }
 
             child.Generators = newGenerators;
+
+            ProgressInfoContainer.CurrentProgressInfo.LeaveSubstep("Including parent node generators in child node generators");
         }
     }
 }
