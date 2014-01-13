@@ -47,3 +47,11 @@ class NodeTests(unittest.TestCase):
         color_classes = n1.get_colors_count()
 
         self.assertEqual(3, color_classes)
+
+    def test_set_color_method(self):
+        n1 = Node(color='#')
+
+        n1.set_color('?')
+
+        self.assertEqual('?', n1.color)
+        self.assertEqual('#', n1.previous_color)

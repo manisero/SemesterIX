@@ -23,38 +23,15 @@ class FastColorPermutator:
                 if node.color == color:
                     continue
 
-                cost = self.permutation_cost(node, color, color_set)
+                cost = CostEvaluator.evaluate_score_for_permutation(node, color, self.c, self.e, color_set)
 
                 if not aspiration_criteria.is_permutation_allowed(node, color, cost):
                     continue
 
                 if self.current_best_score is None or cost <= self.current_best_score:
-                    cloned_node = GraphCloner.clone(node)
-                    cloned_node.color = color
-
                     if cost == self.current_best_score:
-                        self.permutations.append(cloned_node)
+                        self.permutations.append((node, color))
                     else:
-                        self.permutations = [cloned_node]
+                        self.permutations = [(node, color)]
 
                     self.current_best_score = cost
-
-    def permutation_cost(self, node, color, color_set):
-        c, e = self.c.copy(), self.e.copy()
-        c[node.color] -= 1
-
-        if color not in c:
-            c[color] = 0
-
-        c[color] += 1
-
-        for child_node in node.edges:
-            if child_node.color == node.color:
-                e[node.color] -= 1
-            elif child_node.color == color:
-                if color not in e:
-                    e[color] = 0
-
-                e[color] += 1
-
-        return CostEvaluator.evaluate_cost(color_set, c, e)

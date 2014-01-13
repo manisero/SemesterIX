@@ -1,0 +1,8925 @@
+
+
+Started queen6_6 execution...
+
+
+Started reading input file task...
+Finished reading input file task!
+Time elapsed: 0.0645670890808 seconds
+Summary: read graph:
+24 - 27
+3 - 32
+1 - 5
+8 - 27
+2 - 27
+9 - 1
+4 - 3
+11 - 20
+5 - 32
+12 - 34
+6 - 12
+16 - 11
+10 - 22
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 12
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 30
+23 - 2
+30 - 27
+28 - 2
+35 - 29
+29 - 14
+36 - 23
+34 - 17
+
+read color set:
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+
+initial cost: -18
+
+
+
+
+Started tabu search 1 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0730030536652 seconds
+Summary: 
+
+Finished tabu search 1 iteration task!
+Time elapsed: 0.137852907181 seconds
+Summary: iterations without score change: 1
+iteration's best score: -34
+overall best score: -34
+memory: 2 - 27
+permutation: 24 - 27
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 32
+12 - 34
+6 - 12
+16 - 11
+10 - 22
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 12
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 30
+23 - 2
+30 - 27
+28 - 2
+35 - 29
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 2 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.073399066925 seconds
+Summary: 
+
+Finished tabu search 2 iteration task!
+Time elapsed: 0.14403295517 seconds
+Summary: iterations without score change: 1
+iteration's best score: -50
+overall best score: -50
+memory: 2 - 27
+26 - 12
+permutation: 24 - 27
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 32
+12 - 34
+6 - 12
+16 - 11
+10 - 22
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 30
+23 - 2
+30 - 27
+28 - 2
+35 - 29
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 3 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0815420150757 seconds
+Summary: 
+
+Finished tabu search 3 iteration task!
+Time elapsed: 0.159978151321 seconds
+Summary: iterations without score change: 1
+iteration's best score: -58
+overall best score: -58
+memory: 2 - 27
+26 - 12
+24 - 27
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 32
+12 - 34
+6 - 12
+16 - 11
+10 - 22
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 30
+23 - 2
+30 - 27
+28 - 2
+35 - 29
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 4 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0743579864502 seconds
+Summary: 
+
+Finished tabu search 4 iteration task!
+Time elapsed: 0.142188072205 seconds
+Summary: iterations without score change: 1
+iteration's best score: -68
+overall best score: -68
+memory: 2 - 27
+26 - 12
+24 - 27
+5 - 32
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 22
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 30
+23 - 2
+30 - 27
+28 - 2
+35 - 29
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 5 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0621011257172 seconds
+Summary: 
+
+Finished tabu search 5 iteration task!
+Time elapsed: 0.126858949661 seconds
+Summary: iterations without score change: 1
+iteration's best score: -76
+overall best score: -76
+memory: 2 - 27
+26 - 12
+24 - 27
+5 - 32
+18 - 30
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 22
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 2
+30 - 27
+28 - 2
+35 - 29
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 6 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0724740028381 seconds
+Summary: 
+
+Finished tabu search 6 iteration task!
+Time elapsed: 0.13925909996 seconds
+Summary: iterations without score change: 1
+iteration's best score: -84
+overall best score: -84
+memory: 2 - 27
+26 - 12
+24 - 27
+5 - 32
+18 - 30
+35 - 29
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 22
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 2
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 7 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0672960281372 seconds
+Summary: 
+
+Finished tabu search 7 iteration task!
+Time elapsed: 0.13184595108 seconds
+Summary: iterations without score change: 1
+iteration's best score: -92
+overall best score: -92
+memory: 2 - 27
+26 - 12
+24 - 27
+5 - 32
+18 - 30
+35 - 29
+10 - 22
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 12
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 2
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 8 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0765471458435 seconds
+Summary: 
+
+Finished tabu search 8 iteration task!
+Time elapsed: 0.146629095078 seconds
+Summary: iterations without score change: 1
+iteration's best score: -98
+overall best score: -98
+memory: 2 - 27
+26 - 12
+24 - 27
+5 - 32
+18 - 30
+35 - 29
+10 - 22
+22 - 12
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 20
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 2
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 9 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0622398853302 seconds
+Summary: 
+
+Finished tabu search 9 iteration task!
+Time elapsed: 0.126712083817 seconds
+Summary: iterations without score change: 1
+iteration's best score: -104
+overall best score: -104
+memory: 2 - 27
+26 - 12
+24 - 27
+5 - 32
+18 - 30
+35 - 29
+10 - 22
+22 - 12
+11 - 20
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 21
+14 - 25
+13 - 1
+20 - 34
+15 - 24
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 2
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 10 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0745298862457 seconds
+Summary: 
+
+Finished tabu search 10 iteration task!
+Time elapsed: 0.156136989594 seconds
+Summary: iterations without score change: 1
+iteration's best score: -112
+overall best score: -112
+memory: 26 - 12
+24 - 27
+5 - 32
+18 - 30
+35 - 29
+10 - 22
+22 - 12
+11 - 20
+14 - 25
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 21
+14 - 30
+13 - 1
+20 - 34
+15 - 24
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 2
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 11 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0685420036316 seconds
+Summary: 
+
+Finished tabu search 11 iteration task!
+Time elapsed: 0.151422023773 seconds
+Summary: iterations without score change: 1
+iteration's best score: -118
+overall best score: -118
+memory: 24 - 27
+5 - 32
+18 - 30
+35 - 29
+10 - 22
+22 - 12
+11 - 20
+14 - 25
+23 - 2
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 21
+14 - 30
+13 - 1
+20 - 34
+15 - 24
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 12 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0702130794525 seconds
+Summary: 
+
+Finished tabu search 12 iteration task!
+Time elapsed: 0.135313034058 seconds
+Summary: iterations without score change: 1
+iteration's best score: -124
+overall best score: -124
+memory: 5 - 32
+18 - 30
+35 - 29
+10 - 22
+22 - 12
+11 - 20
+14 - 25
+23 - 2
+7 - 21
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 24
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 13 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0660870075226 seconds
+Summary: 
+
+Finished tabu search 13 iteration task!
+Time elapsed: 0.137209892273 seconds
+Summary: iterations without score change: 1
+iteration's best score: -132
+overall best score: -132
+memory: 18 - 30
+35 - 29
+10 - 22
+22 - 12
+11 - 20
+14 - 25
+23 - 2
+7 - 21
+15 - 24
+permutation: 24 - 1
+3 - 32
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 14 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0674588680267 seconds
+Summary: 
+
+Finished tabu search 14 iteration task!
+Time elapsed: 0.137382984161 seconds
+Summary: iterations without score change: 1
+iteration's best score: -136
+overall best score: -136
+memory: 35 - 29
+10 - 22
+22 - 12
+11 - 20
+14 - 25
+23 - 2
+7 - 21
+15 - 24
+3 - 32
+permutation: 24 - 1
+3 - 34
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 11
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 15 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0742981433868 seconds
+Summary: 
+
+Finished tabu search 15 iteration task!
+Time elapsed: 0.14417219162 seconds
+Summary: iterations without score change: 1
+iteration's best score: -142
+overall best score: -142
+memory: 10 - 22
+22 - 12
+11 - 20
+14 - 25
+23 - 2
+7 - 21
+15 - 24
+3 - 32
+16 - 11
+permutation: 24 - 1
+3 - 34
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 14
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 16 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0658679008484 seconds
+Summary: 
+
+Finished tabu search 16 iteration task!
+Time elapsed: 0.130502223969 seconds
+Summary: iterations without score change: 1
+iteration's best score: -150
+overall best score: -150
+memory: 22 - 12
+11 - 20
+14 - 25
+23 - 2
+7 - 21
+15 - 24
+3 - 32
+16 - 11
+29 - 14
+permutation: 24 - 1
+3 - 34
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 3
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 17 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.074667930603 seconds
+Summary: 
+
+Finished tabu search 17 iteration task!
+Time elapsed: 0.14441204071 seconds
+Summary: iterations without score change: 1
+iteration's best score: -154
+overall best score: -154
+memory: 11 - 20
+14 - 25
+23 - 2
+7 - 21
+15 - 24
+3 - 32
+16 - 11
+29 - 14
+4 - 3
+permutation: 24 - 1
+3 - 34
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 23
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 22
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 18 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0667898654938 seconds
+Summary: 
+
+Finished tabu search 18 iteration task!
+Time elapsed: 0.131268024445 seconds
+Summary: iterations without score change: 1
+iteration's best score: -160
+overall best score: -160
+memory: 14 - 25
+23 - 2
+7 - 21
+15 - 24
+3 - 32
+16 - 11
+29 - 14
+4 - 3
+21 - 22
+permutation: 24 - 1
+3 - 34
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 23
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 23
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 18
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 19 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0655679702759 seconds
+Summary: 
+
+Finished tabu search 19 iteration task!
+Time elapsed: 0.135465145111 seconds
+Summary: iterations without score change: 1
+iteration's best score: -164
+overall best score: -164
+memory: 23 - 2
+7 - 21
+15 - 24
+3 - 32
+16 - 11
+29 - 14
+4 - 3
+21 - 22
+31 - 18
+permutation: 24 - 1
+3 - 34
+1 - 5
+8 - 27
+2 - 6
+9 - 1
+4 - 23
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 23
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 20 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0657730102539 seconds
+Summary: 
+
+Finished tabu search 20 iteration task!
+Time elapsed: 0.135868787766 seconds
+Summary: iterations without score change: 1
+iteration's best score: -166
+overall best score: -166
+memory: 7 - 21
+15 - 24
+3 - 32
+16 - 11
+29 - 14
+4 - 3
+21 - 22
+31 - 18
+1 - 5
+permutation: 24 - 1
+3 - 34
+1 - 2
+8 - 27
+2 - 6
+9 - 1
+4 - 23
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 23
+27 - 6
+21 - 23
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 21 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0698280334473 seconds
+Summary: 
+
+Finished tabu search 21 iteration task!
+Time elapsed: 0.0913870334625 seconds
+Summary: iterations without score change: 2
+iteration's best score: -166
+overall best score: -166
+memory: 15 - 24
+3 - 32
+16 - 11
+29 - 14
+4 - 3
+21 - 22
+31 - 18
+1 - 5
+17 - 23
+permutation: 24 - 1
+3 - 34
+1 - 2
+8 - 27
+2 - 6
+9 - 1
+4 - 23
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 23
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 22 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0685629844666 seconds
+Summary: 
+
+Finished tabu search 22 iteration task!
+Time elapsed: 0.133004903793 seconds
+Summary: iterations without score change: 1
+iteration's best score: -170
+overall best score: -170
+memory: 3 - 32
+16 - 11
+29 - 14
+4 - 3
+21 - 22
+31 - 18
+1 - 5
+17 - 23
+4 - 23
+permutation: 24 - 1
+3 - 34
+1 - 2
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 23
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 17
+
+
+
+
+Started tabu search 23 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0682210922241 seconds
+Summary: 
+
+Finished tabu search 23 iteration task!
+Time elapsed: 0.0898811817169 seconds
+Summary: iterations without score change: 2
+iteration's best score: -170
+overall best score: -170
+memory: 16 - 11
+29 - 14
+4 - 3
+21 - 22
+31 - 18
+1 - 5
+17 - 23
+4 - 23
+34 - 17
+permutation: 24 - 1
+3 - 34
+1 - 2
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 23
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 0
+
+
+
+
+Started tabu search 24 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0689311027527 seconds
+Summary: 
+
+Finished tabu search 24 iteration task!
+Time elapsed: 0.0906069278717 seconds
+Summary: iterations without score change: 3
+iteration's best score: -170
+overall best score: -170
+memory: 29 - 14
+4 - 3
+21 - 22
+31 - 18
+1 - 5
+17 - 23
+4 - 23
+34 - 17
+1 - 2
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 23
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 0
+
+
+
+
+Started tabu search 25 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0599410533905 seconds
+Summary: 
+
+Finished tabu search 25 iteration task!
+Time elapsed: 0.135679960251 seconds
+Summary: iterations without score change: 1
+iteration's best score: -172
+overall best score: -172
+memory: 4 - 3
+21 - 22
+31 - 18
+1 - 5
+17 - 23
+4 - 23
+34 - 17
+1 - 2
+21 - 23
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 23
+34 - 0
+
+
+
+
+Started tabu search 26 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.068943977356 seconds
+Summary: 
+
+Finished tabu search 26 iteration task!
+Time elapsed: 0.148059129715 seconds
+Summary: iterations without score change: 1
+iteration's best score: -174
+overall best score: -174
+memory: 21 - 22
+31 - 18
+1 - 5
+17 - 23
+4 - 23
+34 - 17
+1 - 2
+21 - 23
+28 - 2
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 23
+35 - 6
+29 - 34
+36 - 23
+34 - 0
+
+
+
+
+Started tabu search 27 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0743188858032 seconds
+Summary: 
+
+Finished tabu search 27 iteration task!
+Time elapsed: 0.0969350337982 seconds
+Summary: iterations without score change: 2
+iteration's best score: -172
+overall best score: -174
+memory: 31 - 18
+1 - 5
+17 - 23
+4 - 23
+34 - 17
+1 - 2
+21 - 23
+28 - 2
+12 - 34
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 23
+35 - 6
+29 - 34
+36 - 23
+34 - 0
+
+
+
+
+Started tabu search 28 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0712130069733 seconds
+Summary: 
+
+Finished tabu search 28 iteration task!
+Time elapsed: 0.0933260917664 seconds
+Summary: iterations without score change: 3
+iteration's best score: -172
+overall best score: -174
+memory: 1 - 5
+17 - 23
+4 - 23
+34 - 17
+1 - 2
+21 - 23
+28 - 2
+12 - 34
+7 - 12
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 23
+35 - 6
+29 - 34
+36 - 23
+34 - 0
+
+
+
+
+Started tabu search 29 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0647671222687 seconds
+Summary: 
+
+Finished tabu search 29 iteration task!
+Time elapsed: 0.0870881080627 seconds
+Summary: iterations without score change: 4
+iteration's best score: -170
+overall best score: -174
+memory: 17 - 23
+4 - 23
+34 - 17
+1 - 2
+21 - 23
+28 - 2
+12 - 34
+7 - 12
+36 - 23
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 23
+35 - 6
+29 - 34
+36 - 2
+34 - 0
+
+
+
+
+Started tabu search 30 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.074579000473 seconds
+Summary: 
+
+Finished tabu search 30 iteration task!
+Time elapsed: 0.0964260101318 seconds
+Summary: iterations without score change: 5
+iteration's best score: -170
+overall best score: -174
+memory: 4 - 23
+34 - 17
+1 - 2
+21 - 23
+28 - 2
+12 - 34
+7 - 12
+36 - 23
+28 - 23
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 3
+35 - 6
+29 - 34
+36 - 2
+34 - 0
+
+
+
+
+Started tabu search 31 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0683629512787 seconds
+Summary: 
+
+Finished tabu search 31 iteration task!
+Time elapsed: 0.094092130661 seconds
+Summary: iterations without score change: 6
+iteration's best score: -172
+overall best score: -174
+memory: 34 - 17
+1 - 2
+21 - 23
+28 - 2
+12 - 34
+7 - 12
+36 - 23
+28 - 23
+36 - 2
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 3
+35 - 6
+29 - 34
+36 - 3
+34 - 0
+
+
+
+
+Started tabu search 32 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0621039867401 seconds
+Summary: 
+
+Finished tabu search 32 iteration task!
+Time elapsed: 0.0895810127258 seconds
+Summary: iterations without score change: 7
+iteration's best score: -170
+overall best score: -174
+memory: 1 - 2
+21 - 23
+28 - 2
+12 - 34
+7 - 12
+36 - 23
+28 - 23
+36 - 2
+28 - 3
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 4
+35 - 6
+29 - 34
+36 - 3
+34 - 0
+
+
+
+
+Started tabu search 33 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0654559135437 seconds
+Summary: 
+
+Finished tabu search 33 iteration task!
+Time elapsed: 0.0867929458618 seconds
+Summary: iterations without score change: 8
+iteration's best score: -172
+overall best score: -174
+memory: 21 - 23
+28 - 2
+12 - 34
+7 - 12
+36 - 23
+28 - 23
+36 - 2
+28 - 3
+36 - 3
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 4
+35 - 6
+29 - 34
+36 - 4
+34 - 0
+
+
+
+
+Started tabu search 34 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0698869228363 seconds
+Summary: 
+
+Finished tabu search 34 iteration task!
+Time elapsed: 0.091511964798 seconds
+Summary: iterations without score change: 9
+iteration's best score: -170
+overall best score: -174
+memory: 28 - 2
+12 - 34
+7 - 12
+36 - 23
+28 - 23
+36 - 2
+28 - 3
+36 - 3
+28 - 4
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 5
+35 - 6
+29 - 34
+36 - 4
+34 - 0
+
+
+
+
+Started tabu search 35 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0699188709259 seconds
+Summary: 
+
+Finished tabu search 35 iteration task!
+Time elapsed: 0.0968971252441 seconds
+Summary: iterations without score change: 10
+iteration's best score: -172
+overall best score: -174
+memory: 12 - 34
+7 - 12
+36 - 23
+28 - 23
+36 - 2
+28 - 3
+36 - 3
+28 - 4
+36 - 4
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 5
+35 - 6
+29 - 34
+36 - 5
+34 - 0
+
+
+
+
+Started tabu search 36 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0599939823151 seconds
+Summary: 
+
+Finished tabu search 36 iteration task!
+Time elapsed: 0.0819470882416 seconds
+Summary: iterations without score change: 11
+iteration's best score: -170
+overall best score: -174
+memory: 7 - 12
+36 - 23
+28 - 23
+36 - 2
+28 - 3
+36 - 3
+28 - 4
+36 - 4
+28 - 5
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 5
+34 - 0
+
+
+
+
+Started tabu search 37 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0658578872681 seconds
+Summary: 
+
+Finished tabu search 37 iteration task!
+Time elapsed: 0.0904490947723 seconds
+Summary: iterations without score change: 12
+iteration's best score: -170
+overall best score: -174
+memory: 36 - 23
+28 - 23
+36 - 2
+28 - 3
+36 - 3
+28 - 4
+36 - 4
+28 - 5
+36 - 5
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 2
+35 - 6
+29 - 34
+36 - 7
+34 - 0
+
+
+
+
+Started tabu search 38 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0652849674225 seconds
+Summary: 
+
+Finished tabu search 38 iteration task!
+Time elapsed: 0.0871570110321 seconds
+Summary: iterations without score change: 13
+iteration's best score: -172
+overall best score: -174
+memory: 28 - 23
+36 - 2
+28 - 3
+36 - 3
+28 - 4
+36 - 4
+28 - 5
+36 - 5
+28 - 2
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 34
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 7
+35 - 6
+29 - 34
+36 - 7
+34 - 0
+
+
+
+
+Started tabu search 39 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0699360370636 seconds
+Summary: 
+
+Finished tabu search 39 iteration task!
+Time elapsed: 0.097678899765 seconds
+Summary: iterations without score change: 14
+iteration's best score: -172
+overall best score: -174
+memory: 36 - 2
+28 - 3
+36 - 3
+28 - 4
+36 - 4
+28 - 5
+36 - 5
+28 - 2
+7 - 34
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 0
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 7
+35 - 6
+29 - 34
+36 - 7
+34 - 0
+
+
+
+
+Started tabu search 40 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0668148994446 seconds
+Summary: 
+
+Finished tabu search 40 iteration task!
+Time elapsed: 0.0889248847961 seconds
+Summary: iterations without score change: 15
+iteration's best score: -174
+overall best score: -174
+memory: 28 - 3
+36 - 3
+28 - 4
+36 - 4
+28 - 5
+36 - 5
+28 - 2
+7 - 34
+12 - 0
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 27
+28 - 7
+35 - 6
+29 - 34
+36 - 7
+34 - 0
+
+
+
+
+Started tabu search 41 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0711150169373 seconds
+Summary: 
+
+Finished tabu search 41 iteration task!
+Time elapsed: 0.0929989814758 seconds
+Summary: iterations without score change: 16
+iteration's best score: -172
+overall best score: -174
+memory: 36 - 3
+28 - 4
+36 - 4
+28 - 5
+36 - 5
+28 - 2
+7 - 34
+12 - 0
+30 - 27
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 27
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 7
+34 - 0
+
+
+
+
+Started tabu search 42 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0601298809052 seconds
+Summary: 
+
+Finished tabu search 42 iteration task!
+Time elapsed: 0.0816218852997 seconds
+Summary: iterations without score change: 17
+iteration's best score: -174
+overall best score: -174
+memory: 28 - 4
+36 - 4
+28 - 5
+36 - 5
+28 - 2
+7 - 34
+12 - 0
+30 - 27
+17 - 27
+permutation: 24 - 1
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 7
+34 - 0
+
+
+
+
+Started tabu search 43 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0603032112122 seconds
+Summary: 
+
+Finished tabu search 43 iteration task!
+Time elapsed: 0.0878961086273 seconds
+Summary: iterations without score change: 18
+iteration's best score: -172
+overall best score: -174
+memory: 36 - 4
+28 - 5
+36 - 5
+28 - 2
+7 - 34
+12 - 0
+30 - 27
+17 - 27
+24 - 1
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 7
+34 - 0
+
+
+
+
+Started tabu search 44 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0653159618378 seconds
+Summary: 
+
+Finished tabu search 44 iteration task!
+Time elapsed: 0.13011097908 seconds
+Summary: iterations without score change: 1
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+36 - 5
+28 - 2
+7 - 34
+12 - 0
+30 - 27
+17 - 27
+24 - 1
+36 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 45 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.05992603302 seconds
+Summary: 
+
+Finished tabu search 45 iteration task!
+Time elapsed: 0.0817868709564 seconds
+Summary: iterations without score change: 2
+iteration's best score: -178
+overall best score: -178
+memory: 36 - 5
+28 - 2
+7 - 34
+12 - 0
+30 - 27
+17 - 27
+24 - 1
+36 - 7
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 46 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0657980442047 seconds
+Summary: 
+
+Finished tabu search 46 iteration task!
+Time elapsed: 0.0874948501587 seconds
+Summary: iterations without score change: 3
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+7 - 34
+12 - 0
+30 - 27
+17 - 27
+24 - 1
+36 - 7
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 47 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0744121074677 seconds
+Summary: 
+
+Finished tabu search 47 iteration task!
+Time elapsed: 0.101922035217 seconds
+Summary: iterations without score change: 4
+iteration's best score: -178
+overall best score: -178
+memory: 7 - 34
+12 - 0
+30 - 27
+17 - 27
+24 - 1
+36 - 7
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 48 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0675930976868 seconds
+Summary: 
+
+Finished tabu search 48 iteration task!
+Time elapsed: 0.090136051178 seconds
+Summary: iterations without score change: 5
+iteration's best score: -178
+overall best score: -178
+memory: 12 - 0
+30 - 27
+17 - 27
+24 - 1
+36 - 7
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 49 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0646600723267 seconds
+Summary: 
+
+Finished tabu search 49 iteration task!
+Time elapsed: 0.0864160060883 seconds
+Summary: iterations without score change: 6
+iteration's best score: -178
+overall best score: -178
+memory: 30 - 27
+17 - 27
+24 - 1
+36 - 7
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 50 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.069965839386 seconds
+Summary: 
+
+Finished tabu search 50 iteration task!
+Time elapsed: 0.0918319225311 seconds
+Summary: iterations without score change: 7
+iteration's best score: -178
+overall best score: -178
+memory: 17 - 27
+24 - 1
+36 - 7
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 51 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0678899288177 seconds
+Summary: 
+
+Finished tabu search 51 iteration task!
+Time elapsed: 0.0957219600677 seconds
+Summary: iterations without score change: 8
+iteration's best score: -178
+overall best score: -178
+memory: 24 - 1
+36 - 7
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 52 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0659000873566 seconds
+Summary: 
+
+Finished tabu search 52 iteration task!
+Time elapsed: 0.0879170894623 seconds
+Summary: iterations without score change: 9
+iteration's best score: -178
+overall best score: -178
+memory: 36 - 7
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 53 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0601630210876 seconds
+Summary: 
+
+Finished tabu search 53 iteration task!
+Time elapsed: 0.0820989608765 seconds
+Summary: iterations without score change: 10
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 54 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0652229785919 seconds
+Summary: 
+
+Finished tabu search 54 iteration task!
+Time elapsed: 0.096254825592 seconds
+Summary: iterations without score change: 11
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 55 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0611460208893 seconds
+Summary: 
+
+Finished tabu search 55 iteration task!
+Time elapsed: 0.0828130245209 seconds
+Summary: iterations without score change: 12
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 56 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0862400531769 seconds
+Summary: 
+
+Finished tabu search 56 iteration task!
+Time elapsed: 0.108145952225 seconds
+Summary: iterations without score change: 13
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 57 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0766539573669 seconds
+Summary: 
+
+Finished tabu search 57 iteration task!
+Time elapsed: 0.0989058017731 seconds
+Summary: iterations without score change: 14
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 58 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0603158473969 seconds
+Summary: 
+
+Finished tabu search 58 iteration task!
+Time elapsed: 0.0818819999695 seconds
+Summary: iterations without score change: 15
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 59 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0723159313202 seconds
+Summary: 
+
+Finished tabu search 59 iteration task!
+Time elapsed: 0.100084066391 seconds
+Summary: iterations without score change: 16
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 60 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0689389705658 seconds
+Summary: 
+
+Finished tabu search 60 iteration task!
+Time elapsed: 0.0909059047699 seconds
+Summary: iterations without score change: 17
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 61 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0654988288879 seconds
+Summary: 
+
+Finished tabu search 61 iteration task!
+Time elapsed: 0.0870201587677 seconds
+Summary: iterations without score change: 18
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 62 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.071268081665 seconds
+Summary: 
+
+Finished tabu search 62 iteration task!
+Time elapsed: 0.100795984268 seconds
+Summary: iterations without score change: 19
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 63 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0650880336761 seconds
+Summary: 
+
+Finished tabu search 63 iteration task!
+Time elapsed: 0.0869660377502 seconds
+Summary: iterations without score change: 20
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 64 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0693981647491 seconds
+Summary: 
+
+Finished tabu search 64 iteration task!
+Time elapsed: 0.0910429954529 seconds
+Summary: iterations without score change: 21
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 65 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0747520923615 seconds
+Summary: 
+
+Finished tabu search 65 iteration task!
+Time elapsed: 0.100167036057 seconds
+Summary: iterations without score change: 22
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 66 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0639569759369 seconds
+Summary: 
+
+Finished tabu search 66 iteration task!
+Time elapsed: 0.0857820510864 seconds
+Summary: iterations without score change: 23
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 67 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0651881694794 seconds
+Summary: 
+
+Finished tabu search 67 iteration task!
+Time elapsed: 0.0870368480682 seconds
+Summary: iterations without score change: 24
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 68 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0658118724823 seconds
+Summary: 
+
+Finished tabu search 68 iteration task!
+Time elapsed: 0.0875680446625 seconds
+Summary: iterations without score change: 25
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 69 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0622670650482 seconds
+Summary: 
+
+Finished tabu search 69 iteration task!
+Time elapsed: 0.0839309692383 seconds
+Summary: iterations without score change: 26
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 70 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0656719207764 seconds
+Summary: 
+
+Finished tabu search 70 iteration task!
+Time elapsed: 0.0875828266144 seconds
+Summary: iterations without score change: 27
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 71 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0600261688232 seconds
+Summary: 
+
+Finished tabu search 71 iteration task!
+Time elapsed: 0.087639093399 seconds
+Summary: iterations without score change: 28
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 72 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0616919994354 seconds
+Summary: 
+
+Finished tabu search 72 iteration task!
+Time elapsed: 0.0832359790802 seconds
+Summary: iterations without score change: 29
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 73 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.068039894104 seconds
+Summary: 
+
+Finished tabu search 73 iteration task!
+Time elapsed: 0.0897290706635 seconds
+Summary: iterations without score change: 30
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 74 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0614891052246 seconds
+Summary: 
+
+Finished tabu search 74 iteration task!
+Time elapsed: 0.0832500457764 seconds
+Summary: iterations without score change: 31
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 75 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0741209983826 seconds
+Summary: 
+
+Finished tabu search 75 iteration task!
+Time elapsed: 0.0957908630371 seconds
+Summary: iterations without score change: 32
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 76 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0602900981903 seconds
+Summary: 
+
+Finished tabu search 76 iteration task!
+Time elapsed: 0.0821859836578 seconds
+Summary: iterations without score change: 33
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 77 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0652239322662 seconds
+Summary: 
+
+Finished tabu search 77 iteration task!
+Time elapsed: 0.0914130210876 seconds
+Summary: iterations without score change: 34
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 78 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0646991729736 seconds
+Summary: 
+
+Finished tabu search 78 iteration task!
+Time elapsed: 0.0862770080566 seconds
+Summary: iterations without score change: 35
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 79 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0602321624756 seconds
+Summary: 
+
+Finished tabu search 79 iteration task!
+Time elapsed: 0.0820059776306 seconds
+Summary: iterations without score change: 36
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 80 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0702431201935 seconds
+Summary: 
+
+Finished tabu search 80 iteration task!
+Time elapsed: 0.0928981304169 seconds
+Summary: iterations without score change: 37
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 81 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0764889717102 seconds
+Summary: 
+
+Finished tabu search 81 iteration task!
+Time elapsed: 0.105562925339 seconds
+Summary: iterations without score change: 38
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 82 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0692918300629 seconds
+Summary: 
+
+Finished tabu search 82 iteration task!
+Time elapsed: 0.0925309658051 seconds
+Summary: iterations without score change: 39
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 83 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0615019798279 seconds
+Summary: 
+
+Finished tabu search 83 iteration task!
+Time elapsed: 0.0872669219971 seconds
+Summary: iterations without score change: 40
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 84 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0759701728821 seconds
+Summary: 
+
+Finished tabu search 84 iteration task!
+Time elapsed: 0.099308013916 seconds
+Summary: iterations without score change: 41
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 85 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0673658847809 seconds
+Summary: 
+
+Finished tabu search 85 iteration task!
+Time elapsed: 0.0895600318909 seconds
+Summary: iterations without score change: 42
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 86 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0637099742889 seconds
+Summary: 
+
+Finished tabu search 86 iteration task!
+Time elapsed: 0.085844039917 seconds
+Summary: iterations without score change: 43
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 87 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0604040622711 seconds
+Summary: 
+
+Finished tabu search 87 iteration task!
+Time elapsed: 0.082407951355 seconds
+Summary: iterations without score change: 44
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 88 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0598449707031 seconds
+Summary: 
+
+Finished tabu search 88 iteration task!
+Time elapsed: 0.0816359519958 seconds
+Summary: iterations without score change: 45
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 89 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0673999786377 seconds
+Summary: 
+
+Finished tabu search 89 iteration task!
+Time elapsed: 0.0905618667603 seconds
+Summary: iterations without score change: 46
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 90 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0673890113831 seconds
+Summary: 
+
+Finished tabu search 90 iteration task!
+Time elapsed: 0.0943579673767 seconds
+Summary: iterations without score change: 47
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 91 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.065495967865 seconds
+Summary: 
+
+Finished tabu search 91 iteration task!
+Time elapsed: 0.0873432159424 seconds
+Summary: iterations without score change: 48
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 92 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0723178386688 seconds
+Summary: 
+
+Finished tabu search 92 iteration task!
+Time elapsed: 0.0940570831299 seconds
+Summary: iterations without score change: 49
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 93 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.06960105896 seconds
+Summary: 
+
+Finished tabu search 93 iteration task!
+Time elapsed: 0.0944340229034 seconds
+Summary: iterations without score change: 50
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 94 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0757491588593 seconds
+Summary: 
+
+Finished tabu search 94 iteration task!
+Time elapsed: 0.102869987488 seconds
+Summary: iterations without score change: 51
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 95 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0703730583191 seconds
+Summary: 
+
+Finished tabu search 95 iteration task!
+Time elapsed: 0.0922000408173 seconds
+Summary: iterations without score change: 52
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 96 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0675129890442 seconds
+Summary: 
+
+Finished tabu search 96 iteration task!
+Time elapsed: 0.0895781517029 seconds
+Summary: iterations without score change: 53
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 97 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0669600963593 seconds
+Summary: 
+
+Finished tabu search 97 iteration task!
+Time elapsed: 0.0889921188354 seconds
+Summary: iterations without score change: 54
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 98 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0685298442841 seconds
+Summary: 
+
+Finished tabu search 98 iteration task!
+Time elapsed: 0.0961430072784 seconds
+Summary: iterations without score change: 55
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 99 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0705940723419 seconds
+Summary: 
+
+Finished tabu search 99 iteration task!
+Time elapsed: 0.0931751728058 seconds
+Summary: iterations without score change: 56
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 100 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0652620792389 seconds
+Summary: 
+
+Finished tabu search 100 iteration task!
+Time elapsed: 0.0908219814301 seconds
+Summary: iterations without score change: 57
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 101 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.065840959549 seconds
+Summary: 
+
+Finished tabu search 101 iteration task!
+Time elapsed: 0.0908720493317 seconds
+Summary: iterations without score change: 58
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 102 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0699779987335 seconds
+Summary: 
+
+Finished tabu search 102 iteration task!
+Time elapsed: 0.0969109535217 seconds
+Summary: iterations without score change: 59
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 103 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.064868927002 seconds
+Summary: 
+
+Finished tabu search 103 iteration task!
+Time elapsed: 0.0873198509216 seconds
+Summary: iterations without score change: 60
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 104 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0879709720612 seconds
+Summary: 
+
+Finished tabu search 104 iteration task!
+Time elapsed: 0.123444080353 seconds
+Summary: iterations without score change: 61
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 105 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0617170333862 seconds
+Summary: 
+
+Finished tabu search 105 iteration task!
+Time elapsed: 0.0837309360504 seconds
+Summary: iterations without score change: 62
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 106 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0646049976349 seconds
+Summary: 
+
+Finished tabu search 106 iteration task!
+Time elapsed: 0.0910530090332 seconds
+Summary: iterations without score change: 63
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 107 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0602078437805 seconds
+Summary: 
+
+Finished tabu search 107 iteration task!
+Time elapsed: 0.0821490287781 seconds
+Summary: iterations without score change: 64
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 108 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0780010223389 seconds
+Summary: 
+
+Finished tabu search 108 iteration task!
+Time elapsed: 0.104516983032 seconds
+Summary: iterations without score change: 65
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 109 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0665109157562 seconds
+Summary: 
+
+Finished tabu search 109 iteration task!
+Time elapsed: 0.0883810520172 seconds
+Summary: iterations without score change: 66
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 110 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0603890419006 seconds
+Summary: 
+
+Finished tabu search 110 iteration task!
+Time elapsed: 0.0832629203796 seconds
+Summary: iterations without score change: 67
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 111 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0611231327057 seconds
+Summary: 
+
+Finished tabu search 111 iteration task!
+Time elapsed: 0.0885999202728 seconds
+Summary: iterations without score change: 68
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 112 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0738480091095 seconds
+Summary: 
+
+Finished tabu search 112 iteration task!
+Time elapsed: 0.0972487926483 seconds
+Summary: iterations without score change: 69
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 113 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0719919204712 seconds
+Summary: 
+
+Finished tabu search 113 iteration task!
+Time elapsed: 0.0943310260773 seconds
+Summary: iterations without score change: 70
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 114 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0678009986877 seconds
+Summary: 
+
+Finished tabu search 114 iteration task!
+Time elapsed: 0.0900061130524 seconds
+Summary: iterations without score change: 71
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 115 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0611569881439 seconds
+Summary: 
+
+Finished tabu search 115 iteration task!
+Time elapsed: 0.0837922096252 seconds
+Summary: iterations without score change: 72
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 116 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0610439777374 seconds
+Summary: 
+
+Finished tabu search 116 iteration task!
+Time elapsed: 0.0829849243164 seconds
+Summary: iterations without score change: 73
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 117 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0607581138611 seconds
+Summary: 
+
+Finished tabu search 117 iteration task!
+Time elapsed: 0.0897109508514 seconds
+Summary: iterations without score change: 74
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 118 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0651390552521 seconds
+Summary: 
+
+Finished tabu search 118 iteration task!
+Time elapsed: 0.0872821807861 seconds
+Summary: iterations without score change: 75
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 119 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0599789619446 seconds
+Summary: 
+
+Finished tabu search 119 iteration task!
+Time elapsed: 0.0818681716919 seconds
+Summary: iterations without score change: 76
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 120 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0599408149719 seconds
+Summary: 
+
+Finished tabu search 120 iteration task!
+Time elapsed: 0.0820310115814 seconds
+Summary: iterations without score change: 77
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 121 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0658922195435 seconds
+Summary: 
+
+Finished tabu search 121 iteration task!
+Time elapsed: 0.0878021717072 seconds
+Summary: iterations without score change: 78
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 122 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0732100009918 seconds
+Summary: 
+
+Finished tabu search 122 iteration task!
+Time elapsed: 0.0950560569763 seconds
+Summary: iterations without score change: 79
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 123 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0654740333557 seconds
+Summary: 
+
+Finished tabu search 123 iteration task!
+Time elapsed: 0.0947561264038 seconds
+Summary: iterations without score change: 80
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 124 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.060243844986 seconds
+Summary: 
+
+Finished tabu search 124 iteration task!
+Time elapsed: 0.0823309421539 seconds
+Summary: iterations without score change: 81
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 125 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0811920166016 seconds
+Summary: 
+
+Finished tabu search 125 iteration task!
+Time elapsed: 0.108200073242 seconds
+Summary: iterations without score change: 82
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 126 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.066458940506 seconds
+Summary: 
+
+Finished tabu search 126 iteration task!
+Time elapsed: 0.0960559844971 seconds
+Summary: iterations without score change: 83
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 127 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0655179023743 seconds
+Summary: 
+
+Finished tabu search 127 iteration task!
+Time elapsed: 0.0874991416931 seconds
+Summary: iterations without score change: 84
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 128 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0694401264191 seconds
+Summary: 
+
+Finished tabu search 128 iteration task!
+Time elapsed: 0.0916061401367 seconds
+Summary: iterations without score change: 85
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 129 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0714011192322 seconds
+Summary: 
+
+Finished tabu search 129 iteration task!
+Time elapsed: 0.0990228652954 seconds
+Summary: iterations without score change: 86
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 130 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0708839893341 seconds
+Summary: 
+
+Finished tabu search 130 iteration task!
+Time elapsed: 0.093113899231 seconds
+Summary: iterations without score change: 87
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 131 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0603220462799 seconds
+Summary: 
+
+Finished tabu search 131 iteration task!
+Time elapsed: 0.0870060920715 seconds
+Summary: iterations without score change: 88
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 132 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0667481422424 seconds
+Summary: 
+
+Finished tabu search 132 iteration task!
+Time elapsed: 0.0945811271667 seconds
+Summary: iterations without score change: 89
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 133 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0614330768585 seconds
+Summary: 
+
+Finished tabu search 133 iteration task!
+Time elapsed: 0.0833051204681 seconds
+Summary: iterations without score change: 90
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 3
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 134 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.063257932663 seconds
+Summary: 
+
+Finished tabu search 134 iteration task!
+Time elapsed: 0.0881490707397 seconds
+Summary: iterations without score change: 91
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 4
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 135 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.067645072937 seconds
+Summary: 
+
+Finished tabu search 135 iteration task!
+Time elapsed: 0.0984871387482 seconds
+Summary: iterations without score change: 92
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 5
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 136 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0616908073425 seconds
+Summary: 
+
+Finished tabu search 136 iteration task!
+Time elapsed: 0.083652973175 seconds
+Summary: iterations without score change: 93
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 2
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 137 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0821130275726 seconds
+Summary: 
+
+Finished tabu search 137 iteration task!
+Time elapsed: 0.104278087616 seconds
+Summary: iterations without score change: 94
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 10
+28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 8
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 138 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0604989528656 seconds
+Summary: 
+
+Finished tabu search 138 iteration task!
+Time elapsed: 0.082526922226 seconds
+Summary: iterations without score change: 95
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 11
+28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 9
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 139 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0600399971008 seconds
+Summary: 
+
+Finished tabu search 139 iteration task!
+Time elapsed: 0.0821177959442 seconds
+Summary: iterations without score change: 96
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 13
+28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 10
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 140 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0653970241547 seconds
+Summary: 
+
+Finished tabu search 140 iteration task!
+Time elapsed: 0.0930919647217 seconds
+Summary: iterations without score change: 97
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 14
+28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 11
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 141 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0607049465179 seconds
+Summary: 
+
+Finished tabu search 141 iteration task!
+Time elapsed: 0.0827481746674 seconds
+Summary: iterations without score change: 98
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 7
+28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 13
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 142 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.0693907737732 seconds
+Summary: 
+
+Finished tabu search 142 iteration task!
+Time elapsed: 0.0920429229736 seconds
+Summary: iterations without score change: 99
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 3
+28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 14
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+
+
+Started tabu search 143 iteration task...
+
+
+Started finding permutations sub-task...
+Finished finding permutations sub-task!
+Time elapsed: 0.060690164566 seconds
+Summary: 
+
+Finished tabu search 143 iteration task!
+Time elapsed: 0.0832891464233 seconds
+Summary: iterations without score change: 100
+iteration's best score: -178
+overall best score: -178
+memory: 28 - 4
+28 - 5
+28 - 2
+28 - 8
+28 - 9
+28 - 10
+28 - 11
+28 - 13
+28 - 14
+permutation: 24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+
+
+Finished queen6_6 execution!
+Time elapsed: 14.302770853 seconds
+Summary: best score for coloring: 
+24 - 27
+3 - 34
+1 - 0
+8 - 27
+2 - 6
+9 - 1
+4 - 27
+11 - 30
+5 - 1
+12 - 34
+6 - 12
+16 - 34
+10 - 6
+7 - 12
+14 - 30
+13 - 1
+20 - 34
+15 - 12
+22 - 30
+17 - 0
+27 - 6
+21 - 0
+19 - 6
+26 - 1
+25 - 30
+32 - 12
+31 - 27
+33 - 30
+18 - 6
+23 - 12
+30 - 0
+28 - 7
+35 - 6
+29 - 34
+36 - 1
+34 - 0
+colors used: 8
+is coloring valid?: True
+
+

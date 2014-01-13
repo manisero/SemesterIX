@@ -62,3 +62,24 @@ class CostEvaluator:
                     inspected_edges.append({node, child_node})
 
         return c, e
+
+    @staticmethod
+    def evaluate_score_for_permutation(node, target_color, base_c, base_e, color_set):
+        c, e = base_c.copy(), base_e.copy()
+        c[node.color] -= 1
+
+        if target_color not in c:
+            c[target_color] = 0
+
+        c[target_color] += 1
+
+        for child_node in node.edges:
+            if child_node.color == node.color:
+                e[node.color] -= 1
+            elif child_node.color == target_color:
+                if target_color not in e:
+                    e[target_color] = 0
+
+                e[target_color] += 1
+
+        return CostEvaluator.evaluate_cost(color_set, c, e)
