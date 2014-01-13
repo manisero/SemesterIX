@@ -7,4 +7,4 @@ class AspirationCriteria:
         if (node.node_id, color) not in self.banned_transitions:
             return True
 
-        return self.best_score is not None and cost < self.best_score[1]
+        return self.best_score is not None and cost < self.best_score

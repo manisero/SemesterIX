@@ -56,3 +56,7 @@ class Node:
             colors.add(node.color)
 
         return len(colors)
+
+    def set_color(self, color):
+        self.previous_color = self.color
+        self.color = color

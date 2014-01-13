@@ -29,12 +29,9 @@ class FastColorPermutator:
                     continue
 
                 if self.current_best_score is None or cost <= self.current_best_score:
-                    cloned_node = GraphCloner.clone(node)
-                    cloned_node.color = color
-
                     if cost == self.current_best_score:
-                        self.permutations.append(cloned_node)
+                        self.permutations.append((node, color))
                     else:
-                        self.permutations = [cloned_node]
+                        self.permutations = [(node, color)]
 
                     self.current_best_score = cost

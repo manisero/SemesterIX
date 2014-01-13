@@ -116,19 +116,24 @@ class SearchPerformerTests(unittest.TestCase):
         n4.add_edges([n5])
 
         first_permutations = search_performer.find_permutations(n1, ['black', 'red'])[0]
-        first_node = first_permutations[0]
+        first_node, first_node_color = first_permutations[0]
+        first_node.set_color(first_node_color)
         search_performer.memory.add_to_memory(first_node, first_node.previous_color)
         second_permutations = search_performer.find_permutations(first_node, ['black', 'red'])[0]
-        second_node = second_permutations[0]
+        second_node, second_node_color = second_permutations[0]
+        second_node.set_color(second_node_color)
         search_performer.memory.add_to_memory(second_node, second_node.previous_color)
         third_permutations = search_performer.find_permutations(second_node, ['black', 'red'])[0]
-        third_node = third_permutations[0]
+        third_node, third_node_color = third_permutations[0]
+        third_node.set_color(third_node_color)
         search_performer.memory.add_to_memory(third_node, third_node.previous_color)
         fourth_permutations = search_performer.find_permutations(third_node, ['black', 'red'])[0]
-        fourth_node = fourth_permutations[0]
+        fourth_node, fourth_node_color = fourth_permutations[0]
+        fourth_node.set_color(fourth_node_color)
         search_performer.memory.add_to_memory(fourth_node, fourth_node.previous_color)
         fifth_permutations = search_performer.find_permutations(fourth_node, ['black', 'red'])[0]
-        fifth_node = fifth_permutations[0]
+        fifth_node, fifth_node_color = fifth_permutations[0]
+        fifth_node.set_color(fifth_node_color)
 
         self.assertEqual(1, len(first_permutations))
         self.assertEqual(12, first_node.node_id)
@@ -148,30 +153,18 @@ class SearchPerformerTests(unittest.TestCase):
 
     def test_get_best_score_for_iteration_method_with_long_term_memory_usage(self):
         search_performer = GraphColoringSearchPerformer(StopCriteria(10, 10), 2)
-        n1_first_permutation = Node(1, 2)
-        n2_first_permutation = Node(1, 5)
-        n3_first_permutation = Node(1, 8)
-        n1_first_permutation.add_edges([n2_first_permutation])
-        n2_first_permutation.add_edges([n3_first_permutation])
-        n1_second_permutation = Node(1, 2)
-        n2_second_permutation = Node(1, 5)
-        n3_second_permutation = Node(1, 8)
-        n1_second_permutation.add_edges([n2_second_permutation])
-        n2_second_permutation.add_edges([n3_second_permutation])
-        n1_third_permutation = Node(1, 2)
-        n2_third_permutation = Node(1, 5)
-        n3_third_permutation = Node(1, 8)
-        n1_third_permutation.add_edges([n2_third_permutation])
-        n2_third_permutation.add_edges([n3_third_permutation])
-        search_performer.memory.add_to_memory(n1_first_permutation, 2)
-        search_performer.memory.add_to_memory(n2_first_permutation, 3)
-        search_performer.memory.add_to_memory(n3_first_permutation, 4)
-        search_performer.memory.add_to_memory(n1_first_permutation, 5)
-        search_performer.memory.add_to_memory(n3_first_permutation, 6)
-        search_performer.memory.add_to_memory(n1_first_permutation, 7)
+        n1 = Node(1, 2)
+        n2 = Node(1, 5)
+        n3 = Node(1, 8)
+        search_performer.memory.add_to_memory(n1, 2)
+        search_performer.memory.add_to_memory(n2, 3)
+        search_performer.memory.add_to_memory(n3, 4)
+        search_performer.memory.add_to_memory(n1, 5)
+        search_performer.memory.add_to_memory(n3, 6)
+        search_performer.memory.add_to_memory(n1, 7)
 
-        best_score_for_iteration = search_performer.get_best_score_for_iteration(
-            [(n1_first_permutation, 3), (n2_first_permutation, 3), (n3_first_permutation, 3)])
+        best_score_for_iteration = search_performer.get_best_permutation_for_iteration(
+            [(n1, 3), (n2, 3), (n3, 3)])
 
         self.assertEqual(3, best_score_for_iteration[1])
-        self.assertEqual(n2_first_permutation, best_score_for_iteration[0])
+        self.assertEqual(n2, best_score_for_iteration[0])

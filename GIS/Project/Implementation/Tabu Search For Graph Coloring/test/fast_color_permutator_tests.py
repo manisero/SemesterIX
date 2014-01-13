@@ -21,9 +21,8 @@ class FastColorPermutatorTests(unittest.TestCase):
 
         self.assertEqual(-5, best_score)
         self.assertEqual(1, len(permutations))
-        self.assertEqual(0, permutations[0].get_node_of_id(n1.node_id).color)
-        self.assertEqual(7, permutations[0].get_node_of_id(n2.node_id).color)
-        self.assertEqual(0, permutations[0].get_node_of_id(n3.node_id).color)
+        self.assertEqual(n2, permutations[0][0])
+        self.assertEqual(7, permutations[0][1])
 
     def test_permutate_method_with_multiple_results(self):
         permutator = FastColorPermutator()
@@ -44,21 +43,12 @@ class FastColorPermutatorTests(unittest.TestCase):
 
         self.assertEqual(-1, best_score)
         self.assertEqual(3, len(permutations))
-        self.assertEqual(3, permutations[0].get_node_of_id(n1.node_id).color)
-        self.assertEqual(4, permutations[0].get_node_of_id(n2.node_id).color)
-        self.assertEqual(3, permutations[0].get_node_of_id(n3.node_id).color)
-        self.assertEqual(3, permutations[0].get_node_of_id(n4.node_id).color)
-        self.assertEqual(3, permutations[0].get_node_of_id(n5.node_id).color)
-        self.assertEqual(3, permutations[1].get_node_of_id(n1.node_id).color)
-        self.assertEqual(3, permutations[1].get_node_of_id(n2.node_id).color)
-        self.assertEqual(4, permutations[1].get_node_of_id(n3.node_id).color)
-        self.assertEqual(3, permutations[1].get_node_of_id(n4.node_id).color)
-        self.assertEqual(3, permutations[1].get_node_of_id(n5.node_id).color)
-        self.assertEqual(3, permutations[2].get_node_of_id(n1.node_id).color)
-        self.assertEqual(3, permutations[2].get_node_of_id(n2.node_id).color)
-        self.assertEqual(3, permutations[2].get_node_of_id(n3.node_id).color)
-        self.assertEqual(4, permutations[2].get_node_of_id(n4.node_id).color)
-        self.assertEqual(3, permutations[2].get_node_of_id(n5.node_id).color)
+        self.assertEqual(n2, permutations[0][0])
+        self.assertEqual(4, permutations[0][1])
+        self.assertEqual(n3, permutations[1][0])
+        self.assertEqual(4, permutations[1][1])
+        self.assertEqual(n4, permutations[2][0])
+        self.assertEqual(4, permutations[2][1])
 
     def test_permutate_method_with_banned_results(self):
         permutator = FastColorPermutator()
@@ -72,14 +62,12 @@ class FastColorPermutatorTests(unittest.TestCase):
         n3.add_edges([n2, n4])
         n4.add_edges([n3, n5])
         n5.add_edges([n4])
-        aspiration_criteria = AspirationCriteria([(n2.node_id, 2), (n3.node_id, 2)], (None, -1))
+        aspiration_criteria = AspirationCriteria([(n2.node_id, 2), (n3.node_id, 2)], -1)
 
         permutations, best_score = permutator.permutate(n1, [1, 2], aspiration_criteria)
 
         self.assertEqual(-1, best_score)
         self.assertEqual(1, len(permutations))
-        self.assertEqual(1, permutations[0].get_node_of_id(n1.node_id).color)
-        self.assertEqual(1, permutations[0].get_node_of_id(n2.node_id).color)
-        self.assertEqual(1, permutations[0].get_node_of_id(n3.node_id).color)
-        self.assertEqual(2, permutations[0].get_node_of_id(n4.node_id).color)
-        self.assertEqual(1, permutations[0].get_node_of_id(n5.node_id).color)
+        self.assertEqual(n4, permutations[0][0])
+        self.assertEqual(2, permutations[0][1])
+
