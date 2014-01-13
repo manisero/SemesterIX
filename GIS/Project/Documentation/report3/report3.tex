@@ -120,7 +120,7 @@ Przy poszukiwaniu optymalnego rozmiaru tabu zostały przeprowadzone dwa badania:
             (17, 0.9)
             (18, 0.8)
             (19, 0.7)
-            (20, 0.9)        };        \legend{Graf testowy}        \end{axis}    \end{tikzpicture}    \caption{Optymalność wyniku w~zależności od rozmiaru pamięci.}
+            (20, 0.9)        };        \end{axis}    \end{tikzpicture}    \caption{Optymalność wyniku w~zależności od rozmiaru pamięci.}
     \label{fig:tabu_size_optimal_coloring}\end{figure}
 
 Analizując rysunki \ref{fig:tabu_size_execution_time} oraz \ref{fig:tabu_size_optimal_coloring} możemy wyciągnąć następujące wnioski:
@@ -132,7 +132,52 @@ Analizując rysunki \ref{fig:tabu_size_execution_time} oraz \ref{fig:tabu_size_o
     \item Analiza prawdopodobieństwa uzyskania optymalnego wyniku pozwala stwierdzić, że optymalnym rozmiarem pamięci ,,tabu'' jest 7. Powyżej tego progu średnie prawdopodobieństwo uzyskania optymalnego wyniku wynosi 83,57\%. Poniżej tego progu średnie prawdopodobieństwo uzyskania optymalnego wyniku wynosi 68,33\%.
 \end{itemize}
 
-\pagebreak
+\section*{Badanie wydajności algorytmu}
+
+\begin{figure}[ht!]    \centering    \begin{tikzpicture}        \begin{axis}[xlabel=Liczba wierzchołków grafu,ylabel=Czas wykonania algorytmu, width=.8\textwidth]        \addplot coordinates {            (11, 0.0313858985901)            (23, 0.416062116623)
+            (47, 6.79242110252)
+            (74, 24.5025429726)
+            (80, 30.3272099495)
+            (87, 57.2853310108)            
+            (95, 84.1847200394)
+            (138, 219.825026989)
+            (211, 706.329546928)        };
+        \end{axis}    \end{tikzpicture}    \caption{Czas wykonania algorytmu w~zależności od liczby wierzchołków grafu.}
+    \label{fig:algorithm_efficiency}\end{figure}
+
+Wydajność algorytmu została zmierzona dla optymalnego rozmiaru pamięci ,,tabu'' wyznaczonego we wcześniejszej części raportu (7). Testy zostały przeprowadzone na grafach, dla których znane jest optymalne pokolorowanie. Pozostałe parametry algorytmu zostały dobrane tak, aby odnaleźć optymalne pokolorowanie.
+    
+Zgodnie z~przewidywaniami w~raporcie drugim, z~wykresu \ref{fig:algorithm_efficiency} wynika, że algorytm ma złożoność czasową wykładniczą.
+
+Zwiększenie wydajności aplikacji byłoby możliwe poprzez zmianę algorytmu poruszania się po grafie. Wykorzystany w~projekcie DFS można zastąpić zwykłą iteracją po liście, która będzie uporządkowana np. według rosnących identyfikatorów wierzchołków.
+
+\section*{Poprawność algorytmu}
+
+Program został stworzony przy użyciu techniki TDD\footnote{Test-Driven Development. Technika programowania, w~której programista najpierw tworzy automatyczne testy jednostkowe do danej funkcjonalności, a~następnie implementuje właściwą funkcjonalność.}, co zapewnia poprawność implementacji algorytmu. Kod odpowiedzialny za algorytm jest pokryty testami jednostkowymi niemalże w~100\%.
+
+Poza testami jednostkowymi aplikacja była testowana dla grafów o~określonym optymalnym pokolorowaniu, zaczerpniętych ze strony \url{http://mat.gsia.cmu.edu/COLOR/instances.html}. Algorytm przeszedł testy dla następujących zbiorów danych:
+
+\begin{itemize}
+    \item \verb+zeroin.i.1.col+, \verb+zeroin.i.2.col+, \verb+zeroin.i.3.col+,
+    \item \verb+anna.col+, \verb+david.col+, \verb+huck.col+, \verb+jean.col+,
+    \item \verb+games120.col+,
+    \item \verb+queen5_5.col+,
+    \item \verb+myciel3.col+, \verb+myciel4.col+, \verb+myciel5.col+, \verb+myciel6.col+, \verb+myciel7.col+.
+\end{itemize}
+
+Dla każdego z~grafów z~powyższych zbiorów danych udało się znaleźć takie wartości kryteriów stopu, żeby dla optymalnej wielkości pamięci ,,tabu'' aplikacja odnalazła prawidłowe pokolorowanie, które jest optymalne (optymalność stwierdzana była na podstawie danych znajdujących się w~przytoczonym zbiorze danych). 
+
+\section*{Wnioski}
+
+Algorytm przeszukiwania przestrzeni z~,,tabu'' jest wydajnym algorytmem poszukiwania jak najbardziej optymalnego pokolorowania grafu. Dzięki zastosowaniu pamięci krótkoterminowej algorytm dobrze radzi sobie z~opuszczaniem lokalnych minimów dla zdefiniowanej funkcji celu. Pamięć ,,tabu'' pozwala również ograniczyć czas niezbędny do przeprowadzenia obliczeń. Iteracyjna natura algorytmu sprawia, że jest on dobrze skalowalny - pozwala na wyznaczenie suboptymalnego rozwiązania w~krótkim czasie.
+
+Problemem algorytmu kolorowania grafu z~,,tabu'' jest zdefiniowanie i~wyznaczanie wartości konfiguracyjnych kryteriów stopu. Nie da się wyznaczyć uniwersalnej miary, która będzie właściwa dla wszystkich typów i~rozmiarów grafów. W~trakcie badań przeprowadzanych na potrzeby projektu wielokrotnie zdarzały się sytuacje, gdy zadane kryteria stopu powodowały zbyt szybkie zakończenie algorytmu. Konsekwencją tego była konieczność ponownego wykonywania obliczeń. Z~tego powodu algorytm nie może być stosowany do wyznaczania optymalnego pokolorowania, jeżeli nie znamy z~góry liczby barw, które składają się na to kolorowanie. Pozwala on natomiast łatwo wyznaczyć kolorowanie grafu $n$~kolorami, jeżeli takie pokolorowanie istnieje.
+
+Ze względu na brak jasno określonych kryteriów stopu i~ich wielkości algorytm wyznaczania kolorowania grafu z~,,tabu'' mógłby znaleźć zastosowanie w~systemie typu \emph{supervised}. Decyzję o~zakończeniu algorytmu podejmowałby nadzorca systemu na podstawie jakości wyniku uzyskanego na wyjściu $i$-tej iteracji.
+
+W~ramach badań przeprowadzonych w~trakcie projektu udało się wyznaczyć uniwersalny rozmiar pamięci ,,tabu'', który może być wykorzystywany dla różnych rozmiarów i~typów grafów.
+
+Przeprowadzone badania dowodzą, że szybkość i~skuteczność działania algorytmu jest ściśle związana ze wstępnym pokolorowaniem grafu. Wstępne kolorowanie ma znaczący wpływ na liczbę iteracji algorytmu potrzebnych do wyznaczenia pokolorowania optymalnego, co rzutuje na konfigurację kryteriów stopu, które używane są do konkretnego typu grafu.
 
 \section*{Dokumentacja kodu źródłowego}
 

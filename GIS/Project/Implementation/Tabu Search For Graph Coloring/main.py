@@ -9,6 +9,7 @@ from validation.coloring_validator import ColoringValidator
 
 
 def main():
+    sys.setrecursionlimit(10000)
     parser = argparse.ArgumentParser()
     parser.add_argument('input_file', nargs='+', type=str, help='input file(s) containing graph definition')
     parser.add_argument('-o', required=False, metavar='output_file', help='name of the file to write progress log',
