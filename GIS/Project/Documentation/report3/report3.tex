@@ -50,7 +50,7 @@ python main.py -v -o queen6_6_mem01.txt --dimacs-compat -i 200 -s 50 -m 5 queen6
 
 \noindent Powyższe wywołanie programu uruchamia aplikację w~trybie ,,rozmownym'', przekierowuje wyjście programu do pliku \verb+queen6_6_mem01.txt+, pobiera dane z~pliku \verb+queen6_6.txt+ w~formacie DIMACS i~uruchamia aplikację dla maksymalnie dwustu iteracji, pięćdziesięciu iteracji bez zmiany wyniku oraz rozmiarem pamięci ,,tabu'' równym pięć.
 
-\section*{Poszukiwanie optymalnego rozmiaru tabu}
+\section*{Poszukiwanie optymalnego rozmiaru ,,tabu''}
 
 Przy poszukiwaniu optymalnego rozmiaru tabu zostały przeprowadzone dwa badania:
 
@@ -100,6 +100,26 @@ Przy poszukiwaniu optymalnego rozmiaru tabu zostały przeprowadzone dwa badania:
             (18, 12.3857138157)
             (19, 20.1795430183)
             (20, 12.964715004)        };        \legend{Duży graf, Mały graf}        \end{axis}    \end{tikzpicture}    \caption{Czas wykonania algorytmu w~zależności od rozmiaru pamięci.}\end{figure}
+            
+\begin{figure}[ht!]    \centering    \begin{tikzpicture}        \begin{axis}[xlabel=Rozmiar pamięci,ylabel=Prawdopodobieństwo uzyskania optymalnego wyniku w~10 próbach, xtick={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, width=.8\textwidth]        \addplot coordinates {            (1, 0.6)            (2, 0.8)
+            (3, 0.8)
+            (4, 0.5)
+            (5, 0.7)
+            (6, 0.7)
+            (7, 0.9)
+            (8, 0.8)
+            (9, 0.8)
+            (10, 0.9)
+            (11, 0.8)
+            (12, 0.9)
+            (13, 0.9)
+            (14, 0.8)
+            (15, 0.8)
+            (16, 0.8)
+            (17, 0.9)
+            (18, 0.8)
+            (19, 0.7)
+            (20, 0.9)        };        \legend{Graf testowy}        \end{axis}    \end{tikzpicture}    \caption{Optymalność wyniku w~zależności od rozmiaru pamięci.}\end{figure}
 
 \pagebreak
 
