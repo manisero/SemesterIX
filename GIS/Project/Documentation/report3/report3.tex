@@ -21,7 +21,7 @@ SK11 Kolorowanie grafu za pomocą przeszukiwania z tabu.
 
 \section*{Uruchamianie programu}
 
-Program uruchamiany jest z~linii poleceń. Wywoływany jest za pomocą komendy \verb+python main.py <parametry>+ (należy uprzednio przejść do folderu z~projektem). Podane \verb+<parametry>+ muszą być zgodne z~opcjami aplikacji:
+Program uruchamiany jest z~linii poleceń. Aby go włączyć należy przejść do folderu z~projektem i~uruchomić polecenie \verb+python main.py <parametry>+. Podane \verb+<parametry>+ muszą być zgodne z~opcjami aplikacji:
 
 \begin{verbatim}
 main.py [-h] [-o output_file] [-v] -i maximum_iterations
@@ -134,7 +134,7 @@ Analizując rysunki \ref{fig:tabu_size_execution_time} oraz \ref{fig:tabu_size_o
 
 \section*{Badanie wydajności algorytmu}
 
-\begin{figure}[ht!]    \centering    \begin{tikzpicture}        \begin{axis}[xlabel=Liczba wierzchołków grafu,ylabel=Czas wykonania algorytmu, width=.8\textwidth]        \addplot coordinates {            (11, 0.0313858985901)            (23, 0.416062116623)
+\begin{figure}[ht!]    \centering    \begin{tikzpicture}        \begin{axis}[xlabel=Liczba wierzchołków grafu,ylabel=Czas wykonania algorytmu (sekundy), width=.8\textwidth]        \addplot coordinates {            (11, 0.0313858985901)            (23, 0.416062116623)
             (47, 6.79242110252)
             (74, 24.5025429726)
             (80, 30.3272099495)
