@@ -52,12 +52,14 @@ python main.py -v -o queen6_6_mem01.txt --dimacs-compat -i 200 -s 50 -m 5 queen6
 
 \section*{Poszukiwanie optymalnego rozmiaru tabu}
 
-Poszukiwanie optymalnego rozmiaru tabu prowadzone było przy następujących założeniach:
+Przy poszukiwaniu optymalnego rozmiaru tabu zostały przeprowadzone dwa badania:
 
-\begin{itemize}
-    \item Operujemy na zbiorach danych o~znanym optymalnym kolorowaniu.
-    \item Dobieramy parametry kryteriów stopu w~taki sposób, aby dla testowanych rozmiarów pamięci ,,tabu'' program zwracał najlepsze pokolorowanie (o~ile to możliwe).
-\end{itemize}
+\begin{enumerate}
+    \item Badanie czasu obliczeń. Dla dwóch grafów, dla których znane jest optymalne kolorowanie, przeprowadzono pomiar czasu wyznaczania poprawnego kolorowania dla identycznych kryteriów stopu. Kryteria stopu były dobrane w~taki sposób, aby wygaszanie algorytmu było powodowane przez osiągnięcie maksymalnej liczby iteracji bez zmiany rezultatu. Pod uwagę brane były wyłącznie próby, które kończyły się poprawnym obliczeniem rozwiązania.
+    \item Badanie poprawności obliczeń. Dla grafu, dla którego znane jest optymalne kolorowanie, przeprowadzono pomiar prawdopodobieństwa poprawnego obliczenia rezultatu dla identycznych kryteriów stopu.
+\end{enumerate}
+
+\noindent W~obu przypadkach początkowe pokolorowanie grafu dobierane było w~sposób losowy. Wyniki ilustrują poniższe wykresy:
 
 \begin{figure}[ht!]    \centering    \begin{tikzpicture}        \begin{axis}[xlabel=Rozmiar pamięci,ylabel=Czas, xtick={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, width=.8\textwidth]        \addplot coordinates {            (1, 216.103834867)            (2, 153.564208031)
             (3, 144.054646015)
@@ -77,7 +79,27 @@ Poszukiwanie optymalnego rozmiaru tabu prowadzone było przy następujących za�
             (17, 96.8258011341)
             (18, 70.6327459812)
             (19, 55.1863398552)
-            (20, 42.0572459698)        };        \addplot coordinates {            (7, 180.123213)        };        \legend{Zbiór pierwszy, Zbiór drugi}        \end{axis}    \end{tikzpicture}    \caption{Poszukiwanie optymalnego rozmiaru tabu.}\end{figure}
+            (20, 42.0572459698)        };        \addplot coordinates {
+            (1, 14.0370841026)
+            (2, 17.6206011772)
+            (3, 13.3633220196)
+            (4, 17.4316580296)
+            (5, 12.6170749664)
+            (6, 13.7205200195)
+            (7, 14.5897459984)
+            (8, 13.8318810463)
+            (9, 14.302770853)
+            (10, 13.5634422302)
+            (11, 18.363656044)
+            (12, 16.7718977928)
+            (13, 14.5919039249)
+            (14, 15.4569129944)
+            (15, 14.760160923)
+            (16, 17.1893560886)
+            (17, 13.0198259354)
+            (18, 12.3857138157)
+            (19, 20.1795430183)
+            (20, 12.964715004)        };        \legend{Duży graf, Mały graf}        \end{axis}    \end{tikzpicture}    \caption{Czas wykonania algorytmu w~zależności od rozmiaru pamięci.}\end{figure}
 
 \pagebreak
 
