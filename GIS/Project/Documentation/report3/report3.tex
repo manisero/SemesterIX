@@ -99,7 +99,8 @@ Przy poszukiwaniu optymalnego rozmiaru tabu zostały przeprowadzone dwa badania:
             (17, 13.0198259354)
             (18, 12.3857138157)
             (19, 20.1795430183)
-            (20, 12.964715004)        };        \legend{Duży graf, Mały graf}        \end{axis}    \end{tikzpicture}    \caption{Czas wykonania algorytmu w~zależności od rozmiaru pamięci.}\end{figure}
+            (20, 12.964715004)        };        \legend{Duży graf, Mały graf}        \end{axis}    \end{tikzpicture}    \caption{Czas wykonania algorytmu w~zależności od rozmiaru pamięci.}
+    \label{fig:tabu_size_execution_time}\end{figure}
             
 \begin{figure}[ht!]    \centering    \begin{tikzpicture}        \begin{axis}[xlabel=Rozmiar pamięci,ylabel=Prawdopodobieństwo uzyskania optymalnego wyniku w~10 próbach, xtick={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, width=.8\textwidth]        \addplot coordinates {            (1, 0.6)            (2, 0.8)
             (3, 0.8)
@@ -119,7 +120,17 @@ Przy poszukiwaniu optymalnego rozmiaru tabu zostały przeprowadzone dwa badania:
             (17, 0.9)
             (18, 0.8)
             (19, 0.7)
-            (20, 0.9)        };        \legend{Graf testowy}        \end{axis}    \end{tikzpicture}    \caption{Optymalność wyniku w~zależności od rozmiaru pamięci.}\end{figure}
+            (20, 0.9)        };        \legend{Graf testowy}        \end{axis}    \end{tikzpicture}    \caption{Optymalność wyniku w~zależności od rozmiaru pamięci.}
+    \label{fig:tabu_size_optimal_coloring}\end{figure}
+
+Analizując rysunki \ref{fig:tabu_size_execution_time} oraz \ref{fig:tabu_size_optimal_coloring} możemy wyciągnąć następujące wnioski:
+
+\begin{itemize}
+    \item Dla dużego grafu i~małych rozmiarów pamięci ,,tabu'' czas wykonywania algorytmu jest znacznie dłuższy niż dla większych rozmiarów.
+    \item Dla dużego grafu czas wykonywania algorytmu drastycznie maleje dla rozmiarów ,,tabu'' z~przedziału $[1; 6]$. Dla większych rozmiarów pamięci krzywa czasu wykonania programu nie jest monotoniczna. Dla tych rozmiarów pamięci istotniejszy jest czynnik związany z~początkowym pokolorowaniem grafu.
+    \item Analiza czasu wykonania algorytmu dla małego grafu nie daje nam żadnych dodatkowych informacji. Dla testowanego grafu czasy wykonywania programu były zbliżone dla każdej wielkości pamięci ,,tabu''.
+    \item Analiza prawdopodobieństwa uzyskania optymalnego wyniku pozwala stwierdzić, że optymalnym rozmiarem pamięci ,,tabu'' jest 7. Powyżej tego progu średnie prawdopodobieństwo uzyskania optymalnego wyniku wynosi 83,57\%. Poniżej tego progu średnie prawdopodobieństwo uzyskania optymalnego wyniku wynosi 68,33\%.
+\end{itemize}
 
 \pagebreak
 
