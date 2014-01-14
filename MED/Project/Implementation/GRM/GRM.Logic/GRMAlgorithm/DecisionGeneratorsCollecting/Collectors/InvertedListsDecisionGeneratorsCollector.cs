@@ -7,40 +7,49 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 {
     public class InvertedListsDecisionGeneratorsCollector : DecisionGeneratorsCollectorBase
     {
+        private class DecisionGenerators
+        {
+            public IList<Generator> Generators = new List<Generator>();
+
+            public InvertedList InvertedList = new InvertedList();
+        }
+        
         private class InvertedList : Dictionary<ItemID, IList<Generator>>
         {
         }
 
-        private readonly IDictionary<int, InvertedList> _decisionInvertedLists = new Dictionary<int, InvertedList>();
+        private readonly IDictionary<int, DecisionGenerators> _decisionGenerators = new Dictionary<int, DecisionGenerators>();
 
         protected override void AppendGenerators(int decisionId, IList<Generator> generators)
         {
-            if (!_decisionInvertedLists.ContainsKey(decisionId))
+            if (!_decisionGenerators.ContainsKey(decisionId))
             {
-                _decisionInvertedLists.Add(decisionId, new InvertedList());
+                _decisionGenerators.Add(decisionId, new DecisionGenerators());
             }
 
-            var invertedList = _decisionInvertedLists[decisionId];
+            var decisionGenerators = _decisionGenerators[decisionId];
 
             foreach (var generator in generators)
             {
-                RemoveSupergenerators(generator, invertedList);
+                RemoveSupergenerators(generator, decisionGenerators);
             }
 
             foreach (var generator in generators)
             {
-                AppendGenerator(generator, invertedList);
+                AppendGenerator(generator, decisionGenerators);
             }
         }
 
-        private void RemoveSupergenerators(Generator subgenerator, InvertedList invertedList)
+        private void RemoveSupergenerators(Generator subgenerator, DecisionGenerators decisionGenerators)
         {
+            var invertedList = decisionGenerators.InvertedList;
+
             if (!invertedList.ContainsKey(subgenerator[0]))
             {
                 return;
             }
 
-            IEnumerable<Generator> supergenerators = new List<Generator>(invertedList[subgenerator[0]]);
+            var supergenerators = new List<Generator>(invertedList[subgenerator[0]]);
 
             for (int i = 1; i < subgenerator.Count; i++)
             {
@@ -49,11 +58,13 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
                     return;
                 }
 
-                supergenerators = supergenerators.Intersect(invertedList[subgenerator[i]]);
+                supergenerators = supergenerators.Intersect(invertedList[subgenerator[i]]).ToList();
             }
 
             foreach (var supergenerator in supergenerators)
             {
+                decisionGenerators.Generators.Remove(supergenerator);
+
                 foreach (var generators in invertedList)
                 {
                     generators.Value.Remove(supergenerator);
@@ -61,8 +72,12 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             }
         }
 
-        private void AppendGenerator(Generator generator, InvertedList invertedList)
+        private void AppendGenerator(Generator generator, DecisionGenerators decisionGenerators)
         {
+            decisionGenerators.Generators.Add(generator);
+
+            var invertedList = decisionGenerators.InvertedList;
+
             foreach (var item in generator)
             {
                 if (!invertedList.ContainsKey(item))
@@ -80,22 +95,9 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
         {
             var result = new Dictionary<int, IList<Generator>>();
 
-            foreach (var decisionInvertedList in _decisionInvertedLists)
+            foreach (var decisionInvertedList in _decisionGenerators)
             {
-                var generators = new List<Generator>();
-
-                foreach (var invertedList in decisionInvertedList.Value)
-                {
-                    foreach (var generator in invertedList.Value)
-                    {
-                        if (!generators.Contains(generator))
-                        {
-                            generators.Add(generator);
-                        }
-                    }
-                }
-
-                result.Add(decisionInvertedList.Key, generators);
+                result.Add(decisionInvertedList.Key, decisionInvertedList.Value.Generators);
             }
 
             return result;
