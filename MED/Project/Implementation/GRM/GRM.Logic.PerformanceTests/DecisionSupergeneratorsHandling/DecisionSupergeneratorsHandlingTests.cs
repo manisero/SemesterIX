@@ -45,5 +45,11 @@ namespace GRM.Logic.PerformanceTests.DecisionSupergeneratorsHandling
         {
             Execute(DecisionSupergeneratorsHandlingStrategyType.BruteForceLINQ);
         }
+
+        [Fact]
+        public void inverted_lists_test()
+        {
+            Execute(DecisionSupergeneratorsHandlingStrategyType.InvertedLists);
+        }
     }
 }

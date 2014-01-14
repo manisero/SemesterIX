@@ -12,6 +12,8 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl
                     return new BruteForceDecisionGeneratorsCollector();
                 case DecisionSupergeneratorsHandlingStrategyType.BruteForceLINQ:
                     return new BruteForceLINQDecisionGeneratorsCollector();
+                case DecisionSupergeneratorsHandlingStrategyType.InvertedLists:
+                    return new InvertedListsDecisionGeneratorsCollector();
                 default:
                     return null;
             }
