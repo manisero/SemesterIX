@@ -29,6 +29,11 @@ namespace GRM.Presentation
         {
             optionSet.Parse(args);
 
+            if (options.HelpRequested)
+            {
+                return;
+            }
+
             if (options.DataFilePath == null)
             {
                 throw new OptionException("file parameter is required", "file");
