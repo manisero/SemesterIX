@@ -24,14 +24,22 @@ namespace GRM.Presentation
 
             ProgressTrackerContainer.CurrentProgressTracker = new ProgressTrackerFactory().Create(options.TrackingLevel);
 
-            var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
+            try
+            {
+                var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy, options.DecisionSupergeneratorsHandlingStrategy)
+                                    .ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
 
-            Console.WriteLine("GRM execution finished");
-            PrintPerformanceInfo();
-            Console.WriteLine();
+                Console.WriteLine("GRM execution finished");
+                PrintPerformanceInfo();
+                Console.WriteLine();
 
-            WriteGRMResult(result, options.DataFilePath);
+                WriteGRMResult(result, options.DataFilePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         private static Options ReadArgs(string[] args, out bool shouldTerminate)
@@ -76,6 +84,8 @@ namespace GRM.Presentation
             Console.WriteLine("Minimum support: {0}", options.MinimumSupport);
             Console.WriteLine("Sorting strategy: '{0}'", options.SortingStrategy);
             Console.WriteLine("Transaction IDs storage strategy: '{0}'", options.TransactionIdsStorageStrategy);
+            Console.WriteLine("Decision supergenerators handling strategy: '{0}'", options.DecisionSupergeneratorsHandlingStrategy);
+            Console.WriteLine("Performance tracking level: '{0}'", options.TrackingLevel);
             Console.WriteLine();
         }
 

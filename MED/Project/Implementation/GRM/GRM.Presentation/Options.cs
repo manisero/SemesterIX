@@ -1,4 +1,5 @@
-﻿using GRM.Logic.GRMAlgorithm.ItemsSorting;
+﻿using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting;
+using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.ProgressTracking;
 
@@ -19,6 +20,8 @@ namespace GRM.Presentation
         public SortingStrategyType SortingStrategy { get; set; }
 
         public TransactionIDsStorageStrategyType TransactionIdsStorageStrategy { get; set; }
+
+        public DecisionSupergeneratorsHandlingStrategyType DecisionSupergeneratorsHandlingStrategy { get; set; }
 
         public TrackingLevel TrackingLevel { get; set; }
 
