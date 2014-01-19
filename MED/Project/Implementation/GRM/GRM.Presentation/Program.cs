@@ -5,6 +5,7 @@ using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking._Impl;
 using GRM.Presentation.ResultWriting;
 using NDesk.Options;
+using System.Linq;
 
 namespace GRM.Presentation
 {
@@ -136,6 +137,8 @@ namespace GRM.Presentation
 
         private static void WriteGRMResult(GRMResult result, string outputPath)
         {
+            Console.WriteLine("Rules found: {0}", result.Rules.Sum(x => x.Generators.Count));
+
             var textOutputFilePath = outputPath + "_rules.txt";
             new TextResultWriter().WriteResult(result, textOutputFilePath);
             Console.WriteLine("Text result saved to {0}", textOutputFilePath);
