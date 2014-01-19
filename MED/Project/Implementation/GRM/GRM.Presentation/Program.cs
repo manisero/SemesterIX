@@ -24,14 +24,22 @@ namespace GRM.Presentation
 
             ProgressTrackerContainer.CurrentProgressTracker = new ProgressTrackerFactory().Create(options.TrackingLevel);
 
-            var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
+            try
+            {
+                var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy, options.DecisionSupergeneratorsHandlingStrategy)
+                                    .ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
 
-            Console.WriteLine("GRM execution finished");
-            PrintPerformanceInfo();
-            Console.WriteLine();
+                Console.WriteLine("GRM execution finished");
+                PrintPerformanceInfo();
+                Console.WriteLine();
 
-            WriteGRMResult(result, options.DataFilePath);
+                WriteGRMResult(result, options.OutputPath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         private static Options ReadArgs(string[] args, out bool shouldTerminate)
@@ -64,8 +72,21 @@ namespace GRM.Presentation
                 return null;
             }
 
+            if (options.OutputPath == null)
+            {
+                options.OutputPath = GetDefaultOutputPath(options.DataFilePath);
+            }
+
             shouldTerminate = false;
             return options;
+        }
+
+        private static string GetDefaultOutputPath(string dataFilePath)
+        {
+            var outputDirectory = Path.GetDirectoryName(dataFilePath);
+            var outputFilePrefix = Path.GetFileNameWithoutExtension(dataFilePath);
+
+            return Path.Combine(outputDirectory, outputFilePrefix);
         }
 
         private static void PrintGRMParameters(Options options)
@@ -76,6 +97,9 @@ namespace GRM.Presentation
             Console.WriteLine("Minimum support: {0}", options.MinimumSupport);
             Console.WriteLine("Sorting strategy: '{0}'", options.SortingStrategy);
             Console.WriteLine("Transaction IDs storage strategy: '{0}'", options.TransactionIdsStorageStrategy);
+            Console.WriteLine("Decision supergenerators handling strategy: '{0}'", options.DecisionSupergeneratorsHandlingStrategy);
+            Console.WriteLine("Performance tracking level: '{0}'", options.TrackingLevel);
+            Console.WriteLine("Output files will be saved to: '{0}'", options.OutputPath);
             Console.WriteLine();
         }
 
@@ -110,23 +134,14 @@ namespace GRM.Presentation
             }
         }
 
-        private static void WriteGRMResult(GRMResult result, string dataFilePath)
+        private static void WriteGRMResult(GRMResult result, string outputPath)
         {
-            var outputDirectoryName = Path.GetDirectoryName(dataFilePath);
-            var dataFilename = Path.GetFileNameWithoutExtension(dataFilePath);
-
-            var textOutputFileName = dataFilename + "_rules.txt";
-            var textOutputFilePath = Path.Combine(outputDirectoryName, textOutputFileName);
-
+            var textOutputFilePath = outputPath + "_rules.txt";
             new TextResultWriter().WriteResult(result, textOutputFilePath);
-
             Console.WriteLine("Text result saved to {0}", textOutputFilePath);
 
-            var csvOutputFileName = dataFilename + "_rules.csv";
-            var csvOutputFilePath = Path.Combine(outputDirectoryName, csvOutputFileName);
-
+            var csvOutputFilePath = outputPath + "_rules.csv";
             new CSVResultWriter().WriteResult(result, csvOutputFilePath);
-
             Console.WriteLine("CSV result saved to {0}", csvOutputFilePath);
         }
     }

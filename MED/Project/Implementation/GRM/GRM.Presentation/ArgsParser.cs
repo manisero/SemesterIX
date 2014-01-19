@@ -1,4 +1,5 @@
 ﻿using System;
+using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.ProgressTracking;
@@ -18,14 +19,20 @@ namespace GRM.Presentation
             optionSet.Add("dec|decAttr=", "Decision attribute index (1 = first attribute, 2 = second attribute...). Optional (if not provided, last attribute is considered as decision).", (int x) => options.DecisionAttributeIndex = x - 1);
             optionSet.Add("sort=", "Sorting strategy. Optional. Valid values: DescendingSupport (or 0; default), AscendingSupport (or 1), Lexicographical (or 2), ReverseLexicographical (or 3).", x => options.SortingStrategy = ParseEnum<SortingStrategyType>(x));
             optionSet.Add("store=", "Transaction IDs storage strategy. Optional. Valid values: TIDSets (or 0; default), DiffSets (or 1).", x => options.TransactionIdsStorageStrategy = ParseEnum<TransactionIDsStorageStrategyType>(x));
+            optionSet.Add("supgen=", "Decision supergenerators handling strategy. Optional. Valid values: InvertedLists (or 0; default), BruteForce (or 1).", x => options.DecisionSupergeneratorsHandlingStrategy = ParseEnum<DecisionSupergeneratorsHandlingStrategyType>(x));
             optionSet.Add("track=", "Performance tracking level. Optional. Valid values: NoTracking (or 0), Task (or 1; default), Steps (or 2), Substeps (or 3; CAUTION: increases overall execution time significantly).", x => options.TrackingLevel = ParseEnum<TrackingLevel>(x));
-
+            optionSet.Add("o|output=", "Output files path. Optional. Valid value is a file path without file extension (e.g. results/result). Default value: [data file path]_rules.", x => options.OutputPath = x);
             return optionSet;
         }
 
         public void ParseArgs(string[] args, OptionSet optionSet, Options options)
         {
             optionSet.Parse(args);
+
+            if (options.HelpRequested)
+            {
+                return;
+            }
 
             if (options.DataFilePath == null)
             {
