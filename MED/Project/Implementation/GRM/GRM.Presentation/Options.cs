@@ -25,6 +25,8 @@ namespace GRM.Presentation
 
         public TrackingLevel TrackingLevel { get; set; }
 
+        public string OutputPath { get; set; }
+
         public Options()
         {
             TrackingLevel = TrackingLevel.Task;

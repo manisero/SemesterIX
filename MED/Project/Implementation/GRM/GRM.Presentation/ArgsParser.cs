@@ -21,7 +21,7 @@ namespace GRM.Presentation
             optionSet.Add("store=", "Transaction IDs storage strategy. Optional. Valid values: TIDSets (or 0; default), DiffSets (or 1).", x => options.TransactionIdsStorageStrategy = ParseEnum<TransactionIDsStorageStrategyType>(x));
             optionSet.Add("supgen=", "Decision supergenerators handling strategy. Optional. Valid values: InvertedLists (or 0; default), BruteForce (or 1).", x => options.DecisionSupergeneratorsHandlingStrategy = ParseEnum<DecisionSupergeneratorsHandlingStrategyType>(x));
             optionSet.Add("track=", "Performance tracking level. Optional. Valid values: NoTracking (or 0), Task (or 1; default), Steps (or 2), Substeps (or 3; CAUTION: increases overall execution time significantly).", x => options.TrackingLevel = ParseEnum<TrackingLevel>(x));
-
+            optionSet.Add("o|output=", "Output files path. Optional. Valid value is a file path without file extension (e.g. results/result). Default value: [data file path]_rules.", x => options.OutputPath = x);
             return optionSet;
         }
 
