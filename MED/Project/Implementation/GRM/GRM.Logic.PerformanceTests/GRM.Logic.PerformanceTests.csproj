@@ -48,6 +48,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="DecisionSupergeneratorsHandling\DecisionSupergeneratorsHandlingTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -59,6 +60,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Resources\car_100k.txt" />
+    <Content Include="Resources\mushrooms.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GRM.Logic.UnitTests\GRM.Logic.UnitTests.csproj">

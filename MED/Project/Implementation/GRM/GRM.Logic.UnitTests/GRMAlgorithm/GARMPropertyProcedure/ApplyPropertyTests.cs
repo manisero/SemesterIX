@@ -2,6 +2,8 @@
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies;
+using GRM.Logic.ProgressTracking;
+using GRM.Logic.ProgressTracking.ProgressTrackers;
 using Xunit;
 using System.Linq;
 
@@ -12,6 +14,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
         private Node Execute(GARMPropertyType property, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions = null, int minimalSupport = 1)
         {
             // Arrange
+            ProgressTrackerContainer.CurrentProgressTracker = new EmptyProgressTracker();
+
             var parent = new Node
                 {
                     Children = new List<Node> { new Node(), leftChild, new Node(), rightChild, new Node() }

@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text;
-using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing.Entities;
-using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
+using GRM.Logic.ProgressTracking;
+using GRM.Logic.ProgressTracking.ProgressTrackers;
 using Xunit;
 
 namespace GRM.Logic.UnitTests.GRMFacade
@@ -18,20 +18,22 @@ namespace GRM.Logic.UnitTests.GRMFacade
 
         private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
+            // Arrange
+            ProgressTrackerContainer.CurrentProgressTracker = new TaskProgressTracker();
+
             // Act
             GRMResult result;
-            var progressInfo = new ProgressInfo();
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
             {
-                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, MinimumSupport, progressInfo);
+                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, false, null, MinimumSupport);
             }
 
             // Assert
-            AssertResult(result, progressInfo);
+            AssertResult(result);
         }
 
-        protected abstract void AssertResult(GRMResult result, ProgressInfo progressInfo);
+        protected abstract void AssertResult(GRMResult result);
 
         protected void AssertGeneratorIsInRule(Rule rule, params Item[] expectedGenerator)
         {

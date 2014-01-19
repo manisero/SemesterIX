@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using GRM.Logic.DataSetProcessing.Entities;
 
@@ -12,21 +13,43 @@ namespace GRM.Logic.DataSetProcessing._Impl
             _transactionProcessor = transactionProcessor;
         }
 
-        public DataSetRepresentation Build(Stream dataSetStream)
+        public DataSetRepresentation Build(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex)
         {
             var buildState = new DataSetRepresentationBuildState();
+            int attributesCount;
+            int decisionIndex;
+            IDictionary<int, string> attributeNames = null;
 
             using (var reader = new StreamReader(dataSetStream))
             {
-                for (int i = 1; !reader.EndOfStream; i++)
+                if (dataContainsHeaders)
+                {
+                    attributeNames = new Dictionary<int, string>();
+                    var headers = reader.ReadLine().Split(',');
+
+                    for (int i = 0; i < headers.Length; i++)
+                    {
+                        attributeNames.Add(i, headers[i]);
+                    }
+                }
+
+                var firstTransaction = reader.ReadLine();
+                attributesCount = firstTransaction.Split(',').Length;
+                decisionIndex = decisionAttributeIndex ?? attributesCount - 1;
+                _transactionProcessor.AppendTransaction(1, firstTransaction, decisionIndex, buildState);
+
+                for (int i = 2; !reader.EndOfStream; i++)
                 {
                     var transaction = reader.ReadLine();
-                    _transactionProcessor.AppendTransaction(i, transaction, buildState);
+                    _transactionProcessor.AppendTransaction(i, transaction, decisionIndex, buildState);
                 }
             }
 
             return new DataSetRepresentation
                 {
+                    AttributesCount = attributesCount,
+                    DecisionAttributeIndex = decisionIndex,
+                    AttributeNames = attributeNames,
                     DecisionIDs = buildState.DecisionIDs,
                     TransactionDecisions = buildState.TransactionDecisions,
                     ItemIDs = buildState.ItemIDs,

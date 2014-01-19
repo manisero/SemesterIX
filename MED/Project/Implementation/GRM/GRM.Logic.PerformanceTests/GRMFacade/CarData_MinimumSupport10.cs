@@ -1,6 +1,6 @@
 ﻿using System;
-using GRM.Logic.DataSetProcessing;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.ProgressTracking;
 using GRM.Logic.UnitTests.GRMFacade;
 
 namespace GRM.Logic.PerformanceTests.GRMFacade
@@ -17,9 +17,9 @@ namespace GRM.Logic.PerformanceTests.GRMFacade
             get { return 10; }
         }
 
-        protected override void AssertResult(GRMResult result, ProgressInfo progressInfo)
+        protected override void AssertResult(GRMResult result)
         {
-            Console.WriteLine("Execution lasted: {0}", progressInfo.GetOverallTaskDuration());
+            Console.WriteLine("Execution lasted: {0}", ProgressTrackerContainer.CurrentProgressTracker.GetInfo().Duration);
         }
     }
 }

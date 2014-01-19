@@ -4,6 +4,6 @@ namespace GRM.Logic.DataSetProcessing
 {
     public interface ITransactionProcessor
     {
-        void AppendTransaction(int transactionId, string transaction, DataSetRepresentationBuildState buildState);
+        void AppendTransaction(int transactionId, string transaction, int decisionAttributeIndex, DataSetRepresentationBuildState buildState);
     }
 }

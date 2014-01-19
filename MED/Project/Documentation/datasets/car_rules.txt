@@ -1,0 +1,31 @@
+====================
+acceptibility: 'unacc':
+--------------------
+persons (2)
+buying (vhigh), lug_boot (small), safety (med)
+maint (vhigh), lug_boot (small), safety (med)
+buying (med), maint (high), lug_boot (small), safety (med)
+buying (high), lug_boot (small), safety (med)
+doors (2), persons (more), lug_boot (small)
+safety (low)
+buying (vhigh), doors (2), lug_boot (med), safety (med)
+maint (vhigh), doors (2), lug_boot (med), safety (med)
+buying (high), doors (2), lug_boot (med), safety (med)
+buying (vhigh), maint (vhigh)
+buying (vhigh), maint (high)
+buying (high), maint (vhigh)
+
+====================
+acceptibility: 'acc':
+--------------------
+buying (low), maint (high), persons (4), safety (med)
+buying (med), maint (med), persons (4), safety (med)
+buying (vhigh), maint (med), persons (4), safety (high)
+buying (vhigh), maint (low), persons (4), safety (high)
+buying (med), maint (vhigh), persons (4), safety (high)
+buying (low), maint (vhigh), persons (4), safety (high)
+buying (high), maint (high), persons (4), safety (high)
+buying (med), maint (high), persons (4), safety (high)
+buying (high), maint (med), persons (4), safety (high)
+buying (high), maint (low), persons (4), safety (high)
+

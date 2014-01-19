@@ -2,12 +2,14 @@
 using GRM.Logic.DataSetProcessing;
 using GRM.Logic.DataSetProcessing._Impl;
 using GRM.Logic.GRMAlgorithm;
-using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting;
+using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl;
 using GRM.Logic.GRMAlgorithm.ItemsSorting;
 using GRM.Logic.GRMAlgorithm.ItemsSorting._Impl;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl;
 using GRM.Logic.GRMAlgorithm._Impl;
+using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic
 {
@@ -17,10 +19,11 @@ namespace GRM.Logic
         private readonly IFrequentItemsSelector _frequentItemsSelector;
         private readonly ISortingStrategy _sortingStrategy;
         private readonly ITreeBuilder _treeBuilder;
-        private readonly IResultBuilder _resultBuilder;
+        private readonly IDecisionGeneratorsCollector _decisionGeneratorsCollector;
         private readonly IGARMProcedure _garmProcedure;
+        private readonly GRMResultBuilder _grmResultBuilder;
 
-        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
+        public GRMFacade(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy, DecisionSupergeneratorsHandlingStrategyType decisionSupergeneratorsHandlingStrategy)
         {
             _dataSetRepresentationBuilder = new DataSetRepresentationBuilder(new TransactionProcessor());
             _frequentItemsSelector = new FrequentItemsSelector();
@@ -28,39 +31,44 @@ namespace GRM.Logic
 
             var storageStrategy = new TransactionIDsStorageStrategyFactory().Create(transactionIdsStorageStrategy);
             _treeBuilder = new TreeBuilder(storageStrategy);
-            _resultBuilder = new ResultBuilder();
-            _garmProcedure = new GARMProcedure(_resultBuilder, new GARMPropertyProcedure(storageStrategy));
+            _decisionGeneratorsCollector = new DecisionGeneratorsCollectorFactory().Create(decisionSupergeneratorsHandlingStrategy);
+            _garmProcedure = new GARMProcedure(_decisionGeneratorsCollector, new GARMPropertyProcedure(storageStrategy));
+
+            _grmResultBuilder = new GRMResultBuilder();
         }
 
-        public GRMResult ExecuteGRM(Stream dataSetStream, int minimumSupport, ProgressInfo progressInfo)
+        public GRMResult ExecuteGRM(Stream dataSetStream, bool dataContainsHeaders, int? decisionAttributeIndex, int minimumSupport)
         {
-            progressInfo.BeginTask();
+            var progressTracker = ProgressTrackerContainer.CurrentProgressTracker;
 
-            progressInfo.BeginStep("Creating data set representation");
-            var representation = _dataSetRepresentationBuilder.Build(dataSetStream);
-            progressInfo.EndStep();
+            progressTracker.BeginTask();
 
-            progressInfo.BeginStep("Selecting frequent items");
+            progressTracker.BeginStep("Creating data set representation");
+            var representation = _dataSetRepresentationBuilder.Build(dataSetStream, dataContainsHeaders, decisionAttributeIndex);
+            progressTracker.EndStep();
+
+            progressTracker.BeginStep("Selecting frequent items");
             var frequentItems = _frequentItemsSelector.SelectFrequentItems(representation.ItemInfos.Values, minimumSupport);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Sorting frequent items");
+            progressTracker.BeginStep("Sorting frequent items");
             var sortedFrequentItems = _sortingStrategy.Apply(frequentItems);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Building GRM tree");
+            progressTracker.BeginStep("Building GRM tree");
             var root = _treeBuilder.Build(sortedFrequentItems, representation.DecisionIDs.Values, representation.TransactionDecisions);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Running GARM procedure");
+            progressTracker.BeginStep("Running GARM procedure");
             _garmProcedure.Execute(root, representation.TransactionDecisions, minimumSupport);
-            progressInfo.EndStep();
+            progressTracker.EndStep();
 
-            progressInfo.BeginStep("Building result");
-            var result = _resultBuilder.GetResult(representation.DecisionIDs, representation.ItemIDs);
-            progressInfo.EndStep();
+            progressTracker.BeginStep("Building result");
+            var decisionsGenerators = _decisionGeneratorsCollector.GetDecisionsGenerators();
+            var result = _grmResultBuilder.GetResult(representation.AttributesCount, representation.DecisionAttributeIndex, representation.AttributeNames, representation.DecisionIDs, representation.ItemIDs, decisionsGenerators);
+            progressTracker.EndStep();
 
-            progressInfo.EndTask();
+            progressTracker.EndTask();
             return result;
         }
     }

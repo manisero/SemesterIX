@@ -1,20 +1,31 @@
 using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
+using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMPropertyProcedure : IGARMPropertyProcedure
     {
+        private readonly int _determiningGARMPropertySubstepId;
+        private readonly int _applyingGARMPropertySetsEqualSubstepId;
+        private readonly int _applyingGARMPropertySetsDifferentSubstepId;
+
         private readonly ITransactionIDsStorageStrategy _transactionIdsStorageStrategy;
 
         public GARMPropertyProcedure(ITransactionIDsStorageStrategy transactionIdsStorageStrategy)
         {
+            _determiningGARMPropertySubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Determining GARM property");
+            _applyingGARMPropertySetsEqualSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets equal)");
+            _applyingGARMPropertySetsDifferentSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets different)");
+
             _transactionIdsStorageStrategy = transactionIdsStorageStrategy;
         }
 
         public GARMPropertyType GetProperty(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_determiningGARMPropertySubstepId);
+
             var leftToRightSubsumption = true;
             var rightToLeftSubsumption = true;
 
@@ -43,18 +54,24 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 }
             }
 
+            GARMPropertyType result;
+
             if (leftToRightSubsumption && rightToLeftSubsumption)
             {
-                return GARMPropertyType.Equality;
+                result = GARMPropertyType.Equality;
             }
             else if (leftToRightSubsumption || rightToLeftSubsumption)
             {
-                return GARMPropertyType.Subsumption;
+                result = GARMPropertyType.Subsumption;
             }
             else
             {
-                return GARMPropertyType.Difference;
+                result = GARMPropertyType.Difference;
             }
+
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_determiningGARMPropertySubstepId);
+
+            return result;
         }
 
         private int? GetTransactionID(IList<int> transactionIds, int index)
@@ -66,20 +83,27 @@ namespace GRM.Logic.GRMAlgorithm._Impl
         {
             if (property == GARMPropertyType.Equality)
             {
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_applyingGARMPropertySetsEqualSubstepId);
+
                 foreach (var generator in rightChild.Generators)
                 {
                     leftChild.Generators.Add(generator);
                 }
 
                 parent.Children.Remove(rightChild);
+
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_applyingGARMPropertySetsEqualSubstepId);
             }
             else if (property == GARMPropertyType.Difference)
             {
+                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_applyingGARMPropertySetsDifferentSubstepId);
+
                 var newChildTransactionIds = _transactionIdsStorageStrategy.GetChildTransactionIDs(leftChild.TransactionIDs, rightChild.TransactionIDs);
                 var newChildSupport = _transactionIdsStorageStrategy.GetChildSupport(leftChild.Support, newChildTransactionIds);
 
                 if (newChildSupport < minimalSupport)
                 {
+                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_applyingGARMPropertySetsDifferentSubstepId);
                     return;
                 }
                 
@@ -93,6 +117,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 _transactionIdsStorageStrategy.SetChildDecisiveness(newChild, leftChild.DecisionTransactionIDs, transactionDecisions);
 
                 leftChild.Children.Add(newChild);
+
+                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_applyingGARMPropertySetsDifferentSubstepId);
             }
         }
 

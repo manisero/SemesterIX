@@ -48,7 +48,21 @@
     <Compile Include="DataSetProcessing\IDataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\IFrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
-    <Compile Include="DataSetProcessing\ProgressInfo.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceDecisionGeneratorsCollector.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceLINQDecisionGeneratorsCollector.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\InvertedListsDecisionGeneratorsCollector.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\IDecisionGeneratorsCollectorFactory.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\_Impl\DecisionGeneratorsCollectorFactory.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\DecisionSupergeneratorsHandlingStrategyType.cs" />
+    <Compile Include="GRMResultBuilder.cs" />
+    <Compile Include="ProgressTracking\IProgressTracker.cs" />
+    <Compile Include="ProgressTracking\IProgressTrackerFactory.cs" />
+    <Compile Include="ProgressTracking\ProgressTrackers\EmptyProgressTracker.cs" />
+    <Compile Include="ProgressTracking\Entities\Step.cs" />
+    <Compile Include="ProgressTracking\Entities\StepInfo.cs" />
+    <Compile Include="ProgressTracking\Entities\Substep.cs" />
+    <Compile Include="ProgressTracking\ProgressTrackers\StepProgressTracker.cs" />
+    <Compile Include="ProgressTracking\ProgressTrackers\SubstepProgressTracker.cs" />
     <Compile Include="DataSetProcessing\_Impl\DataSetRepresentationBuilder.cs" />
     <Compile Include="DataSetProcessing\_Impl\FrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\_Impl\TransactionProcessor.cs" />
@@ -56,7 +70,7 @@
     <Compile Include="GRMAlgorithm\Entities\Node.cs" />
     <Compile Include="GRMAlgorithm\IGARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\IGARMPropertyProcedure.cs" />
-    <Compile Include="GRMAlgorithm\IResultBuilder.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\IDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\ISortingStrategy.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\ISortingStrategyFactory.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\AscendingSupportSortingStrategy.cs" />
@@ -75,10 +89,16 @@
     <Compile Include="GRMAlgorithm\_Impl\GARMProcedure.cs" />
     <Compile Include="GRMAlgorithm\_Impl\GARMPropertyProcedure.cs" />
     <Compile Include="GRMAlgorithm\Entities\Generator.cs" />
-    <Compile Include="GRMAlgorithm\_Impl\ResultBuilder.cs" />
+    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\DecisionGeneratorsCollectorBase.cs" />
     <Compile Include="GRMAlgorithm\_Impl\TreeBuilder.cs" />
     <Compile Include="GRMFacade.cs" />
-    <Compile Include="GRMAlgorithm\Entities\GRMResult.cs" />
+    <Compile Include="GRMResult.cs" />
+    <Compile Include="ProgressTracking\ProgressTrackerContainer.cs" />
+    <Compile Include="ProgressTracking\Entities\SubstepInfo.cs" />
+    <Compile Include="ProgressTracking\Entities\TaskInfo.cs" />
+    <Compile Include="ProgressTracking\ProgressTrackers\TaskProgressTracker.cs" />
+    <Compile Include="ProgressTracking\TrackingLevel.cs" />
+    <Compile Include="ProgressTracking\_Impl\ProgressTrackerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

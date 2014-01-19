@@ -2,9 +2,9 @@
 {
     public enum SortingStrategyType
     {
-        Lexicographical = 0,
-        ReverseLexicographical,
-        DescendingSupport,
-        AscendingSupport
+        DescendingSupport = 0,
+        AscendingSupport,
+        Lexicographical,
+        ReverseLexicographical
     }
 }

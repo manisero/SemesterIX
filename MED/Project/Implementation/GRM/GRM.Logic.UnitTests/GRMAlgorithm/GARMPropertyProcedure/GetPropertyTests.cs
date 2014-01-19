@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.ProgressTracking;
+using GRM.Logic.ProgressTracking.ProgressTrackers;
 using Xunit;
 
 namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
@@ -8,6 +10,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
     {
         private GARMPropertyType Execute(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
         {
+            ProgressTrackerContainer.CurrentProgressTracker = new EmptyProgressTracker();
+
             return new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure(null).GetProperty(leftChildTransactionIds, rightChildTransactionIds);
         }
 

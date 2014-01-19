@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using GRM.Logic;
-using GRM.Logic.DataSetProcessing;
-using GRM.Logic.GRMAlgorithm.Entities;
-using GRM.Logic.GRMAlgorithm.ItemsSorting;
-using GRM.Logic.GRMAlgorithm.TransactionIDsStorage;
+using GRM.Logic.ProgressTracking;
+using GRM.Logic.ProgressTracking._Impl;
+using GRM.Presentation.ResultWriting;
+using NDesk.Options;
 
 namespace GRM.Presentation
 {
@@ -12,91 +12,122 @@ namespace GRM.Presentation
     {
         static void Main(string[] args)
         {
-            int minimumSupport;
-            SortingStrategyType sortingStrategy;
-            TransactionIDsStorageStrategyType transactionIdsStorageStrategy;
+            bool shouldTerminate;
+            var options = ReadArgs(args, out shouldTerminate);
 
-            if (args.Length < 2 || !int.TryParse(args[1], out minimumSupport) || !TryGetSortingStrategy(args, out sortingStrategy) || !TryGetTransactionIDsStorageStrategy(args, out transactionIdsStorageStrategy))
+            if (shouldTerminate)
             {
-                Console.WriteLine("Usage:");
-
-                var applicationPath = Environment.GetCommandLineArgs()[0];
-                Console.WriteLine("{0} <data file path> <minimum support [integer]> <sorting strategy [0-3]> <transaction IDs storage strategy [TIDSets|DiffSets]>", Path.GetFileName(applicationPath));
                 return;
             }
 
-            var dataFilePath = args[0];
+            PrintGRMParameters(options);
 
-            var progressInfo = new ProgressInfo(step => Console.WriteLine(step),
-                                                (step, duration) => Console.WriteLine("Lasted {0}\n", duration));
+            ProgressTrackerContainer.CurrentProgressTracker = new ProgressTrackerFactory().Create(options.TrackingLevel);
 
-            Console.WriteLine("Executing GRM for file '{0}' with minimum support = {1} and sorting strategy = '{2}'", dataFilePath, minimumSupport, sortingStrategy);
+            var dataSetStream = new FileStream(options.DataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var result = new GRMFacade(options.SortingStrategy, options.TransactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, options.DataFileContainsHeaders, options.DecisionAttributeIndex, options.MinimumSupport.Value);
+
+            Console.WriteLine("GRM execution finished");
+            PrintPerformanceInfo();
             Console.WriteLine();
 
-            var dataSetStream = new FileStream(dataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var result = new GRMFacade(sortingStrategy, transactionIdsStorageStrategy).ExecuteGRM(dataSetStream, minimumSupport, progressInfo);
-            Console.WriteLine("GRM execution finished. Lasted {0}", progressInfo.GetOverallTaskDuration());
-
-            var outputFilePath = WriteGRMResult(result, dataFilePath);
-            Console.WriteLine("Result saved to {0}", outputFilePath);
+            WriteGRMResult(result, options.DataFilePath);
         }
 
-        private static bool TryGetSortingStrategy(string[] args, out SortingStrategyType result)
+        private static Options ReadArgs(string[] args, out bool shouldTerminate)
         {
-            if (args.Length < 3)
-            {
-                result = 0;
-                return true;
-            }
+            var options = new Options();
 
-            int strategyType;
-
-            if (int.TryParse(args[2], out strategyType))
-            {
-                var possibleValues = Enum.GetValues(typeof(SortingStrategyType));
-
-                if (strategyType >= 0 && strategyType < possibleValues.Length)
-                {
-                    result = (SortingStrategyType)strategyType;
-                    return true;
-                }
-            }
-
-            result = 0;
-            return false;
-        }
-
-        private static bool TryGetTransactionIDsStorageStrategy(string[] args, out TransactionIDsStorageStrategyType result)
-        {
-            if (args.Length < 4)
-            {
-                result = 0;
-                return true;
-            }
+            var argsParser = new ArgsParser();
+            var optionSet = argsParser.BuildOptionSet(options);
 
             try
             {
-                result = (TransactionIDsStorageStrategyType)Enum.Parse(typeof(TransactionIDsStorageStrategyType), args[3], true);
-                return true;
+                argsParser.ParseArgs(args, optionSet, options);
             }
-            catch
+            catch (OptionException e)
             {
-                // Do notning, return false eventually
+                Console.WriteLine(e);
+                Console.WriteLine();
+
+                argsParser.PrintParameters(optionSet);
+
+                shouldTerminate = true;
+                return null;
             }
-            
-            result = 0;
-            return false;
+
+            if (options.HelpRequested)
+            {
+                argsParser.PrintParameters(optionSet);
+
+                shouldTerminate = true;
+                return null;
+            }
+
+            shouldTerminate = false;
+            return options;
         }
 
-        private static string WriteGRMResult(GRMResult result, string dataFilePath)
+        private static void PrintGRMParameters(Options options)
+        {
+            Console.WriteLine("Executing GRM for file '{0}'", options.DataFilePath);
+            Console.WriteLine("The file is{0}expected to contain attribute names", options.DataFileContainsHeaders ? " " : " not ");
+            Console.WriteLine("Decision attribute: {0}", options.DecisionAttributeIndex.HasValue ? (options.DecisionAttributeIndex + 1).ToString() : "last");
+            Console.WriteLine("Minimum support: {0}", options.MinimumSupport);
+            Console.WriteLine("Sorting strategy: '{0}'", options.SortingStrategy);
+            Console.WriteLine("Transaction IDs storage strategy: '{0}'", options.TransactionIdsStorageStrategy);
+            Console.WriteLine();
+        }
+
+        private static void PrintPerformanceInfo()
+        {
+            var taskInfo = ProgressTrackerContainer.CurrentProgressTracker.GetInfo();
+
+            if (taskInfo == null)
+            {
+                return;
+            }
+
+            Console.WriteLine("Lasted {0}", taskInfo.Duration);
+
+            if (taskInfo.Steps != null)
+            {
+                Console.WriteLine("Steps details:");
+
+                var stepNumber = 1;
+
+                foreach (var step in taskInfo.Steps)
+                {
+                    Console.WriteLine("{0}. {1}: {2}", stepNumber, step.Name, step.Duration);
+
+                    foreach (var substep in step.Substeps)
+                    {
+                        Console.WriteLine("\t- {0}: {1} ({2} iterations)", substep.Name, substep.TotalDuration, substep.EntersCount);
+                    }
+
+                    stepNumber++;
+                }
+            }
+        }
+
+        private static void WriteGRMResult(GRMResult result, string dataFilePath)
         {
             var outputDirectoryName = Path.GetDirectoryName(dataFilePath);
-            var outputFileName = Path.GetFileNameWithoutExtension(dataFilePath) + "_rules.txt";
-            var outputFilePath = Path.Combine(outputDirectoryName, outputFileName);
+            var dataFilename = Path.GetFileNameWithoutExtension(dataFilePath);
 
-            new GRMResultWriter().WriteResult(result, outputFilePath);
+            var textOutputFileName = dataFilename + "_rules.txt";
+            var textOutputFilePath = Path.Combine(outputDirectoryName, textOutputFileName);
 
-            return outputFilePath;
+            new TextResultWriter().WriteResult(result, textOutputFilePath);
+
+            Console.WriteLine("Text result saved to {0}", textOutputFilePath);
+
+            var csvOutputFileName = dataFilename + "_rules.csv";
+            var csvOutputFilePath = Path.Combine(outputDirectoryName, csvOutputFileName);
+
+            new CSVResultWriter().WriteResult(result, csvOutputFilePath);
+
+            Console.WriteLine("CSV result saved to {0}", csvOutputFilePath);
         }
     }
 }
