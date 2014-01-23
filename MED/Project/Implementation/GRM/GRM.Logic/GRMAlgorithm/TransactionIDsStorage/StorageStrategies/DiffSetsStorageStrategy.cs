@@ -18,22 +18,23 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public void SetTreeRootDecisiveness(Node root, IDictionary<int, int> transactionDecisions)
         {
+            root.DecisionsTransactionIDs = transactionDecisions.GroupBy(x => x.Value)
+                                                               .ToDictionary(x => x.Key,
+                                                                             x => new Node.DecisionTransactionIDs
+                                                                                 {
+                                                                                     Support = x.Count(),
+                                                                                     TransactionIDs = (IList<int>)x.Select(pair => pair.Key).ToList()
+                                                                                 });
+
             var decisionId = transactionDecisions.Values.First();
 
             root.DecisionID = decisionId;
-            root.IsDecisive = transactionDecisions.Values.All(x => x == decisionId);
-            root.DecisionsTransactionIDs = transactionDecisions.GroupBy(x => x.Value)
-                                                              .ToDictionary(x => x.Key, x => (IList<int>)x.Select(pair => pair.Key).ToList());
+            root.IsDecisive = root.DecisionsTransactionIDs.Count == 1;
         }
 
         public IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
         {
             return allTransactionIds.Except(itemTransactionIds).ToList();
-        }
-
-        public int GetFirstLevelChildSupport(int itemTransactionIdsCount)
-        {
-            return itemTransactionIdsCount;
         }
 
         public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
@@ -55,6 +56,11 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             }
 
             return result;
+        }
+
+        public int GetFirstLevelChildSupport(int itemTransactionIdsCount)
+        {
+            return itemTransactionIdsCount;
         }
 
         public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)

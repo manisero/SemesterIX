@@ -29,14 +29,14 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIds;
         }
 
-        public int GetFirstLevelChildSupport(int itemTransactionIdsCount)
-        {
-            return itemTransactionIdsCount;
-        }
-
         public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
         {
             return null;
+        }
+
+        public int GetFirstLevelChildSupport(int itemTransactionIdsCount)
+        {
+            return itemTransactionIdsCount;
         }
 
         public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)
