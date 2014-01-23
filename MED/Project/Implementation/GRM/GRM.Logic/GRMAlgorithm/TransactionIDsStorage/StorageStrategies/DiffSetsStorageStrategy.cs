@@ -55,7 +55,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
                     }
                 }
 
-                if (support != 0)
+                if (support > 0)
                 {
                     result.Add(rootDecisionTransactionIDs.Key, new Node.DecisionTransactionIDs { Support = support, TransactionIDs = transactionIds });
                 }
@@ -79,23 +79,31 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return parentSupport - childTransactionIds.Count;
         }
 
-        public void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, int> transactionDecisions)
+        public void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> parentSiblingDecisionsTransactionIds, IDictionary<int, int> transactionDecisions)
         {
-            var decisionTransactionIds = new Dictionary<int, IList<int>>();
+            var decisionsTransactionIds = new Dictionary<int, Node.DecisionTransactionIDs>();
 
-            foreach (var parentTransactionIds in parentDecisionsTransactionIds)
+            foreach (var parentDecisionTransactionIds in parentDecisionsTransactionIds)
             {
-                var transactionIds = parentTransactionIds.Value.Except(child.TransactionIDs).ToList();
+                Node.DecisionTransactionIDs parentSiblingDecisionTransactionIds;
 
-                if (transactionIds.Count != 0)
+                if (!parentSiblingDecisionsTransactionIds.TryGetValue(parentDecisionTransactionIds.Key, out parentSiblingDecisionTransactionIds))
                 {
-                    decisionTransactionIds.Add(parentTransactionIds.Key, transactionIds);
+                    continue;
+                }
+
+                var transactionIds = parentSiblingDecisionTransactionIds.TransactionIDs.Except(parentDecisionTransactionIds.Value.TransactionIDs).ToList();
+                var support = parentDecisionTransactionIds.Value.Support - transactionIds.Count;
+
+                if (support > 0)
+                {
+                    decisionsTransactionIds.Add(parentDecisionTransactionIds.Key, new Node.DecisionTransactionIDs { Support = support, TransactionIDs = transactionIds });
                 }
             }
 
-            child.DecisionsTransactionIDs = decisionTransactionIds;
-            child.DecisionID = decisionTransactionIds.Keys.First();
-            child.IsDecisive = decisionTransactionIds.Count == 1;
+            child.DecisionsTransactionIDs = decisionsTransactionIds;
+            child.DecisionID = decisionsTransactionIds.Keys.First();
+            child.IsDecisive = decisionsTransactionIds.Count == 1;
         }
     }
 }
