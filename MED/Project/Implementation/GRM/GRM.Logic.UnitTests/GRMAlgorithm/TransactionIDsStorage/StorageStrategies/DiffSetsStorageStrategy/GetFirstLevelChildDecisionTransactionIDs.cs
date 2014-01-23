@@ -1,34 +1,38 @@
-﻿//using System.Collections.Generic;
-//using Xunit;
+﻿using System.Collections.Generic;
+using GRM.Logic.GRMAlgorithm.Entities;
+using Xunit;
 
-//namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
-//{
-//    public class GetFirstLevelChildDecisionTransactionIDs
-//    {
-//        private IDictionary<int, IList<int>> Execute(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
-//        {
-//            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().GetFirstLevelChildDecisionsTransactionIDs(itemTransactionIds, transactionDecisions);
-//        }
+namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
+{
+    public class GetFirstLevelChildDecisionTransactionIDs
+    {
+        private IDictionary<int, Node.DecisionTransactionIDs> Execute(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs)
+        {
+            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().GetFirstLevelChildDecisionsTransactionIDs(itemTransactionIds, rootDecisionsTransactionIDs);
+        }
 
-//        [Fact]
-//        public void returns_TransactionIDs_gruped_by_decision()
-//        {
-//            // Arrange
-//            var itemTransactionIds = new List<int> { 1, 3, 4 };
-//            var transactionDecisions = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 2 }, { 4, 1 } };
+        [Fact]
+        public void returns_TransactionIDs_gruped_by_decision()
+        {
+            // Arrange
+            var itemTransactionIds = new List<int> { 1, 3 };
+            var rootDecisionsTransactionIDs = new Dictionary<int, Node.DecisionTransactionIDs>
+                {
+                    { 1, new Node.DecisionTransactionIDs { Support = 2, TransactionIDs = new List<int> { 1, 4 } } },
+                    { 2, new Node.DecisionTransactionIDs { Support = 1, TransactionIDs = new List<int> { 2 } } }
+                };
 
-//            // Act
-//            var result = Execute(itemTransactionIds, transactionDecisions);
+            // Act
+            var result = Execute(itemTransactionIds, rootDecisionsTransactionIDs);
 
-//            // Assert
-//            Assert.NotNull(result);
-//            Assert.Equal(2, result.Count);
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
 
-//            Assert.True(result.ContainsKey(1));
-//            Assert.Equal(new List<int> { 1, 4 }, result[1]);
-            
-//            Assert.True(result.ContainsKey(2));
-//            Assert.Equal(new List<int> { 3 }, result[2]);
-//        }
-//    }
-//}
+            Assert.True(result.ContainsKey(1));
+            Assert.Equal(new List<int> { 4 }, result[1].TransactionIDs);
+
+            Assert.False(result.ContainsKey(2));
+        }
+    }
+}

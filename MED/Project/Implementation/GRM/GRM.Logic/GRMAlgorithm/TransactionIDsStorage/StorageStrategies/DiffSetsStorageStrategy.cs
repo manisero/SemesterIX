@@ -93,7 +93,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             }
 
             child.DecisionsTransactionIDs = decisionsTransactionIds;
-            child.DecisionID = decisionsTransactionIds.Keys.First();
+            child.DecisionID = decisionsTransactionIds.Keys.FirstOrDefault();
             child.IsDecisive = decisionsTransactionIds.Count == 1;
         }
     }
