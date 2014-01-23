@@ -31,7 +31,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     {
                         Generators = new List<Generator> { new Generator(new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID }) },
                         TransactionIDs = _transactionIdsStorageStrategy.GetFirstLevelChildTransactionIDs(item.TransactionIDs, transactionIds),
-                        DecisionsTransactionIDs = _transactionIdsStorageStrategy.GetFirstLevelChildDecisionsTransactionIDs(item.TransactionIDs, transactionDecisions),
+                        DecisionsTransactionIDs = _transactionIdsStorageStrategy.GetFirstLevelChildDecisionsTransactionIDs(item.TransactionIDs, root.DecisionsTransactionIDs),
                         IsDecisive = item.IsDecisive,
                         DecisionID = item.DecisionID,
                         Support = _transactionIdsStorageStrategy.GetFirstLevelChildSupport(item.TransactionIDs.Count)

@@ -37,21 +37,27 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return allTransactionIds.Except(itemTransactionIds).ToList();
         }
 
-        public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
+        public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs)
         {
-            var result = new Dictionary<int, IList<int>>();
+            var result = new Dictionary<int, Node.DecisionTransactionIDs>();
 
-            foreach (var transactionId in itemTransactionIds)
+            foreach (var rootDecisionTransactionIDs in rootDecisionsTransactionIDs)
             {
-                var decisionId = transactionDecisions[transactionId];
+                var support = rootDecisionTransactionIDs.Value.Support;
+                var transactionIds = new List<int>();
 
-                if (!result.ContainsKey(decisionId))
+                foreach (var transactionId in rootDecisionTransactionIDs.Value.TransactionIDs)
                 {
-                    result.Add(decisionId, new List<int> { transactionId });
+                    if (!itemTransactionIds.Contains(transactionId))
+                    {
+                        support--;
+                        transactionIds.Add(transactionId);
+                    }
                 }
-                else
+
+                if (support != 0)
                 {
-                    result[decisionId].Add(transactionId);
+                    result.Add(rootDecisionTransactionIDs.Key, new Node.DecisionTransactionIDs { Support = support, TransactionIDs = transactionIds });
                 }
             }
 
