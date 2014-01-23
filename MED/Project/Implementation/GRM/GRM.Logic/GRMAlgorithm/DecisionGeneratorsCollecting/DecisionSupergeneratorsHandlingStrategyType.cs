@@ -3,7 +3,7 @@
     public enum DecisionSupergeneratorsHandlingStrategyType
     {
         InvertedLists,
-        BruteForce,
-        BruteForceLINQ
+        BruteForceLINQ,
+        BruteForce
     }
 }
