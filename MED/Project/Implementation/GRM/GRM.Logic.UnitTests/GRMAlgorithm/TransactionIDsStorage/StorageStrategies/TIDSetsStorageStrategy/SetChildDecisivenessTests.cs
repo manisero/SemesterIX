@@ -52,7 +52,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             Execute(child, transactionDecisions);
 
             // Assert
-            Assert.Null(child.DecisionTransactionIDs);
+            Assert.Null(child.DecisionsTransactionIDs);
         }
     }
 }

@@ -27,15 +27,13 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     continue;
                 }
 
-                var childTransactionIds = _transactionIdsStorageStrategy.GetFirstLevelChildTransactionIDs(item.TransactionIDs, transactionIds);
-
                 var child = new Node
                     {
                         Generators = new List<Generator> { new Generator(new ItemID { AttributeID = item.AttributeID, ValueID = item.ValueID }) },
+                        TransactionIDs = _transactionIdsStorageStrategy.GetFirstLevelChildTransactionIDs(item.TransactionIDs, transactionIds),
+                        DecisionsTransactionIDs = _transactionIdsStorageStrategy.GetFirstLevelChildDecisionsTransactionIDs(item.TransactionIDs, transactionDecisions),
                         IsDecisive = item.IsDecisive,
                         DecisionID = item.DecisionID,
-                        DecisionTransactionIDs = _transactionIdsStorageStrategy.GetFirstLevelChildDecisionTransactionIDs(item.TransactionIDs, transactionDecisions),
-                        TransactionIDs = childTransactionIds,
                         Support = _transactionIdsStorageStrategy.GetFirstLevelChildSupport(item.TransactionIDs.Count)
                     };
 

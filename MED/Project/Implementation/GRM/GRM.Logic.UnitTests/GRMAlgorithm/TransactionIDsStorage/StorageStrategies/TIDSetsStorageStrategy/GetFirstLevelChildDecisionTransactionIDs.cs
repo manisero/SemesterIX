@@ -7,7 +7,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
     {
         private IDictionary<int, IList<int>> Execute(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
         {
-            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().GetFirstLevelChildDecisionTransactionIDs(itemTransactionIds, transactionDecisions);
+            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().GetFirstLevelChildDecisionsTransactionIDs(itemTransactionIds, transactionDecisions);
         }
 
         [Fact]

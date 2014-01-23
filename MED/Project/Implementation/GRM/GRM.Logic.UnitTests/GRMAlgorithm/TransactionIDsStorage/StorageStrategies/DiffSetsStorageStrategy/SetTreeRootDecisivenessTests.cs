@@ -52,14 +52,14 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             Execute(root, transactionDecisions);
 
             // Assert
-            Assert.NotNull(root.DecisionTransactionIDs);
-            Assert.Equal(2, root.DecisionTransactionIDs.Count);
+            Assert.NotNull(root.DecisionsTransactionIDs);
+            Assert.Equal(2, root.DecisionsTransactionIDs.Count);
 
-            Assert.True(root.DecisionTransactionIDs.ContainsKey(1));
-            Assert.Equal(new List<int> { 1, 3 }, root.DecisionTransactionIDs[1]);
+            Assert.True(root.DecisionsTransactionIDs.ContainsKey(1));
+            Assert.Equal(new List<int> { 1, 3 }, root.DecisionsTransactionIDs[1]);
 
-            Assert.True(root.DecisionTransactionIDs.ContainsKey(2));
-            Assert.Equal(new List<int> { 2 }, root.DecisionTransactionIDs[2]);
+            Assert.True(root.DecisionsTransactionIDs.ContainsKey(2));
+            Assert.Equal(new List<int> { 2 }, root.DecisionsTransactionIDs[2]);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
             root.DecisionID = decisionId;
             root.IsDecisive = transactionDecisions.Values.All(x => x == decisionId);
-            root.DecisionTransactionIDs = transactionDecisions.GroupBy(x => x.Value)
+            root.DecisionsTransactionIDs = transactionDecisions.GroupBy(x => x.Value)
                                                               .ToDictionary(x => x.Key, x => (IList<int>)x.Select(pair => pair.Key).ToList());
         }
 
@@ -36,7 +36,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIdsCount;
         }
 
-        public IDictionary<int, IList<int>> GetFirstLevelChildDecisionTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
+        public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions)
         {
             var result = new Dictionary<int, IList<int>>();
 
@@ -67,11 +67,11 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return parentSupport - childTransactionIds.Count;
         }
 
-        public void SetChildDecisiveness(Node child, IDictionary<int, IList<int>> parentDecisionTransactionIds, IDictionary<int, int> transactionDecisions)
+        public void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, int> transactionDecisions)
         {
             var decisionTransactionIds = new Dictionary<int, IList<int>>();
 
-            foreach (var parentTransactionIds in parentDecisionTransactionIds)
+            foreach (var parentTransactionIds in parentDecisionsTransactionIds)
             {
                 var transactionIds = parentTransactionIds.Value.Except(child.TransactionIDs).ToList();
 
@@ -81,7 +81,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
                 }
             }
 
-            child.DecisionTransactionIDs = decisionTransactionIds;
+            child.DecisionsTransactionIDs = decisionTransactionIds;
             child.DecisionID = decisionTransactionIds.Keys.First();
             child.IsDecisive = decisionTransactionIds.Count == 1;
         }
