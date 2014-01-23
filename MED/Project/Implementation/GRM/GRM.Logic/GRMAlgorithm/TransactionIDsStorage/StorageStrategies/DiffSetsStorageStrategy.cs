@@ -43,17 +43,8 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
             foreach (var rootDecisionTransactionIDs in rootDecisionsTransactionIDs)
             {
-                var transactionIds = rootDecisionTransactionIDs.Value.TransactionIDs.Except(itemTransactionIds).ToList(); //new List<int>();
+                var transactionIds = rootDecisionTransactionIDs.Value.TransactionIDs.Except(itemTransactionIds).ToList();
                 var support = rootDecisionTransactionIDs.Value.Support - transactionIds.Count;
-
-                //foreach (var transactionId in rootDecisionTransactionIDs.Value.TransactionIDs)
-                //{
-                //    if (!itemTransactionIds.Contains(transactionId))
-                //    {
-                //        support--;
-                //        transactionIds.Add(transactionId);
-                //    }
-                //}
 
                 if (support > 0)
                 {
