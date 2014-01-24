@@ -9,7 +9,7 @@ namespace SolovayStrassen.Logic
         {
             if (a.IsEven || b.IsEven)
             {
-                throw new ArgumentException("Jacobi is defined only for odd numbers");
+                throw new ArgumentException("Jacobi is defined for odd numbers only");
             }
 
             if (a >= b)
@@ -39,29 +39,30 @@ namespace SolovayStrassen.Logic
                 }
             }
 
-            // TODO:
             var e = GenerateE(a.ToByteArray());
+            var aDivE = a >> e;
+            var s = 1;
 
-            BigInteger a1 = a >> e;
-            int s = 1;
+            var bFirstByte = b.ToByteArray()[0];
+            var aDivEBytes = aDivE.ToByteArray();
 
-            if ((e & 0x1) != 0 && ((b.data[0] & 0x7) == 3 || (b.data[0] & 0x7) == 5))
+            if ((e & 0x1) != 0 && ((bFirstByte & 0x7) == 3 || (bFirstByte & 0x7) == 5))
             {
                 s = -1;
             }
 
-            if ((b.data[0] & 0x3) == 3 && (a1.data[0] & 0x3) == 3)
+            if ((bFirstByte & 0x3) == 3 && (aDivEBytes[0] & 0x3) == 3)
             {
                 s = -s;
             }
 
-            if (a1.dataLength == 1 && a1.data[0] == 1)
+            if (aDivEBytes.Length == 1 && aDivEBytes[0] == 1)
             {
                 return s;
             }
             else
             {
-                return (s * Jacobi(b % a1, a1));
+                return (s * Jacobi(b % aDivE, aDivE));
             }
         }
 
