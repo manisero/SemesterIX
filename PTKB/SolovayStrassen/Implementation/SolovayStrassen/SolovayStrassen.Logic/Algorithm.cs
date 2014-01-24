@@ -26,39 +26,16 @@ namespace SolovayStrassen.Logic
 
             // TODO:
             int bits = thisVal.bitCount();
-            BigInteger a = new BigInteger();
+            Random rand = new Random();
+
             BigInteger p_sub1 = thisVal - 1;
             BigInteger p_sub1_shift = p_sub1 >> 1;
 
-            Random rand = new Random();
-
             for (int round = 0; round < confidence; round++)
             {
-                bool done = false;
+                BigInteger a = GenerateA(bits, rand);
 
-                // generate a < n
-                while (!done)
-                {
-                    int testBits = 0;
-
-                    // make sure "a" has at least 2 bits
-                    while (testBits < 2)
-                    {
-                        testBits = (int)(rand.NextDouble() * bits);
-                    }
-
-                    a.genRandomBits(testBits, rand);
-
-                    int byteLen = a.dataLength;
-
-                    // make sure "a" is not 0
-                    if (byteLen > 1 || (byteLen == 1 && a.data[0] != 1))
-                    {
-                        done = true;
-                    }
-                }
-
-                // check whether a factor exists (fix for version 1.03)
+                // check whether a factor exists
                 BigInteger gcdTest = a.gcd(thisVal);
 
                 if (gcdTest.dataLength == 1 && gcdTest.data[0] != 1)
@@ -88,6 +65,35 @@ namespace SolovayStrassen.Logic
             }
 
             return true;
+        }
+
+        private BigInteger GenerateA(int bits, Random rand)
+        {
+            BigInteger a = new BigInteger();
+            bool done = false;
+
+            while (!done)
+            {
+                int testBits = 0;
+
+                // make sure "a" has at least 2 bits
+                while (testBits < 2)
+                {
+                    testBits = (int)(rand.NextDouble() * bits);
+                }
+
+                a.genRandomBits(testBits, rand);
+
+                int byteLen = a.dataLength;
+
+                // make sure "a" is not 0
+                if (byteLen > 1 || (byteLen == 1 && a.data[0] != 1))
+                {
+                    done = true;
+                }
+            }
+
+            return a;
         }
     }
 }
