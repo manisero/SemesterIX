@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.Numerics;
 using SolovayStrassen.Logic;
 
@@ -8,16 +8,59 @@ namespace SolovayStrassen.Console
     {
         static void Main(string[] args)
         {
-            var result = 0L;
+            BigInteger p;
+            int iterations;
 
-            for (int i = 0; i < 1000; i++)
+            if (!ParseArgs(args, out p, out iterations))
             {
-                var stopwatch2 = new Stopwatch();
-                stopwatch2.Start();
-                SolovayStrassenAlgorithm.Execute(new BigInteger(16769023L), 100);
-                stopwatch2.Stop();
-                result += stopwatch2.ElapsedMilliseconds;
+                System.Console.WriteLine("Error");
             }
+
+            System.Console.WriteLine("Executing Solovay-Strassen test");
+            System.Console.WriteLine("p = {0}", p);
+            System.Console.WriteLine("iterations: {0}", iterations);
+            System.Console.WriteLine();
+
+            var result = SolovayStrassenAlgorithm.Execute(p, iterations);
+
+            if (result)
+            {
+                System.Console.WriteLine("p is probably primal");
+            }
+            else
+            {
+                System.Console.WriteLine("p is not primal");
+            }
+        }
+
+        private static bool ParseArgs(string[] args, out BigInteger p, out int iterations)
+        {
+            if (args.Length != 2)
+            {
+                p = 0;
+                iterations = 0;
+                return false;
+            }
+
+            try
+            {
+                p = BigInteger.Parse(args[0]);
+            }
+            catch (Exception)
+            {
+                p = 0;
+                iterations = 0;
+                return false;
+            }
+
+            if (!int.TryParse(args[1], out iterations))
+            {
+                p = 0;
+                iterations = 0;
+                return false;
+            }
+
+            return true;
         }
     }
 }
