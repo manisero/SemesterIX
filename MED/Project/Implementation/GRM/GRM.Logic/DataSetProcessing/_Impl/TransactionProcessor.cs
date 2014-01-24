@@ -32,9 +32,9 @@ namespace GRM.Logic.DataSetProcessing._Impl
                     continue;
                 }
 
-                var item = items[i];
+                var item = items[i].Trim();
 
-                if (item.Trim().Length == 0)
+                if (item.Length == 0)
                 {
                     continue;
                 }

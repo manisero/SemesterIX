@@ -1,5 +1,4 @@
 ﻿using GRM.Logic.DataSetProcessing.Entities;
-using GRM.Logic.GRMAlgorithm.Entities;
 using Xunit;
 using System.Linq;
 

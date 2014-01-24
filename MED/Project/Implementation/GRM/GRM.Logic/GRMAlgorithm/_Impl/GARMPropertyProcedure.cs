@@ -114,7 +114,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                         Support = newChildSupport
                     };
 
-                _transactionIdsStorageStrategy.SetChildDecisiveness(newChild, leftChild.DecisionTransactionIDs, transactionDecisions);
+                _transactionIdsStorageStrategy.SetChildDecisiveness(newChild, leftChild.DecisionsTransactionIDs, rightChild.DecisionsTransactionIDs, transactionDecisions);
 
                 leftChild.Children.Add(newChild);
 

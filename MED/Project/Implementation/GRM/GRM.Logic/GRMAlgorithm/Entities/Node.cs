@@ -5,17 +5,24 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 {
     public class Node
     {
+        public class DecisionTransactionIDs
+        {
+            public int Support { get; set; }
+
+            public IList<int> TransactionIDs { get; set; }
+        }
+
         public IList<Generator> Generators;
 
         public IList<int> TransactionIDs { get; set; }
+
+        public IDictionary<int, DecisionTransactionIDs> DecisionsTransactionIDs { get; set; }
 
         public int Support { get; set; }
 
         public bool IsDecisive { get; set; }
 
         public int DecisionID { get; set; }
-
-        public IDictionary<int, IList<int>> DecisionTransactionIDs { get; set; }
 
         public IList<Node> Children { get; set; }
 

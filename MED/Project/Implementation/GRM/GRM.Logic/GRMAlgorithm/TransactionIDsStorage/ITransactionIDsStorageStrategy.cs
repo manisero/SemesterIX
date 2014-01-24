@@ -13,14 +13,14 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
 
         IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds);
 
+        IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs);
+
         int GetFirstLevelChildSupport(int itemTransactionIdsCount);
 
-        IDictionary<int, IList<int>> GetFirstLevelChildDecisionTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, int> transactionDecisions);
-        
         IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds);
 
         int GetChildSupport(int parentSupport, IList<int> childTransactionIds);
 
-        void SetChildDecisiveness(Node child, IDictionary<int, IList<int>> parentDecisionTransactionIds, IDictionary<int, int> transactionDecisions);
+        void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> parentSiblingDecisionsTransactionIds, IDictionary<int, int> transactionDecisions);
     }
 }

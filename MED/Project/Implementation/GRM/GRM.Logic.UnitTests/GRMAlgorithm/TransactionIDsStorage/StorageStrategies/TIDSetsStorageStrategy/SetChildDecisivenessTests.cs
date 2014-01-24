@@ -8,7 +8,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
     {
         private void Execute(Node child, IDictionary<int, int> transactionDecisions)
         {
-            new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().SetChildDecisiveness(child, null, transactionDecisions);
+            new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().SetChildDecisiveness(child, null, null, transactionDecisions);
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             Execute(child, transactionDecisions);
 
             // Assert
-            Assert.Null(child.DecisionTransactionIDs);
+            Assert.Null(child.DecisionsTransactionIDs);
         }
     }
 }
