@@ -19,7 +19,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
         private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
             // Arrange
-            ProgressTrackerContainer.CurrentProgressTracker = new SubstepProgressTracker();
+            ProgressTrackerContainer.CurrentProgressTracker = new TaskProgressTracker();
 
             // Act
             GRMResult result;
