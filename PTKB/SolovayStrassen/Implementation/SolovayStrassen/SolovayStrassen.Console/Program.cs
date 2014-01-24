@@ -13,7 +13,10 @@ namespace SolovayStrassen.Console
 
             if (!ParseArgs(args, out p, out iterations))
             {
-                System.Console.WriteLine("Error");
+                System.Console.WriteLine("Usage:");
+                System.Console.WriteLine("{0} <p [integer]> <iterations [integer]>", Environment.GetCommandLineArgs()[0]);
+
+                return;
             }
 
             System.Console.WriteLine("Executing Solovay-Strassen test");
