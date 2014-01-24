@@ -3,9 +3,9 @@ using System.Numerics;
 
 namespace SolovayStrassen.Logic
 {
-    public class Algorithm
+    public static class SolovayStrassenAlgorithm
     {
-        public bool SolovayStrassenTest(BigInteger p, int confidence)
+        public static bool Execute(BigInteger p, int iterations)
         {
             // Check for small numbers
             if (p.IsZero || p.IsOne)
@@ -30,7 +30,7 @@ namespace SolovayStrassen.Logic
             var pSub1 = p - 1;
             var pSub1Div2 = pSub1 >> 1;
 
-            for (int round = 0; round < confidence; round++)
+            for (int i = 0; i < iterations; i++)
             {
                 var a = GenerateA(p, numberBytesCount, random);
 
@@ -51,7 +51,7 @@ namespace SolovayStrassen.Logic
                 }
 
                 // Calculate Jacobi symbol
-                var jacobi = JacobiAlgorithm.Jacobi(a, p);
+                var jacobi = JacobiAlgorithm.Execute(a, p);
 
                 //Console.WriteLine("a = " + a.ToString(10) + " b = " + thisVal.ToString(10));
                 //Console.WriteLine("expResult = " + expResult.ToString(10) + " Jacob = " + jacob.ToString(10));
@@ -65,7 +65,7 @@ namespace SolovayStrassen.Logic
             return true;
         }
 
-        private BigInteger GenerateA(BigInteger number, int numberBytesCount, Random random)
+        private static BigInteger GenerateA(BigInteger number, int numberBytesCount, Random random)
         {
             BigInteger a;
 

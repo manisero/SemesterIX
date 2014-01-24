@@ -3,9 +3,9 @@ using System.Numerics;
 
 namespace SolovayStrassen.Logic
 {
-    public class JacobiAlgorithm
+    public static class JacobiAlgorithm
     {
-        public static int Jacobi(BigInteger a, BigInteger b)
+        public static int Execute(BigInteger a, BigInteger b)
         {
             if (a.IsEven || b.IsEven)
             {
@@ -31,11 +31,11 @@ namespace SolovayStrassen.Logic
             {
                 if (((b - 1) >> 1).IsEven)
                 {
-                    return Jacobi(-a, b);
+                    return Execute(-a, b);
                 }
                 else
                 {
-                    return -Jacobi(-a, b);
+                    return -Execute(-a, b);
                 }
             }
 
@@ -62,7 +62,7 @@ namespace SolovayStrassen.Logic
             }
             else
             {
-                return (s * Jacobi(b % aDivE, aDivE));
+                return (s * Execute(b % aDivE, aDivE));
             }
         }
 
