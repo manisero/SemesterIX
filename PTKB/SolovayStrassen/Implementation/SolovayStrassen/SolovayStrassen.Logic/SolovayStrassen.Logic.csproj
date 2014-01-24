@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SolovayStrassenAlgorithm.cs" />
-    <Compile Include="CodeProject\BigInteger.cs" />
     <Compile Include="JacobiAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
