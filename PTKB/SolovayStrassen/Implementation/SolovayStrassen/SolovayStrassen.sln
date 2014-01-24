@@ -1,8 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolovayStrassen.Logic", "SolovayStrassen.Logic\SolovayStrassen.Logic.csproj", "{94235523-5638-4FF9-8DF0-BEA8C5B6D7BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolovayStrassen.Console", "SolovayStrassen.Console\SolovayStrassen.Console.csproj", "{65DF3929-CCD4-48CC-AA58-F3514E2F95E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Logic", "1. Logic", "{D60178AC-9CDD-4C04-8E96-2BED4D862EAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Presentation", "2. Presentation", "{03AB1257-AAE0-47E3-8EB4-0ED2ECFB5BF6}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94235523-5638-4FF9-8DF0-BEA8C5B6D7BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94235523-5638-4FF9-8DF0-BEA8C5B6D7BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94235523-5638-4FF9-8DF0-BEA8C5B6D7BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94235523-5638-4FF9-8DF0-BEA8C5B6D7BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65DF3929-CCD4-48CC-AA58-F3514E2F95E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65DF3929-CCD4-48CC-AA58-F3514E2F95E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65DF3929-CCD4-48CC-AA58-F3514E2F95E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65DF3929-CCD4-48CC-AA58-F3514E2F95E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94235523-5638-4FF9-8DF0-BEA8C5B6D7BA} = {D60178AC-9CDD-4C04-8E96-2BED4D862EAE}
+		{65DF3929-CCD4-48CC-AA58-F3514E2F95E7} = {03AB1257-AAE0-47E3-8EB4-0ED2ECFB5BF6}
 	EndGlobalSection
 EndGlobal
