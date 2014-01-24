@@ -24,16 +24,17 @@ namespace SolovayStrassen.Logic
                 return false;
             }
 
-            // TODO:
-            int bits = thisVal.bitCount();
-            Random rand = new Random();
+            // Perform primality test
+            var numberBytesCount = thisVal.ToByteArray().Length;
+            var random = new Random();
 
+            // TODO:
             BigInteger p_sub1 = thisVal - 1;
             BigInteger p_sub1_shift = p_sub1 >> 1;
 
             for (int round = 0; round < confidence; round++)
             {
-                BigInteger a = GenerateA(bits, rand);
+                BigInteger a = GenerateA(thisVal, numberBytesCount, random);
 
                 // check whether a factor exists
                 BigInteger gcdTest = a.gcd(thisVal);
@@ -67,31 +68,17 @@ namespace SolovayStrassen.Logic
             return true;
         }
 
-        private BigInteger GenerateA(int bits, Random rand)
+        private BigInteger GenerateA(BigInteger number, int numberBytesCount, Random random)
         {
-            BigInteger a = new BigInteger();
-            bool done = false;
+            BigInteger a;
 
-            while (!done)
+            do
             {
-                int testBits = 0;
+                var bytes = new byte[numberBytesCount];
+                random.NextBytes(bytes);
 
-                // make sure "a" has at least 2 bits
-                while (testBits < 2)
-                {
-                    testBits = (int)(rand.NextDouble() * bits);
-                }
-
-                a.genRandomBits(testBits, rand);
-
-                int byteLen = a.dataLength;
-
-                // make sure "a" is not 0
-                if (byteLen > 1 || (byteLen == 1 && a.data[0] != 1))
-                {
-                    done = true;
-                }
-            }
+                a = new BigInteger(bytes);
+            } while (a >= number);
 
             return a;
         }
