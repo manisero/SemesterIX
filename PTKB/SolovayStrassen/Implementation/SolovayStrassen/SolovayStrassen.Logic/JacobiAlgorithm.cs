@@ -29,8 +29,7 @@ namespace SolovayStrassen.Logic
 
             if (a < 0)
             {
-                //if( (((b-1) >> 1).data[0] & 0x1) == 0)
-                if ((((b - 1).data[0]) & 0x2) == 0)
+                if (((b - 1) >> 1).IsEven)
                 {
                     return Jacobi(-a, b);
                 }
@@ -40,6 +39,7 @@ namespace SolovayStrassen.Logic
                 }
             }
 
+            // TODO:
             int e = 0;
 
             for (int index = 0; index < a.dataLength; index++)
