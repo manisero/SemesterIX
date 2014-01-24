@@ -40,25 +40,7 @@ namespace SolovayStrassen.Logic
             }
 
             // TODO:
-            int e = 0;
-
-            for (int index = 0; index < a.dataLength; index++)
-            {
-                uint mask = 0x01;
-
-                for (int i = 0; i < 32; i++)
-                {
-                    if ((a.data[index] & mask) != 0)
-                    {
-                        // to break the outer loop
-                        index = a.dataLength;
-                        break;
-                    }
-
-                    mask <<= 1;
-                    e++;
-                }
-            }
+            var e = GenerateE(a.ToByteArray());
 
             BigInteger a1 = a >> e;
             int s = 1;
@@ -81,6 +63,29 @@ namespace SolovayStrassen.Logic
             {
                 return (s * Jacobi(b % a1, a1));
             }
+        }
+
+        private static int GenerateE(byte[] aBytes)
+        {
+            var e = 0;
+
+            for (var index = 0; index < aBytes.Length; index++)
+            {
+                uint mask = 0x01;
+
+                for (int i = 0; i < 32; i++)
+                {
+                    if ((aBytes[index] & mask) != 0)
+                    {
+                        return e;
+                    }
+
+                    mask <<= 1;
+                    e++;
+                }
+            }
+
+            return e;
         }
     }
 }
