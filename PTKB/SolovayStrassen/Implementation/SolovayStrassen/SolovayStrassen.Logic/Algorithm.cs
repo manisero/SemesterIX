@@ -36,13 +36,16 @@ namespace SolovayStrassen.Logic
             {
                 bool done = false;
 
-                while (!done)		// generate a < n
+                // generate a < n
+                while (!done)
                 {
                     int testBits = 0;
 
                     // make sure "a" has at least 2 bits
                     while (testBits < 2)
+                    {
                         testBits = (int)(rand.NextDouble() * bits);
+                    }
 
                     a.genRandomBits(testBits, rand);
 
@@ -50,19 +53,26 @@ namespace SolovayStrassen.Logic
 
                     // make sure "a" is not 0
                     if (byteLen > 1 || (byteLen == 1 && a.data[0] != 1))
+                    {
                         done = true;
+                    }
                 }
 
                 // check whether a factor exists (fix for version 1.03)
                 BigInteger gcdTest = a.gcd(thisVal);
+
                 if (gcdTest.dataLength == 1 && gcdTest.data[0] != 1)
+                {
                     return false;
+                }
 
                 // calculate a^((p-1)/2) mod p
-
                 BigInteger expResult = a.modPow(p_sub1_shift, thisVal);
+
                 if (expResult == p_sub1)
+                {
                     expResult = -1;
+                }
 
                 // calculate Jacobi symbol
                 BigInteger jacob = Jacobi(a, thisVal);
@@ -72,7 +82,9 @@ namespace SolovayStrassen.Logic
 
                 // if they are different then it is not prime
                 if (expResult != jacob)
+                {
                     return false;
+                }
             }
 
             return true;
