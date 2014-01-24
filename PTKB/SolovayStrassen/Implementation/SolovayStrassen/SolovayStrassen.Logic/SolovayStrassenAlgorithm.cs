@@ -75,7 +75,7 @@ namespace SolovayStrassen.Logic
                 random.NextBytes(bytes);
 
                 a = new BigInteger(bytes);
-            } while (a >= number);
+            } while (a.Sign < 1 ||  a.IsOne || a >= number);
 
             return a;
         }
