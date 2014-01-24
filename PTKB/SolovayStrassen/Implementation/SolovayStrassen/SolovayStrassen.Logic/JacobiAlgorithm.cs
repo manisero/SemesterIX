@@ -74,7 +74,7 @@ namespace SolovayStrassen.Logic
             {
                 uint mask = 0x01;
 
-                for (int i = 0; i < 32; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     if ((aBytes[index] & mask) != 0)
                     {
