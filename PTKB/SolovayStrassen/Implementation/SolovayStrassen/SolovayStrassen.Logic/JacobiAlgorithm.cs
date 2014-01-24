@@ -7,7 +7,6 @@ namespace SolovayStrassen.Logic
     {
         public static int Jacobi(BigInteger a, BigInteger b)
         {
-            // Jacobi defined only for odd integers
             if (a.IsEven || b.IsEven)
             {
                 throw new ArgumentException("Jacobi is defined only for odd numbers");
@@ -18,14 +17,14 @@ namespace SolovayStrassen.Logic
                 a %= b;
             }
 
-            if (a.dataLength == 1 && a.data[0] == 0)
+            if (a.IsZero)
             {
-                return 0; // a == 0
+                return 0;
             }
 
-            if (a.dataLength == 1 && a.data[0] == 1)
+            if (a.IsOne)
             {
-                return 1; // a == 1
+                return 1;
             }
 
             if (a < 0)
