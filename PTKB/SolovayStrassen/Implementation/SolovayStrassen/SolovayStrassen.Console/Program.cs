@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Diagnostics;
+using System.Numerics;
 using SolovayStrassen.Logic;
 
 namespace SolovayStrassen.Console
@@ -7,13 +8,23 @@ namespace SolovayStrassen.Console
     {
         static void Main(string[] args)
         {
-            var codeProjectJacobi = Logic.CodeProject.BigInteger.Jacobi(256, 2079);
+            long result1 = 0;
+            long result2 = 0;
 
-            var myJacobi = JacobiAlgorithm.Execute(256, 2079);
+            for (int i = 0; i < 1000; i++)
+            {
+                var stopwatch1 = new Stopwatch();
+                stopwatch1.Start();
+                var codeProjectResult = new Logic.CodeProject.BigInteger(16769023L).SolovayStrassenTest(100);
+                stopwatch1.Stop();
+                result1 += stopwatch1.ElapsedMilliseconds;
 
-            var codeProjectResult = new Logic.CodeProject.BigInteger(16769023L).SolovayStrassenTest(100);
-
-            var myResult = SolovayStrassenAlgorithm.Execute(new BigInteger(16769023L), 100);
+                var stopwatch2 = new Stopwatch();
+                stopwatch2.Start();
+                var myResult = SolovayStrassenAlgorithm.Execute(new BigInteger(16769023L), 100);
+                stopwatch2.Stop();
+                result2 += stopwatch2.ElapsedMilliseconds;
+            }
         }
     }
 }
