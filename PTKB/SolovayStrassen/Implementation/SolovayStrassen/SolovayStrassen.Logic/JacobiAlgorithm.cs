@@ -7,10 +7,9 @@ namespace SolovayStrassen.Logic
     {
         public static int Jacobi(BigInteger a, BigInteger b)
         {
-            // Jacobi defined only for odd integers
-            if ((b.data[0] & 0x1) == 0)
+            if (a.IsEven || b.IsEven)
             {
-                throw (new ArgumentException("Jacobi is defined only for odd numbers."));
+                throw new ArgumentException("Jacobi is defined for odd numbers only");
             }
 
             if (a >= b)
@@ -18,20 +17,19 @@ namespace SolovayStrassen.Logic
                 a %= b;
             }
 
-            if (a.dataLength == 1 && a.data[0] == 0)
+            if (a.IsZero)
             {
-                return 0; // a == 0
+                return 0;
             }
 
-            if (a.dataLength == 1 && a.data[0] == 1)
+            if (a.IsOne)
             {
-                return 1; // a == 1
+                return 1;
             }
 
             if (a < 0)
             {
-                //if( (((b-1) >> 1).data[0] & 0x1) == 0)
-                if ((((b - 1).data[0]) & 0x2) == 0)
+                if (((b - 1) >> 1).IsEven)
                 {
                     return Jacobi(-a, b);
                 }
@@ -41,19 +39,46 @@ namespace SolovayStrassen.Logic
                 }
             }
 
-            int e = 0;
+            var e = GenerateE(a.ToByteArray());
+            var aDivE = a >> e;
+            var s = 1;
 
-            for (int index = 0; index < a.dataLength; index++)
+            var bFirstByte = b.ToByteArray()[0];
+            var aDivEBytes = aDivE.ToByteArray();
+
+            if ((e & 0x1) != 0 && ((bFirstByte & 0x7) == 3 || (bFirstByte & 0x7) == 5))
+            {
+                s = -1;
+            }
+
+            if ((bFirstByte & 0x3) == 3 && (aDivEBytes[0] & 0x3) == 3)
+            {
+                s = -s;
+            }
+
+            if (aDivEBytes.Length == 1 && aDivEBytes[0] == 1)
+            {
+                return s;
+            }
+            else
+            {
+                return (s * Jacobi(b % aDivE, aDivE));
+            }
+        }
+
+        private static int GenerateE(byte[] aBytes)
+        {
+            var e = 0;
+
+            for (var index = 0; index < aBytes.Length; index++)
             {
                 uint mask = 0x01;
 
                 for (int i = 0; i < 32; i++)
                 {
-                    if ((a.data[index] & mask) != 0)
+                    if ((aBytes[index] & mask) != 0)
                     {
-                        // to break the outer loop
-                        index = a.dataLength;
-                        break;
+                        return e;
                     }
 
                     mask <<= 1;
@@ -61,27 +86,7 @@ namespace SolovayStrassen.Logic
                 }
             }
 
-            BigInteger a1 = a >> e;
-            int s = 1;
-
-            if ((e & 0x1) != 0 && ((b.data[0] & 0x7) == 3 || (b.data[0] & 0x7) == 5))
-            {
-                s = -1;
-            }
-
-            if ((b.data[0] & 0x3) == 3 && (a1.data[0] & 0x3) == 3)
-            {
-                s = -s;
-            }
-
-            if (a1.dataLength == 1 && a1.data[0] == 1)
-            {
-                return s;
-            }
-            else
-            {
-                return (s * Jacobi(b % a1, a1));
-            }
+            return e;
         }
     }
 }
