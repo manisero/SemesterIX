@@ -8,9 +8,9 @@ namespace SolovayStrassen.Logic
         public static int Jacobi(BigInteger a, BigInteger b)
         {
             // Jacobi defined only for odd integers
-            if ((b.data[0] & 0x1) == 0)
+            if (a.IsEven || b.IsEven)
             {
-                throw (new ArgumentException("Jacobi is defined only for odd numbers."));
+                throw new ArgumentException("Jacobi is defined only for odd numbers");
             }
 
             if (a >= b)
