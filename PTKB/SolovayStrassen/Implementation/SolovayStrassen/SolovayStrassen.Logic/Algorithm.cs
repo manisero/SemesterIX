@@ -5,55 +5,54 @@ namespace SolovayStrassen.Logic
 {
     public class Algorithm
     {
-        public bool SolovayStrassenTest(BigInteger number, int confidence)
+        public bool SolovayStrassenTest(BigInteger p, int confidence)
         {
             // Check for small numbers
-            if (number.IsZero || number.IsOne)
+            if (p.IsZero || p.IsOne)
             {
                 return false;
             }
 
-            if (number == 2 || number == 3)
+            if (p == 2 || p == 3)
             {
                 return true;
             }
 
             // Check for even numbers
-            if (number.IsEven)
+            if (p.IsEven)
             {
                 return false;
             }
 
             // Perform primality test
-            var numberBytesCount = number.ToByteArray().Length;
+            var numberBytesCount = p.ToByteArray().Length;
             var random = new Random();
-
-            // TODO:
-            BigInteger p_sub1 = number - 1;
-            BigInteger p_sub1_shift = p_sub1 >> 1;
+            var pSub1 = p - 1;
+            var pSub1Div2 = pSub1 >> 1;
 
             for (int round = 0; round < confidence; round++)
             {
-                var a = GenerateA(number, numberBytesCount, random);
+                var a = GenerateA(p, numberBytesCount, random);
 
                 // Check whether a factor exists
-                var gcd = BigInteger.GreatestCommonDivisor(number, a);
+                var gcd = BigInteger.GreatestCommonDivisor(p, a);
 
                 if (!gcd.IsOne)
                 {
                     return false;
                 }
 
-                // calculate a^((p-1)/2) mod p
-                BigInteger expResult = a.modPow(p_sub1_shift, number);
+                // Calculate a^((p-1)/2) mod p
+                var expResult = BigInteger.ModPow(a, pSub1Div2, p);
 
-                if (expResult == p_sub1)
+                if (expResult == pSub1)
                 {
-                    expResult = -1;
+                    expResult = BigInteger.MinusOne;
                 }
 
+                // TODO:
                 // calculate Jacobi symbol
-                BigInteger jacob = Jacobi(a, number);
+                BigInteger jacob = Jacobi(a, p);
 
                 //Console.WriteLine("a = " + a.ToString(10) + " b = " + thisVal.ToString(10));
                 //Console.WriteLine("expResult = " + expResult.ToString(10) + " Jacob = " + jacob.ToString(10));
