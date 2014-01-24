@@ -43,22 +43,20 @@ namespace SolovayStrassen.Logic
                 }
 
                 // Calculate a^((p-1)/2) mod p
-                var expResult = BigInteger.ModPow(a, pSub1Div2, p);
+                var exponentResult = BigInteger.ModPow(a, pSub1Div2, p);
 
-                if (expResult == pSub1)
+                if (exponentResult == pSub1)
                 {
-                    expResult = BigInteger.MinusOne;
+                    exponentResult = BigInteger.MinusOne;
                 }
 
-                // TODO:
-                // calculate Jacobi symbol
-                BigInteger jacob = Jacobi(a, p);
+                // Calculate Jacobi symbol
+                var jacobi = JacobiAlgorithm.Jacobi(a, p);
 
                 //Console.WriteLine("a = " + a.ToString(10) + " b = " + thisVal.ToString(10));
                 //Console.WriteLine("expResult = " + expResult.ToString(10) + " Jacob = " + jacob.ToString(10));
 
-                // if they are different then it is not prime
-                if (expResult != jacob)
+                if (exponentResult != jacobi)
                 {
                     return false;
                 }
