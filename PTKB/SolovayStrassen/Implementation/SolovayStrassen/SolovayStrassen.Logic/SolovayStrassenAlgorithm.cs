@@ -53,9 +53,6 @@ namespace SolovayStrassen.Logic
                 // Calculate Jacobi symbol
                 var jacobi = JacobiAlgorithm.Execute(a, p);
 
-                //Console.WriteLine("a = " + a.ToString(10) + " b = " + thisVal.ToString(10));
-                //Console.WriteLine("expResult = " + expResult.ToString(10) + " Jacob = " + jacob.ToString(10));
-
                 if (exponentResult != jacobi)
                 {
                     return false;
