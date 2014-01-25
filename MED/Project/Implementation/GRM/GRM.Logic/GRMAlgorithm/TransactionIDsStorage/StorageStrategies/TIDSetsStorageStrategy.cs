@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.Extensions;
 
 namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 {
@@ -41,34 +42,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds)
         {
-            var result = new List<int>();
-
-            var leftIndex = 0;
-            var rightIndex = 0;
-
-            while (leftIndex < parentTransactionIds.Count && rightIndex < parentSiblingTransactionIds.Count)
-            {
-                var leftChildTransactionId = parentTransactionIds[leftIndex];
-                var rightChildTransactionId = parentSiblingTransactionIds[rightIndex];
-
-                if (leftChildTransactionId > rightChildTransactionId)
-                {
-                    rightIndex++;
-                }
-                else if (rightChildTransactionId > leftChildTransactionId)
-                {
-                    leftIndex++;
-                }
-                else
-                {
-                    result.Add(leftChildTransactionId);
-
-                    leftIndex++;
-                    rightIndex++;
-                }
-            }
-
-            return result;
+            return parentTransactionIds.SortedIntersect(parentSiblingTransactionIds);
         }
 
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
