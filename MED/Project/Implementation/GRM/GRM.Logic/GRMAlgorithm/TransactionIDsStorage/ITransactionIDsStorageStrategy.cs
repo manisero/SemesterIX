@@ -18,7 +18,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
 
         int GetFirstLevelChildSupport(int itemTransactionIdsCount);
 
-        SetsRelationType GetTransactionIDsRelation(Node fistNode, Node secondNode);
+        SetsRelationType GetTransactionIDsRelation(Node firstNode, Node secondNode);
 
         int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds);
 

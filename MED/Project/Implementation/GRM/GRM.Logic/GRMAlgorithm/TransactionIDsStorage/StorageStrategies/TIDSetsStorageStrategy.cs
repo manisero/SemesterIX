@@ -40,9 +40,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIdsCount;
         }
 
-        public SetsRelationType GetTransactionIDsRelation(Node fistNode, Node secondNode)
+        public SetsRelationType GetTransactionIDsRelation(Node firstNode, Node secondNode)
         {
-            return fistNode.TransactionIDs.SortedGetSetsRelation(secondNode.TransactionIDs);
+            return firstNode.TransactionIDs.SortedGetSetsRelation(secondNode.TransactionIDs);
         }
 
         public int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds)

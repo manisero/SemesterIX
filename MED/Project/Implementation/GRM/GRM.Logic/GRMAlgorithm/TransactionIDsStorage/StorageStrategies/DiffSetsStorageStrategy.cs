@@ -61,41 +61,48 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIdsCount;
         }
 
-        public SetsRelationType GetTransactionIDsRelation(Node fistNode, Node secondNode)
+        public SetsRelationType GetTransactionIDsRelation(Node firstNode, Node secondNode)
         {
             var firstSubsumesSecond = true;
             var secondSubsumesFirst = true;
 
-            foreach (var firstNodeDecisionTransactionIds in fistNode.DecisionsTransactionIDs)
+            foreach (var firstNodeDecisionTransactionIds in firstNode.DecisionsTransactionIDs)
             {
                 Node.DecisionTransactionIDs secondNodeDecisionTransactionIds;
 
-                if (!secondNode.DecisionsTransactionIDs.TryGetValue(firstNodeDecisionTransactionIds.Key, out secondNodeDecisionTransactionIds))
+                if (secondNode.DecisionsTransactionIDs.TryGetValue(firstNodeDecisionTransactionIds.Key, out secondNodeDecisionTransactionIds))
+                {
+                    var relation = firstNodeDecisionTransactionIds.Value.TransactionIDs.SortedGetSetsRelation(secondNodeDecisionTransactionIds.TransactionIDs);
+
+                    if (relation == SetsRelationType.Difference)
+                    {
+                        return SetsRelationType.Difference;
+                    }
+                    else if (relation == SetsRelationType.FirstSubsumesSecond)
+                    {
+                        secondSubsumesFirst = false;
+                    }
+                    else if (relation == SetsRelationType.SecondSubsumesFirst)
+                    {
+                        firstSubsumesSecond = false;
+                    }
+                }
+                else
                 {
                     secondSubsumesFirst = false;
-                    continue;
-                }
-
-                // TODO: Handle firstSubsumesSecond
-
-                var relation = firstNodeDecisionTransactionIds.Value.TransactionIDs.SortedGetSetsRelation(secondNodeDecisionTransactionIds.TransactionIDs);
-
-                if (relation == SetsRelationType.Difference)
-                {
-                    return SetsRelationType.Difference;
-                }
-                else if (relation == SetsRelationType.FirstSubsumesSecond)
-                {
-                    secondSubsumesFirst = false;
-                }
-                else if (relation == SetsRelationType.SecondSubsumesFirst)
-                {
-                    firstSubsumesSecond = false;
                 }
 
                 if (!firstSubsumesSecond && !secondSubsumesFirst)
                 {
                     return SetsRelationType.Difference;
+                }
+            }
+
+            foreach (var secondNodeDecisionTransactionIds in secondNode.DecisionsTransactionIDs)
+            {
+                if (!firstNode.DecisionsTransactionIDs.ContainsKey(secondNodeDecisionTransactionIds.Key))
+                {
+                    firstSubsumesSecond = false;
                 }
             }
 
