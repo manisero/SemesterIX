@@ -5,18 +5,18 @@ namespace GRM.Logic.Extensions
 {
     public static class GeneratorCollectionExtensions
     {
-        public static IList<Generator> SortedIntersect(this IList<Generator> first, IList<Generator> second)
+        public static SortedList<int, Generator> SortedIntersect(this SortedList<int, Generator> first, SortedList<int, Generator> second)
         {
-            var result = new List<Generator>();
+            var result = new SortedList<int, Generator>();
 
             var firstIndex = 0;
             var secondIndex = 0;
 
             while (firstIndex < first.Count && secondIndex < second.Count)
             {
-                var candidate = first[firstIndex];
+                var candidate = first[first.Keys[firstIndex]];
                 var firstValue = candidate.GetIdentifier();
-                var secondValue = second[secondIndex].GetIdentifier();
+                var secondValue = second[second.Keys[secondIndex]].GetIdentifier();
 
                 if (firstValue > secondValue)
                 {
@@ -28,7 +28,7 @@ namespace GRM.Logic.Extensions
                 }
                 else
                 {
-                    result.Add(candidate);
+                    result.Add(firstValue, candidate);
 
                     firstIndex++;
                     secondIndex++;

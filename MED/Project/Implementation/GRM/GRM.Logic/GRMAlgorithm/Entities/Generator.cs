@@ -26,10 +26,14 @@ namespace GRM.Logic.GRMAlgorithm.Entities
         {
             if (!_identifierComputed)
             {
+                var hash = this.Count;
+
                 foreach (var item in this)
                 {
-                    _identifier += item.ValueID;
+                    hash = unchecked(hash * 314159 + item.ValueID);
                 }
+
+                _identifier = hash;
 
                 _identifierComputed = true;
             }
