@@ -16,6 +16,11 @@ namespace GRM.Logic.UnitTests.GRMFacade
 
         protected abstract int MinimumSupport { get; }
 
+        protected virtual int? DecisionAttributeIndex
+        {
+            get { return null; }
+        }
+
         private void Execute(SortingStrategyType sortingStrategy, TransactionIDsStorageStrategyType transactionIdsStorageStrategy)
         {
             // Arrange
@@ -26,7 +31,7 @@ namespace GRM.Logic.UnitTests.GRMFacade
 
             using (var dataSetStream = new MemoryStream(ASCIIEncoding.Default.GetBytes(DataSet)))
             {
-                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, false, null, MinimumSupport);
+                result = new Logic.GRMFacade(sortingStrategy, transactionIdsStorageStrategy, 0).ExecuteGRM(dataSetStream, false, DecisionAttributeIndex, MinimumSupport);
             }
 
             // Assert
