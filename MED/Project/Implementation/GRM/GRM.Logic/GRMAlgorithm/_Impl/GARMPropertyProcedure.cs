@@ -52,6 +52,13 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     leftIndex++;
                     rightIndex++;
                 }
+
+                if (!leftToRightSubsumption && !rightToLeftSubsumption)
+                {
+                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_determiningGARMPropertySubstepId);
+
+                    return GARMPropertyType.Difference;
+                }
             }
 
             GARMPropertyType result;
@@ -60,13 +67,9 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 result = GARMPropertyType.Equality;
             }
-            else if (leftToRightSubsumption || rightToLeftSubsumption)
-            {
-                result = GARMPropertyType.Subsumption;
-            }
             else
             {
-                result = GARMPropertyType.Difference;
+                result = GARMPropertyType.Subsumption;
             }
 
             ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_determiningGARMPropertySubstepId);
