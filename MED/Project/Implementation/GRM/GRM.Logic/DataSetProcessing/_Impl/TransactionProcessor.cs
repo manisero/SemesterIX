@@ -6,16 +6,9 @@ namespace GRM.Logic.DataSetProcessing._Impl
 {
     public class TransactionProcessor : ITransactionProcessor
     {
-        private readonly int _buildingDecisionDecisionIdDictionarySubstepId;
-        private readonly int _buildingItemItemIDDictionarySybstepId;
-        private readonly int _includingItemInDataSetRepresentationSubstepId;
-
-        public TransactionProcessor()
-        {
-            _buildingDecisionDecisionIdDictionarySubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Building decision -> decision id dictionary");
-            _buildingItemItemIDDictionarySybstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Building item -> item id dictionary");
-            _includingItemInDataSetRepresentationSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Including item in data set representation");
-        }
+        private readonly int _buildingDecisionDecisionIdDictionarySubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Building decision -> decision id dictionary");
+        private readonly int _buildingItemItemIDDictionarySybstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Building item -> item id dictionary");
+        private readonly int _includingItemInDataSetRepresentationSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Including item in data set representation");
 
         public void AppendTransaction(int transactionId, string transaction, int decisionAttributeIndex, DataSetRepresentationBuildState buildState)
         {

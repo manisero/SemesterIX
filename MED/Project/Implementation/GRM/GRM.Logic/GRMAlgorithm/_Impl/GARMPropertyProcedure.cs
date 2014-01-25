@@ -7,18 +7,14 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMPropertyProcedure : IGARMPropertyProcedure
     {
-        private readonly int _determiningGARMPropertySubstepId;
-        private readonly int _applyingGARMPropertySetsEqualSubstepId;
-        private readonly int _applyingGARMPropertySetsDifferentSubstepId;
+        private readonly int _determiningGARMPropertySubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Determining GARM property");
+        private readonly int _applyingGARMPropertySetsEqualSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets equal)");
+        private readonly int _applyingGARMPropertySetsDifferentSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets different)");
 
         private readonly ITransactionIDsStorageStrategy _transactionIdsStorageStrategy;
 
         public GARMPropertyProcedure(ITransactionIDsStorageStrategy transactionIdsStorageStrategy)
         {
-            _determiningGARMPropertySubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Determining GARM property");
-            _applyingGARMPropertySetsEqualSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets equal)");
-            _applyingGARMPropertySetsDifferentSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Applying GARM property (sets different)");
-
             _transactionIdsStorageStrategy = transactionIdsStorageStrategy;
         }
 

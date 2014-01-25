@@ -7,17 +7,14 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 {
     public class GARMProcedure : IGARMProcedure
     {
-        private readonly int _checkingForNodeGeneratorsConflictsSubstepId;
-        private readonly int _includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId;
+        private readonly int _checkingForNodeGeneratorsConflictsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Checking for node generators conflicts");
+        private readonly int _includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Including parent node generators in child node generators");
 
         private readonly IDecisionGeneratorsCollector _resultBuilder;
         private readonly IGARMPropertyProcedure _garmProperty;
 
         public GARMProcedure(IDecisionGeneratorsCollector resultBuilder, IGARMPropertyProcedure garmProperty)
         {
-            _checkingForNodeGeneratorsConflictsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Checking for node generators conflicts");
-            _includingParentNodeGeneratorsInChildNodeGeneratorsSubstepId = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("Including parent node generators in child node generators");
-
             _resultBuilder = resultBuilder;
             _garmProperty = garmProperty;
         }
