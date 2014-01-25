@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using GRM.Logic.ProgressTracking;
-using System.Linq;
 
 namespace GRM.Logic.Extensions
 {
     public static class CollectionsExtensions
     {
-        private static readonly int a = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("intersect");
-
         public static int[] SortedIntersect(this int[] first, int[] second)
         {
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(a);
-
             var result = new List<int>();
 
             var firstIndex = 0;
@@ -38,8 +32,6 @@ namespace GRM.Logic.Extensions
                     secondIndex++;
                 }
             }
-
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
 
             return result.ToArray();
         }

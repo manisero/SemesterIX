@@ -14,7 +14,7 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 
         public IList<Generator> Generators;
 
-        public IList<int> TransactionIDs { get; set; }
+        public int[] TransactionIDs { get; set; }
 
         public IDictionary<int, DecisionTransactionIDs> DecisionsTransactionIDs { get; set; }
 

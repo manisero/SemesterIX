@@ -7,9 +7,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 {
     public class DiffSetsStorageStrategy : ITransactionIDsStorageStrategy
     {
-        public IList<int> GetTreeRootTransactionIDs(IList<int> allTransactionIds)
+        public int[] GetTreeRootTransactionIDs(IList<int> allTransactionIds)
         {
-            return new List<int>();
+            return new int[0];
         }
 
         public int GetTreeRootSupport(int allTransactionIdsCount)
@@ -33,9 +33,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             root.IsDecisive = root.DecisionsTransactionIDs.Count == 1;
         }
 
-        public IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
+        public int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
         {
-            return allTransactionIds.SortedExcept(itemTransactionIds);
+            return allTransactionIds.SortedExcept(itemTransactionIds).ToArray();
         }
 
         public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs)
@@ -61,9 +61,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIdsCount;
         }
 
-        public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds)
+        public int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
         {
-            return parentSiblingTransactionIds.SortedExcept(parentTransactionIds);
+            return parentSiblingTransactionIds.SortedExcept(parentTransactionIds).ToArray();
         }
 
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
