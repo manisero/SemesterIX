@@ -2,7 +2,7 @@
 
 namespace GRM.Logic.Extensions
 {
-    public static class CollectionsExtensions
+    public static class ArrayExtensions
     {
         public static int[] SortedIntersect(this int[] first, int[] second)
         {
