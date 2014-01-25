@@ -6,7 +6,7 @@ namespace GRM.Logic.GRMAlgorithm.Entities
     public class Generator : List<ItemID>
     {
         private bool _identifierComputed;
-        private int _identifier;
+        private long _identifier;
 
         public Generator()
         {
@@ -22,19 +22,18 @@ namespace GRM.Logic.GRMAlgorithm.Entities
         {
         }
 
-        public int GetIdentifier()
+        public long GetIdentifier()
         {
             if (!_identifierComputed)
             {
-                var hash = this.Count;
+                long hash = this.Count;
 
                 foreach (var item in this)
                 {
-                    hash = unchecked(hash * 314159 + item.ValueID);
+                    hash = unchecked(hash * 314159L + item.ValueID);
                 }
 
                 _identifier = hash;
-
                 _identifierComputed = true;
             }
 
