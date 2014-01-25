@@ -75,7 +75,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var rightChild = new Node();
 
             // Act
-            var parent = Execute(SetsRelationType.Subsumption, leftChild, rightChild);
+            var parent = Execute(SetsRelationType.FirstSubsumesSecond, leftChild, rightChild);
 
             // Assert
             Assert.Equal(5, parent.Children.Count);

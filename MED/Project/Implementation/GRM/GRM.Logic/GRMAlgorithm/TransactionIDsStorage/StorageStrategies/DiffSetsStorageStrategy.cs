@@ -63,7 +63,54 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public SetsRelationType GetTransactionIDsRelation(Node fistNode, Node secondNode)
         {
-            return fistNode.TransactionIDs.SortedGetSetsRelation(secondNode.TransactionIDs);
+            var firstSubsumesSecond = true;
+            var secondSubsumesFirst = true;
+
+            foreach (var firstNodeDecisionTransactionIds in fistNode.DecisionsTransactionIDs)
+            {
+                Node.DecisionTransactionIDs secondNodeDecisionTransactionIds;
+
+                if (!secondNode.DecisionsTransactionIDs.TryGetValue(firstNodeDecisionTransactionIds.Key, out secondNodeDecisionTransactionIds))
+                {
+                    secondSubsumesFirst = false;
+                    continue;
+                }
+
+                // TODO: Handle firstSubsumesSecond
+
+                var relation = firstNodeDecisionTransactionIds.Value.TransactionIDs.SortedGetSetsRelation(secondNodeDecisionTransactionIds.TransactionIDs);
+
+                if (relation == SetsRelationType.Difference)
+                {
+                    return SetsRelationType.Difference;
+                }
+                else if (relation == SetsRelationType.FirstSubsumesSecond)
+                {
+                    secondSubsumesFirst = false;
+                }
+                else if (relation == SetsRelationType.SecondSubsumesFirst)
+                {
+                    firstSubsumesSecond = false;
+                }
+
+                if (!firstSubsumesSecond && !secondSubsumesFirst)
+                {
+                    return SetsRelationType.Difference;
+                }
+            }
+
+            if (secondSubsumesFirst && firstSubsumesSecond)
+            {
+                return SetsRelationType.Equality;
+            }
+            else if (firstSubsumesSecond)
+            {
+                return SetsRelationType.FirstSubsumesSecond;
+            }
+            else
+            {
+                return SetsRelationType.SecondSubsumesFirst;
+            }
         }
 
         public int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
@@ -73,7 +120,6 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public void SetChildTransactionIDsAndSupport(Node child, Node parent, Node parentSibling)
         {
-            var transactionIds = new List<int>();
             var decisionsTransactionIds = new Dictionary<int, Node.DecisionTransactionIDs>();
             child.Support = 0;
 
@@ -93,13 +139,10 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
                 {
                     decisionsTransactionIds.Add(parentDecisionTransactionIds.Key, new Node.DecisionTransactionIDs { Support = support, TransactionIDs = decisionTransactionIds });
 
-                    transactionIds.AddRange(decisionTransactionIds);
                     child.Support += support;
                 }
             }
 
-            transactionIds.Sort();
-            child.TransactionIDs = transactionIds.ToArray();
             child.DecisionsTransactionIDs = decisionsTransactionIds;
         }
 

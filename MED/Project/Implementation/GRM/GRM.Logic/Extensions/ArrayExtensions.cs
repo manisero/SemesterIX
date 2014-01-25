@@ -5,7 +5,8 @@ namespace GRM.Logic.Extensions
     public enum SetsRelationType
     {
         Equality,
-        Subsumption,
+        FirstSubsumesSecond,
+        SecondSubsumesFirst,
         Difference
     }
 
@@ -50,9 +51,13 @@ namespace GRM.Logic.Extensions
             {
                 return SetsRelationType.Equality;
             }
+            else if (firstSubsumesSecond)
+            {
+                return SetsRelationType.FirstSubsumesSecond;
+            }
             else
             {
-                return SetsRelationType.Subsumption;
+                return SetsRelationType.SecondSubsumesFirst;
             }
         }
 
