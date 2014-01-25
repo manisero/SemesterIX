@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GRMFacade\CarData_MinimumSupport10.cs" />
+    <Compile Include="GRMFacade\MushroomsData_MinimumSupport5.cs" />
     <Compile Include="GRMFacade\MushroomsSmallData_MinimumSupport50.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resources.Designer.cs">

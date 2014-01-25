@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.DataSetProcessing.Entities;
+using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
 
@@ -9,12 +10,12 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
     {
         private class DecisionGenerators
         {
-            public IList<Generator> Generators = new List<Generator>();
+            public SortedList<long, Generator> Generators = new SortedList<long, Generator>();
 
             public InvertedList InvertedList = new InvertedList();
         }
         
-        private class InvertedList : Dictionary<ItemID, IList<Generator>>
+        private class InvertedList : Dictionary<ItemID, SortedList<long, Generator>>
         {
         }
 
@@ -26,14 +27,14 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             {
                 _decisionGenerators.Add(decisionId, new DecisionGenerators());
             }
-
+            
             var decisionGenerators = _decisionGenerators[decisionId];
 
             foreach (var generator in generators)
             {
                 RemoveSupergenerators(generator, decisionGenerators);
             }
-            
+
             foreach (var generator in generators)
             {
                 AppendGenerator(generator, decisionGenerators);
@@ -49,18 +50,19 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
                 return;
             }
 
-            var supergenerators = new List<Generator>(invertedList[subgenerator[0]]);
+            // Find supergenerators
+            var supergenerators = new SortedList<long, Generator>(invertedList[subgenerator[0]]);
 
             for (int i = 1; i < subgenerator.Count; i++)
             {
-                IList<Generator> itemGenerators;
+                SortedList<long, Generator> itemGenerators;
 
                 if (!invertedList.TryGetValue(subgenerator[i], out itemGenerators))
                 {
                     return;
                 }
 
-                supergenerators = supergenerators.Intersect(itemGenerators).ToList();
+                supergenerators = supergenerators.SortedIntersect(itemGenerators);
 
                 if (supergenerators.Count == 0)
                 {
@@ -68,20 +70,21 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
                 }
             }
 
+            // Remove supergenerators
             foreach (var supergenerator in supergenerators)
             {
-                decisionGenerators.Generators.Remove(supergenerator);
+                decisionGenerators.Generators.Remove(supergenerator.Key);
 
                 foreach (var generators in invertedList)
                 {
-                    generators.Value.Remove(supergenerator);
+                    generators.Value.Remove(supergenerator.Key);
                 }
             }
         }
 
         private void AppendGenerator(Generator generator, DecisionGenerators decisionGenerators)
         {
-            decisionGenerators.Generators.Add(generator);
+            decisionGenerators.Generators.Add(generator.GetIdentifier(), generator);
 
             var invertedList = decisionGenerators.InvertedList;
 
@@ -89,11 +92,11 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             {
                 if (!invertedList.ContainsKey(item))
                 {
-                    invertedList.Add(item, new List<Generator> { generator });
+                    invertedList.Add(item, new SortedList<long, Generator> { { generator.GetIdentifier(), generator } });
                 }
                 else
                 {
-                    invertedList[item].Add(generator);
+                    invertedList[item].Add(generator.GetIdentifier(), generator);
                 }
             }
         }
@@ -104,7 +107,7 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
             foreach (var decisionInvertedList in _decisionGenerators)
             {
-                result.Add(decisionInvertedList.Key, decisionInvertedList.Value.Generators);
+                result.Add(decisionInvertedList.Key, decisionInvertedList.Value.Generators.Values.ToList());
             }
 
             return result;
