@@ -49,6 +49,7 @@
     <Compile Include="DataSetProcessing\IFrequentItemsSelector.cs" />
     <Compile Include="DataSetProcessing\ITransactionProcessor.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\GeneratorCollectionExtensions.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceLINQDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\InvertedListsDecisionGeneratorsCollector.cs" />
