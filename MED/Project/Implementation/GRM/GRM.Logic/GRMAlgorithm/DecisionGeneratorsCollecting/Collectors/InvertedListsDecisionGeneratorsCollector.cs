@@ -3,7 +3,6 @@ using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
-using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 {
@@ -22,9 +21,6 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
         private readonly IDictionary<int, DecisionGenerators> _decisionGenerators = new Dictionary<int, DecisionGenerators>();
 
-        private int a = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("a");
-        private int b = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("b");
-
         protected override void AppendGenerators(int decisionId, IList<Generator> generators)
         {
             if (!_decisionGenerators.ContainsKey(decisionId))
@@ -34,23 +30,15 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             
             var decisionGenerators = _decisionGenerators[decisionId];
 
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(a);
-
             foreach (var generator in generators)
             {
                 RemoveSupergenerators(generator, decisionGenerators);
             }
 
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
-
-            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(b);
-
             foreach (var generator in generators)
             {
                 AppendGenerator(generator, decisionGenerators);
             }
-
-            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(b);
         }
 
         private void RemoveSupergenerators(Generator subgenerator, DecisionGenerators decisionGenerators)
@@ -62,6 +50,7 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
                 return;
             }
 
+            // Find supergenerators
             var supergenerators = new SortedList<long, Generator>(invertedList[subgenerator[0]]);
 
             for (int i = 1; i < subgenerator.Count; i++)
@@ -81,6 +70,7 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
                 }
             }
 
+            // Remove supergenerators
             foreach (var supergenerator in supergenerators)
             {
                 decisionGenerators.Generators.Remove(supergenerator.Key);
