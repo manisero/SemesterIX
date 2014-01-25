@@ -44,16 +44,12 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
             int decisionId;
 
-            if (!buildState.DecisionIDs.ContainsKey(decision))
+            if (!buildState.DecisionIDs.TryGetValue(decision, out decisionId))
             {
                 decisionId = buildState.DecisionMappingCounter;
 
                 buildState.DecisionIDs.Add(decision, decisionId);
                 buildState.DecisionMappingCounter++;
-            }
-            else
-            {
-                decisionId = buildState.DecisionIDs[decision];
             }
 
             ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_buildingDecisionDecisionIdDictionarySubstepId);
@@ -73,7 +69,7 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
             ItemID itemId;
 
-            if (!buildState.ItemIDs.ContainsKey(item))
+            if (!buildState.ItemIDs.TryGetValue(item, out itemId))
             {
                 itemId = new ItemID
                     {
@@ -83,10 +79,6 @@ namespace GRM.Logic.DataSetProcessing._Impl
 
                 buildState.ItemIDs.Add(item, itemId);
                 buildState.ItemValueMappingCounter++;
-            }
-            else
-            {
-                itemId = buildState.ItemIDs[item];
             }
 
             ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_buildingItemItemIDDictionarySybstepId);
