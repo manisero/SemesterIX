@@ -4,16 +4,21 @@ using GRM.Logic.UnitTests.GRMFacade;
 
 namespace GRM.Logic.PerformanceTests.GRMFacade
 {
-    public class CarData_MinimumSupport10 : GRMFacadeTestsBase
+    public class MushroomsSmallData_MinimumSupport50 : GRMFacadeTestsBase
     {
         protected override string DataSet
         {
-            get { return Resources.Resources.car_100k; }
+            get { return Resources.Resources.mushrooms_small; }
         }
 
         protected override int MinimumSupport
         {
-            get { return 10; }
+            get { return 50; }
+        }
+
+        protected override int? DecisionAttributeIndex
+        {
+            get { return 0; }
         }
 
         protected override void AssertResult(GRMResult result)

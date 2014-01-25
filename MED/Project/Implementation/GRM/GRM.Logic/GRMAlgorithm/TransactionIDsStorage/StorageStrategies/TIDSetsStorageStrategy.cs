@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.Extensions;
 
 namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 {
     public class TIDSetsStorageStrategy : ITransactionIDsStorageStrategy
     {
-        public IList<int> GetTreeRootTransactionIDs(IList<int> allTransactionIds)
+        public int[] GetTreeRootTransactionIDs(IList<int> allTransactionIds)
         {
-            return allTransactionIds;
+            return allTransactionIds.ToArray();
         }
 
         public int GetTreeRootSupport(int allTransactionIdsCount)
@@ -24,9 +25,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             root.IsDecisive = transactionDecisions.Values.All(x => x == decisionId);
         }
 
-        public IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
+        public int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, int[] allTransactionIds)
         {
-            return itemTransactionIds;
+            return itemTransactionIds.ToArray();
         }
 
         public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs)
@@ -39,14 +40,15 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIdsCount;
         }
 
-        public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)
+        public SetsRelationType GetTransactionIDsRelation(Node firstNode, Node secondNode)
         {
-            return parentTransactionIds.Intersect(parentSiblingTransactionIds).ToList();
+            return firstNode.TransactionIDs.SortedGetSetsRelation(secondNode.TransactionIDs);
         }
 
-        public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
+        public void SetChildTransactionIDsAndSupport(Node child, Node parent, Node parentSibling)
         {
-            return childTransactionIds.Count;
+            child.TransactionIDs = parent.TransactionIDs.SortedIntersect(parentSibling.TransactionIDs);
+            child.Support = child.TransactionIDs.Length;
         }
 
         public void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> parentSiblingDecisionsTransactionIds, IDictionary<int, int> transactionDecisions)
@@ -54,7 +56,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             var decisionId = transactionDecisions[child.TransactionIDs[0]];
 
             child.DecisionID = decisionId;
-            child.IsDecisive = child.TransactionIDs.Skip(1).All(x => transactionDecisions[x] == decisionId);
+            child.IsDecisive = child.TransactionIDs.All(x => transactionDecisions[x] == decisionId);
         }
     }
 }

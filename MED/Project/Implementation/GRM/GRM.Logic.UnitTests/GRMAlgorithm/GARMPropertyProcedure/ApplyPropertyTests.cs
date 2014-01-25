@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.DataSetProcessing.Entities;
+using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies;
 using GRM.Logic.ProgressTracking;
@@ -11,7 +12,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
 {
     public class ApplyPropertyTests
     {
-        private Node Execute(GARMPropertyType property, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions = null, int minimalSupport = 1)
+        private Node Execute(SetsRelationType property, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions = null, int minimalSupport = 1)
         {
             // Arrange
             ProgressTrackerContainer.CurrentProgressTracker = new EmptyProgressTracker();
@@ -36,7 +37,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var rightChild = new Node { Generators = new List<Generator>() };
 
             // Act
-            var parent = Execute(GARMPropertyType.Equality, leftChild, rightChild);
+            var parent = Execute(SetsRelationType.Equality, leftChild, rightChild);
 
             // Assert
             Assert.Equal(4, parent.Children.Count);
@@ -58,7 +59,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
                 };
 
             // Act
-            Execute(GARMPropertyType.Equality, leftChild, rightChild);
+            Execute(SetsRelationType.Equality, leftChild, rightChild);
 
             // Assert
             Assert.Equal(2, leftChild.Generators.Count);
@@ -74,7 +75,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var rightChild = new Node();
 
             // Act
-            var parent = Execute(GARMPropertyType.Subsumption, leftChild, rightChild);
+            var parent = Execute(SetsRelationType.FirstSubsumesSecond, leftChild, rightChild);
 
             // Assert
             Assert.Equal(5, parent.Children.Count);
@@ -96,7 +97,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
                 };
 
             // Act
-            var parent = Execute(GARMPropertyType.Difference, leftChild, rightChild);
+            var parent = Execute(SetsRelationType.Difference, leftChild, rightChild);
 
             // Assert
             Assert.Equal(5, parent.Children.Count);
@@ -125,7 +126,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var transactionIds = new Dictionary<int, int> { { 1, 1 } };
 
             // Act
-            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+            Execute(SetsRelationType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
             Assert.Equal(2, leftChild.Children.Count);
@@ -156,7 +157,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var transactionIds = new Dictionary<int, int> { { 1, 1 } };
 
             // Act
-            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+            Execute(SetsRelationType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
             Assert.Equal(2, leftChild.Children[0].Generators.Count);
@@ -184,7 +185,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var transactionIds = new Dictionary<int, int> { { 2, 2 }, { 3, 3 } };
 
             // Act
-            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+            Execute(SetsRelationType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
             Assert.Equal(new[] { 2, 3 }, leftChild.Children[0].TransactionIDs.ToArray());
@@ -210,7 +211,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var transactionIds = new Dictionary<int, int> { { 2, 2 }, { 3, 3 } };
 
             // Act
-            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+            Execute(SetsRelationType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
             Assert.Equal(2, leftChild.Children[0].Support);
@@ -236,7 +237,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var transactionIds = new Dictionary<int, int> { { 1, 0 }, { 2, 0 } };
 
             // Act
-            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+            Execute(SetsRelationType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
             Assert.True(leftChild.Children[0].IsDecisive);
@@ -263,7 +264,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var transactionIds = new Dictionary<int, int> { { 1, 1 }, { 2, 2 } };
 
             // Act
-            Execute(GARMPropertyType.Difference, leftChild, rightChild, transactionIds);
+            Execute(SetsRelationType.Difference, leftChild, rightChild, transactionIds);
 
             // Assert
             Assert.False(leftChild.Children[0].IsDecisive);

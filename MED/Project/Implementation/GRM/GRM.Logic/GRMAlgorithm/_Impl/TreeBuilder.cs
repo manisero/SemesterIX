@@ -17,12 +17,12 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
         public Node Build(IEnumerable<ItemInfo> frequentItems, IEnumerable<int> decisionIds, IDictionary<int, int> transactionDecisions)
         {
-            var transactionIds = transactionDecisions.Keys.ToList();
+            var transactionIds = transactionDecisions.Keys.ToArray();
             var root = CreateRoot(transactionIds, transactionDecisions);
 
             foreach (var item in frequentItems)
             {
-                if (item.TransactionIDs.Count == transactionIds.Count)
+                if (item.TransactionIDs.Count == transactionIds.Length)
                 {
                     continue;
                 }

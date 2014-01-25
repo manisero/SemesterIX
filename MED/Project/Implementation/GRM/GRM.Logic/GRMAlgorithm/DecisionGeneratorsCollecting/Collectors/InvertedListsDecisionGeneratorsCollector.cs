@@ -33,7 +33,7 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             {
                 RemoveSupergenerators(generator, decisionGenerators);
             }
-
+            
             foreach (var generator in generators)
             {
                 AppendGenerator(generator, decisionGenerators);
@@ -53,12 +53,19 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
             for (int i = 1; i < subgenerator.Count; i++)
             {
-                if (!invertedList.ContainsKey(subgenerator[i]))
+                IList<Generator> itemGenerators;
+
+                if (!invertedList.TryGetValue(subgenerator[i], out itemGenerators))
                 {
                     return;
                 }
 
-                supergenerators = supergenerators.Intersect(invertedList[subgenerator[i]]).ToList();
+                supergenerators = supergenerators.Intersect(itemGenerators).ToList();
+
+                if (supergenerators.Count == 0)
+                {
+                    return;
+                }
             }
 
             foreach (var supergenerator in supergenerators)

@@ -5,7 +5,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
 {
     public class GetFirstLevelChildTransactionIDsTests
     {
-        private IList<int> Execute(IList<int> itemTransactionIds, IList<int> allTransactionIds)
+        private int[] Execute(IList<int> itemTransactionIds, int[] allTransactionIds)
         {
             return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().GetFirstLevelChildTransactionIDs(itemTransactionIds, allTransactionIds);
         }
@@ -15,13 +15,13 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
         {
             // Arrange
             var itemTransactionIds = new List<int> { 3, 5, 7 };
-            var allTransactionIds = new List<int> { 3, 4, 5, 6, 7 };
+            var allTransactionIds = new[] { 3, 4, 5, 6, 7 };
 
             // Act
             var result = Execute(itemTransactionIds, allTransactionIds);
 
             // Assert
-            Assert.Equal(new List<int> { 4, 6 }, result);
+            Assert.Equal(new[] { 4, 6 }, result);
         }
     }
 }
