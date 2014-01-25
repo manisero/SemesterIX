@@ -7,9 +7,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 {
     public class TIDSetsStorageStrategy : ITransactionIDsStorageStrategy
     {
-        public IList<int> GetTreeRootTransactionIDs(IList<int> allTransactionIds)
+        public int[] GetTreeRootTransactionIDs(IList<int> allTransactionIds)
         {
-            return allTransactionIds;
+            return allTransactionIds.ToArray();
         }
 
         public int GetTreeRootSupport(int allTransactionIdsCount)
@@ -25,9 +25,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             root.IsDecisive = transactionDecisions.Values.All(x => x == decisionId);
         }
 
-        public IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
+        public int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
         {
-            return itemTransactionIds;
+            return itemTransactionIds.ToArray();
         }
 
         public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs)
@@ -40,9 +40,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIdsCount;
         }
 
-        public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds)
+        public int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
         {
-            return parentTransactionIds.SortedIntersect(parentSiblingTransactionIds);
+            return parentTransactionIds.ToArray().SortedIntersect(parentSiblingTransactionIds.ToArray());
         }
 
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
@@ -55,7 +55,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             var decisionId = transactionDecisions[child.TransactionIDs[0]];
 
             child.DecisionID = decisionId;
-            child.IsDecisive = child.TransactionIDs.Skip(1).All(x => transactionDecisions[x] == decisionId);
+            child.IsDecisive = child.TransactionIDs.All(x => transactionDecisions[x] == decisionId);
         }
     }
 }

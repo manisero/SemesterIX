@@ -2,16 +2,16 @@
 
 namespace GRM.Logic.Extensions
 {
-    public static class ListExtensions
+    public static class CollectionsExtensions
     {
-        public static IList<int> SortedIntersect(this IList<int> first, IList<int> second)
+        public static int[] SortedIntersect(this int[] first, int[] second)
         {
             var result = new List<int>();
 
             var firstIndex = 0;
             var secondIndex = 0;
 
-            while (firstIndex < first.Count && secondIndex < second.Count)
+            while (firstIndex < first.Length && secondIndex < second.Length)
             {
                 var firstValue = first[firstIndex];
                 var secondValue = second[secondIndex];
@@ -33,7 +33,7 @@ namespace GRM.Logic.Extensions
                 }
             }
 
-            return result;
+            return result.ToArray();
         }
 
         public static IList<int> SortedExcept(this IList<int> first, IList<int> second)

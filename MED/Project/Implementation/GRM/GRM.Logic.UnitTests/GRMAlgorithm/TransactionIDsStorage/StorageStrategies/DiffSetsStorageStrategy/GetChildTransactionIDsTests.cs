@@ -5,7 +5,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
 {
     public class GetChildTransactionIDsTests
     {
-        private IList<int> Execute(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds)
+        private int[] Execute(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
         {
             return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().GetChildTransactionIDs(parentTransactionIds, parentSiblingTransactionIds);
         }
@@ -14,21 +14,21 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
         public void for_equal_sets_returns_empty_set()
         {
             // Arrange
-            var transactionIds = new List<int> { 3, 5, 7 };
+            var transactionIds = new[] { 3, 5, 7 };
 
             // Act
             var result = Execute(transactionIds, transactionIds);
 
             // Assert
-            Assert.Equal(new List<int>(), result);
+            Assert.Equal(0, result.Length);
         }
 
         [Fact]
         public void for_similar_sets_returns_sibling_transaction_IDs_except_parent_transaction_IDs()
         {
             // Arrange
-            var parentTransactionIds = new List<int> { 3, 5, 7, 10 };
-            var parentSiblingTransactionIds = new List<int> { 4, 5, 7, 9 };
+            var parentTransactionIds = new[] { 3, 5, 7, 10 };
+            var parentSiblingTransactionIds = new[] { 4, 5, 7, 9 };
 
             // Act
             var result = Execute(parentTransactionIds, parentSiblingTransactionIds);
@@ -41,8 +41,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
         public void for_different_sets_returns_sibling_transaction_IDs()
         {
             // Arrange
-            var parentTransactionIds = new List<int> { 3, 5, 7 };
-            var parentSiblingTransactionIds = new List<int> { 4, 6, 8 };
+            var parentTransactionIds = new[] { 3, 5, 7 };
+            var parentSiblingTransactionIds = new[] { 4, 6, 8 };
 
             // Act
             var result = Execute(parentTransactionIds, parentSiblingTransactionIds);

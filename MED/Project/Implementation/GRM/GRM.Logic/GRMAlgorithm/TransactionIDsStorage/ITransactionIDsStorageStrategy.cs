@@ -5,19 +5,19 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
 {
     public interface ITransactionIDsStorageStrategy
     {
-        IList<int> GetTreeRootTransactionIDs(IList<int> allTransactionIds);
+        int[] GetTreeRootTransactionIDs(IList<int> allTransactionIds);
 
         int GetTreeRootSupport(int allTransactionIdsCount);
 
         void SetTreeRootDecisiveness(Node root, IDictionary<int, int> transactionDecisions);
 
-        IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds);
+        int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds);
 
         IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs);
 
         int GetFirstLevelChildSupport(int itemTransactionIdsCount);
 
-        IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds);
+        int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds);
 
         int GetChildSupport(int parentSupport, IList<int> childTransactionIds);
 
