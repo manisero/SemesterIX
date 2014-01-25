@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
@@ -34,7 +35,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public IList<int> GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
         {
-            return allTransactionIds.Except(itemTransactionIds).ToList();
+            return allTransactionIds.SortedExcept(itemTransactionIds);
         }
 
         public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs)
@@ -43,7 +44,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
             foreach (var rootDecisionTransactionIDs in rootDecisionsTransactionIDs)
             {
-                var transactionIds = rootDecisionTransactionIDs.Value.TransactionIDs.Except(itemTransactionIds).ToList();
+                var transactionIds = rootDecisionTransactionIDs.Value.TransactionIDs.SortedExcept(itemTransactionIds);
                 var support = rootDecisionTransactionIDs.Value.Support - transactionIds.Count;
 
                 if (support > 0)
@@ -62,7 +63,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds)
         {
-            return parentSiblingTransactionIds.Except(parentTransactionIds).ToList();
+            return parentSiblingTransactionIds.SortedExcept(parentTransactionIds);
         }
 
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
@@ -83,7 +84,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
                     continue;
                 }
 
-                var transactionIds = parentSiblingDecisionTransactionIds.TransactionIDs.Except(parentDecisionTransactionIds.Value.TransactionIDs).ToList();
+                var transactionIds = parentSiblingDecisionTransactionIds.TransactionIDs.SortedExcept(parentDecisionTransactionIds.Value.TransactionIDs);
                 var support = parentDecisionTransactionIds.Value.Support - transactionIds.Count;
 
                 if (support > 0)
