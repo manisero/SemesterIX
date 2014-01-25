@@ -72,7 +72,12 @@ namespace SolovayStrassen.Logic
                 random.NextBytes(bytes);
 
                 a = new BigInteger(bytes);
-            } while (a.Sign < 1 ||  a.IsOne || a >= number);
+
+                if (a.Sign < 0)
+                {
+                    a = -a;
+                }
+            } while (a.IsZero ||  a.IsOne || a >= number);
 
             return a;
         }

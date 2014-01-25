@@ -39,7 +39,7 @@ namespace SolovayStrassen.Logic
                 }
             }
 
-            var e = GenerateE(a.ToByteArray());
+            var e = CalculateE(a.ToByteArray());
             var aDivE = a >> e;
             var s = 1;
 
@@ -66,7 +66,7 @@ namespace SolovayStrassen.Logic
             }
         }
 
-        private static int GenerateE(byte[] aBytes)
+        private static int CalculateE(byte[] aBytes)
         {
             var e = 0;
 
