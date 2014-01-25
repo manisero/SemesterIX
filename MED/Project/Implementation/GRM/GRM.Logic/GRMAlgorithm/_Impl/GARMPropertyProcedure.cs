@@ -30,9 +30,6 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             return result;
         }
 
-        private int a = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("transaction ids");
-        private int b = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("decisiveness");
-
         public void ApplyProperty(SetsRelationType property, Node parent, Node leftChild, Node rightChild, IDictionary<int,int> transactionDecisions, int minimalSupport)
         {
             if (property == SetsRelationType.Equality)
@@ -52,12 +49,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             {
                 ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_applyingGARMPropertySetsDifferentSubstepId);
 
-                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(a);
-
                 var newChild = new Node();
                 _transactionIdsStorageStrategy.SetChildTransactionIDsAndSupport(newChild, leftChild, rightChild);
-
-                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
 
                 if (newChild.Support < minimalSupport)
                 {
@@ -65,19 +58,8 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     return;
                 }
 
-                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(b);
-
-                //var newChild = new Node
-                //    {
-                //        Generators = CopyGenerators(rightChild.Generators),
-                //        TransactionIDs = newChildTransactionIds,
-                //        Support = newChildSupport
-                //    };
-
                 newChild.Generators = CopyGenerators(rightChild.Generators);
                 _transactionIdsStorageStrategy.SetChildDecisiveness(newChild, leftChild.DecisionsTransactionIDs, rightChild.DecisionsTransactionIDs, transactionDecisions);
-
-                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(b);
 
                 leftChild.Children.Add(newChild);
 

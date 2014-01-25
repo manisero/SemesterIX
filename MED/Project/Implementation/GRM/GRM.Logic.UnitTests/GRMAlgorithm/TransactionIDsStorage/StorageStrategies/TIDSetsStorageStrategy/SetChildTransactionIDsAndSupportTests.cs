@@ -1,14 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using GRM.Logic.GRMAlgorithm.Entities;
 using Xunit;
-using System.Linq;
 
 namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy
 {
-    public class GetChildTransactionIDsTests
+    public class SetChildTransactionIDsAndSupportTests
     {
-        private int[] Execute(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
+        private Node Execute(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
         {
-            return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().GetChildTransactionIDs(parentTransactionIds, parentSiblingTransactionIds);
+            var child = new Node();
+
+            new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy()
+                .SetChildTransactionIDsAndSupport(child,
+                                                  new Node { TransactionIDs = parentTransactionIds },
+                                                  new Node { TransactionIDs = parentSiblingTransactionIds });
+
+            return child;
         }
 
         [Fact]
@@ -21,7 +27,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             var result = Execute(transactionIds, transactionIds);
 
             // Assert
-            Assert.Equal(transactionIds, result);
+            Assert.Equal(transactionIds, result.TransactionIDs);
+            Assert.Equal(3, result.Support);
         }
 
         [Fact]
@@ -35,7 +42,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             var result = Execute(parentTransactionIds, parentSiblingTransactionIds);
 
             // Assert
-            Assert.Equal(new[] { 5, 7 }, result);
+            Assert.Equal(new[] { 5, 7 }, result.TransactionIDs);
+            Assert.Equal(2, result.Support);
         }
 
         [Fact]
@@ -49,7 +57,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             var result = Execute(parentTransactionIds, parentSiblingTransactionIds);
 
             // Assert
-            Assert.Equal(0, result.Length);
+            Assert.Equal(0, result.TransactionIDs.Length);
+            Assert.Equal(0, result.Support);
         }
     }
 }

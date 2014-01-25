@@ -120,11 +120,6 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             }
         }
 
-        public int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
-        {
-            return parentSiblingTransactionIds.SortedExcept(parentTransactionIds);
-        }
-
         public void SetChildTransactionIDsAndSupport(Node child, Node parent, Node parentSibling)
         {
             var decisionsTransactionIds = new Dictionary<int, Node.DecisionTransactionIDs>();
@@ -151,11 +146,6 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             }
 
             child.DecisionsTransactionIDs = decisionsTransactionIds;
-        }
-
-        public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
-        {
-            return parentSupport - childTransactionIds.Count;
         }
 
         public void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> parentSiblingDecisionsTransactionIds, IDictionary<int, int> transactionDecisions)

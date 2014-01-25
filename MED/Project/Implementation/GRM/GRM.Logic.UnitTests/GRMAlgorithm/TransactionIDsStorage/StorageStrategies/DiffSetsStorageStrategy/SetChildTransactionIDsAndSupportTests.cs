@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GRM.Logic.GRMAlgorithm.Entities;
 using Xunit;
-using System.Linq;
 
 namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy
 {
-    public class SetChildDecisivenessTests
+    public class SetChildTransactionIDsAndSupportTests
     {
         private void Execute(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> parentSiblingDecisionsTransactionIds)
         {
-            new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy().SetChildDecisiveness(child, parentDecisionTransactionIds, parentSiblingDecisionsTransactionIds, null);
+            new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.DiffSetsStorageStrategy()
+                .SetChildTransactionIDsAndSupport(child,
+                                                  new Node { DecisionsTransactionIDs = parentDecisionTransactionIds },
+                                                  new Node { DecisionsTransactionIDs = parentSiblingDecisionsTransactionIds });
         }
 
         [Fact]

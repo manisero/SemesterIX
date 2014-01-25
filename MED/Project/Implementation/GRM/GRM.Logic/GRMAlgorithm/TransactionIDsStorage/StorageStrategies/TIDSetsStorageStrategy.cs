@@ -45,20 +45,10 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return firstNode.TransactionIDs.SortedGetSetsRelation(secondNode.TransactionIDs);
         }
 
-        public int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
-        {
-            return parentTransactionIds.SortedIntersect(parentSiblingTransactionIds);
-        }
-
         public void SetChildTransactionIDsAndSupport(Node child, Node parent, Node parentSibling)
         {
             child.TransactionIDs = parent.TransactionIDs.SortedIntersect(parentSibling.TransactionIDs);
             child.Support = child.TransactionIDs.Length;
-        }
-
-        public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
-        {
-            return childTransactionIds.Count;
         }
 
         public void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> parentSiblingDecisionsTransactionIds, IDictionary<int, int> transactionDecisions)

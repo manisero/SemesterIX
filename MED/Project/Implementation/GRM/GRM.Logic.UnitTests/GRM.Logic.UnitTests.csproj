@@ -67,6 +67,7 @@
     <Compile Include="DataSetProcessing\TransactionProcessorTests.cs" />
     <Compile Include="GRMAlgorithm\GARMPropertyProcedure\ApplyPropertyTests.cs" />
     <Compile Include="GRMAlgorithm\GARMPropertyProcedure\GetPropertyTests.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\SetChildTransactionIDsAndSupportTests.cs" />
     <Compile Include="GRMFacade\GRMFacadeTestsBase.cs" />
     <Compile Include="GRMFacade\GRMFacadeTests_ResearchReportDataSet.cs" />
     <Compile Include="GRMFacade\GRMFacadeTests_CarDataSet.cs" />
@@ -77,17 +78,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TestsBase.cs" />
-    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetChildSupportTests.cs" />
-    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetChildTransactionIDsTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetFirstLevelChildDecisionTransactionIDs.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetFirstLevelChildSupportTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetFirstLevelChildTransactionIDsTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetTreeRootSupportTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\GetTreeRootTransactionIDsTests.cs" />
-    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\SetChildDecisivenessTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\DiffSetsStorageStrategy\SetTreeRootDecisivenessTests.cs" />
-    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildSupportTests.cs" />
-    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetChildTransactionIDsTests.cs" />
+    <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\SetChildTransactionIDsAndSupportTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetFirstLevelChildSupportTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetFirstLevelChildTransactionIDsTests.cs" />
     <Compile Include="GRMAlgorithm\TransactionIDsStorage\StorageStrategies\TIDSetsStorageStrategy\GetTreeRootSupportTests.cs" />
