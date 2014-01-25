@@ -9,7 +9,7 @@ namespace GRM.Logic.GRMAlgorithm.Entities
         {
             public int Support { get; set; }
 
-            public IList<int> TransactionIDs { get; set; }
+            public int[] TransactionIDs { get; set; }
         }
 
         public IList<Generator> Generators;

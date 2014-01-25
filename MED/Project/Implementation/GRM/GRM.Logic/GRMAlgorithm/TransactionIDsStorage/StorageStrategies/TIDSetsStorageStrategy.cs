@@ -25,7 +25,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             root.IsDecisive = transactionDecisions.Values.All(x => x == decisionId);
         }
 
-        public int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
+        public int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, int[] allTransactionIds)
         {
             return itemTransactionIds.ToArray();
         }

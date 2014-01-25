@@ -24,7 +24,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
                                                                              x => new Node.DecisionTransactionIDs
                                                                                  {
                                                                                      Support = x.Count(),
-                                                                                     TransactionIDs = (IList<int>)x.Select(pair => pair.Key).ToList()
+                                                                                     TransactionIDs = x.Select(pair => pair.Key).ToArray()
                                                                                  });
 
             var decisionId = transactionDecisions.Values.First();
@@ -33,9 +33,9 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             root.IsDecisive = root.DecisionsTransactionIDs.Count == 1;
         }
 
-        public int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds)
+        public int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, int[] allTransactionIds)
         {
-            return allTransactionIds.SortedExcept(itemTransactionIds).ToArray();
+            return allTransactionIds.SortedExcept(itemTransactionIds.ToArray());
         }
 
         public IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs)
@@ -44,8 +44,8 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
             foreach (var rootDecisionTransactionIDs in rootDecisionsTransactionIDs)
             {
-                var transactionIds = rootDecisionTransactionIDs.Value.TransactionIDs.SortedExcept(itemTransactionIds);
-                var support = rootDecisionTransactionIDs.Value.Support - transactionIds.Count;
+                var transactionIds = rootDecisionTransactionIDs.Value.TransactionIDs.SortedExcept(itemTransactionIds.ToArray());
+                var support = rootDecisionTransactionIDs.Value.Support - transactionIds.Length;
 
                 if (support > 0)
                 {
@@ -63,7 +63,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds)
         {
-            return parentSiblingTransactionIds.SortedExcept(parentTransactionIds).ToArray();
+            return parentSiblingTransactionIds.SortedExcept(parentTransactionIds);
         }
 
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
@@ -85,7 +85,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
                 }
 
                 var transactionIds = parentSiblingDecisionTransactionIds.TransactionIDs.SortedExcept(parentDecisionTransactionIds.Value.TransactionIDs);
-                var support = parentDecisionTransactionIds.Value.Support - transactionIds.Count;
+                var support = parentDecisionTransactionIds.Value.Support - transactionIds.Length;
 
                 if (support > 0)
                 {

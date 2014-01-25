@@ -11,7 +11,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
 
         void SetTreeRootDecisiveness(Node root, IDictionary<int, int> transactionDecisions);
 
-        int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, IList<int> allTransactionIds);
+        int[] GetFirstLevelChildTransactionIDs(IList<int> itemTransactionIds, int[] allTransactionIds);
 
         IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs);
 

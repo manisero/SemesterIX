@@ -19,16 +19,16 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             var child = new Node();
             var parentDecisionTransactionIds = new Dictionary<int, Node.DecisionTransactionIDs>
                 {
-                    { 10, new Node.DecisionTransactionIDs { Support = 3, TransactionIDs = new List<int> { 1, 4, 5 } } },
-                    { 20, new Node.DecisionTransactionIDs { Support = 5, TransactionIDs = new List<int> { 2 } } },
-                    { 30, new Node.DecisionTransactionIDs { Support = 4, TransactionIDs = new List<int> { 6 } } }
+                    { 10, new Node.DecisionTransactionIDs { Support = 3, TransactionIDs = new[] { 1, 4, 5 } } },
+                    { 20, new Node.DecisionTransactionIDs { Support = 5, TransactionIDs = new[] { 2 } } },
+                    { 30, new Node.DecisionTransactionIDs { Support = 4, TransactionIDs = new[] { 6 } } }
                 };
 
             var parentSiblingDecisionTransactionIds = new Dictionary<int, Node.DecisionTransactionIDs>
                 {
-                    { 10, new Node.DecisionTransactionIDs { Support = 5, TransactionIDs = new List<int> { 1, 3, 4 } } },
-                    { 30, new Node.DecisionTransactionIDs { Support = 7, TransactionIDs = new List<int> { 6 } } },
-                    { 40, new Node.DecisionTransactionIDs { Support = 6, TransactionIDs = new List<int> { 8 } } }
+                    { 10, new Node.DecisionTransactionIDs { Support = 5, TransactionIDs = new[] { 1, 3, 4 } } },
+                    { 30, new Node.DecisionTransactionIDs { Support = 7, TransactionIDs = new[] { 6 } } },
+                    { 40, new Node.DecisionTransactionIDs { Support = 6, TransactionIDs = new[] { 8 } } }
                 };
 
             // Act

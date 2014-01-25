@@ -36,17 +36,17 @@ namespace GRM.Logic.Extensions
             return result.ToArray();
         }
 
-        public static IList<int> SortedExcept(this IList<int> first, IList<int> second)
+        public static int[] SortedExcept(this int[] first, int[] second)
         {
             var result = new List<int>();
 
             var firstIndex = 0;
             var secondIndex = 0;
 
-            while (firstIndex < first.Count)
+            while (firstIndex < first.Length)
             {
                 var firstValue = first[firstIndex];
-                var secondValue = second.Count > secondIndex ? second[secondIndex] : int.MaxValue;
+                var secondValue = second.Length > secondIndex ? second[secondIndex] : int.MaxValue;
 
                 if (firstValue > secondValue)
                 {
@@ -65,7 +65,7 @@ namespace GRM.Logic.Extensions
                 }
             }
 
-            return result;
+            return result.ToArray();
         }
     }
 }

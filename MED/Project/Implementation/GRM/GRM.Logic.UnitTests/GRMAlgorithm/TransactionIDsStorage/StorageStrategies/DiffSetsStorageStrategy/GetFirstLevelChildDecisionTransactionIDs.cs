@@ -18,8 +18,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             var itemTransactionIds = new List<int> { 1, 3 };
             var rootDecisionsTransactionIDs = new Dictionary<int, Node.DecisionTransactionIDs>
                 {
-                    { 1, new Node.DecisionTransactionIDs { Support = 2, TransactionIDs = new List<int> { 1, 4 } } },
-                    { 2, new Node.DecisionTransactionIDs { Support = 1, TransactionIDs = new List<int> { 2 } } }
+                    { 1, new Node.DecisionTransactionIDs { Support = 2, TransactionIDs = new[] { 1, 4 } } },
+                    { 2, new Node.DecisionTransactionIDs { Support = 1, TransactionIDs = new[] { 2 } } }
                 };
 
             // Act
@@ -30,7 +30,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
             Assert.Equal(1, result.Count);
 
             Assert.True(result.ContainsKey(1));
-            Assert.Equal(new List<int> { 4 }, result[1].TransactionIDs);
+            Assert.Equal(new[] { 4 }, result[1].TransactionIDs);
 
             Assert.False(result.ContainsKey(2));
         }
