@@ -41,7 +41,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                         continue;
                     }
 
-                    var property = _garmProperty.GetProperty(leftChild.TransactionIDs, rightChild.TransactionIDs);
+                    var property = _garmProperty.GetProperty(leftChild, rightChild);
 
                     if (property == SetsRelationType.Equality || !leftChild.IsDecisive)
                     {

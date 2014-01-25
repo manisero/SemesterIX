@@ -19,11 +19,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
             _transactionIdsStorageStrategy = transactionIdsStorageStrategy;
         }
 
-        public SetsRelationType GetProperty(int[] leftChildTransactionIds, int[] rightChildTransactionIds)
+        public SetsRelationType GetProperty(Node leftChild, Node rightChild)
         {
             ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(_determiningGARMPropertySubstepId);
 
-            var result = leftChildTransactionIds.SortedGetSetsRelation(rightChildTransactionIds);
+            var result = _transactionIdsStorageStrategy.GetTransactionIDsRelation(leftChild, rightChild);
 
             ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(_determiningGARMPropertySubstepId);
 

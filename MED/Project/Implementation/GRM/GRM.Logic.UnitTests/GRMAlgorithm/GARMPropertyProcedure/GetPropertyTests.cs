@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using GRM.Logic.Extensions;
+﻿using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
+using GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies;
 using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking.ProgressTrackers;
 using Xunit;
@@ -13,7 +13,8 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
         {
             ProgressTrackerContainer.CurrentProgressTracker = new EmptyProgressTracker();
 
-            return new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure(null).GetProperty(leftChildTransactionIds, rightChildTransactionIds);
+            return new Logic.GRMAlgorithm._Impl.GARMPropertyProcedure(new TIDSetsStorageStrategy()).GetProperty(new Node { TransactionIDs = leftChildTransactionIds },
+                                                                                                                new Node { TransactionIDs = rightChildTransactionIds });
         }
 
         [Fact]

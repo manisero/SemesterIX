@@ -6,7 +6,7 @@ namespace GRM.Logic.GRMAlgorithm
 {
     public interface IGARMPropertyProcedure
     {
-        SetsRelationType GetProperty(int[] leftChildTransactionIds, int[] rightChildTransactionIds);
+        SetsRelationType GetProperty(Node leftChild, Node rightChild);
 
         void ApplyProperty(SetsRelationType property, Node parent, Node leftChild, Node rightChild, IDictionary<int, int> transactionDecisions, int minimalSupport);
     }

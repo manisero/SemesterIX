@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
@@ -16,6 +17,8 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
         IDictionary<int, Node.DecisionTransactionIDs> GetFirstLevelChildDecisionsTransactionIDs(IList<int> itemTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> rootDecisionsTransactionIDs);
 
         int GetFirstLevelChildSupport(int itemTransactionIdsCount);
+
+        SetsRelationType GetTransactionIDsRelation(Node fistNode, Node secondNode);
 
         int[] GetChildTransactionIDs(int[] parentTransactionIds, int[] parentSiblingTransactionIds);
 
