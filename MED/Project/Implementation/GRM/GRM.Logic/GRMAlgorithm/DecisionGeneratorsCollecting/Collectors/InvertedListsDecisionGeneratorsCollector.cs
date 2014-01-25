@@ -2,6 +2,7 @@
 using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
+using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 {
@@ -20,6 +21,8 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
         private readonly IDictionary<int, DecisionGenerators> _decisionGenerators = new Dictionary<int, DecisionGenerators>();
 
+        private int a = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("test");
+
         protected override void AppendGenerators(int decisionId, IList<Generator> generators)
         {
             if (!_decisionGenerators.ContainsKey(decisionId))
@@ -29,10 +32,14 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
             var decisionGenerators = _decisionGenerators[decisionId];
 
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(a);
+
             foreach (var generator in generators)
             {
                 RemoveSupergenerators(generator, decisionGenerators);
             }
+
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
             
             foreach (var generator in generators)
             {
@@ -53,12 +60,14 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
             for (int i = 1; i < subgenerator.Count; i++)
             {
-                if (!invertedList.ContainsKey(subgenerator[i]))
+                IList<Generator> itemGenerators;
+
+                if (!invertedList.TryGetValue(subgenerator[i], out itemGenerators))
                 {
                     return;
                 }
 
-                supergenerators = supergenerators.Intersect(invertedList[subgenerator[i]]).ToList();
+                supergenerators = supergenerators.Intersect(itemGenerators).ToList();
 
                 if (supergenerators.Count == 0)
                 {
