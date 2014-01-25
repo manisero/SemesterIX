@@ -24,7 +24,7 @@ namespace SolovayStrassen.Console
             System.Console.WriteLine("iterations: {0}", iterations);
             System.Console.WriteLine();
 
-            var result = SolovayStrassenAlgorithm.Execute(p, iterations);
+            var result = ExecuteSolovayStrassen(p, iterations);
 
             if (result)
             {
@@ -64,6 +64,11 @@ namespace SolovayStrassen.Console
             }
 
             return true;
+        }
+
+        private static bool ExecuteSolovayStrassen(BigInteger p, int iterations)
+        {
+            return SolovayStrassenAlgorithm.Execute(p, iterations);
         }
     }
 }
