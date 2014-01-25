@@ -42,7 +42,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var result = Execute(leftChildTransactionIds, rightChildTransactionIds);
 
             // Assert
-            Assert.Equal(SetsRelationType.FirstSubsumesSecond, result);
+            Assert.Equal(SetsRelationType.SecondSubsumesFirst, result);
         }
 
         [Fact]
