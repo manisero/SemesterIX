@@ -44,7 +44,11 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                     }
 
                     var property = _garmProperty.GetProperty(leftChild.TransactionIDs, rightChild.TransactionIDs);
-                    _garmProperty.ApplyProperty(property, node, leftChild, rightChild, transactionDecisions, minimalSupport);
+
+                    if (property == GARMPropertyType.Equality || !leftChild.IsDecisive)
+                    {
+                        _garmProperty.ApplyProperty(property, node, leftChild, rightChild, transactionDecisions, minimalSupport);
+                    }
                 }
 
                 UpdateChildGenerators(node.Generators, leftChild);
