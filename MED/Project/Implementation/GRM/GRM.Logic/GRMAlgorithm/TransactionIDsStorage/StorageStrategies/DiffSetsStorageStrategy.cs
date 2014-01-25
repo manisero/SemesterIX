@@ -66,6 +66,38 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return parentSiblingTransactionIds.SortedExcept(parentTransactionIds);
         }
 
+        public void SetChildTransactionIDsAndSupport(Node child, Node parent, Node parentSibling)
+        {
+            var transactionIds = new List<int>();
+            var decisionsTransactionIds = new Dictionary<int, Node.DecisionTransactionIDs>();
+            child.Support = 0;
+
+            foreach (var parentDecisionTransactionIds in parent.DecisionsTransactionIDs)
+            {
+                Node.DecisionTransactionIDs parentSiblingDecisionTransactionIds;
+
+                if (!parentSibling.DecisionsTransactionIDs.TryGetValue(parentDecisionTransactionIds.Key, out parentSiblingDecisionTransactionIds))
+                {
+                    continue;
+                }
+
+                var decisionTransactionIds = parentSiblingDecisionTransactionIds.TransactionIDs.SortedExcept(parentDecisionTransactionIds.Value.TransactionIDs);
+                var support = parentDecisionTransactionIds.Value.Support - decisionTransactionIds.Length;
+
+                if (support > 0)
+                {
+                    decisionsTransactionIds.Add(parentDecisionTransactionIds.Key, new Node.DecisionTransactionIDs { Support = support, TransactionIDs = decisionTransactionIds });
+
+                    transactionIds.AddRange(decisionTransactionIds);
+                    child.Support += support;
+                }
+            }
+
+            transactionIds.Sort();
+            child.TransactionIDs = transactionIds.ToArray();
+            child.DecisionsTransactionIDs = decisionsTransactionIds;
+        }
+
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
         {
             return parentSupport - childTransactionIds.Count;
@@ -73,29 +105,8 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
 
         public void SetChildDecisiveness(Node child, IDictionary<int, Node.DecisionTransactionIDs> parentDecisionsTransactionIds, IDictionary<int, Node.DecisionTransactionIDs> parentSiblingDecisionsTransactionIds, IDictionary<int, int> transactionDecisions)
         {
-            var decisionsTransactionIds = new Dictionary<int, Node.DecisionTransactionIDs>();
-
-            foreach (var parentDecisionTransactionIds in parentDecisionsTransactionIds)
-            {
-                Node.DecisionTransactionIDs parentSiblingDecisionTransactionIds;
-
-                if (!parentSiblingDecisionsTransactionIds.TryGetValue(parentDecisionTransactionIds.Key, out parentSiblingDecisionTransactionIds))
-                {
-                    continue;
-                }
-
-                var transactionIds = parentSiblingDecisionTransactionIds.TransactionIDs.SortedExcept(parentDecisionTransactionIds.Value.TransactionIDs);
-                var support = parentDecisionTransactionIds.Value.Support - transactionIds.Length;
-
-                if (support > 0)
-                {
-                    decisionsTransactionIds.Add(parentDecisionTransactionIds.Key, new Node.DecisionTransactionIDs { Support = support, TransactionIDs = transactionIds });
-                }
-            }
-
-            child.DecisionsTransactionIDs = decisionsTransactionIds;
-            child.DecisionID = decisionsTransactionIds.Keys.FirstOrDefault();
-            child.IsDecisive = decisionsTransactionIds.Count == 1;
+            child.DecisionID = child.DecisionsTransactionIDs.Keys.FirstOrDefault();
+            child.IsDecisive = child.DecisionsTransactionIDs.Count == 1;
         }
     }
 }

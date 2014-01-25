@@ -45,6 +45,11 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return parentTransactionIds.ToArray().SortedIntersect(parentSiblingTransactionIds.ToArray());
         }
 
+        public void SetChildTransactionIDsAndSupport(Node child, Node parent, Node parentSibling)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public int GetChildSupport(int parentSupport, IList<int> childTransactionIds)
         {
             return childTransactionIds.Count;

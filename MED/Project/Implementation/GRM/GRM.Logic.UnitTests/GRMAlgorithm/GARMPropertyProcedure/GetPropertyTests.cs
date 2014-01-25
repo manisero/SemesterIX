@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking.ProgressTrackers;
@@ -8,7 +9,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
 {
     public class GetPropertyTests
     {
-        private GARMPropertyType Execute(IList<int> leftChildTransactionIds, IList<int> rightChildTransactionIds)
+        private SetsRelationType Execute(int[] leftChildTransactionIds, int[] rightChildTransactionIds)
         {
             ProgressTrackerContainer.CurrentProgressTracker = new EmptyProgressTracker();
 
@@ -26,7 +27,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var result = Execute(leftChildTransactionIds, rightChildTransactionIds);
 
             // Assert
-            Assert.Equal(GARMPropertyType.Equality, result);
+            Assert.Equal(SetsRelationType.Equality, result);
         }
 
         [Fact]
@@ -40,7 +41,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var result = Execute(leftChildTransactionIds, rightChildTransactionIds);
 
             // Assert
-            Assert.Equal(GARMPropertyType.Subsumption, result);
+            Assert.Equal(SetsRelationType.Subsumption, result);
         }
 
         [Fact]
@@ -54,7 +55,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var result = Execute(leftChildTransactionIds, rightChildTransactionIds);
 
             // Assert
-            Assert.Equal(GARMPropertyType.Subsumption, result);
+            Assert.Equal(SetsRelationType.Subsumption, result);
         }
 
         [Fact]
@@ -68,7 +69,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var result = Execute(leftChildTransactionIds, rightChildTransactionIds);
 
             // Assert
-            Assert.Equal(GARMPropertyType.Difference, result);
+            Assert.Equal(SetsRelationType.Difference, result);
         }
 
         [Fact]
@@ -82,7 +83,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var result = Execute(leftChildTransactionIds, rightChildTransactionIds);
 
             // Assert
-            Assert.Equal(GARMPropertyType.Difference, result);
+            Assert.Equal(SetsRelationType.Difference, result);
         }
 
         [Fact]
@@ -96,7 +97,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.GARMPropertyProcedure
             var result = Execute(leftChildTransactionIds, rightChildTransactionIds);
 
             // Assert
-            Assert.Equal(GARMPropertyType.Difference, result);
+            Assert.Equal(SetsRelationType.Difference, result);
         }
     }
 }

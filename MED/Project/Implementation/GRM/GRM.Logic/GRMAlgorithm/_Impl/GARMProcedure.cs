@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting;
 using GRM.Logic.GRMAlgorithm.Entities;
 using GRM.Logic.ProgressTracking;
@@ -42,7 +43,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
 
                     var property = _garmProperty.GetProperty(leftChild.TransactionIDs, rightChild.TransactionIDs);
 
-                    if (property == GARMPropertyType.Equality || !leftChild.IsDecisive)
+                    if (property == SetsRelationType.Equality || !leftChild.IsDecisive)
                     {
                         _garmProperty.ApplyProperty(property, node, leftChild, rightChild, transactionDecisions, minimalSupport);
                     }
