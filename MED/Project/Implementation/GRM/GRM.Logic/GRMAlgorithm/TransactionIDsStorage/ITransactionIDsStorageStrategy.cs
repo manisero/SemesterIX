@@ -17,7 +17,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage
 
         int GetFirstLevelChildSupport(int itemTransactionIdsCount);
 
-        IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds);
+        IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds);
 
         int GetChildSupport(int parentSupport, IList<int> childTransactionIds);
 

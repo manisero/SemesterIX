@@ -60,7 +60,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return itemTransactionIdsCount;
         }
 
-        public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)
+        public IList<int> GetChildTransactionIDs(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds)
         {
             return parentSiblingTransactionIds.Except(parentTransactionIds).ToList();
         }

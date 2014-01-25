@@ -5,7 +5,7 @@ namespace GRM.Logic.UnitTests.GRMAlgorithm.TransactionIDsStorage.StorageStrategi
 {
     public class GetChildTransactionIDsTests
     {
-        private IList<int> Execute(IList<int> parentTransactionIds, IEnumerable<int> parentSiblingTransactionIds)
+        private IList<int> Execute(IList<int> parentTransactionIds, IList<int> parentSiblingTransactionIds)
         {
             return new Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies.TIDSetsStorageStrategy().GetChildTransactionIDs(parentTransactionIds, parentSiblingTransactionIds);
         }
