@@ -55,7 +55,7 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             var decisionId = transactionDecisions[child.TransactionIDs[0]];
 
             child.DecisionID = decisionId;
-            child.IsDecisive = child.TransactionIDs.Skip(1).All(x => transactionDecisions[x] == decisionId);
+            child.IsDecisive = child.TransactionIDs.All(x => transactionDecisions[x] == decisionId);
         }
     }
 }
