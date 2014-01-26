@@ -2,22 +2,22 @@ Executing GRM for file 'datasets/nursey.data'
 The file is not expected to contain attribute names
 Decision attribute: 1
 Minimum support: 50
-Sorting strategy: 'DescendingSupport'
+Sorting strategy: 'AscendingSupport'
 Transaction IDs storage strategy: 'TIDSets'
 Decision supergenerators handling strategy: 'InvertedLists'
 Performance tracking level: 'Steps'
-Output files will be saved to: 'results/nursey_sort0_store0/output_sup050'
+Output files will be saved to: 'results/nursey_sort1_store0/output_sup050'
 
 GRM execution finished
-Lasted 00:00:00.5668905
+Lasted 00:00:00.5415338
 Steps details:
-1. Creating data set representation: 00:00:00.3124001
-2. Selecting frequent items: 00:00:00.0038887
-3. Sorting frequent items: 00:00:00.0026674
-4. Building GRM tree: 00:00:00.0152266
-5. Running GARM procedure: 00:00:00.2159102
-6. Building result: 00:00:00.0156413
+1. Creating data set representation: 00:00:00.3167819
+2. Selecting frequent items: 00:00:00.0041196
+3. Sorting frequent items: 00:00:00.0027766
+4. Building GRM tree: 00:00:00.0154356
+5. Running GARM procedure: 00:00:00.1857424
+6. Building result: 00:00:00.0155247
 
 Rules found: 6
-Text result saved to results/nursey_sort0_store0/output_sup050_rules.txt
-CSV result saved to results/nursey_sort0_store0/output_sup050_rules.csv
+Text result saved to results/nursey_sort1_store0/output_sup050_rules.txt
+CSV result saved to results/nursey_sort1_store0/output_sup050_rules.csv

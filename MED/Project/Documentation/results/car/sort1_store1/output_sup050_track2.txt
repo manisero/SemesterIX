@@ -2,22 +2,22 @@ Executing GRM for file 'datasets/car.data'
 The file is expected to contain attribute names
 Decision attribute: 7
 Minimum support: 50
-Sorting strategy: 'AscendingSupport'
+Sorting strategy: 'DescendingSupport'
 Transaction IDs storage strategy: 'DiffSets'
 Decision supergenerators handling strategy: 'InvertedLists'
 Performance tracking level: 'Steps'
-Output files will be saved to: 'results/car_sort1_store1/output_sup050'
+Output files will be saved to: 'results/car_sort0_store1/output_sup050'
 
 GRM execution finished
-Lasted 00:00:00.1702812
+Lasted 00:00:00.1689208
 Steps details:
-1. Creating data set representation: 00:00:00.0511146
-2. Selecting frequent items: 00:00:00.0037245
-3. Sorting frequent items: 00:00:00.0026683
-4. Building GRM tree: 00:00:00.0359285
-5. Running GARM procedure: 00:00:00.0606513
-6. Building result: 00:00:00.0150404
+1. Creating data set representation: 00:00:00.0514747
+2. Selecting frequent items: 00:00:00.0037567
+3. Sorting frequent items: 00:00:00.0026460
+4. Building GRM tree: 00:00:00.0368853
+5. Running GARM procedure: 00:00:00.0568927
+6. Building result: 00:00:00.0161036
 
 Rules found: 5
-Text result saved to results/car_sort1_store1/output_sup050_rules.txt
-CSV result saved to results/car_sort1_store1/output_sup050_rules.csv
+Text result saved to results/car_sort0_store1/output_sup050_rules.txt
+CSV result saved to results/car_sort0_store1/output_sup050_rules.csv

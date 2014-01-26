@@ -2,22 +2,22 @@ Executing GRM for file 'datasets/mushrooms.data'
 The file is expected to contain attribute names
 Decision attribute: 1
 Minimum support: 150
-Sorting strategy: 'DescendingSupport'
+Sorting strategy: 'AscendingSupport'
 Transaction IDs storage strategy: 'DiffSets'
 Decision supergenerators handling strategy: 'InvertedLists'
 Performance tracking level: 'Steps'
-Output files will be saved to: 'results/mushrooms_sort0_store1/output_sup150'
+Output files will be saved to: 'results/mushrooms_sort1_store1/output_sup150'
 
 GRM execution finished
-Lasted 00:00:18.8867416
+Lasted 00:00:02.3294512
 Steps details:
-1. Creating data set representation: 00:00:00.8978728
-2. Selecting frequent items: 00:00:00.0051455
-3. Sorting frequent items: 00:00:00.0034483
-4. Building GRM tree: 00:00:00.0659885
-5. Running GARM procedure: 00:00:17.8483760
-6. Building result: 00:00:00.0642140
+1. Creating data set representation: 00:00:00.8918517
+2. Selecting frequent items: 00:00:00.0051385
+3. Sorting frequent items: 00:00:00.0034693
+4. Building GRM tree: 00:00:00.0666132
+5. Running GARM procedure: 00:00:01.2983724
+6. Building result: 00:00:00.0623484
 
 Rules found: 1029
-Text result saved to results/mushrooms_sort0_store1/output_sup150_rules.txt
-CSV result saved to results/mushrooms_sort0_store1/output_sup150_rules.csv
+Text result saved to results/mushrooms_sort1_store1/output_sup150_rules.txt
+CSV result saved to results/mushrooms_sort1_store1/output_sup150_rules.csv

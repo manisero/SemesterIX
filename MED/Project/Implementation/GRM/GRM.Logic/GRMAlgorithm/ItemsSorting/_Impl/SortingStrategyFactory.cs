@@ -8,14 +8,14 @@ namespace GRM.Logic.GRMAlgorithm.ItemsSorting._Impl
         {
             switch (strategyType)
             {
+                case SortingStrategyType.AscendingSupport:
+                    return new AscendingSupportSortingStrategy();
+                case SortingStrategyType.DescendingSupport:
+                    return new DescendingSupportSortingStrategy();
                 case SortingStrategyType.Lexicographical:
                     return new LexicographicalSortingStrategy();
                 case SortingStrategyType.ReverseLexicographical:
                     return new ReverseLexicographicalSortingStrategy();
-                case SortingStrategyType.DescendingSupport:
-                    return new DescendingSupportSortingStrategy();
-                case SortingStrategyType.AscendingSupport:
-                    return new AscendingSupportSortingStrategy();
                 default:
                     return null;
             }
