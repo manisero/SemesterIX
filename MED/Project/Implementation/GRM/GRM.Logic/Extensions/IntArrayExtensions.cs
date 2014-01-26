@@ -10,7 +10,7 @@ namespace GRM.Logic.Extensions
         Difference
     }
 
-    public static class ArrayExtensions
+    public static class IntArrayExtensions
     {
         public static SetsRelationType SortedGetSetsRelation(this int[] first, int[] second)
         {

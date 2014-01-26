@@ -26,6 +26,7 @@ namespace GRM.Logic.GRMAlgorithm.Entities
         {
             if (!_identifierComputed)
             {
+                this.Sort((item1, item2) => item1.ValueID - item2.ValueID);
                 long hash = this.Count;
 
                 foreach (var item in this)

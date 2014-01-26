@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using GRM.Logic.GRMAlgorithm.Entities;
 
 namespace GRM.Logic.Extensions
 {
-    public static class GeneratorCollectionExtensions
+    public static class LongListExtensions
     {
-        public static SortedList<long, Generator> SortedIntersect(this SortedList<long, Generator> first, SortedList<long, Generator> second)
+        public static IList<long> SortedIntersect(this IList<long> first, IList<long> second)
         {
-            var result = new SortedList<long, Generator>();
+            var result = new List<long>();
 
             if (first.Count == 0 || second.Count == 0)
             {
@@ -17,9 +16,8 @@ namespace GRM.Logic.Extensions
             var firstIndex = 0;
             var secondIndex = 0;
 
-            var candidate = first[first.Keys[firstIndex]];
-            var firstValue = candidate.GetIdentifier();
-            var secondValue = second[second.Keys[secondIndex]].GetIdentifier();
+            var firstValue = first[firstIndex];
+            var secondValue = second[secondIndex];
 
             while (true)
             {
@@ -32,7 +30,7 @@ namespace GRM.Logic.Extensions
                         break;
                     }
 
-                    secondValue = second[second.Keys[secondIndex]].GetIdentifier();
+                    secondValue = second[secondIndex];
                 }
                 else if (secondValue > firstValue)
                 {
@@ -43,12 +41,11 @@ namespace GRM.Logic.Extensions
                         break;
                     }
 
-                    candidate = first[first.Keys[firstIndex]];
-                    firstValue = candidate.GetIdentifier();
+                    firstValue = first[firstIndex];
                 }
                 else
                 {
-                    result.Add(firstValue, candidate);
+                    result.Add(firstValue);
 
                     firstIndex++;
                     secondIndex++;
@@ -58,9 +55,8 @@ namespace GRM.Logic.Extensions
                         break;
                     }
 
-                    candidate = first[first.Keys[firstIndex]];
-                    firstValue = candidate.GetIdentifier();
-                    secondValue = second[second.Keys[secondIndex]].GetIdentifier();
+                    firstValue = first[firstIndex];
+                    secondValue = second[secondIndex];
                 }
             }
 
