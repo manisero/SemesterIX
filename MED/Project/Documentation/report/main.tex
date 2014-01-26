@@ -126,9 +126,42 @@ a,b,c,d,e, ,g, ,+
 
 
 \section{Dane wyjściowe} \label{sec:output}
-opis danych wyjsciowych
-- dwa formaty wynikow
-- oprocz tego wynik na konsoli
+Na wyjście aplikacji składają się trzy rodzaje danych:
+
+\begin{itemize}
+ \item komunikaty diagnostyczne wypisywane na standardowe wyjście,
+ \item plik zawierący znalezione reguły decyzyjne w formacie czytelnym dla człowieka,
+ \item plik zawierący znalezione reguły decyzyjne w formacie przystosowanym do dalszej obróbki.
+\end{itemize}
+
+ \subsection{Plik czytelny dla człowieka} \label{sec:output:human}
+ Plik w formacie czytelnym dla człowieka zawiera listy generatorów dla każdej decyzji.
+ Pojedynczy generator jest przedstawiony jako lista wartości atrybutów wraz z ich nazwami.
+ Przykład:
+ 
+\begin{verbatim}
+====================
+Decision: '+':
+--------------------
+Attr A (a), Attr B (b)
+Attr B (b), Attr D (d)
+\end{verbatim}
+
+ Plik ten jest zapisywany pod ścieżką \emph{[plik].txt}, gdzie \emph{[plik]} to wartość parametru \verb+output+ (patrz sekcja~\ref{sec:input:cmd}).
+
+ 
+ \subsection{Plik przystosowany do dalszej obróbki} \label{sec:output:csv}
+ Plik w formacie czytelnym dla człowieka zawiera listę generatrów wraz generowanymi przez nie decyzjami.
+ Pojedynczy generator jest przedstawiony jako lista wartości oddzielonych średnikami\footnote{Patrz http://pl.wikipedia.org/wiki/CSV\_(format\_pliku). W omawianej aplikacji zamiast przecinków użyto średników, aby plik wyjściowy mógł być odczytany przez program Microsoft Excel.}, z uwzględnieniem atrybutów niewystępujących w generatorze.
+ Przykład:
+ 
+\begin{verbatim}
+Attr A;Attr B;Attr C;Attr D;Attr E;Attr F;Attr G;Attr H;Decision
+a;b;;;;;;;+
+;b;;d;;;;;+
+\end{verbatim}
+ 
+ Plik ten jest zapisywany pod ścieżką \emph{[plik].csv}, gdzie \emph{[plik]} to wartość parametru \verb+output+ (patrz sekcja~\ref{sec:input:cmd}).
 
 
 
