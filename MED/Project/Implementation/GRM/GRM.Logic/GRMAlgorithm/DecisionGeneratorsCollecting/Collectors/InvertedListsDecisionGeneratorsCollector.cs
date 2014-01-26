@@ -15,7 +15,7 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             public InvertedList InvertedList = new InvertedList();
         }
         
-        private class InvertedList : Dictionary<ItemID, SortedList<long, Generator>>
+        private class InvertedList : Dictionary<ItemID, SortedList<long, long>>
         {
         }
 
@@ -51,18 +51,18 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             }
 
             // Find supergenerators
-            var supergenerators = new SortedList<long, Generator>(invertedList[subgenerator[0]]);
+            IList<long> supergenerators = new List<long>(invertedList[subgenerator[0]].Keys);
 
             for (int i = 1; i < subgenerator.Count; i++)
             {
-                SortedList<long, Generator> itemGenerators;
+                SortedList<long, long> itemGenerators;
 
                 if (!invertedList.TryGetValue(subgenerator[i], out itemGenerators))
                 {
                     return;
                 }
 
-                supergenerators = supergenerators.SortedIntersect(itemGenerators);
+                supergenerators = supergenerators.SortedIntersect(itemGenerators.Keys);
 
                 if (supergenerators.Count == 0)
                 {
@@ -73,11 +73,11 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             // Remove supergenerators
             foreach (var supergenerator in supergenerators)
             {
-                decisionGenerators.Generators.Remove(supergenerator.Key);
+                decisionGenerators.Generators.Remove(supergenerator);
 
                 foreach (var generators in invertedList)
                 {
-                    generators.Value.Remove(supergenerator.Key);
+                    generators.Value.Remove(supergenerator);
                 }
             }
         }
@@ -92,11 +92,11 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
             {
                 if (!invertedList.ContainsKey(item))
                 {
-                    invertedList.Add(item, new SortedList<long, Generator> { { generator.GetIdentifier(), generator } });
+                    invertedList.Add(item, new SortedList<long, long> { { generator.GetIdentifier(), generator.GetIdentifier() } });
                 }
                 else
                 {
-                    invertedList[item].Add(generator.GetIdentifier(), generator);
+                    invertedList[item].Add(generator.GetIdentifier(), generator.GetIdentifier());
                 }
             }
         }
