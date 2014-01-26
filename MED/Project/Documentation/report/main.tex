@@ -22,35 +22,117 @@ Algorytm ten jest modyfikacją algorytmu odkrywania częstych generatorów (GRM)
 \section{Założenia} \label{sec:assumptions}
 Projekt zrealizowano w oparciu o następujące założenia:
 
-\subsection*{Niefunkcjonalne:}
- \begin{enumerate}
-  \item Użyty język programowania; platforma: C\#; .NET Framework 3.5.
-  \item Obsługiwane systemy operacyjne: kompatybilne z .NET Framework 3.5\footnote{Lista systemów kompatybilnych z .NET Framework 3.5 dostępna jest pod adresem: \emph{http://msdn.microsoft.com/en-us/library/vstudio/bb882520\%28v=vs.90\%29.aspx}, sekcja ``Supported Operating Systems''.} (aplikację testowano na systemie Microsoft Windows 7 Ultimate).
-  \item Rodzaj aplikacji: aplikacja konsolowa.
-\end{enumerate}
-
-\subsection*{Funkcjonalne:}
- \begin{enumerate}
-  \item Aplikacja pobiera dane z pliku (patrz sekcja \ref{sec:io}).
-  \item Aplikacja zwraca wynik działania w dwóch formatach: ``przyjaznym dla człowieka'' i ``excelowym'' (patrz sekcja \ref{sec:io}).
-  \item Aplikacja pozwala mierzyć czas wykonania poszczególnych kroków algorytmu.
-  \item Zakłada się, że każda transakcja zawarta w danych wejściowych ma przypisaną decyzję.
+ \subsection{Niefunkcjonalne:}
+  \begin{enumerate}
+   \item Użyty język programowania; platforma: C\#; .NET Framework 3.5.
+   \item Obsługiwane systemy operacyjne: kompatybilne z .NET Framework 3.5\footnote{Lista systemów kompatybilnych z .NET Framework 3.5 dostępna jest pod adresem: \emph{http://msdn.microsoft.com/en-us/library/vstudio/bb882520\%28v=vs.90\%29.aspx}, sekcja ``Supported Operating Systems''.} (aplikację testowano na systemie Microsoft Windows 7 Ultimate).
+   \item Rodzaj aplikacji: aplikacja konsolowa uruchamiana z wiersza poleceń.
  \end{enumerate}
 
 
+ \subsection{Funkcjonalne:}
+  \begin{enumerate}
+   \item Aplikacja pobiera dane z pliku (patrz sekcja~\ref{sec:input:file}).
+   \item Aplikacja zwraca wynik działania w dwóch formatach: ``przyjaznym dla człowieka'' i ``excelowym'' (patrz sekcja~\ref{sec:output}).
+   \item Aplikacja pozwala mierzyć czas wykonania poszczególnych kroków algorytmu.
+  \end{enumerate}
 
-\section{Dane wejściowe i wyjściowe} \label{sec:io}
-opis danych wejsciowych i wyjsciowych
-- opcje (zostana opisane pozniej), minsup bezwzgledne!
-- dane oddzielone przecinkami (decyzja razem z atrybutami, na dowolnym miejscu)
-- naglowki w pierwszym wierszu
-- brak danych - spacja (biale znaki)
+
+ \subsection{Dotyczące danych wejściowych:} \label{sec:assumptions:input}
+  \begin{enumerate}
+   \item Dane wejściowe zawierają jedynie wartości atrybutów transakcji i ewentualnie nazwy atrybutów transakcji.
+   \item Wartości atrybutów w pliku wejściowym są oddzielone przecinkami.
+   \item Każda transakcja ma przypisaną decyzję.
+   \item Brakujące wartości atrybutów (tzn. wartości nieznane bądź nieustalone) są oznaczone jako wartości puste lub złożone z białych znaków.
+  \end{enumerate}
+
+
+
+\section{Dane wejściowe} \label{sec:input}
+Aplikacja będąca wynikiem projektu przyjmuje jednocześnie dwa rodzaje danych wejściowych:
+
+\begin{itemize}
+ \item plik zawierający dane transakcji,
+ \item parametry podane przez użytkownika w wierszu poleceń.
+\end{itemize}
+
+ \subsection{Plik wejściowy} \label{sec:input:file}
+ Plik wejściowy powinien zawierać kolejne wartości atrybutów transakcji według reguł przedstawionych w sekcji~\ref{sec:assumptions:input}.
+ Przykładowy format pliku wejściowego:
+ 
+\begin{verbatim}
+a,b,c,d,e, ,g, ,+
+a,b,c,d,e,f, , ,+
+a,b,c,d,e, , ,h,+
+a,b, ,d,e, , , ,+
+a, ,c,d,e, , ,h,-
+ ,b,c, ,e, , , ,-
+\end{verbatim}
+
+ Opcjonalnie, pierwszy wiersz pliku wejściowego może zawierać nazwy atrybutów transakcji (nagłówki), na przykład:
+
+\begin{verbatim}
+Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
+a,b,c,d,e, ,g, ,+
+ ,b,c, ,e, , , ,-
+\end{verbatim}
+
+ Jeden z atrybutów transakcji musi reprezentować przypisaną jej decyzję.
+ Domyślnie, aplikacja uznaje ostatni atrybut transakcji za ``decyzyjny'' - użytkownik może jednak samodzielnie wskazać odpowiedni atrybut (patrz sekcja~\ref{sec:input:cmd}).
+ 
+ 
+ \subsection{Parametry wiersza poleceń} \label{sec:input:cmd}
+ Aplikacja przyjmuje następujące parametry:
+ 
+ \begin{itemize}
+  \item \verb+--help+ - Powoduje wyświetlenie informacji o dostępnych parametrach i wyjście z programu.
+  \item \verb+-f, --file=VALUE+ - Ścieżka do pliku wejściowego. Parametr wymagany.
+  \item \verb+--sup, --minSup=VALUE+ - Próg (bezwzględny) wsparcia - wykryte zostaną reguły decyzyjne o poprzednikach cechujących się wsparciem większym \textbf{lub równym} progowi wsparcia. Parametr wymagany.
+  \item \verb+-h, --headers+ - Flaga oznaczająca, że plik wejściowy zawiera nagłówki atrybutów. Parametr opcjonalny.
+  \item \verb+--dec, --decAttr=VALUE+ - Pozycja atrybutu zawierającego wartości decyzji (\verb+1+ - pierwszy atrybut, \verb+2+ - drugi atrybut itd.). Parametr opcjonalny (jeśli nie zostanie podany, ostatni atrybut zostanie uznany za decyzyjny).
+  \item \verb+--sort=VALUE+ - strategia sortowania elementów (patrz sekcja~\ref{sec:impl:sort}). Parametr opcjonalny.
+  Dopuszczalne wartości:
+  \begin{itemize}
+   \item \verb+AscendingSupport+ (lub \verb+0+; wartość domyślna),
+   \item \verb+DescendingSupport+ (lub \verb+1+),
+   \item \verb+Lexicographical+ (lub \verb+2+).
+  \end{itemize}
+ 
+  \item \verb+--store=VALUE+ - strategia przechowywania identyfikatorów transakcji (patrz sekcja~\ref{sec:impl:store}). Parametr opcjonalny.
+  Dopuszczalne wartości:
+  \begin{itemize}
+   \item \verb+TIDSets+ (lub \verb+0+; wartość domyślna),
+   \item \verb+DiffSets+ (lub \verb+1+).
+  \end{itemize}
+  
+  \item \verb+--supgen=VALUE+ - Strategia przechowywania generatorów decyzji, a także wykrywania i usuwania ich nadgeneratorów (patrz sekcja~\ref{sec:impl:supgen}). Parametr opcjonalny.
+  Dopuszczalne wartości:
+  \begin{itemize}
+   \item \verb+InvertedLists+ (lub \verb+0+; wartość domyślna),
+   \item \verb+BruteForce+ (lub \verb+1+).
+  \end{itemize}
+  
+  \item \verb+--track=VALUE+ - Poziom monitorowania wydajności programu (patrz sekcja~\ref{sec:impl:track}). Parametr opcjonalny.
+  \begin{itemize}
+   \item \verb+NoTracking+ (lub \verb+0+),
+   \item \verb+Task+ (lub \verb+1+; wartość domyślna).
+   \item \verb+Steps+ (lub \verb+2+).
+   \item \verb+Substeps+ (lub \verb+3+; Uwaga: może powodować znaczący spadek ogólnej wydajności programu).
+  \end{itemize}
+  
+  \item \verb+-o, --output=VALUE+ - Ścieżka plików wyjściowych. Parametr opcjonalny. Poprawna wartość jest ścieżką pliku z pominięciem jego rozszerzenia (np. \emph{wyniki/wynik}. Wartość domyślna: \emph{[ścieżka pliku wejściowego]\_rules}.
+ \end{itemize}
+
+
+
+\section{Dane wyjściowe} \label{sec:output}
+opis danych wyjsciowych
 - dwa formaty wynikow
 - oprocz tego wynik na konsoli
 
 
 
-\section{Implementacja}
+\section{Implementacja} \label{sec:impl}
 wszystkie istotne kwestie zwiazne z projektowaniem (np. diagramy klas) i implementacja
 projektowanie:
 - podzial na moduly (console, dataset processing, GRM)
@@ -62,17 +144,29 @@ implementacja:
 - tidset/diffset
 - bruteforce/inv list
 - tracking (poziomy)
+biblioteki zewnętrzne:
+- NDeskOptions
+- xunit
+- moq
 
-\subsection{Opymalizacje}
-- wszystkie wartosci otrzymuja identyfikatory liczbowe
-- skonfliktowane generatory
-- transaction ids - posortowane (szybkie intersect, except)
+ \subsection{Strategie sortowania elementów} \label{sec:impl:sort}
+ 
+ \subsection{Strategie przechowywania identyfikatorów transakcji} \label{sec:impl:store}
+ 
+ \subsection{Strategie przechowywania generatorów decyzji} \label{sec:impl:supgen}
+ 
+ \subsection{Monitorowanie wydajności programu} \label{sec:impl:track}
 
-roznice z GRM:
-- dany node jest decyzyjny - nie rozwijamy go (bo generatory dzieci nie beda minimalne)
-- generatory decyzji trzymane w slowniku (klucz - decyzja), posortowane wg hasha
-- w ogole nie ma granicy
-- dla diffsetow transaction ids trzymane w slowniku (klucz - decyzja)
+ \subsection{Opymalizacje}
+ - wszystkie wartosci otrzymuja identyfikatory liczbowe
+ - skonfliktowane generatory
+ - transaction ids - posortowane (szybkie intersect, except)
+
+ roznice z GRM:
+ - dany node jest decyzyjny - nie rozwijamy go (bo generatory dzieci nie beda minimalne)
+ - generatory decyzji trzymane w slowniku (klucz - decyzja), posortowane wg hasha
+ - w ogole nie ma granicy
+ - dla diffsetow transaction ids trzymane w slowniku (klucz - decyzja)
 
 
 
@@ -97,6 +191,9 @@ wyniki jakosciowe i ilosciowe na (np. czas dzialania; liczba wzorcow)
 uzyskane dla wiekszych (wielkich) zbiorow danych(np. z
 http://archive.ics.uci.edu/ml/ or http://fimi.cs.helsinki.fi/data/ lub
 uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
+- uzasadnic supergenerators Inverted Lists
+- ze sortowanie AscendingSupport
+- ze storage TIDSets
 - wykresy, wykresy
 - ze dla duzej liczby atrybutow malo wydajny
 
@@ -105,6 +202,7 @@ uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
 \section{Wnioski}
 wnioski z realizacji projektu
 - ze trzeba by poprawic wykrywanie supergeneratorow
+- ze sortowanie ma duzy wplyw
 - ze ogolnie dziala spoczko (nursey)
 
 
