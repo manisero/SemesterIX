@@ -4,7 +4,7 @@ using GRM.Logic.UnitTests.GRMFacade;
 
 namespace GRM.Logic.PerformanceTests.GRMFacade
 {
-    public class MushroomsSmallData_MinimumSupport50 : GRMFacadeTestsBase
+    public class MushroomsSmallData_MinimumSupport30 : GRMFacadeTestsBase
     {
         protected override string DataSet
         {
@@ -13,7 +13,7 @@ namespace GRM.Logic.PerformanceTests.GRMFacade
 
         protected override int MinimumSupport
         {
-            get { return 50; }
+            get { return 30; }
         }
 
         protected override int? DecisionAttributeIndex
