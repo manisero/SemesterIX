@@ -1,0 +1,32 @@
+Executing GRM for file 'input.txt'
+The file is not expected to contain attribute names
+Decision attribute: last
+Minimum support: 3
+Sorting strategy: 'AscendingSupport'
+Transaction IDs storage strategy: 'TIDSets'
+Decision supergenerators handling strategy: 'InvertedLists'
+Performance tracking level: 'Substeps'
+Output files will be saved to: 'input'
+
+GRM execution finished
+Lasted 00:00:00.1123575
+Steps details:
+1. Creating data set representation: 00:00:00.0293191
+	- Building decision -> decision id dictionary: 00:00:00.0003843 (6 iterations)
+	- Building item -> item id dictionary: 00:00:00.0068837 (30 iterations)
+	- Including item in data set representation: 00:00:00.0066924 (30 iterations)
+2. Selecting frequent items: 00:00:00.0044970
+3. Sorting frequent items: 00:00:00.0027784
+4. Building GRM tree: 00:00:00.0163098
+5. Running GARM procedure: 00:00:00.0418275
+	- Checking for node generators conflicts: 00:00:00.0014032 (5 iterations)
+	- Determining GARM property: 00:00:00.0020787 (5 iterations)
+	- Applying GARM property (sets different): 00:00:00.0052850 (3 iterations)
+	- Applying GARM property (sets equal): 00:00:00.0001329 (1 iterations)
+	- Including parent node generators in child node generators: 00:00:00.0021305 (6 iterations)
+	- Updating decision generators: 00:00:00.0213280 (1 iterations)
+6. Building result: 00:00:00.0163420
+
+Rules found: 2
+Text result saved to input_rules.txt
+CSV result saved to input_rules.csv

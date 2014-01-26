@@ -1,0 +1,6 @@
+====================
+Decision: '+':
+--------------------
+Attribute 1 (a), Attribute 2 (b)
+Attribute 2 (b), Attribute 4 (d)
+
