@@ -4,7 +4,6 @@
     {
         AscendingSupport = 0,
         DescendingSupport,
-        Lexicographical,
-        ReverseLexicographical
+        Lexicographical
     }
 }

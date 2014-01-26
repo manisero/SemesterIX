@@ -8,12 +8,10 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl
         {
             switch (strategyType)
             {
-                case DecisionSupergeneratorsHandlingStrategyType.BruteForce:
-                    return new BruteForceDecisionGeneratorsCollector();
-                case DecisionSupergeneratorsHandlingStrategyType.BruteForceLINQ:
-                    return new BruteForceLINQDecisionGeneratorsCollector();
                 case DecisionSupergeneratorsHandlingStrategyType.InvertedLists:
                     return new InvertedListsDecisionGeneratorsCollector();
+                case DecisionSupergeneratorsHandlingStrategyType.BruteForce:
+                    return new BruteForceDecisionGeneratorsCollector();
                 default:
                     return null;
             }

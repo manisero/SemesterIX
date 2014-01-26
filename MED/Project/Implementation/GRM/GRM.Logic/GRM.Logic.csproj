@@ -51,7 +51,6 @@
     <Compile Include="Extensions\IntArrayExtensions.cs" />
     <Compile Include="Extensions\LongListExtensions.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceDecisionGeneratorsCollector.cs" />
-    <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\BruteForceLINQDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\Collectors\InvertedListsDecisionGeneratorsCollector.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\IDecisionGeneratorsCollectorFactory.cs" />
     <Compile Include="GRMAlgorithm\DecisionGeneratorsCollecting\_Impl\DecisionGeneratorsCollectorFactory.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\AscendingSupportSortingStrategy.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\DescendingSupportSortingStrategy.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\LexicographicalSortingStrategy.cs" />
-    <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategies\ReverseLexicographicalSortingStrategy.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\SortingStrategyType.cs" />
     <Compile Include="GRMAlgorithm\ItemsSorting\_Impl\SortingStrategyFactory.cs" />
     <Compile Include="GRMAlgorithm\ITreeBuilder.cs" />

@@ -14,8 +14,6 @@ namespace GRM.Logic.GRMAlgorithm.ItemsSorting._Impl
                     return new DescendingSupportSortingStrategy();
                 case SortingStrategyType.Lexicographical:
                     return new LexicographicalSortingStrategy();
-                case SortingStrategyType.ReverseLexicographical:
-                    return new ReverseLexicographicalSortingStrategy();
                 default:
                     return null;
             }

@@ -64,12 +64,6 @@ namespace GRM.Logic.UnitTests.GRMFacade
         }
 
         [Fact]
-        public void works_properly_for_sorting_ReverseLexicographically_and_TIDSets_storage()
-        {
-            Execute(SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.TIDSets);
-        }
-
-        [Fact]
         public void works_properly_for_sorting_by_DescendingSupport_and_DiffSets_storage()
         {
             Execute(SortingStrategyType.DescendingSupport, TransactionIDsStorageStrategyType.DiffSets);
@@ -85,12 +79,6 @@ namespace GRM.Logic.UnitTests.GRMFacade
         public void works_properly_for_sorting_Lexicographically_and_DiffSets_storage()
         {
             Execute(SortingStrategyType.Lexicographical, TransactionIDsStorageStrategyType.DiffSets);
-        }
-
-        [Fact]
-        public void works_properly_for_sorting_ReverseLexicographically_and_DiffSets_storage()
-        {
-            Execute(SortingStrategyType.ReverseLexicographical, TransactionIDsStorageStrategyType.DiffSets);
         }
     }
 }
