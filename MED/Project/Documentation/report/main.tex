@@ -13,22 +13,33 @@
 
 \maketitle
 
-\section{Opis zadania}
+\section{Opis zadania} \label{sec:task_desc}
 Celem projektu jest zaimplementowanie algorytmu wyznaczania reguł decyzyjnych o minimalnych poprzednikach, które są częstymi generatorami.
 Algorytm ten jest modyfikacją algorytmu odkrywania częstych generatorów (GRM), opisanego w~\cite{grm}.
 
 
 
-\section{Założenia}
-poczynione zalozenia
-- kazda transakcja bedzie miala decyzje
-- aplikacja konsolowa pobieracjaca dane z pliku i zwracajaca wynik w dwoch formatach
-- aplikacja mierzy czas poszczegolnych krokow
-- C\#, .NET 3,5
+\section{Założenia} \label{sec:assumptions}
+Projekt zrealizowano w oparciu o następujące założenia:
+
+\subsection*{Niefunkcjonalne:}
+ \begin{enumerate}
+  \item Użyty język programowania; platforma: C\#; .NET Framework 3.5.
+  \item Obsługiwane systemy operacyjne: kompatybilne z .NET Framework 3.5\footnote{Lista systemów kompatybilnych z .NET Framework 3.5 dostępna jest pod adresem: \emph{http://msdn.microsoft.com/en-us/library/vstudio/bb882520\%28v=vs.90\%29.aspx}, sekcja ``Supported Operating Systems''.} (aplikację testowano na systemie Microsoft Windows 7 Ultimate).
+  \item Rodzaj aplikacji: aplikacja konsolowa.
+\end{enumerate}
+
+\subsection*{Funkcjonalne:}
+ \begin{enumerate}
+  \item Aplikacja pobiera dane z pliku (patrz sekcja \ref{sec:io}).
+  \item Aplikacja zwraca wynik działania w dwóch formatach: ``przyjaznym dla człowieka'' i ``excelowym'' (patrz sekcja \ref{sec:io}).
+  \item Aplikacja pozwala mierzyć czas wykonania poszczególnych kroków.
+  \item Zakłada się, że każda transakcja zawarta w danych wejściowych ma przypisaną decyzję.
+ \end{enumerate}
 
 
 
-\section{Dane wejściowe i wyjściowe}
+\section{Dane wejściowe i wyjściowe} \label{sec:io}
 opis danych wejsciowych i wyjsciowych
 - opcje (zostana opisane pozniej), minsup bezwzgledne!
 - dane oddzielone przecinkami (decyzja razem z atrybutami, na dowolnym miejscu)
