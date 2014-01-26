@@ -13,50 +13,88 @@
 
 \maketitle
 
-\section*{Opis zadania}
+\section{Opis zadania}
 Celem projektu jest zaimplementowanie algorytmu wyznaczania reguł decyzyjnych o minimalnych poprzednikach, które są częstymi generatorami.
 Algorytm ten jest modyfikacją algorytmu odkrywania częstych generatorów (GRM), opisanego w~\cite{grm}.
 
 
 
-\section*{Założenia}
+\section{Założenia}
 poczynione zalozenia
+- kazda transakcja bedzie miala decyzje
+- aplikacja konsolowa pobieracjaca dane z pliku i zwracajaca wynik w dwoch formatach
+- aplikacja mierzy czas poszczegolnych krokow
+- C\#, .NET 3,5
 
 
 
-\section*{Dane wejściowe i wyjściowe}
+\section{Dane wejściowe i wyjściowe}
 opis danych wejsciowych i wyjsciowych
+- opcje (zostana opisane pozniej), minsup bezwzgledne!
+- dane oddzielone przecinkami (decyzja razem z atrybutami, na dowolnym miejscu)
+- naglowki w pierwszym wierszu
+- brak danych - spacja (biale znaki)
+- dwa formaty wynikow
+- oprocz tego wynik na konsoli
 
 
 
-\section*{Implementacja}
+\section{Implementacja}
 wszystkie istotne kwestie zwiazne z projektowaniem (np. diagramy klas) i implementacja
+projektowanie:
+- podzial na moduly (console, dataset processing, GRM)
+- testy
+- diagram klas Logic
+implementacja:
+- jakis algorytm, moze z diffsetami
+- rozne sortowania
+- tidset/diffset
+- bruteforce/inv list
+- tracking (poziomy)
+
+\subsection{Opymalizacje}
+- wszystkie wartosci otrzymuja identyfikatory liczbowe
+- skonfliktowane generatory
+- transaction ids - posortowane (szybkie intersect, except)
+
+roznice z GRM:
+- dany node jest decyzyjny - nie rozwijamy go (bo generatory dzieci nie beda minimalne)
+- generatory decyzji trzymane w slowniku (klucz - decyzja), posortowane wg hasha
+- w ogole nie ma granicy
+- dla diffsetow transaction ids trzymane w slowniku (klucz - decyzja)
 
 
 
-\section*{Podręcznik użytkownika}
+\section{Podręcznik użytkownika}
 podrecznik potencjalnego uzytkownika wytworzonego oprogramowania
 (zamierzam korzystać z niego podczas sprawdzania Panstwa rozwiazan)
+- wszystkie opcje programu
+- przykladowa komenda i wynik na konsoli
 
 
 
-\section*{Analiza poprawności}
+\section{Analiza poprawności}
 wszystkie wyniki wytwarzane przez program otrzymane dla malego,
 przykladowego zbioru danych (w celu weryfikacji poprawnosci działania
 programu)
+- przyklad z konsultacji
 
 
 
-\section*{Analiza wydajności}
+\section{Analiza wydajności}
 wyniki jakosciowe i ilosciowe na (np. czas dzialania; liczba wzorcow)
 uzyskane dla wiekszych (wielkich) zbiorow danych(np. z
 http://archive.ics.uci.edu/ml/ or http://fimi.cs.helsinki.fi/data/ lub
 uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
+- wykresy, wykresy
+- ze dla duzej liczby atrybutow malo wydajny
 
 
 
-\section*{Wnioski}
+\section{Wnioski}
 wnioski z realizacji projektu
+- ze trzeba by poprawic wykrywanie supergeneratorow
+- ze ogolnie dziala spoczko (nursey)
 
 
 
