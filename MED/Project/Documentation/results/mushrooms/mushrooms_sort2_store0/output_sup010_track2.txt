@@ -1,0 +1,23 @@
+Executing GRM for file 'datasets/mushrooms.data'
+The file is expected to contain attribute names
+Decision attribute: 1
+Minimum support: 10
+Sorting strategy: 'Lexicographical'
+Transaction IDs storage strategy: 'TIDSets'
+Decision supergenerators handling strategy: 'InvertedLists'
+Performance tracking level: 'Steps'
+Output files will be saved to: 'results/mushrooms_sort2_store0/output_sup010'
+
+GRM execution finished
+Lasted 00:00:11.8705442
+Steps details:
+1. Creating data set representation: 00:00:00.9001316
+2. Selecting frequent items: 00:00:00.0051707
+3. Sorting frequent items: 00:00:00.0050475
+4. Building GRM tree: 00:00:00.0206697
+5. Running GARM procedure: 00:00:10.7830331
+6. Building result: 00:00:00.1547434
+
+Rules found: 3049
+Text result saved to results/mushrooms_sort2_store0/output_sup010_rules.txt
+CSV result saved to results/mushrooms_sort2_store0/output_sup010_rules.csv

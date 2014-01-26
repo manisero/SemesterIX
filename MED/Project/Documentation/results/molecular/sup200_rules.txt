@@ -1,0 +1,6 @@
+====================
+Decision: 'EI':
+--------------------
+Attribute 34 (T), Attribute 35 (A), Attribute 36 (A), Attribute 37 (G)
+Attribute 33 (G), Attribute 34 (T), Attribute 36 (A), Attribute 37 (G), Attribute 38 (T)
+

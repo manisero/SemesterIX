@@ -1,0 +1,23 @@
+Executing GRM for file 'datasets/molecular.data'
+The file is not expected to contain attribute names
+Decision attribute: 1
+Minimum support: 100
+Sorting strategy: 'Lexicographical'
+Transaction IDs storage strategy: 'TIDSets'
+Decision supergenerators handling strategy: 'InvertedLists'
+Performance tracking level: 'Steps'
+Output files will be saved to: 'results/molecular_sort2_store0/output_sup100'
+
+GRM execution finished
+Lasted 00:00:25.1890336
+Steps details:
+1. Creating data set representation: 00:00:10.5614455
+2. Selecting frequent items: 00:00:00.0053251
+3. Sorting frequent items: 00:00:00.0050405
+4. Building GRM tree: 00:00:00.0209179
+5. Running GARM procedure: 00:00:14.4935774
+6. Building result: 00:00:00.1014740
+
+Rules found: 72
+Text result saved to results/molecular_sort2_store0/output_sup100_rules.txt
+CSV result saved to results/molecular_sort2_store0/output_sup100_rules.csv

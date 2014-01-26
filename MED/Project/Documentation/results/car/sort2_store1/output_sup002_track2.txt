@@ -1,0 +1,23 @@
+Executing GRM for file 'datasets/car.data'
+The file is expected to contain attribute names
+Decision attribute: 7
+Minimum support: 2
+Sorting strategy: 'Lexicographical'
+Transaction IDs storage strategy: 'DiffSets'
+Decision supergenerators handling strategy: 'InvertedLists'
+Performance tracking level: 'Steps'
+Output files will be saved to: 'results/car_sort2_store1/output_sup002_track1'
+
+GRM execution finished
+Lasted 00:00:00.1988838
+Steps details:
+1. Creating data set representation: 00:00:00.0517490
+2. Selecting frequent items: 00:00:00.0038663
+3. Sorting frequent items: 00:00:00.0037959
+4. Building GRM tree: 00:00:00.0351999
+5. Running GARM procedure: 00:00:00.0866966
+6. Building result: 00:00:00.0163522
+
+Rules found: 111
+Text result saved to results/car_sort2_store1/output_sup002_track1_rules.txt
+CSV result saved to results/car_sort2_store1/output_sup002_track1_rules.csv
