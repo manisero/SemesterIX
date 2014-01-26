@@ -171,10 +171,6 @@ projektowanie:
 - podzial na moduly (console, dataset processing, GRM)
 - testy
 - diagram klas Logic
-biblioteki zewnętrzne:
-- NDeskOptions
-- xunit
-- moq
 
  \subsection{Strategie sortowania elementów} \label{sec:impl:sort}
  Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów (drzewie DZ~\cite{grm}):
@@ -223,16 +219,28 @@ biblioteki zewnętrzne:
 
  Obiekty monitorujące dostarcza fabryka \verb+ProgressTrackerFactory+, tworząca obiekty odpowiadające zadanym wartościom wyliczenia \verb+TrackingLevel+.
 
- \subsection{Opymalizacje}
- - wszystkie wartosci otrzymuja identyfikatory liczbowe
- - skonfliktowane generatory
- - transaction ids - posortowane (szybkie intersect, except)
+ \subsection{Zabiegi optymalizacyjne}
+ \begin{itemize}
+  \item Aby zminimalizować czas odczytu danych wejściowych, plik wejściowy jest odczytywany jednokrotnie, wiersz po wierszu.
+  \item Aby zminimalizować czas trwania porównań, wszystkie wartości atrybutów otrzymują identyfikatory liczbowe.
+  \item Aby zminimalizować czas operacji (np. przecięcia, różnicy) na zbiorach identyfikatorów transakcji, identyfikatory te są przechowywane w ustalonym (rosnącym) porządku.
+  \item Aby możliwie wcześnie ``odciąć'' gałęzie drzewa, które nie prowadzą do znalezienia generatorów decyzji:
+   \begin{itemize}
+    \item jeśli dwa węzły zawierają różne wartości tego samego atrybutu, to nie są ``parowane'' (tzn. poddawane procedurze \emph{GARM-Property}) - przecięcie zbiorów identyfikatorów transakcji, w których występują jest puste, a zatem ich potencjalne dziecko nie może generować żadnej decyzji;
+    \item jeśli dany węzeł jest ``decyzyjny'' (tzn. generuje decyzję), to nie jest dalej rozwijany - generatory jego potencjalnych dzieci byłyby nadgeneratorami jego generatora.
+   \end{itemize}
+  \item Jako że generator dowolnej decyzji $D_1$ nie może być nadgeneratorem żadnego generatora decyzji $D_2$ ($D_1 \ne D_2$), strategie przechowywania generatorów decyzji (patrz sekcja~\ref{sec:impl:supgen}) przechowują generatory w słownikach, których kluczami są identyfikatory decyzji, a wartościami - zbiory generatorów tych decyzji.
+  Pozwala to zminimalizować rozmiary porównywanych zbiorów generatorów.
+  \item Granica GBd~\cite{grm} nie jest tworzona i aktualizowana, jako że nie jest wykorzystywana w poszukiwaniu reguł decyzyjnych.
+ \end{itemize}
 
- roznice z GRM:
- - dany node jest decyzyjny - nie rozwijamy go (bo generatory dzieci nie beda minimalne)
- - generatory decyzji trzymane w slowniku (klucz - decyzja), posortowane wg hasha
- - w ogole nie ma granicy
- - dla diffsetow transaction ids trzymane w slowniku (klucz - decyzja)
+ 
+ \subsection{Wykorzystane biblioteki zewnętrzne}
+ \begin{enumerate}
+  \item \emph{NDesk.Options}\footnote{Patrz http://www.ndesk.org/Options.} - ułatwia przetwarzanie parametrów wiersza poleceń,
+  \item \emph{xUnit.net}\footnote{Patrz http://xunit.codeplex.com/.} - umożliwia tworzenie automatycznych testów jednostkowych,
+  \item \emph{moq}\footnote{Patrz https://github.com/Moq/moq4.} - wspiera tworzenie automatycznych testów jednostkowych.
+ \end{enumerate}
 
 
 
