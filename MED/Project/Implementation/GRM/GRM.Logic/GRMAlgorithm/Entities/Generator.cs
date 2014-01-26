@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using GRM.Logic.DataSetProcessing.Entities;
-using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm.Entities
 {
@@ -23,14 +22,10 @@ namespace GRM.Logic.GRMAlgorithm.Entities
         {
         }
 
-        private static int a = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("hash");
-
         public long GetIdentifier()
         {
             if (!_identifierComputed)
             {
-                ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(a);
-
                 this.Sort((item1, item2) => item1.ValueID - item2.ValueID);
                 long hash = this.Count;
 
@@ -41,8 +36,6 @@ namespace GRM.Logic.GRMAlgorithm.Entities
 
                 _identifier = hash;
                 _identifierComputed = true;
-
-                ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
             }
 
             return _identifier;
