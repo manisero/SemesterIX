@@ -3,6 +3,7 @@ using GRM.Logic.DataSetProcessing.Entities;
 using GRM.Logic.Extensions;
 using GRM.Logic.GRMAlgorithm.Entities;
 using System.Linq;
+using GRM.Logic.ProgressTracking;
 
 namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 {
@@ -21,13 +22,21 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
         private readonly IDictionary<int, DecisionGenerators> _decisionGenerators = new Dictionary<int, DecisionGenerators>();
 
+        private int a = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("remove");
+        private int b = ProgressTrackerContainer.CurrentProgressTracker.RegisterSubstep("append");
+
         protected override void AppendGenerators(int decisionId, IList<Generator> generators)
         {
             if (!_decisionGenerators.ContainsKey(decisionId))
             {
                 _decisionGenerators.Add(decisionId, new DecisionGenerators());
             }
-            
+
+            foreach (var generator in generators) // TODO: Remove
+            {
+                generator.GetIdentifier();
+            }
+
             var decisionGenerators = _decisionGenerators[decisionId];
 
             foreach (var generator in generators)
@@ -50,6 +59,8 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
                 return;
             }
 
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(a);
+
             // Find supergenerators
             IList<long> supergenerators = new List<long>(invertedList[subgenerator[0]].Keys);
 
@@ -59,6 +70,7 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
                 if (!invertedList.TryGetValue(subgenerator[i], out itemGenerators))
                 {
+                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
                     return;
                 }
 
@@ -66,9 +78,14 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
 
                 if (supergenerators.Count == 0)
                 {
+                    ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
                     return;
                 }
             }
+
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(a);
+
+            ProgressTrackerContainer.CurrentProgressTracker.EnterSubstep(b);
 
             // Remove supergenerators
             foreach (var supergenerator in supergenerators)
@@ -80,6 +97,8 @@ namespace GRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting.Collectors
                     generators.Value.Remove(supergenerator);
                 }
             }
+
+            ProgressTrackerContainer.CurrentProgressTracker.LeaveSubstep(b);
         }
 
         private void AppendGenerator(Generator generator, DecisionGenerators decisionGenerators)
