@@ -171,24 +171,57 @@ projektowanie:
 - podzial na moduly (console, dataset processing, GRM)
 - testy
 - diagram klas Logic
-implementacja:
-- jakis algorytm, moze z diffsetami
-- rozne sortowania
-- tidset/diffset
-- bruteforce/inv list
-- tracking (poziomy)
 biblioteki zewnętrzne:
 - NDeskOptions
 - xunit
 - moq
 
  \subsection{Strategie sortowania elementów} \label{sec:impl:sort}
+ Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów (drzewie DZ~\cite{grm}):
+ 
+ \begin{itemize}
+  \item \verb+AscendingSupport+ (klasa \verb+AscendingSupportSortingStrategy+) - sortowanie rosnące według wsparć elementów,
+  \item \verb+DescendingSupport+ (klasa \verb+DescendingSupportSortingStrategy+) - sortowanie malejące według wsparć elementów,
+  \item \verb+Lexicographical+ (klasa \verb+LexicographicalSortingStrategy+) - sortowanie leksykograficzne. tzn. według numerów atrybutów elementów (dla dwóch wartości tego samego atrybutu, pierwsza będzie ta, która wcześniej wystąpiła w zbiorze danych wejściowych).
+ \end{itemize}
+ 
+ Strategie sortowania dostarcza fabryka \verb+SortingStrategyFactory+, tworząca strategie odpowiadające zadanym wartościom wyliczenia \verb+SortingStrategyType+.
+
  
  \subsection{Strategie przechowywania identyfikatorów transakcji} \label{sec:impl:store}
+ Zaimplementowano następujące strategie przechowywania identyfikatorów transakcji:
+ 
+ \begin{itemize}
+  \item \verb+TIDSets+~\cite{charm} (klasa \verb+TIDSetsStorageStrategy+),
+  \item \verb+DiffSets+~\cite{grm} (klasa \verb+DiffSetsStorageStrategy+).
+ \end{itemize}
+
+ Strategie przechowywania dostarcza fabryka \verb+TransactionIDsStorageStrategyFactory+, tworząca strategie odpowiadające zadanym wartościom wyliczenia \verb+TransactionIDsStorageStrategyType+.
+
  
  \subsection{Strategie przechowywania generatorów decyzji} \label{sec:impl:supgen}
+ Zaimplementowano następujące strategie przechowywania generatorów decyzji, a także wykrywania i usuwania ich nadgeneratorów:
+ 
+ \begin{itemize}
+  \item \verb+InvertedLists+ (klasa \verb+InvertedListsDecisionGeneratorsCollector+) - wykorzystuje koncepcję indeksu odwróconego\footnote{Patrz http://en.wikipedia.org/wiki/Inverted\_index.}, gdzie kluczem indeksu jest element, a wartością - lista generatorów, w których ten element występuje,
+  \item \verb+BruteForce+ (klasa \verb+BruteForceDecisionGeneratorsCollector+) - przechowuje jedynie listę generatorów, nadgeneratory wykrywa porównując każdy element danego generatora z każdym elementem jego potencjalnego nadgeneratora.
+ \end{itemize}
+ 
+ Strategie dostarcza fabryka \verb+DecisionGeneratorsCollectorFactory+, tworząca strategie odpowiadające zadanym wartościom wyliczenia \verb+DecisionSupergeneratorsHandlingStrategyType+.
+ 
  
  \subsection{Monitorowanie wydajności programu} \label{sec:impl:track}
+ Aplikacja udostępnia funkcjonalność mierzenia czasu wykonania poszczególnych kroków algorytmu.
+ Zaimplementowano następujące rodzaje pomiaru:
+ 
+ \begin{itemize}
+  \item \verb+NoTracking+ (klasa \verb+EmptyProgressTracker+) - brak pomiaru wydajności,
+  \item \verb+Task+ (klasa \verb+TaskProgressTracker+) - pomiar czasu trwania całego algorytmu,
+  \item \verb+Steps+ (klasa \verb+StepProgressTracker+) - pomiar czasu trwania głównych kroków algorytmu (odczyt danych wejściowych, wykonanie procedury \emph{GARM} itd.),
+  \item \verb+Substeps+ (klasa \verb+SubstepProgressTracker+) - pomiar czasu trwania mniejszych kroków algorytmu (budowanie słownika identyfikatorów decyzji, wykonanie procedury \emph{GARM-Property} itd.). Uwaga: może powodować znaczący spadek ogólnej wydajności programu.
+ \end{itemize}
+
+ Obiekty monitorujące dostarcza fabryka \verb+ProgressTrackerFactory+, tworząca obiekty odpowiadające zadanym wartościom wyliczenia \verb+TrackingLevel+.
 
  \subsection{Opymalizacje}
  - wszystkie wartosci otrzymuja identyfikatory liczbowe
@@ -248,6 +281,10 @@ wnioski z realizacji projektu
   Instytut Informatyki,
   Politechnika Warszawska.
 
+ \bibitem{charm}
+  \emph{CHARM: An Efficient Algorithm for Closed Itemset Mining} [online],
+  Zaki M., Hsiao C.
+  http://epubs.siam.org/doi/pdf/10.1137/1.9781611972726.27 [dostęp: styczeń 2013].
 
 \end{thebibliography}
 
