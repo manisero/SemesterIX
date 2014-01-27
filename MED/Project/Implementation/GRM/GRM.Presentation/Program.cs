@@ -5,7 +5,6 @@ using GRM.Logic.ProgressTracking;
 using GRM.Logic.ProgressTracking._Impl;
 using GRM.Presentation.ResultWriting;
 using NDesk.Options;
-using System.Linq;
 
 namespace GRM.Presentation
 {

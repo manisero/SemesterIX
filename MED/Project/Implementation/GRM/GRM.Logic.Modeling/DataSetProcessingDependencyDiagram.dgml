@@ -18,7 +18,7 @@
     <Node Id="@9" Category="CodeSchema_Class" Bounds="507.872505113089,164.186217506059,105.643333333334,26" CodeSchemaProperty_IsPublic="True" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Icon="CodeSchema_Class" Label="ItemInfo" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" UseManualLocation="True" />
   </Nodes>
   <Links>
-    <Link Source="@10" Target="@6" Category="References" Bounds="237.817686402403,30.2269333300857,38.3062424710928,57.4703894776009" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="18">
+    <Link Source="@10" Target="@6" Category="References" Bounds="237.817686402403,30.2269333300857,38.3062424710923,57.4703894776008" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="18">
       <Category Ref="CodeSchema_FieldRead" />
       <Category Ref="CodeSchema_FieldWrite" />
     </Link>
@@ -34,7 +34,7 @@
     <Link Source="@4" Target="@16" Category="Contains" FetchingParent="@4" />
     <Link Source="@4" Target="@17" Category="Contains" FetchingParent="@4" />
     <Link Source="@4" Target="@18" Category="Contains" FetchingParent="@4" />
-    <Link Source="@5" Target="@10" Category="References" Bounds="272.878448868631,-38.7731666699143,108.253415145082,39.8883716242238" IsSourceVirtualized="True" Weight="1" />
+    <Link Source="@5" Target="@10" Category="References" Bounds="272.878448868631,-38.7731666699143,108.253415145081,39.8883716242238" IsSourceVirtualized="True" Weight="1" />
     <Link Source="@5" Target="@11" Category="CodeSchema_Calls" IsSourceVirtualized="True" Weight="1" />
     <Link Source="@5" Target="@12" Category="CodeSchema_Calls" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
     <Link Source="@5" Target="@13" Category="CodeSchema_Calls" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
@@ -47,9 +47,9 @@
     <Link Source="@5" Target="@6" Category="CodeSchema_Calls" Bounds="305.658304329516,-38.7731666699143,100.462906621133,126.902920199374" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="5">
       <Category Ref="CodeSchema_FieldRead" />
     </Link>
-    <Link Source="@6" Target="@7" Category="References" Bounds="293.95969396927,121.186217505659,11.0688395623023,34.4318487692828" IsSourceVirtualized="True" Weight="2" />
-    <Link Source="@6" Target="@8" Category="References" Bounds="316.325567652464,121.186217505659,79.7199192026793,39.0415934523886" IsSourceVirtualized="True" Weight="4" />
-    <Link Source="@6" Target="@9" Category="References" Bounds="340.822264271628,121.186217505659,161.487733340935,41.1299159117119" IsSourceVirtualized="True" Weight="2" />
+    <Link Source="@6" Target="@7" Category="References" Bounds="293.95969396927,121.186217505659,11.0688395623026,34.4318487692833" IsSourceVirtualized="True" Weight="2" />
+    <Link Source="@6" Target="@8" Category="References" Bounds="316.325567652463,121.186217505659,79.7199192026802,39.0415934523891" IsSourceVirtualized="True" Weight="4" />
+    <Link Source="@6" Target="@9" Category="References" Bounds="340.822264271628,121.186217505659,161.487733340936,41.1299159117123" IsSourceVirtualized="True" Weight="2" />
   </Links>
   <Categories>
     <Category Id="CodeSchema_Calls" Label="Calls" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Called By" OutgoingActionLabel="Calls" />
