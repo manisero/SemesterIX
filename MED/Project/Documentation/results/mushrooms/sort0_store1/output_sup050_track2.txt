@@ -18,6 +18,5 @@ Steps details:
 5. Running GARM procedure: 00:00:01.6891757
 6. Building result: 00:00:00.0743455
 
-Rules found: 1859
 Text result saved to results/mushrooms_sort1_store1/output_sup050_rules.txt
 CSV result saved to results/mushrooms_sort1_store1/output_sup050_rules.csv

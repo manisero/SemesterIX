@@ -18,6 +18,5 @@ Steps details:
 5. Running GARM procedure: 00:00:00.0726926
 6. Building result: 00:00:00.0167082
 
-Rules found: 117
 Text result saved to results/car_sort2_store0/output_sup002_rules.txt
 CSV result saved to results/car_sort2_store0/output_sup002_rules.csv
