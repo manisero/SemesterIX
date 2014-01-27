@@ -110,6 +110,9 @@
       <SubType>Content</SubType>
       <DependentUpon>PresentationClassDiagram.classdiagram</DependentUpon>
     </Content>
+    <Content Include="PresentationDependencyDiagram.dgml">
+      <SubType>Content</SubType>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="GRMClassDiagram.classdiagram">
       <SubType>Content</SubType>
