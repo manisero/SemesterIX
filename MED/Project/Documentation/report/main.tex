@@ -175,25 +175,67 @@ Aplikacja składa się z następujących modułów:
  \item \verb+GRM.Presentation+ - aplikacja konsolowa przetwarzająca argumenty wiersza poleceń i wywołująca algorytm GRM.
 \end{itemize}
 
- \subsection{GRM.Logic}
-- podzial na moduly (console, dataset processing, GRM)
-- diagram klas Logic
+
+ \subsection{Moduł GRM.Logic}
 
  \begin{figure}[!ht]
   \begin{center}
-   \scalebox{0.25}
+   \scalebox{0.42}
    {
-    %\includegraphics{../obrazki/filtry/splot.png}
+    \includegraphics{../diagrams/class_diagram.png}
    }
   \end{center}
   \caption{
-   %Operacja dyskretnego splotu macierzy.
+   Uproszczony diagram klas modułu GRM.Logic.
   }
-  %\label{fig:convolution}
+  \label{fig:diag:class}
  \end{figure}
+  
+ \begin{figure}[!ht]
+  \begin{center}
+   \scalebox{0.7}
+   {
+    \includegraphics{../diagrams/GRMFacade_dependency_diagram.png}
+   }
+  \end{center}
+  \caption{
+   Uproszczony diagram zależności fasady modułu GRM.Logic.
+  }
+  \label{fig:diag:Facade}
+ \end{figure}
+ 
+  \subsubsection{Komponent GRM.Logic.DataSetProcessing}
+  
+  \begin{figure}[!ht]
+   \begin{center}
+    \scalebox{0.7}
+    {
+     \includegraphics{../diagrams/DataSetProcessing_dependency_diagram.png}
+    }
+   \end{center}
+   \caption{
+    Uproszczony diagram zależności komponentu GRM.Logic.DataSetProcessing.
+   }
+   \label{fig:diag:DataSetProcessing}
+  \end{figure}
+ 
+  \subsubsection{Komponent GRM.Logic.GRMAlgorithm}
+  
+  \begin{figure}[!ht]
+   \begin{center}
+    \scalebox{0.7}
+    {
+     \includegraphics{../diagrams/GRMAlgorithm_dependency_diagram.png}
+    }
+   \end{center}
+   \caption{
+    Uproszczony diagram zależności komponentu GRM.Logic.GRMAlgorithm.
+   }
+   \label{fig:diag:GRMAlgorithm}
+  \end{figure}
 
 
- \subsection{GRM.Presentation}
+ \subsection{Moduł GRM.Presentation}
  Zadaniem modułu \verb+GRM.Presentation+ jest realizacja interakcji z użytkownikiem aplikacji.
  Zawiera on punkt wejścia programu (metoda \verb+Main+ klasy \verb+Program+). 
 
