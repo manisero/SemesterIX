@@ -177,6 +177,9 @@ Aplikacja składa się z następujących modułów:
 
 
  \subsection{Moduł GRM.Logic}
+ Moduł \verb+GRM.Logic+ jest głównym modułem aplikacji.
+ Zawiera implementację zmodyfikowanego algorytmu GRM.
+ Jego diagram klas został przedstawiony na Rysunku~\ref{fig:diag:log:class}.
 
  \begin{figure}[!ht]
   \begin{center}
@@ -191,6 +194,10 @@ Aplikacja składa się z następujących modułów:
   \label{fig:diag:log:class}
  \end{figure}
   
+ Punktem wejścia modułu jest klasa \verb+GRMFacade+.
+ Zleca ona wykonanie kolejnych kroków algorytmu.
+ Diagram jej zależności przedstawia Rysunek~\ref{fig:diag:log:Facade}.
+ 
  \begin{figure}[!ht]
   \begin{center}
    \scalebox{0.7}
@@ -285,8 +292,52 @@ Aplikacja składa się z następujących modułów:
 \section{Implementacja} \label{sec:impl}
 Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
+ \subsection{Kroki algorytmu}
+ Działanie modułu \verb+GRM.Logic+ przebiega w następujących krokach:\\
+ \emph{[W nawiasach kwadratowych podano nazwę klasy wykonującej dany krok.]}
+ 
+ \begin{enumerate}
+  \item $[$\verb+DataSetRepresentationBuilder+$]$ Odczytanie pliku wejściowego i budowa reprezentacji zbioru danych:
+   \begin{enumerate}
+    \item określenie liczby atrybutów i odczytanie ich nagłówków (jeśli dostępne);
+    \item dla każdego z wierszy reprezentujących transakcje:
+     \begin{enumerate}
+      \item $[$\verb+TransactionProcessor+$]$ nadanie identyfikatora transakcji,
+      \item $[$\verb+TransactionProcessor+$]$ dla każdego elementu transakcji:
+       \begin{enumerate}
+        \item nadanie identyfikatora elementu (jeśli element o tej wartości jeszcze nie wystąpił),
+        \item aktualizacja danych elementu (zbioru transakcji, w których występuje i decyzyjności);
+       \end{enumerate}
+     \end{enumerate}
+    \item zwrócenie gotowej reprezentacji danych (\verb+DataSetRepresentation+).
+   \end{enumerate}
+
+  \item $[$\verb+FrequentItemsSelector+$]$ Wybór elementów częstych.
+  
+  \item $[$\verb+ISortingStrategy+$]$ Posortowanie elementów częstych.
+  
+  \item $[$\verb+TreeBuilder+$]$ Budowa drzewa zbiorów (drzewa DZ~\cite{grm}):
+   \begin{enumerate}
+    \item utworzenie korzenia drzewa:
+     \begin{enumerate}
+      \item $[$\verb+ITransactionIDsStorageStrategy+$]$ wyznaczenie zbioru identyfikatorów transakcji korzenia;
+     \end{enumerate} 
+    \item utworzenie pierwszego poziomu węzłów drzewa - dla każdego z elementów częstych:
+     \begin{enumerate}
+      \item ustawienie elementu jako generatora węzła,
+      \item $[$\verb+ITransactionIDsStorageStrategy+$]$ wyznaczenie zbioru identyfikatorów transakcji węzła oraz jego wsparcia i decyzyjności;
+     \end{enumerate}
+    \item zwrócenie korzenia drzewa zbiorów (\verb+Node+).
+   \end{enumerate}
+
+  \item $[$\verb+GARMProcedure+$]$ Wywołanie procedury GARM~\cite{grm}.
+  
+  \item $[$\verb+GRMResultBuilder+$]$ Budowa i zwrócenie wyniku (\verb+GRMResult+).
+ \end{enumerate}
+
+ 
  \subsection{Strategie sortowania elementów} \label{sec:impl:sort}
- Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów (drzewie DZ~\cite{grm}):
+ Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów:
  
  \begin{itemize}
   \item \verb+AscendingSupport+ (klasa \verb+AscendingSupportSortingStrategy+) - sortowanie rosnące według wsparć elementów,
