@@ -22,57 +22,269 @@ Algorytm ten jest modyfikacją algorytmu odkrywania częstych generatorów (GRM)
 \section{Założenia} \label{sec:assumptions}
 Projekt zrealizowano w oparciu o następujące założenia:
 
-\subsection*{Niefunkcjonalne:}
- \begin{enumerate}
-  \item Użyty język programowania; platforma: C\#; .NET Framework 3.5.
-  \item Obsługiwane systemy operacyjne: kompatybilne z .NET Framework 3.5\footnote{Lista systemów kompatybilnych z .NET Framework 3.5 dostępna jest pod adresem: \emph{http://msdn.microsoft.com/en-us/library/vstudio/bb882520\%28v=vs.90\%29.aspx}, sekcja ``Supported Operating Systems''.} (aplikację testowano na systemie Microsoft Windows 7 Ultimate).
-  \item Rodzaj aplikacji: aplikacja konsolowa.
-\end{enumerate}
-
-\subsection*{Funkcjonalne:}
- \begin{enumerate}
-  \item Aplikacja pobiera dane z pliku (patrz sekcja \ref{sec:io}).
-  \item Aplikacja zwraca wynik działania w dwóch formatach: ``przyjaznym dla człowieka'' i ``excelowym'' (patrz sekcja \ref{sec:io}).
-  \item Aplikacja pozwala mierzyć czas wykonania poszczególnych kroków algorytmu.
-  \item Zakłada się, że każda transakcja zawarta w danych wejściowych ma przypisaną decyzję.
+ \subsection{Niefunkcjonalne:}
+  \begin{enumerate}
+   \item Użyty język programowania; platforma: C\#; .NET Framework 3.5.
+   \item Obsługiwane systemy operacyjne: kompatybilne z .NET Framework 3.5\footnote{Lista systemów kompatybilnych z .NET Framework 3.5 dostępna jest pod adresem: \emph{http://msdn.microsoft.com/en-us/library/vstudio/bb882520\%28v=vs.90\%29.aspx}, sekcja ``Supported Operating Systems''.} (aplikację testowano na systemie Microsoft Windows 7 Ultimate).
+   \item Rodzaj aplikacji: aplikacja konsolowa uruchamiana z wiersza poleceń.
  \end{enumerate}
 
 
-
-\section{Dane wejściowe i wyjściowe} \label{sec:io}
-opis danych wejsciowych i wyjsciowych
-- opcje (zostana opisane pozniej), minsup bezwzgledne!
-- dane oddzielone przecinkami (decyzja razem z atrybutami, na dowolnym miejscu)
-- naglowki w pierwszym wierszu
-- brak danych - spacja (biale znaki)
-- dwa formaty wynikow
-- oprocz tego wynik na konsoli
+ \subsection{Funkcjonalne:}
+  \begin{enumerate}
+   \item Aplikacja pobiera dane z pliku (patrz sekcja~\ref{sec:input:file}).
+   \item Aplikacja zwraca wynik działania w dwóch formatach: ``przyjaznym dla człowieka'' i ``excelowym'' (patrz sekcja~\ref{sec:output}).
+   \item Aplikacja pozwala mierzyć czas wykonania poszczególnych kroków algorytmu.
+  \end{enumerate}
 
 
+ \subsection{Dotyczące danych wejściowych:} \label{sec:assumptions:input}
+  \begin{enumerate}
+   \item Dane wejściowe zawierają jedynie wartości atrybutów transakcji i ewentualnie nazwy atrybutów transakcji.
+   \item Wartości atrybutów w pliku wejściowym są oddzielone przecinkami.
+   \item Każda transakcja ma przypisaną decyzję.
+   \item Brakujące wartości atrybutów (tzn. wartości nieznane bądź nieustalone) są oznaczone jako wartości puste lub złożone z białych znaków.
+  \end{enumerate}
 
-\section{Implementacja}
-wszystkie istotne kwestie zwiazne z projektowaniem (np. diagramy klas) i implementacja
-projektowanie:
+
+
+\section{Dane wejściowe} \label{sec:input}
+Aplikacja będąca wynikiem projektu przyjmuje jednocześnie dwa rodzaje danych wejściowych:
+
+\begin{itemize}
+ \item plik zawierający dane transakcji,
+ \item parametry podane przez użytkownika w wierszu poleceń.
+\end{itemize}
+
+ \subsection{Plik wejściowy} \label{sec:input:file}
+ Plik wejściowy powinien zawierać kolejne wartości atrybutów transakcji według reguł przedstawionych w sekcji~\ref{sec:assumptions:input}.
+ Przykładowy format pliku wejściowego:
+ 
+\begin{verbatim}
+a,b,c,d,e, ,g, ,+
+a,b,c,d,e,f, , ,+
+a,b,c,d,e, , ,h,+
+a,b, ,d,e, , , ,+
+a, ,c,d,e, , ,h,-
+ ,b,c, ,e, , , ,-
+\end{verbatim}
+
+ Opcjonalnie, pierwszy wiersz pliku wejściowego może zawierać nazwy atrybutów transakcji (nagłówki), na przykład:
+
+\begin{verbatim}
+Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
+a,b,c,d,e, ,g, ,+
+ ,b,c, ,e, , , ,-
+\end{verbatim}
+
+ Jeden z atrybutów transakcji musi reprezentować przypisaną jej decyzję.
+ Domyślnie, aplikacja uznaje ostatni atrybut transakcji za ``decyzyjny'' - użytkownik może jednak samodzielnie wskazać odpowiedni atrybut (patrz sekcja~\ref{sec:input:cmd}).
+ 
+ 
+ \subsection{Parametry wiersza poleceń} \label{sec:input:cmd}
+ Aplikacja przyjmuje następujące parametry:
+ 
+ \begin{itemize}
+  \item \verb+--help+ - Powoduje wyświetlenie informacji o dostępnych parametrach i wyjście z programu.
+  \item \verb+-f, --file=VALUE+ - Ścieżka do pliku wejściowego. Parametr wymagany.
+  \item \verb+--sup, --minSup=VALUE+ - Próg (bezwzględny) wsparcia - wykryte zostaną reguły decyzyjne o poprzednikach cechujących się wsparciem większym \textbf{lub równym} progowi wsparcia. Parametr wymagany.
+  \item \verb+-h, --headers+ - Flaga oznaczająca, że plik wejściowy zawiera nagłówki atrybutów. Parametr opcjonalny.
+  \item \verb+--dec, --decAttr=VALUE+ - Pozycja atrybutu zawierającego wartości decyzji (\verb+1+ - pierwszy atrybut, \verb+2+ - drugi atrybut itd.). Parametr opcjonalny (jeśli nie zostanie podany, ostatni atrybut zostanie uznany za decyzyjny).
+  \item \verb+--sort=VALUE+ - strategia sortowania elementów (patrz sekcja~\ref{sec:impl:sort}). Parametr opcjonalny.
+  Dopuszczalne wartości:
+  \begin{itemize}
+   \item \verb+AscendingSupport+ (lub \verb+0+; wartość domyślna),
+   \item \verb+DescendingSupport+ (lub \verb+1+),
+   \item \verb+Lexicographical+ (lub \verb+2+).
+  \end{itemize}
+ 
+  \item \verb+--store=VALUE+ - strategia przechowywania identyfikatorów transakcji (patrz sekcja~\ref{sec:impl:store}). Parametr opcjonalny.
+  Dopuszczalne wartości:
+  \begin{itemize}
+   \item \verb+TIDSets+ (lub \verb+0+; wartość domyślna),
+   \item \verb+DiffSets+ (lub \verb+1+).
+  \end{itemize}
+  
+  \item \verb+--supgen=VALUE+ - Strategia przechowywania generatorów decyzji, a także wykrywania i usuwania ich nadgeneratorów (patrz sekcja~\ref{sec:impl:supgen}). Parametr opcjonalny.
+  Dopuszczalne wartości:
+  \begin{itemize}
+   \item \verb+InvertedLists+ (lub \verb+0+; wartość domyślna),
+   \item \verb+BruteForce+ (lub \verb+1+).
+  \end{itemize}
+  
+  \item \verb+--track=VALUE+ - Poziom monitorowania wydajności programu (patrz sekcja~\ref{sec:impl:track}). Parametr opcjonalny.
+  \begin{itemize}
+   \item \verb+NoTracking+ (lub \verb+0+),
+   \item \verb+Task+ (lub \verb+1+; wartość domyślna).
+   \item \verb+Steps+ (lub \verb+2+).
+   \item \verb+Substeps+ (lub \verb+3+; Uwaga: może powodować znaczący spadek ogólnej wydajności programu).
+  \end{itemize}
+  
+  \item \verb+-o, --output=VALUE+ - Ścieżka plików wyjściowych. Parametr opcjonalny. Poprawna wartość jest ścieżką pliku z pominięciem jego rozszerzenia (np. \emph{wyniki/wynik}. Wartość domyślna: \emph{[ścieżka pliku wejściowego]\_rules}.
+ \end{itemize}
+
+
+
+\section{Dane wyjściowe} \label{sec:output}
+Na wyjście aplikacji składają się trzy rodzaje danych:
+
+\begin{itemize}
+ \item komunikaty diagnostyczne wypisywane na standardowe wyjście,
+ \item plik zawierący znalezione reguły decyzyjne w formacie czytelnym dla człowieka,
+ \item plik zawierący znalezione reguły decyzyjne w formacie przystosowanym do dalszej obróbki.
+\end{itemize}
+
+ \subsection{Plik czytelny dla człowieka} \label{sec:output:human}
+ Plik w formacie czytelnym dla człowieka zawiera listy generatorów dla każdej decyzji.
+ Pojedynczy generator jest przedstawiony jako lista wartości atrybutów wraz z ich nazwami.
+ Przykład:
+ 
+\begin{verbatim}
+====================
+Decision: '+':
+--------------------
+Attr A (a), Attr B (b)
+Attr B (b), Attr D (d)
+\end{verbatim}
+
+ Plik ten jest zapisywany pod ścieżką \emph{[plik].txt}, gdzie \emph{[plik]} to wartość parametru \verb+output+ (patrz sekcja~\ref{sec:input:cmd}).
+
+ 
+ \subsection{Plik przystosowany do dalszej obróbki} \label{sec:output:csv}
+ Plik w formacie czytelnym dla człowieka zawiera listę generatrów wraz generowanymi przez nie decyzjami.
+ Pojedynczy generator jest przedstawiony jako lista wartości oddzielonych średnikami\footnote{Patrz http://pl.wikipedia.org/wiki/CSV\_(format\_pliku). W omawianej aplikacji zamiast przecinków użyto średników, aby plik wyjściowy mógł być odczytany przez program Microsoft Excel.}, z uwzględnieniem atrybutów niewystępujących w generatorze.
+ Przykład:
+ 
+\begin{verbatim}
+Attr A;Attr B;Attr C;Attr D;Attr E;Attr F;Attr G;Attr H;Decision
+a;b;;;;;;;+
+;b;;d;;;;;+
+\end{verbatim}
+ 
+ Plik ten jest zapisywany pod ścieżką \emph{[plik].csv}, gdzie \emph{[plik]} to wartość parametru \verb+output+ (patrz sekcja~\ref{sec:input:cmd}).
+
+
+
+\section{Architektura aplikacji} \label{sec:arch}
+Aplikacja składa się z następujących modułów:
+
+\begin{itemize}
+ \item \verb+GRM.Logic+ - zawiera implementację zmodyfikowanego algorytmu GRM,
+ \item \verb+GRM.Logic.UnitTests+ - zawiera testy jednostkowe modułu \verb+GRM.Logic+,
+ \item \verb+GRM.Logic.PerformanceTests+ - zawiera testy wydajnościowe modułu \verb+GRM.Logic+, 
+ \item \verb+GRM.Presentation+ - aplikacja konsolowa przetwarzająca argumenty wiersza poleceń i wywołująca algorytm GRM.
+\end{itemize}
+
+ \subsection{GRM.Logic}
 - podzial na moduly (console, dataset processing, GRM)
-- testy
 - diagram klas Logic
-implementacja:
-- jakis algorytm, moze z diffsetami
-- rozne sortowania
-- tidset/diffset
-- bruteforce/inv list
-- tracking (poziomy)
 
-\subsection{Opymalizacje}
-- wszystkie wartosci otrzymuja identyfikatory liczbowe
-- skonfliktowane generatory
-- transaction ids - posortowane (szybkie intersect, except)
+ \begin{figure}[!ht]
+  \begin{center}
+   \scalebox{0.25}
+   {
+    %\includegraphics{../obrazki/filtry/splot.png}
+   }
+  \end{center}
+  \caption{
+   %Operacja dyskretnego splotu macierzy.
+  }
+  %\label{fig:convolution}
+ \end{figure}
 
-roznice z GRM:
-- dany node jest decyzyjny - nie rozwijamy go (bo generatory dzieci nie beda minimalne)
-- generatory decyzji trzymane w slowniku (klucz - decyzja), posortowane wg hasha
-- w ogole nie ma granicy
-- dla diffsetow transaction ids trzymane w slowniku (klucz - decyzja)
+
+ \subsection{GRM.Presentation}
+ Zadaniem modułu \verb+GRM.Presentation+ jest realizacja interakcji z użytkownikiem aplikacji.
+ Zawiera on punkt wejścia programu (metoda \verb+Main+ klasy \verb+Program+). 
+
+
+
+\section{Implementacja} \label{sec:impl}
+Najważniejsze aspekty implementacyjne opisywanej aplikacji:
+
+ \subsection{Strategie sortowania elementów} \label{sec:impl:sort}
+ Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów (drzewie DZ~\cite{grm}):
+ 
+ \begin{itemize}
+  \item \verb+AscendingSupport+ (klasa \verb+AscendingSupportSortingStrategy+) - sortowanie rosnące według wsparć elementów,
+  \item \verb+DescendingSupport+ (klasa \verb+DescendingSupportSortingStrategy+) - sortowanie malejące według wsparć elementów,
+  \item \verb+Lexicographical+ (klasa \verb+LexicographicalSortingStrategy+) - sortowanie leksykograficzne. tzn. według numerów atrybutów elementów (dla dwóch wartości tego samego atrybutu, pierwsza będzie ta, która wcześniej wystąpiła w zbiorze danych wejściowych).
+ \end{itemize}
+ 
+ Strategie sortowania dostarcza fabryka \verb+SortingStrategyFactory+, tworząca strategie odpowiadające zadanym wartościom wyliczenia \verb+SortingStrategyType+.
+
+ 
+ \subsection{Strategie przechowywania identyfikatorów transakcji} \label{sec:impl:store}
+ Zaimplementowano następujące strategie przechowywania identyfikatorów transakcji:
+ 
+ \begin{itemize}
+  \item \verb+TIDSets+~\cite{charm} (klasa \verb+TIDSetsStorageStrategy+),
+  \item \verb+DiffSets+~\cite{grm} (klasa \verb+DiffSetsStorageStrategy+).
+ \end{itemize}
+
+ Strategie przechowywania dostarcza fabryka \verb+TransactionIDsStorageStrategyFactory+, tworząca strategie odpowiadające zadanym wartościom wyliczenia \verb+TransactionIDsStorageStrategyType+.
+
+ 
+ \subsection{Strategie przechowywania generatorów decyzji} \label{sec:impl:supgen}
+ Zaimplementowano następujące strategie przechowywania generatorów decyzji, a także wykrywania i usuwania ich nadgeneratorów:
+ 
+ \begin{itemize}
+  \item \verb+InvertedLists+ (klasa \verb+InvertedListsDecisionGeneratorsCollector+) - wykorzystuje koncepcję indeksu odwróconego\footnote{Patrz http://en.wikipedia.org/wiki/Inverted\_index.}, gdzie kluczem indeksu jest element, a wartością - lista generatorów, w których ten element występuje,
+  \item \verb+BruteForce+ (klasa \verb+BruteForceDecisionGeneratorsCollector+) - przechowuje jedynie listę generatorów, nadgeneratory wykrywa porównując każdy element danego generatora z każdym elementem jego potencjalnego nadgeneratora.
+ \end{itemize}
+ 
+ Strategie dostarcza fabryka \verb+DecisionGeneratorsCollectorFactory+, tworząca strategie odpowiadające zadanym wartościom wyliczenia \verb+DecisionSupergeneratorsHandlingStrategyType+.
+ 
+ 
+ \subsection{Monitorowanie wydajności programu} \label{sec:impl:track}
+ Aplikacja udostępnia funkcjonalność mierzenia czasu wykonania poszczególnych kroków algorytmu.
+ Zaimplementowano następujące rodzaje pomiaru:
+ 
+ \begin{itemize}
+  \item \verb+NoTracking+ (klasa \verb+EmptyProgressTracker+) - brak pomiaru wydajności,
+  \item \verb+Task+ (klasa \verb+TaskProgressTracker+) - pomiar czasu trwania całego algorytmu,
+  \item \verb+Steps+ (klasa \verb+StepProgressTracker+) - pomiar czasu trwania głównych kroków algorytmu (odczyt danych wejściowych, wykonanie procedury \emph{GARM} itd.),
+  \item \verb+Substeps+ (klasa \verb+SubstepProgressTracker+) - pomiar czasu trwania mniejszych kroków algorytmu (budowanie słownika identyfikatorów decyzji, wykonanie procedury \emph{GARM-Property} itd.). Uwaga: może powodować znaczący spadek ogólnej wydajności programu.
+ \end{itemize}
+
+ Obiekty monitorujące dostarcza fabryka \verb+ProgressTrackerFactory+, tworząca obiekty odpowiadające zadanym wartościom wyliczenia \verb+TrackingLevel+.
+
+ \subsection{Zabiegi optymalizacyjne}
+ \begin{itemize}
+  \item Aby zminimalizować czas odczytu danych wejściowych, plik wejściowy jest odczytywany jednokrotnie, wiersz po wierszu.
+  \item Aby zminimalizować czas trwania porównań, wszystkie wartości atrybutów otrzymują identyfikatory liczbowe.
+  \item Aby zminimalizować czas operacji (np. przecięcia, różnicy) na zbiorach identyfikatorów transakcji, identyfikatory te są przechowywane w ustalonym (rosnącym) porządku.
+  \item Aby możliwie wcześnie ``odciąć'' gałęzie drzewa, które nie prowadzą do znalezienia generatorów decyzji:
+   \begin{itemize}
+    \item jeśli dwa węzły zawierają różne wartości tego samego atrybutu, to nie są ``parowane'' (tzn. poddawane procedurze \emph{GARM-Property}) - przecięcie zbiorów identyfikatorów transakcji, w których występują jest puste, a zatem ich potencjalne dziecko nie może generować żadnej decyzji;
+    \item jeśli dany węzeł jest ``decyzyjny'' (tzn. generuje decyzję), to nie jest dalej rozwijany - generatory jego potencjalnych dzieci byłyby nadgeneratorami jego generatora.
+   \end{itemize}
+  \item Jako że generator dowolnej decyzji $D_1$ nie może być nadgeneratorem żadnego generatora decyzji $D_2$ ($D_1 \ne D_2$), strategie przechowywania generatorów decyzji (patrz sekcja~\ref{sec:impl:supgen}) przechowują generatory w słownikach, których kluczami są identyfikatory decyzji, a wartościami - zbiory generatorów tych decyzji.
+  Pozwala to zminimalizować rozmiary porównywanych zbiorów generatorów.
+  \item Granica GBd~\cite{grm} nie jest tworzona i aktualizowana, jako że nie jest wykorzystywana w poszukiwaniu reguł decyzyjnych.
+ \end{itemize}
+
+ \subsection{Praktyki programistyczne}
+ \begin{itemize}
+  \item Test-Driven Development, TDD\footnote{Patrz http://pl.wikipedia.org/wiki/Test-driven\_development.} - najważniejsze funkcjonalności aplikacji powstały zgodnie z zachowaniem kolejności: testy jednostkowe $\rightarrow$ implementacja $\rightarrow$ refaktoryzacja.
+  \item Dependency Injection\footnote{Patrz http://pl.wikipedia.org/wiki/Wstrzykiwanie\_zależności.} - obiekty klas tworzonych i wykorzystywanych przez klasę \verb+GRMFacade+ nie tworzą swoich zależności samodzielnie, a otrzymują je z zewnątrz.
+  \item Wzorce projektowe:
+   \begin{itemize}
+    \item Fasada\footnote{Patrz http://pl.wikipedia.org/wiki/Fasada\_(wzorzec\_projektowy).} (klasa \verb+GRMFacade+),
+    \item Budowniczy\footnote{Patrz http://pl.wikipedia.org/wiki/Budowniczy\_(wzorzec\_projektowy).} (para klas: \verb+DataSetRepresentationBuilder+ i \verb+TransactionProcessor+),
+    \item Strategia\footnote{Patrz http://pl.wikipedia.org/wiki/Strategia\_(wzorzec\_projektowy).} (strategie opisane wyżej),
+    \item Fabryka\footnote{Patrz http://pl.wikipedia.org/wiki/Fabryka\_abstrakcyjna\_(wzorzec\_projektowy).} (fabryki strategii opisane wyżej).
+   \end{itemize}
+ 
+ \end{itemize}
+ 
+ 
+ \subsection{Wykorzystane biblioteki zewnętrzne}
+ \begin{enumerate}
+  \item \emph{NDesk.Options}\footnote{Patrz http://www.ndesk.org/Options.} - ułatwia przetwarzanie parametrów wiersza poleceń,
+  \item \emph{xUnit.net}\footnote{Patrz http://xunit.codeplex.com/.} - umożliwia tworzenie automatycznych testów jednostkowych,
+  \item \emph{moq}\footnote{Patrz https://github.com/Moq/moq4.} - wspiera tworzenie automatycznych testów jednostkowych.
+ \end{enumerate}
 
 
 
@@ -97,6 +309,9 @@ wyniki jakosciowe i ilosciowe na (np. czas dzialania; liczba wzorcow)
 uzyskane dla wiekszych (wielkich) zbiorow danych(np. z
 http://archive.ics.uci.edu/ml/ or http://fimi.cs.helsinki.fi/data/ lub
 uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
+- uzasadnic supergenerators Inverted Lists
+- ze sortowanie AscendingSupport
+- ze storage TIDSets
 - wykresy, wykresy
 - ze dla duzej liczby atrybutow malo wydajny
 
@@ -105,6 +320,7 @@ uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
 \section{Wnioski}
 wnioski z realizacji projektu
 - ze trzeba by poprawic wykrywanie supergeneratorow
+- ze sortowanie ma duzy wplyw
 - ze ogolnie dziala spoczko (nursey)
 
 
@@ -117,6 +333,10 @@ wnioski z realizacji projektu
   Instytut Informatyki,
   Politechnika Warszawska.
 
+ \bibitem{charm}
+  \emph{CHARM: An Efficient Algorithm for Closed Itemset Mining} [online],
+  Zaki M., Hsiao C.
+  http://epubs.siam.org/doi/pdf/10.1137/1.9781611972726.27 [dostęp: styczeń 2013].
 
 \end{thebibliography}
 
