@@ -166,12 +166,24 @@ a;b;;;;;;;+
 
 
 \section{Architektura aplikacji} \label{sec:arch}
-wszystkie istotne kwestie zwiazne z projektowaniem (np. diagramy klas)
+Aplikacja składa się z następujących modułów:
+
+\begin{itemize}
+ \item \verb+GRM.Logic+ - zawiera implementację zmodyfikowanego algorytmu GRM,
+ \item \verb+GRM.Logic.UnitTests+ - zawiera testy jednostkowe modułu \verb+GRM.Logic+,
+ \item \verb+GRM.Logic.PerformanceTests+ - zawiera testy wydajnościowe modułu \verb+GRM.Logic+, 
+ \item \verb+GRM.Presentation+ - aplikacja konsolowa przetwarzająca argumenty wiersza poleceń i wywołująca algorytm GRM.
+\end{itemize}
+
+ \subsection{GRM.Logic}
 - podzial na moduly (console, dataset processing, GRM)
 - diagram klas Logic
-
-
  
+ \subsection{GRM.Presentation}
+ Moduł \verb+GRM.Presentation+
+
+
+
 \section{Implementacja} \label{sec:impl}
 Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
