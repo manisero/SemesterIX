@@ -36,6 +36,12 @@
         LastKnownName="System"
         LastKnownLocation="Package6_0126.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="f6b5cc4e-cb2e-42da-a032-15f65b0b2dfd"
+        LastKnownName="NDesk"
+        LastKnownLocation="Package_1557.uml" />
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"
