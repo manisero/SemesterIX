@@ -182,13 +182,13 @@ Aplikacja składa się z następujących modułów:
   \begin{center}
    \scalebox{0.42}
    {
-    \includegraphics{../diagrams/class_diagram.png}
+    \includegraphics{../diagrams/Logic_class_diagram.png}
    }
   \end{center}
   \caption{
    Uproszczony diagram klas modułu GRM.Logic.
   }
-  \label{fig:diag:class}
+  \label{fig:diag:log:class}
  \end{figure}
   
  \begin{figure}[!ht]
@@ -201,7 +201,7 @@ Aplikacja składa się z następujących modułów:
   \caption{
    Uproszczony diagram zależności fasady modułu GRM.Logic.
   }
-  \label{fig:diag:Facade}
+  \label{fig:diag:log:Facade}
  \end{figure}
  
   \subsubsection{Komponent GRM.Logic.DataSetProcessing}
@@ -216,7 +216,7 @@ Aplikacja składa się z następujących modułów:
    \caption{
     Uproszczony diagram zależności komponentu GRM.Logic.DataSetProcessing.
    }
-   \label{fig:diag:DataSetProcessing}
+   \label{fig:diag:log:DataSetProcessing}
   \end{figure}
  
   \subsubsection{Komponent GRM.Logic.GRMAlgorithm}
@@ -231,13 +231,26 @@ Aplikacja składa się z następujących modułów:
    \caption{
     Uproszczony diagram zależności komponentu GRM.Logic.GRMAlgorithm.
    }
-   \label{fig:diag:GRMAlgorithm}
+   \label{fig:diag:log:GRMAlgorithm}
   \end{figure}
 
 
  \subsection{Moduł GRM.Presentation}
  Moduł \verb+GRM.Presentation+ zawiera punkt wejścia programu - metodę \verb+Main+ klasy \verb+Program+. 
  Jej działanie przebiega następująco:
+ 
+ \begin{figure}[!ht]
+  \begin{center}
+   \scalebox{0.42}
+   {
+    \includegraphics{../diagrams/Presentation_class_diagram.png}
+   }
+  \end{center}
+  \caption{
+   Diagram klas modułu GRM.Presentation.
+  }
+  \label{fig:diag:pres:class}
+ \end{figure}
  
  \begin{enumerate}
   \item Odczytanie parametrów wiersza poleceń (klasa \verb+ArgsParser+).
@@ -248,7 +261,20 @@ Aplikacja składa się z następujących modułów:
   \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie czytelnym dla człowieka (klasa \verb+TextResultWriter+).
   \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie przystosowanym do dalszej obróbki (klasa \verb+CSVResultWriter+).
  \end{enumerate}
-
+  
+ \begin{figure}[!ht]
+  \begin{center}
+   \scalebox{0.7}
+   {
+    \includegraphics{../diagrams/Presentation_dependency_diagram.png}
+   }
+  \end{center}
+  \caption{
+   Diagram zależności modułu GRM.Presentation.
+   Klasy GRMFacade i GRMResult należą do modułu GRM.Logic.
+  }
+  \label{fig:diag:pres:dep}
+ \end{figure}
 
 
 \section{Implementacja} \label{sec:impl}
