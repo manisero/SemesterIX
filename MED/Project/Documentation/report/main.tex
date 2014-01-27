@@ -236,8 +236,18 @@ Aplikacja składa się z następujących modułów:
 
 
  \subsection{Moduł GRM.Presentation}
- Zadaniem modułu \verb+GRM.Presentation+ jest realizacja interakcji z użytkownikiem aplikacji.
- Zawiera on punkt wejścia programu (metoda \verb+Main+ klasy \verb+Program+). 
+ Moduł \verb+GRM.Presentation+ zawiera punkt wejścia programu - metodę \verb+Main+ klasy \verb+Program+. 
+ Jej działanie przebiega następująco:
+ 
+ \begin{enumerate}
+  \item Odczytanie parametrów wiersza poleceń (klasa \verb+ArgsParser+).
+  Błędne parametry skutkują wypisaniem komuniaktu o błędzie i wyjściem z aplikacji.
+  \item Przekazanie sterowania modułowi \verb+GRM.Logic+ (klasie \verb+GRMFacade+).
+  \item Odebranie wyniku działania algorytmu GRM (\verb+GRMResult+) od klasy \verb+GRMFacade+.
+  \item Wypisanie zebranych danych o czasach trwania kolejnych kroków algorytmu (patrz sekcja~\ref{sec:impl:track}).
+  \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie czytelnym dla człowieka (klasa \verb+TextResultWriter+).
+  \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie przystosowanym do dalszej obróbki (klasa \verb+CSVResultWriter+).
+ \end{enumerate}
 
 
 
