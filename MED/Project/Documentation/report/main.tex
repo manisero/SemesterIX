@@ -236,12 +236,12 @@ Aplikacja składa się z następujących modułów:
 
 
  \subsection{Moduł GRM.Presentation}
- Moduł \verb+GRM.Presentation+ zawiera punkt wejścia programu - metodę \verb+Main+ klasy \verb+Program+. 
- Jej działanie przebiega następująco:
+ Moduł \verb+GRM.Presentation+ odpowiada za komunikację z użytkownikiem aplikacji i zlecenie wykonania algorytmu GRM.
+ Jego diagram klas przedstawia Rysunek~\ref{fig:diag:log:class}.
  
  \begin{figure}[!ht]
   \begin{center}
-   \scalebox{0.42}
+   \scalebox{0.55}
    {
     \includegraphics{../diagrams/Presentation_class_diagram.png}
    }
@@ -252,6 +252,9 @@ Aplikacja składa się z następujących modułów:
   \label{fig:diag:pres:class}
  \end{figure}
  
+ Klasa \verb+Program+ zawiera główną metodę programu - \verb+Main+. 
+ Jej działanie przebiega następująco:
+ 
  \begin{enumerate}
   \item Odczytanie parametrów wiersza poleceń (klasa \verb+ArgsParser+).
   Błędne parametry skutkują wypisaniem komuniaktu o błędzie i wyjściem z aplikacji.
@@ -261,7 +264,9 @@ Aplikacja składa się z następujących modułów:
   \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie czytelnym dla człowieka (klasa \verb+TextResultWriter+).
   \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie przystosowanym do dalszej obróbki (klasa \verb+CSVResultWriter+).
  \end{enumerate}
-  
+ 
+ Opisane zachowanie obrazuje diagram zależności pokazany na Rysunku~\ref{fig:diag:pres:dep}.
+ 
  \begin{figure}[!ht]
   \begin{center}
    \scalebox{0.7}
