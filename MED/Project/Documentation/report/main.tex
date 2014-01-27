@@ -439,27 +439,36 @@ wyniki jakosciowe i ilosciowe na (np. czas dzialania; liczba wzorcow)
 uzyskane dla wiekszych (wielkich) zbiorow danych(np. z
 http://archive.ics.uci.edu/ml/ or http://fimi.cs.helsinki.fi/data/ lub
 uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
-- uzasadnic supergenerators Inverted Lists
-- ze sortowanie AscendingSupport
-- ze storage TIDSets
-- wykresy, wykresy
-- ze dla duzej liczby atrybutow malo wydajny
 
-\begin{center}
- \begin{tabular}{ | r || c | c | c | c | }
-  \hline
-  zbiór danych            & \multicolumn{2}{|c|}{\emph{nursey}} & \multicolumn{2}{|c|}{\emph{mushrooms}} \\
-  \hline
-  próg wsparcia; l. reguł & 1; 117           & 10; 60           & 5; 3239            & 20; 2635          \\
-  \hline
-  \verb+BruteForce+       & \textbf{1.687}   & \textbf{0.917}   & \textbf{21.5}      & \textbf{14.44}    \\
-  \hline
-  \verb+InvertedLists+    & \textbf{0,733}   & \textbf{0,65}    & \textbf{6,14}      & \textbf{4,98}     \\
-  \hline
-  wzrost wydajności       & \textbf{57\%}    & \textbf{29\%}    & \textbf{71\%}      & \textbf{66\%}     \\
-  \hline
- \end{tabular}
-\end{center}
+
+ \subsection{Wybór najlepszej strategii przechowywania generatorów}
+ - uzasadnic supergenerators Inverted Lists
+ 
+ \begin{center}
+  \begin{tabular}{ | r || c | c | c | c | }
+   \hline
+   zbiór danych            & \multicolumn{2}{|c|}{\emph{nursey}} & \multicolumn{2}{|c|}{\emph{mushrooms}} \\
+   \hline
+   próg wsparcia; l. reguł & 1; 117           & 10; 60           & 5; 3239            & 20; 2635          \\
+   \hline
+   \verb+BruteForce+       & \textbf{1.687 s} & \textbf{0.917 s} & \textbf{21.5 s}    & \textbf{14.44 s}  \\
+   \hline
+   \verb+InvertedLists+    & \textbf{0,733 s} & \textbf{0,65 s}  & \textbf{6,14 s}    & \textbf{4,98 s}   \\
+   \hline
+   wzrost wydajności       & \textbf{57\%}    & \textbf{29\%}    & \textbf{71\%}      & \textbf{66\%}     \\
+   \hline
+  \end{tabular}
+ \end{center}
+
+ \subsection{Wybór najlepszej strategii sortowania elementów i przechowywania identyfikatorów transakcji}
+ - ze storage TIDSets
+ - ze sortowanie AscendingSupport
+ - wykresy, wykresy
+ 
+ 
+ \subsection{Wnioski}
+ - ze dla duzej liczby atrybutow malo wydajny
+
 
 
 \section{Podręcznik użytkownika}
@@ -575,7 +584,7 @@ a;b;;;;;;;+
 
 
 
-\section{Wnioski}
+\section{Podsumowanie}
 wnioski z realizacji projektu
 - ze trzeba by poprawic wykrywanie supergeneratorow
 - ze sortowanie ma duzy wplyw
