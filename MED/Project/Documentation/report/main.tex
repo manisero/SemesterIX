@@ -165,12 +165,15 @@ a;b;;;;;;;+
 
 
 
-\section{Implementacja} \label{sec:impl}
-wszystkie istotne kwestie zwiazne z projektowaniem (np. diagramy klas) i implementacja
-projektowanie:
+\section{Architektura aplikacji} \label{sec:arch}
+wszystkie istotne kwestie zwiazne z projektowaniem (np. diagramy klas)
 - podzial na moduly (console, dataset processing, GRM)
-- testy
 - diagram klas Logic
+
+
+ 
+\section{Implementacja} \label{sec:impl}
+Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
  \subsection{Strategie sortowania elementów} \label{sec:impl:sort}
  Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów (drzewie DZ~\cite{grm}):
@@ -234,6 +237,20 @@ projektowanie:
   \item Granica GBd~\cite{grm} nie jest tworzona i aktualizowana, jako że nie jest wykorzystywana w poszukiwaniu reguł decyzyjnych.
  \end{itemize}
 
+ \subsection{Praktyki programistyczne}
+ \begin{itemize}
+  \item Test-Driven Development, TDD\footnote{Patrz http://pl.wikipedia.org/wiki/Test-driven\_development.} - najważniejsze funkcjonalności aplikacji powstały zgodnie z zachowaniem kolejności: testy jednostkowe $\rightarrow$ implementacja $\rightarrow$ refaktoryzacja.
+  \item Dependency Injection\footnote{Patrz http://pl.wikipedia.org/wiki/Wstrzykiwanie\_zależności.} - obiekty klas tworzonych i wykorzystywanych przez klasę \verb+GRMFacade+ nie tworzą swoich zależności samodzielnie, a otrzymują je z zewnątrz.
+  \item Wzorce projektowe:
+   \begin{itemize}
+    \item Fasada\footnote{Patrz http://pl.wikipedia.org/wiki/Fasada\_(wzorzec\_projektowy).} (klasa \verb+GRMFacade+),
+    \item Budowniczy\footnote{Patrz http://pl.wikipedia.org/wiki/Budowniczy\_(wzorzec\_projektowy).} (para klas: \verb+DataSetRepresentationBuilder+ i \verb+TransactionProcessor+),
+    \item Strategia\footnote{Patrz http://pl.wikipedia.org/wiki/Strategia\_(wzorzec\_projektowy).} (strategie opisane wyżej),
+    \item Fabryka\footnote{Patrz http://pl.wikipedia.org/wiki/Fabryka\_abstrakcyjna\_(wzorzec\_projektowy).} (fabryki strategii opisane wyżej).
+   \end{itemize}
+ 
+ \end{itemize}
+ 
  
  \subsection{Wykorzystane biblioteki zewnętrzne}
  \begin{enumerate}
