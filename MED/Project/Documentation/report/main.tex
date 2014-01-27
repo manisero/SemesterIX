@@ -455,15 +455,12 @@ podrecznik potencjalnego uzytkownika wytworzonego oprogramowania
 
 
 
-\section{Przykład działania aplikacji}
-wszystkie wyniki wytwarzane przez program otrzymane dla malego,
-przykladowego zbioru danych (w celu weryfikacji poprawnosci działania
-programu)
-- przyklad z konsultacji
-
+\section{Przykład działania aplikacji} \label{sec:example}
+Poniżej przedstawiono przykład działania programu dla niewielkiego zbioru danych\footnote{Zbiór danych pochodzi z \cite{grm}, został on jedynie uzupełniony o decyzje przypisane transakcjom.}:
 
  \subsection{Plik wejściowy}
- Zawartość pliku \verb+input.data+:
+ Załóżmy, że plik wejściowy został nazwany \verb+input.data+.
+ Zawartość pliku:
 
 \begin{verbatim}
 Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
@@ -477,14 +474,16 @@ a, ,c,d,e, , ,h,-
 
 
  \subsection{Parametry wiersza poleceń}
-
+ Aplikacja zostaje uruchomiona z następującymi parametrami:
+ 
 \begin{verbatim}
-GRM.Presentation.exe -f input.data -h --sup 3 --track 3
+GRM.exe -f input.data -h --sup 3 --track 3
 \end{verbatim}
 
 
  \subsection{Komunikaty wypisane na konsoli}
-
+ Na konsoli wypisane zostają następujące komunikaty:
+ 
 \begin{verbatim}
 Executing GRM for file 'input.data'
 The file is expected to contain attribute names
@@ -511,7 +510,8 @@ Steps details:
  - Determining GARM property: 00:00:00.0020787 (5 iterations)
  - Applying GARM property (sets different): 00:00:00.0052850 (3 iterations)
  - Applying GARM property (sets equal): 00:00:00.0001329 (1 iterations)
- - Including parent node generators in child node generators: 00:00:00.0021305 (6 iterations)
+ - Including parent node generators in child node generators: 00:00:00.0021305
+   (6 iterations)
  - Updating decision generators: 00:00:00.0213280 (1 iterations)
 6. Building result: 00:00:00.0163420
 
@@ -521,7 +521,7 @@ CSV result saved to input_rules.csv
 
 
  \subsection{Plik wyjściowy czytelny dla człowieka}
- Zawartość pliku \verb+input_rules.txt+:
+ Zawartość pliku wyjściowego w formacie czytelnym dla człowieka (\verb+input_rules.txt+):
 
 \begin{verbatim}
 ====================
@@ -533,13 +533,30 @@ Attribute 2 (b), Attribute 4 (d)
 
 
  \subsection{Plik wyjściowy do dalszej obróbki}
- Zawartość pliku \verb+input_rules.csv+:
+ Zawartość pliku wyjściowego w formacie przystosowanym do dalszej obróbki (\verb+input_rules.csv+):
 
 \begin{verbatim}
 Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
 a;b;;;;;;;+
 ;b;;d;;;;;+
 \end{verbatim}
+
+
+ \subsection{Analiza poprawności wyniku}
+ Znalezione zostały dwie reguły decyzyjne o minimalnych poprzednikach.
+ Poprawność wyniku potwierdzają następujące fakty:
+ 
+ \begin{itemize}
+  \item Zbiór danych zawiera tylko dwie transakcje o decyzji '\verb|-|', a próg wsparcia wynosi 3, zatem nie istnieje żadna reguła dla tej decyzji.
+  \item Próg wsparcia osiągają elementy zbioru $\{$~\verb+a+, \verb+b+, \verb+c+, \verb+d+, \verb+e+~$\}$.
+   \begin{itemize}
+    \item Minimalne podzbiory tego zbioru występujące jedynie w transakcjach o decyzji '\verb|+|' to: $\{$~\verb+a+, \verb+b+~$\}$, $\{$~\verb+b+, \verb+d+~$\}$.
+    Zostały one ujęte w wyniku algorytmu.
+    \item Nieminimalne podzbiory tego zbioru występujące jedynie w transakcjach o decyzji '\verb|+|' to: $\{$~\verb+a+, \verb+b+, \verb+c+~$\}$, $\{$~\verb+b+, \verb+c+, \verb+d+,~$\}$, $\{$~\verb+a+, \verb+b+, \verb+c+, \verb+d+,~$\}$.
+    Nie zostały one ujęte w wyniku algorytmu.
+   \end{itemize}
+ 
+ \end{itemize}
 
 
 
