@@ -434,7 +434,7 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
 
 
-\section{Analiza wydajności}
+\section{Analiza wydajności} \label{sec:anal}
 wyniki jakosciowe i ilosciowe na (np. czas dzialania; liczba wzorcow)
 uzyskane dla wiekszych (wielkich) zbiorow danych(np. z
 http://archive.ics.uci.edu/ml/ or http://fimi.cs.helsinki.fi/data/ lub
@@ -446,16 +446,18 @@ uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
 - ze dla duzej liczby atrybutow malo wydajny
 
 \begin{center}
- \begin{tabular}{ | l || c | c | c | c | }
-   \hline
-   zbiór danych (próg wsparcia, l. reguł) & nursey (1, 117) & nursey (10, 60) & mushrooms (5, 3239) & mushrooms (20, 2635) \\
-   \hline
-   \verb+BruteForce+            & 1.687           & 0.917           & 21.5                & 14.44                \\
-   \hline
-   \verb+InvertedLists+         & 0,733           & 0,65            & 6,14                & 4,98                 \\
-   \hline
-   spadek wydajności            & 57\%            & 29\%            & 71\%                & 66\%                 \\
-   \hline
+ \begin{tabular}{ | r || c | c | c | c | }
+  \hline
+  zbiór danych            & \multicolumn{2}{|c|}{\emph{nursey}} & \multicolumn{2}{|c|}{\emph{mushrooms}} \\
+  \hline
+  próg wsparcia; l. reguł & 1; 117           & 10; 60           & 5; 3239            & 20; 2635          \\
+  \hline
+  \verb+BruteForce+       & \textbf{1.687}   & \textbf{0.917}   & \textbf{21.5}      & \textbf{14.44}    \\
+  \hline
+  \verb+InvertedLists+    & \textbf{0,733}   & \textbf{0,65}    & \textbf{6,14}      & \textbf{4,98}     \\
+  \hline
+  wzrost wydajności       & \textbf{57\%}    & \textbf{29\%}    & \textbf{71\%}      & \textbf{66\%}     \\
+  \hline
  \end{tabular}
 \end{center}
 
