@@ -422,7 +422,6 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
     \item Strategia\footnote{Patrz http://pl.wikipedia.org/wiki/Strategia\_(wzorzec\_projektowy).} (strategie opisane wyżej),
     \item Fabryka\footnote{Patrz http://pl.wikipedia.org/wiki/Fabryka\_abstrakcyjna\_(wzorzec\_projektowy).} (fabryki strategii opisane wyżej).
    \end{itemize}
- 
  \end{itemize}
  
  
@@ -432,22 +431,6 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
   \item \emph{xUnit.net}\footnote{Patrz http://xunit.codeplex.com/.} - umożliwia tworzenie automatycznych testów jednostkowych,
   \item \emph{moq}\footnote{Patrz https://github.com/Moq/moq4.} - wspiera tworzenie automatycznych testów jednostkowych.
  \end{enumerate}
-
-
-
-\section{Podręcznik użytkownika}
-podrecznik potencjalnego uzytkownika wytworzonego oprogramowania
-(zamierzam korzystać z niego podczas sprawdzania Panstwa rozwiazan)
-- wszystkie opcje programu
-- przykladowa komenda i wynik na konsoli
-
-
-
-\section{Analiza poprawności}
-wszystkie wyniki wytwarzane przez program otrzymane dla malego,
-przykladowego zbioru danych (w celu weryfikacji poprawnosci działania
-programu)
-- przyklad z konsultacji
 
 
 
@@ -463,12 +446,109 @@ uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
 - ze dla duzej liczby atrybutow malo wydajny
 
 
+ 
+\section{Podręcznik użytkownika}
+podrecznik potencjalnego uzytkownika wytworzonego oprogramowania
+(zamierzam korzystać z niego podczas sprawdzania Panstwa rozwiazan)
+- wszystkie opcje programu
+- przykladowa komenda i wynik na konsoli
+
+
+
+\section{Przykład działania aplikacji}
+wszystkie wyniki wytwarzane przez program otrzymane dla malego,
+przykladowego zbioru danych (w celu weryfikacji poprawnosci działania
+programu)
+- przyklad z konsultacji
+
+
+ \subsection{Plik wejściowy}
+ Zawartość pliku \verb+input.data+:
+
+\begin{verbatim}
+Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
+a,b,c,d,e, ,g, ,+
+a,b,c,d,e,f, , ,+
+a,b,c,d,e, , ,h,+
+a,b, ,d,e, , , ,+
+a, ,c,d,e, , ,h,-
+ ,b,c, ,e, , , ,-
+\end{verbatim}
+
+
+ \subsection{Parametry wiersza poleceń}
+
+\begin{verbatim}
+GRM.Presentation.exe -f input.data -h --sup 3 --track 3
+\end{verbatim}
+
+
+ \subsection{Komunikaty wypisane na konsoli}
+
+\begin{verbatim}
+Executing GRM for file 'input.data'
+The file is expected to contain attribute names
+Decision attribute: last
+Minimum support: 3
+Sorting strategy: 'AscendingSupport'
+Transaction IDs storage strategy: 'TIDSets'
+Decision supergenerators handling strategy: 'InvertedLists'
+Performance tracking level: 'Substeps'
+Output files will be saved to: 'input'
+
+GRM execution finished
+Lasted 00:00:00.1123575
+Steps details:
+1. Creating data set representation: 00:00:00.0293191
+ - Building decision -> decision id dictionary: 00:00:00.0003843 (6 iterations)
+ - Building item -> item id dictionary: 00:00:00.0068837 (30 iterations)
+ - Including item in data set representation: 00:00:00.0066924 (30 iterations)
+2. Selecting frequent items: 00:00:00.0044970
+3. Sorting frequent items: 00:00:00.0027784
+4. Building GRM tree: 00:00:00.0163098
+5. Running GARM procedure: 00:00:00.0418275
+ - Checking for node generators conflicts: 00:00:00.0014032 (5 iterations)
+ - Determining GARM property: 00:00:00.0020787 (5 iterations)
+ - Applying GARM property (sets different): 00:00:00.0052850 (3 iterations)
+ - Applying GARM property (sets equal): 00:00:00.0001329 (1 iterations)
+ - Including parent node generators in child node generators: 00:00:00.0021305 (6 iterations)
+ - Updating decision generators: 00:00:00.0213280 (1 iterations)
+6. Building result: 00:00:00.0163420
+
+Text result saved to input_rules.txt
+CSV result saved to input_rules.csv
+\end{verbatim}
+
+
+ \subsection{Plik wyjściowy czytelny dla człowieka}
+ Zawartość pliku \verb+input_rules.txt+:
+
+\begin{verbatim}
+====================
+Decision: '+':
+--------------------
+Attribute 1 (a), Attribute 2 (b)
+Attribute 2 (b), Attribute 4 (d)
+\end{verbatim}
+
+
+ \subsection{Plik wyjściowy do dalszej obróbki}
+ Zawartość pliku \verb+input_rules.csv+:
+
+\begin{verbatim}
+Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
+a;b;;;;;;;+
+;b;;d;;;;;+
+\end{verbatim}
+
+
 
 \section{Wnioski}
 wnioski z realizacji projektu
 - ze trzeba by poprawic wykrywanie supergeneratorow
 - ze sortowanie ma duzy wplyw
 - ze ogolnie dziala spoczko (nursey)
+- wchuj kodu taki algorytm wymaga (jesli ma byc elastyczny)
 
 
 
