@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="20baa852-d7ea-4768-90d5-731385854baa"
+  name="DecisionGeneratorsCollecting"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="0e4bd068-6332-4f2c-9c14-ade6078a6cf6"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <enumeration
+        Id="362bb35c-ebe7-47c9-b290-c5e1fb2ba9a7"
+        name="DecisionSupergeneratorsHandlingStrategyType"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="aa80f8b8-44bb-4cca-9e92-90722fb8ca5c"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DDecisionSupergeneratorsHandlingStrategyType"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="6ee2068e-1300-4492-9c2f-8ccdc93341ae"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="04b6f406-7216-462a-b8f4-976209168957">
+                <propertyInstance
+                  Id="d84327bd-b51d-428b-b5a5-a064dca5eb04"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="41bf1d0d-f453-459e-b08e-e7add2c13389">
+                <propertyInstance
+                  Id="ed445843-be90-4718-a168-31dcbbafb5d8"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="68c7b9b1-53ce-4b90-aa84-a828201e086b">
+                <propertyInstance
+                  Id="a6c59144-43b7-4bbb-ae37-0b274b9a81e7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="77cbf7da-5263-409c-90ca-65d92518458f"
+        name="IDecisionGeneratorsCollector"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="404e3714-73c6-4554-8745-75e3d80be76f"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DIDecisionGeneratorsCollector"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ca9c26b0-6962-47f5-a6d9-6561369d30dc"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="18be3c46-d75e-4d8d-936d-7ce81c6487cd">
+                <propertyInstance
+                  Id="c82cdcce-5c47-4dd4-b335-5b8ee20c50d3"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="345e50dd-0828-45a0-8f10-960a0dcc0d69">
+                <propertyInstance
+                  Id="24802ba9-2862-45d7-92fd-043a8c3406d4"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4cee08c2-8783-453e-847a-697b1ea49c8e">
+                <propertyInstance
+                  Id="8124aa0b-e962-4fc4-b44a-18242740fd93"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a4d11800-e3bc-47b6-ba9a-9e8c353a496c">
+                <propertyInstance
+                  Id="fbb2299b-8a9b-47ce-8688-cad125863480"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperations>
+          <operation
+            Id="ecafd7c8-3114-40ec-8847-c1349bbb0a1e"
+            name="AppendDecisionGenerators"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="d77a6b27-4bc7-403e-8cc3-a076d7f11a82"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DIDecisionGeneratorsCollector Member%3D(Name%3DAppendDecisionGenerators OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.Entities Type%3DGenerator)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9177a40b-cac6-4e71-bcab-6fd52c54467e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="798ae6a6-5f1b-48e3-8bd2-38b6939c7dc9">
+                    <propertyInstance
+                      Id="5734bf5a-eee2-424e-98f9-ef4e98777d1f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="72b6e4e6-a5fd-4ac7-a5ec-8bc2a0ba2696">
+                    <propertyInstance
+                      Id="2ad31f62-f76a-403d-9781-698b149789a4"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9fea7f89-9543-4f38-957b-10a2530a111b">
+                    <propertyInstance
+                      Id="541b1d26-491e-49a3-89b2-35f73318ab5e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b5b5c6e3-dbd6-4d46-863c-e6a09f20a7ac">
+                    <propertyInstance
+                      Id="63f954ef-0951-4998-b088-8b538908e0dd"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f2ddf7fd-5cae-4347-bb64-c756bf5cff31">
+                    <propertyInstance
+                      Id="d903efb8-33ef-41d9-8500-5898d17ea0de"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c06f21e0-fa2b-4ef5-a0a1-aafc01243ddb">
+                    <propertyInstance
+                      Id="43e94e0a-1473-4807-8a4e-3c1d3a4f456d"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5eaec9d9-597f-4361-8375-ca75e382d291"
+                  name="decisionId"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3c7be03a-55fd-4578-87b0-dcdae60b8a4d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DIDecisionGeneratorsCollector Member%3D(Name%3DAppendDecisionGenerators OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.Entities Type%3DGenerator)]))]) ParameterIdentifier%3DdecisionId"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="56e6cbac-0867-4be8-8426-bc7cd3ef140a"
+                  name="generators"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="09ac8335-3803-43ec-b21a-bcc51a2f0041"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DIDecisionGeneratorsCollector Member%3D(Name%3DAppendDecisionGenerators OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.Entities Type%3DGenerator)]))]) ParameterIdentifier%3Dgenerators"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="40368415-e00d-48de-ab46-5b58aa7b9da0"
+                      LastKnownName="IList&lt;Generator‎&gt;"
+                      LastKnownLocation="Package10_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2e241ed7-4b18-4247-878b-5d603c6880dc"
+            name="GetDecisionsGenerators"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="d30e5f98-7420-4b16-a63a-7a56b47be0c3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DIDecisionGeneratorsCollector Member%3DGetDecisionsGenerators"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="80cafe13-b24c-4b9d-94cb-6a328cb50fef"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="51f0bc66-f082-4662-8a13-f77c02b44e39">
+                    <propertyInstance
+                      Id="57d3e844-b165-4862-b0f8-2ac797d9b957"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e48ab55d-3d16-44c8-af1e-9b2f044a83fc">
+                    <propertyInstance
+                      Id="33d1e1d7-2e15-46ac-9a35-d9b2cd99414e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="77226bb1-366c-4034-a246-2e0f5a363dbe">
+                    <propertyInstance
+                      Id="08b8f8d4-2fc6-40c9-9cfd-6db879a188d4"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dfe119aa-7f8d-48e4-8a15-feb55be5c42b">
+                    <propertyInstance
+                      Id="aafc2e86-1405-4218-b424-2d5b91d678e1"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="338528be-6ad8-4cca-9264-e939a2156a83">
+                    <propertyInstance
+                      Id="e71edb59-2e62-4eb5-894e-eba3eb7ec0a2"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="25fd3791-560e-4ffb-8e72-fd9995e2dde5">
+                    <propertyInstance
+                      Id="c7bf2bcb-19c6-46ab-b41c-0e3f9399356e"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f9b9cb4c-f4fe-4028-915e-0ea8ee38ee53"
+                  direction="Return">
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="c7dc9555-318d-4221-94ca-8ba245af1e55"
+                      LastKnownName="IDictionary&lt;Int32‎, IList‎&lt;Generator‎&gt;‎&gt;"
+                      LastKnownLocation="Package10_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="285a87c0-f93d-4050-9409-e709bb4ec1d7"
+        LastKnownName="_Impl"
+        LastKnownLocation="Package_0205.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="86cb9297-c4df-4d78-9fe5-70034451d0f5"
+        name="IDecisionGeneratorsCollectorFactory"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="ad27752f-61d9-4e68-9be3-b244ca8671c9"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DIDecisionGeneratorsCollectorFactory"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c69c4542-0e5c-4f1b-a6b0-eb4f7904c463"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="270bcf5d-766a-43c3-ba6c-4252b80a0ca0">
+                <propertyInstance
+                  Id="e095441a-33d1-4663-857b-eb1c3a6c6216"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1de5ded3-4284-4aa3-9bb2-78120a1b999c">
+                <propertyInstance
+                  Id="e0866326-1c19-4cca-a18b-af33f65df116"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="38a9204f-37cf-44fd-ad7c-863d7a3edf88">
+                <propertyInstance
+                  Id="896e8b43-3b28-4027-80b0-9aaade2a1152"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b16e432a-1b3a-4d50-8712-25fa32d7e3a9">
+                <propertyInstance
+                  Id="6386b4f1-bc10-41f2-ba07-874a11152d3e"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
