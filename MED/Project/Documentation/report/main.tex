@@ -211,7 +211,18 @@ Aplikacja składa się z następujących modułów:
   \label{fig:diag:log:Facade}
  \end{figure}
  
+ Poszczególne kroki algorytmu zaimplementowane są w dwóch komponentach:
+ 
+ \begin{itemize}
+  \item GRM.Logic.DataSetProcessing,
+  \item GRM.Logic.GRMAlgorithm.
+ \end{itemize}
+
+ 
   \subsubsection{Komponent GRM.Logic.DataSetProcessing}
+  Zadaniem komponentu \verb+GRM.Logic.DataSetProcessing+ jest odczytanie pliku wejściowego i zbudowanie reprezentacji zbioru danych przeznaczonej do dalszego przetwarzania.
+  
+  Diagram zależności tego komponentu został przedstawiony na Rysunku~\ref{fig:diag:log:DataSetProcessing}.
   
   \begin{figure}[!ht]
    \begin{center}
@@ -227,6 +238,8 @@ Aplikacja składa się z następujących modułów:
   \end{figure}
  
   \subsubsection{Komponent GRM.Logic.GRMAlgorithm}
+  Komponent GRM.Logic.GRMAlgorithm implementuje zmodyfikowany algorytm GRM.
+  Jego diagram zależności przedstawia Rysunek~\ref{fig:diag:log:GRMAlgorithm}.
   
   \begin{figure}[!ht]
    \begin{center}
