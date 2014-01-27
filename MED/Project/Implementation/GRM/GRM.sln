@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E9B7C3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GRM.Logic.PerformanceTests", "GRM.Logic.PerformanceTests\GRM.Logic.PerformanceTests.csproj", "{E692B7FF-B37D-4B36-8CBF-5A0C11D67EFF}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "GRM.Logic.Modeling", "GRM.Logic.Modeling\GRM.Logic.Modeling.modelproj", "{10D53027-9698-4AB3-989E-0081B328317E}"
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "GRM.Modeling", "GRM.Modeling\GRM.Modeling.modelproj", "{10D53027-9698-4AB3-989E-0081B328317E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

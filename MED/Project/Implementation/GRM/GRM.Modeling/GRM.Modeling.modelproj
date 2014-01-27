@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{10d53027-9698-4ab3-989e-0081b328317e}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
-    <Name>GRM.Logic.Modeling</Name>
+    <Name>GRM.Modeling</Name>
     <RootNamespace>GRM.Logic.Modeling</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
