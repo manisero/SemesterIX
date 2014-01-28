@@ -4,6 +4,7 @@
 \usepackage{tikz}
 \usepackage{url}
 \usepackage{fullpage}
+\usepackage{titlesec}
 
 \title{Projekt MED-P3, algorytm GRM. Raport. \\ \small{Przedmiot: Metody eksploracji danych w odkrywaniu wiedzy.}}
 \author{Michał Aniserowicz, Jakub Turek}
@@ -175,35 +176,182 @@ Aplikacja składa się z następujących modułów:
  \item \verb+GRM.Presentation+ - aplikacja konsolowa przetwarzająca argumenty wiersza poleceń i wywołująca algorytm GRM.
 \end{itemize}
 
- \subsection{GRM.Logic}
-- podzial na moduly (console, dataset processing, GRM)
-- diagram klas Logic
+
+ \subsection{Moduł GRM.Logic}
+ Moduł \verb+GRM.Logic+ jest głównym modułem aplikacji.
+ Zawiera implementację zmodyfikowanego algorytmu GRM.
+ Jego diagram klas został przedstawiony na Rysunku~\ref{fig:diag:log:class}.
 
  \begin{figure}[!ht]
   \begin{center}
-   \scalebox{0.25}
+   \scalebox{0.42}
    {
-    %\includegraphics{../obrazki/filtry/splot.png}
+    \includegraphics{../diagrams/Logic_class_diagram.png}
    }
   \end{center}
   \caption{
-   %Operacja dyskretnego splotu macierzy.
+   Uproszczony diagram klas modułu GRM.Logic.
   }
-  %\label{fig:convolution}
+  \label{fig:diag:log:class}
  \end{figure}
+  
+ Punktem wejścia modułu jest klasa \verb+GRMFacade+.
+ Zleca ona wykonanie kolejnych kroków algorytmu.
+ Diagram jej zależności przedstawia Rysunek~\ref{fig:diag:log:Facade}.
+ 
+ \begin{figure}[!ht]
+  \begin{center}
+   \scalebox{0.7}
+   {
+    \includegraphics{../diagrams/GRMFacade_dependency_diagram.png}
+   }
+  \end{center}
+  \caption{
+   Uproszczony diagram zależności fasady modułu GRM.Logic.
+  }
+  \label{fig:diag:log:Facade}
+ \end{figure}
+ 
+ Poszczególne kroki algorytmu zaimplementowane są w dwóch komponentach:
+ 
+ \begin{itemize}
+  \item GRM.Logic.DataSetProcessing,
+  \item GRM.Logic.GRMAlgorithm.
+ \end{itemize}
+
+ 
+  \subsubsection{Komponent GRM.Logic.DataSetProcessing}
+  Zadaniem komponentu \verb+GRM.Logic.DataSetProcessing+ jest odczytanie pliku wejściowego i zbudowanie reprezentacji zbioru danych przeznaczonej do dalszego przetwarzania.
+  
+  Diagram zależności tego komponentu został przedstawiony na Rysunku~\ref{fig:diag:log:DataSetProcessing}.
+  
+  \begin{figure}[!ht]
+   \begin{center}
+    \scalebox{0.7}
+    {
+     \includegraphics{../diagrams/DataSetProcessing_dependency_diagram.png}
+    }
+   \end{center}
+   \caption{
+    Uproszczony diagram zależności komponentu GRM.Logic.DataSetProcessing.
+   }
+   \label{fig:diag:log:DataSetProcessing}
+  \end{figure}
+ 
+  \subsubsection{Komponent GRM.Logic.GRMAlgorithm}
+  Komponent GRM.Logic.GRMAlgorithm implementuje zmodyfikowany algorytm GRM.
+  Jego diagram zależności przedstawia Rysunek~\ref{fig:diag:log:GRMAlgorithm}.
+  
+  \begin{figure}[!ht]
+   \begin{center}
+    \scalebox{0.7}
+    {
+     \includegraphics{../diagrams/GRMAlgorithm_dependency_diagram.png}
+    }
+   \end{center}
+   \caption{
+    Uproszczony diagram zależności komponentu GRM.Logic.GRMAlgorithm.
+   }
+   \label{fig:diag:log:GRMAlgorithm}
+  \end{figure}
 
 
- \subsection{GRM.Presentation}
- Zadaniem modułu \verb+GRM.Presentation+ jest realizacja interakcji z użytkownikiem aplikacji.
- Zawiera on punkt wejścia programu (metoda \verb+Main+ klasy \verb+Program+). 
-
+ \subsection{Moduł GRM.Presentation}
+ Moduł \verb+GRM.Presentation+ odpowiada za komunikację z użytkownikiem aplikacji i zlecenie wykonania algorytmu GRM.
+ Jego diagram klas przedstawia Rysunek~\ref{fig:diag:log:class}.
+ 
+ \begin{figure}[!ht]
+  \begin{center}
+   \scalebox{0.55}
+   {
+    \includegraphics{../diagrams/Presentation_class_diagram.png}
+   }
+  \end{center}
+  \caption{
+   Diagram klas modułu GRM.Presentation.
+  }
+  \label{fig:diag:pres:class}
+ \end{figure}
+ 
+ Klasa \verb+Program+ zawiera główną metodę programu - \verb+Main+. 
+ Jej działanie przebiega następująco:
+ 
+ \begin{enumerate}
+  \item Odczytanie parametrów wiersza poleceń (klasa \verb+ArgsParser+).
+  Błędne parametry skutkują wypisaniem komuniaktu o błędzie i wyjściem z aplikacji.
+  \item Przekazanie sterowania modułowi \verb+GRM.Logic+ (klasie \verb+GRMFacade+).
+  \item Odebranie wyniku działania algorytmu GRM (\verb+GRMResult+) od klasy \verb+GRMFacade+.
+  \item Wypisanie zebranych danych o czasach trwania kolejnych kroków algorytmu (patrz sekcja~\ref{sec:impl:track}).
+  \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie czytelnym dla człowieka (klasa \verb+TextResultWriter+).
+  \item Zapisanie wyniku działania algorytmu do pliku wyjściowego w formacie przystosowanym do dalszej obróbki (klasa \verb+CSVResultWriter+).
+ \end{enumerate}
+ 
+ Opisane zachowanie obrazuje diagram zależności pokazany na Rysunku~\ref{fig:diag:pres:dep}.
+ 
+ \begin{figure}[!ht]
+  \begin{center}
+   \scalebox{0.7}
+   {
+    \includegraphics{../diagrams/Presentation_dependency_diagram.png}
+   }
+  \end{center}
+  \caption{
+   Diagram zależności modułu GRM.Presentation.
+   Klasy GRMFacade i GRMResult należą do modułu GRM.Logic.
+  }
+  \label{fig:diag:pres:dep}
+ \end{figure}
 
 
 \section{Implementacja} \label{sec:impl}
 Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
+ \subsection{Kroki algorytmu}
+ Działanie modułu \verb+GRM.Logic+ przebiega w następujących krokach:\\
+ \emph{[W nawiasach kwadratowych podano nazwę klasy wykonującej dany krok.]}
+ 
+ \begin{enumerate}
+  \item $[$\verb+DataSetRepresentationBuilder+$]$ Odczytanie pliku wejściowego i budowa reprezentacji zbioru danych:
+   \begin{enumerate}
+    \item określenie liczby atrybutów i odczytanie ich nagłówków (jeśli dostępne);
+    \item dla każdego z wierszy reprezentujących transakcje:
+     \begin{enumerate}
+      \item $[$\verb+TransactionProcessor+$]$ nadanie identyfikatora transakcji,
+      \item $[$\verb+TransactionProcessor+$]$ dla każdego elementu transakcji:
+       \begin{enumerate}
+        \item nadanie identyfikatora elementu (jeśli element o tej wartości jeszcze nie wystąpił),
+        \item aktualizacja danych elementu (zbioru transakcji, w których występuje i decyzyjności);
+       \end{enumerate}
+     \end{enumerate}
+    \item zwrócenie gotowej reprezentacji danych (\verb+DataSetRepresentation+).
+   \end{enumerate}
+
+  \item $[$\verb+FrequentItemsSelector+$]$ Wybór elementów częstych.
+  
+  \item $[$\verb+ISortingStrategy+$]$ Posortowanie elementów częstych.
+  
+  \item $[$\verb+TreeBuilder+$]$ Budowa drzewa zbiorów (drzewa DZ~\cite{grm}):
+   \begin{enumerate}
+    \item utworzenie korzenia drzewa:
+     \begin{enumerate}
+      \item $[$\verb+ITransactionIDsStorageStrategy+$]$ wyznaczenie zbioru identyfikatorów transakcji korzenia;
+     \end{enumerate} 
+    \item utworzenie pierwszego poziomu węzłów drzewa - dla każdego z elementów częstych:
+     \begin{enumerate}
+      \item ustawienie elementu jako generatora węzła,
+      \item $[$\verb+ITransactionIDsStorageStrategy+$]$ wyznaczenie zbioru identyfikatorów transakcji węzła oraz jego wsparcia i decyzyjności;
+     \end{enumerate}
+    \item zwrócenie korzenia drzewa zbiorów (\verb+Node+).
+   \end{enumerate}
+
+  \item $[$\verb+GARMProcedure+$]$ Wywołanie procedury GARM~\cite{grm}.
+  
+  \item $[$\verb+GRMResultBuilder+$]$ Budowa i zwrócenie wyniku (\verb+GRMResult+).
+ \end{enumerate}
+
+ 
  \subsection{Strategie sortowania elementów} \label{sec:impl:sort}
- Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów (drzewie DZ~\cite{grm}):
+ Zaimplementowano następujące strategie sortowania elementów w drzewie zbiorów:
  
  \begin{itemize}
   \item \verb+AscendingSupport+ (klasa \verb+AscendingSupportSortingStrategy+) - sortowanie rosnące według wsparć elementów,
@@ -264,7 +412,7 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
   \item Granica GBd~\cite{grm} nie jest tworzona i aktualizowana, jako że nie jest wykorzystywana w poszukiwaniu reguł decyzyjnych.
  \end{itemize}
 
- \subsection{Praktyki programistyczne}
+ \subsection{Zastosowane praktyki programistyczne}
  \begin{itemize}
   \item Test-Driven Development, TDD\footnote{Patrz http://pl.wikipedia.org/wiki/Test-driven\_development.} - najważniejsze funkcjonalności aplikacji powstały zgodnie z zachowaniem kolejności: testy jednostkowe $\rightarrow$ implementacja $\rightarrow$ refaktoryzacja.
   \item Dependency Injection\footnote{Patrz http://pl.wikipedia.org/wiki/Wstrzykiwanie\_zależności.} - obiekty klas tworzonych i wykorzystywanych przez klasę \verb+GRMFacade+ nie tworzą swoich zależności samodzielnie, a otrzymują je z zewnątrz.
@@ -275,7 +423,6 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
     \item Strategia\footnote{Patrz http://pl.wikipedia.org/wiki/Strategia\_(wzorzec\_projektowy).} (strategie opisane wyżej),
     \item Fabryka\footnote{Patrz http://pl.wikipedia.org/wiki/Fabryka\_abstrakcyjna\_(wzorzec\_projektowy).} (fabryki strategii opisane wyżej).
    \end{itemize}
- 
  \end{itemize}
  
  
@@ -288,40 +435,181 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
 
 
-\section{Podręcznik użytkownika}
-podrecznik potencjalnego uzytkownika wytworzonego oprogramowania
-(zamierzam korzystać z niego podczas sprawdzania Panstwa rozwiazan)
-- wszystkie opcje programu
-- przykladowa komenda i wynik na konsoli
-
-
-
-\section{Analiza poprawności}
-wszystkie wyniki wytwarzane przez program otrzymane dla malego,
-przykladowego zbioru danych (w celu weryfikacji poprawnosci działania
-programu)
-- przyklad z konsultacji
-
-
-
-\section{Analiza wydajności}
+\section{Analiza wydajności} \label{sec:anal}
 wyniki jakosciowe i ilosciowe na (np. czas dzialania; liczba wzorcow)
 uzyskane dla wiekszych (wielkich) zbiorow danych(np. z
 http://archive.ics.uci.edu/ml/ or http://fimi.cs.helsinki.fi/data/ lub
 uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
-- uzasadnic supergenerators Inverted Lists
-- ze sortowanie AscendingSupport
-- ze storage TIDSets
-- wykresy, wykresy
-- ze dla duzej liczby atrybutow malo wydajny
+
+
+ \subsection{Wybór najlepszej strategii przechowywania generatorów}
+ - uzasadnic supergenerators Inverted Lists
+ 
+ \begin{center}
+  \begin{tabular}{ | r || c | c | c | c | }
+   \hline
+   zbiór danych            & \multicolumn{2}{|c|}{\emph{nursey}} & \multicolumn{2}{|c|}{\emph{mushrooms}} \\
+   \hline
+   próg wsparcia; l. reguł & 1; 117           & 10; 60           & 5; 3239            & 20; 2635          \\
+   \hline
+   \verb+BruteForce+       & \textbf{1.687 s} & \textbf{0.917 s} & \textbf{21.5 s}    & \textbf{14.44 s}  \\
+   \hline
+   \verb+InvertedLists+    & \textbf{0,733 s} & \textbf{0,65 s}  & \textbf{6,14 s}    & \textbf{4,98 s}   \\
+   \hline
+   wzrost wydajności       & \textbf{57\%}    & \textbf{29\%}    & \textbf{71\%}      & \textbf{66\%}     \\
+   \hline
+  \end{tabular}
+ \end{center}
+
+ \subsection{Wybór najlepszej strategii sortowania elementów i przechowywania identyfikatorów transakcji}
+ - ze storage TIDSets
+ - ze sortowanie AscendingSupport
+ - wykresy, wykresy
+ - Załącznik~\ref{apx:results}
+ 
+ 
+ \subsection{Wnioski}
+ - ze dla duzej liczby atrybutow malo wydajny
 
 
 
-\section{Wnioski}
+\section{Przykład działania aplikacji} \label{sec:example}
+Poniżej przedstawiono przykład działania programu dla niewielkiego zbioru danych\footnote{Zbiór danych pochodzi z \cite{grm}, został on jedynie uzupełniony o decyzje przypisane transakcjom.}:
+
+ \subsection{Plik wejściowy}
+ Załóżmy, że plik wejściowy został nazwany \verb+input.data+.
+ Zawartość pliku:
+
+\begin{verbatim}
+Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
+a,b,c,d,e, ,g, ,+
+a,b,c,d,e,f, , ,+
+a,b,c,d,e, , ,h,+
+a,b, ,d,e, , , ,+
+a, ,c,d,e, , ,h,-
+ ,b,c, ,e, , , ,-
+\end{verbatim}
+
+
+ \subsection{Parametry wiersza poleceń}
+ Aplikacja zostaje uruchomiona z następującymi parametrami:
+ 
+\begin{verbatim}
+GRM.exe -f input.data -h --sup 3 --track 3
+\end{verbatim}
+
+
+ \subsection{Komunikaty wypisane na konsoli}
+ Na konsoli wypisane zostają następujące komunikaty:
+ 
+\begin{verbatim}
+Executing GRM for file 'input.data'
+The file is expected to contain attribute names
+Decision attribute: last
+Minimum support: 3
+Sorting strategy: 'AscendingSupport'
+Transaction IDs storage strategy: 'TIDSets'
+Decision supergenerators handling strategy: 'InvertedLists'
+Performance tracking level: 'Substeps'
+Output files will be saved to: 'input'
+
+GRM execution finished
+Lasted 00:00:00.1123575
+Steps details:
+1. Creating data set representation: 00:00:00.0293191
+ - Building decision -> decision id dictionary: 00:00:00.0003843 (6 iterations)
+ - Building item -> item id dictionary: 00:00:00.0068837 (30 iterations)
+ - Including item in data set representation: 00:00:00.0066924 (30 iterations)
+2. Selecting frequent items: 00:00:00.0044970
+3. Sorting frequent items: 00:00:00.0027784
+4. Building GRM tree: 00:00:00.0163098
+5. Running GARM procedure: 00:00:00.0418275
+ - Checking for node generators conflicts: 00:00:00.0014032 (5 iterations)
+ - Determining GARM property: 00:00:00.0020787 (5 iterations)
+ - Applying GARM property (sets different): 00:00:00.0052850 (3 iterations)
+ - Applying GARM property (sets equal): 00:00:00.0001329 (1 iterations)
+ - Including parent node generators in child node generators: 00:00:00.0021305
+   (6 iterations)
+ - Updating decision generators: 00:00:00.0213280 (1 iterations)
+6. Building result: 00:00:00.0163420
+
+Text result saved to input_rules.txt
+CSV result saved to input_rules.csv
+\end{verbatim}
+
+
+ \subsection{Plik wyjściowy czytelny dla człowieka}
+ Zawartość pliku wyjściowego w formacie czytelnym dla człowieka (\verb+input_rules.txt+):
+
+\begin{verbatim}
+====================
+Decision: '+':
+--------------------
+Attribute 1 (a), Attribute 2 (b)
+Attribute 2 (b), Attribute 4 (d)
+\end{verbatim}
+
+
+ \subsection{Plik wyjściowy do dalszej obróbki}
+ Zawartość pliku wyjściowego w formacie przystosowanym do dalszej obróbki (\verb+input_rules.csv+):
+
+\begin{verbatim}
+Attr A,Attr B,Attr C,Attr D,Attr E,Attr F,Attr G,Attr H,Decision
+a;b;;;;;;;+
+;b;;d;;;;;+
+\end{verbatim}
+
+
+ \subsection{Analiza poprawności wyniku}
+ Znalezione zostały dwie reguły decyzyjne o minimalnych poprzednikach.
+ Poprawność wyniku potwierdzają następujące fakty:
+ 
+ \begin{itemize}
+  \item Zbiór danych zawiera tylko dwie transakcje o decyzji '\verb|-|', a próg wsparcia wynosi 3, zatem nie istnieje żadna reguła dla tej decyzji.
+  \item Próg wsparcia osiągają elementy zbioru $\{$~\verb+a+, \verb+b+, \verb+c+, \verb+d+, \verb+e+~$\}$.
+   \begin{itemize}
+    \item Minimalne podzbiory tego zbioru występujące jedynie w transakcjach o decyzji '\verb|+|' to: $\{$~\verb+a+, \verb+b+~$\}$, $\{$~\verb+b+, \verb+d+~$\}$.
+    Zostały one ujęte w wyniku algorytmu.
+    \item Nieminimalne podzbiory tego zbioru występujące jedynie w transakcjach o decyzji '\verb|+|' to: $\{$~\verb+a+, \verb+b+, \verb+c+~$\}$, $\{$~\verb+b+, \verb+c+, \verb+d+,~$\}$, $\{$~\verb+a+, \verb+b+, \verb+c+, \verb+d+,~$\}$.
+    Nie zostały one ujęte w wyniku algorytmu.
+   \end{itemize}
+ 
+ \end{itemize}
+
+
+
+\section{Uruchamianie aplikacji}
+Załącznik~\ref{apx:bin} zawiera przykładowy skrypt uruchamiający aplikację.
+Na jego podstawie, tzn. modyfikując jego parametry, należy utworzyć skrypt realizujący żądany tryb działania.
+
+Przydatne informacje:
+\begin{itemize}
+ \item wymogi dotyczące danych wejściowych: Sekcja~\ref{sec:assumptions:input},
+ \item format pliku wejściowego: Sekcja~\ref{sec:input:file},
+ \item spis parametrów aplikacji: Sekcja~\ref{sec:input:cmd},
+ \item opis dostępnych strategii wykonywania poszczególnych operacji: Sekcja~\ref{sec:impl},
+ \item przykład działania aplikacji: Sekcja~\ref{sec:example}.
+\end{itemize}
+
+
+
+\section{Podsumowanie}
 wnioski z realizacji projektu
 - ze trzeba by poprawic wykrywanie supergeneratorow
 - ze sortowanie ma duzy wplyw
 - ze ogolnie dziala spoczko (nursey)
+- wchuj kodu taki algorytm wymaga (jesli ma byc elastyczny)
+
+
+
+\section*{Załączniki}
+\appendix
+\titleformat*{\section}{\normalfont}
+
+\section{/results - zestawienie wyników badań wydajności programu.} \label{apx:results}
+\section{/bin - pliki binarne aplikacji wraz z przykładowym zbiorem danych i skryptem uruchamiającym aplikację.} \label{apx:bin}
+
+\titleformat*{\section}{\Large\bfseries}
 
 
 
