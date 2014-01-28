@@ -436,10 +436,14 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
 
 \section{Analiza wydajności algorytmu} \label{sec:anal}
-wyniki jakosciowe i ilosciowe na (np. czas dzialania; liczba wzorcow)
-uzyskane dla wiekszych (wielkich) zbiorow danych(np. z
-http://archive.ics.uci.edu/ml/ or http://fimi.cs.helsinki.fi/data/ lub
-uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
+W celu analizy wydajności programu i wyznaczenia najlepszych strategii wykonywania poszczególnych kroków algorytmu, przeprowadzono szereg badań na czterech zbiorach danych:
+
+\begin{itemize}
+ \item car\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Car+Evaluation.},
+ \item mushrooms\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Mushroom.},
+ \item nursery\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Nursery},
+ \item molecular\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Molecular+Biology+\%28Splice-junction+Gene+Sequences\%29.}.
+\end{itemize}
 
 
  \subsection{Wybór najlepszej strategii przechowywania generatorów}
@@ -448,21 +452,25 @@ uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
  \begin{center}
   \begin{tabular}{ | r || c | c | c | c | }
    \hline
-   zbiór danych            & \multicolumn{2}{|c|}{\emph{nursey}} & \multicolumn{2}{|c|}{\emph{mushrooms}} \\
+   zbiór danych            & \multicolumn{2}{|c|}{\emph{nursery}} & \multicolumn{2}{|c|}{\emph{mushrooms}} \\
    \hline
-   próg wsparcia; l. reguł & 1; 117           & 10; 60           & 5; 3239            & 20; 2635          \\
+   próg wsparcia; l. reguł & 1; 117           & 10; 60            & 5; 3239            & 20; 2635          \\
    \hline
-   \verb+BruteForce+       & \textbf{1.687 s} & \textbf{0.917 s} & \textbf{21.5 s}    & \textbf{14.44 s}  \\
+   \verb+BruteForce+       & \textbf{1.687 s} & \textbf{0.917 s}  & \textbf{21.5 s}    & \textbf{14.44 s}  \\
    \hline
-   \verb+InvertedLists+    & \textbf{0,733 s} & \textbf{0,65 s}  & \textbf{6,14 s}    & \textbf{4,98 s}   \\
+   \verb+InvertedLists+    & \textbf{0,733 s} & \textbf{0,65 s}   & \textbf{6,14 s}    & \textbf{4,98 s}   \\
    \hline
-   wzrost wydajności       & \textbf{57\%}    & \textbf{29\%}    & \textbf{71\%}      & \textbf{66\%}     \\
+   wzrost wydajności       & \textbf{57\%}    & \textbf{29\%}     & \textbf{71\%}      & \textbf{66\%}     \\
    \hline
   \end{tabular}
  \end{center}
 
- \subsection{Wybór najlepszej strategii sortowania elementów i przechowywania identyfikatorów transakcji}
+ \subsection{Wybór najlepszej strategii przechowywania identyfikatorów transakcji}
  - ze storage TIDSets
+ - wykresy, wykresy
+ - Załącznik~\ref{apx:results}
+ 
+ \subsection{Wybór najlepszej strategii sortowania elementów}
  - ze sortowanie AscendingSupport
  - wykresy, wykresy
  - Załącznik~\ref{apx:results}
@@ -597,7 +605,7 @@ Przydatne informacje:
 wnioski z realizacji projektu
 - ze trzeba by poprawic wykrywanie supergeneratorow
 - ze sortowanie ma duzy wplyw
-- ze ogolnie dziala spoczko (nursey)
+- ze ogolnie dziala spoczko (nursery)
 - wchuj kodu taki algorytm wymaga (jesli ma byc elastyczny)
 
 
@@ -607,8 +615,9 @@ wnioski z realizacji projektu
 \titleformat*{\section}{\normalfont}
 
 \section{app/ - pliki binarne aplikacji wraz z przykładowym zbiorem danych i skryptem uruchamiającym aplikację.} \label{apx:bin}
-\section{results/ - zestawienie wyników badań wydajności programu.} \label{apx:results}
+\section{source/ - kod źródłowy aplikacji.} \label{apx:source}
 \section{diagrams/ - diagramy klas i zależności modułów aplikacji.} \label{apx:diagrams}
+\section{results/ - zestawienie wyników badań wydajności programu.} \label{apx:results}
 
 \titleformat*{\section}{\Large\bfseries}
 
