@@ -412,7 +412,7 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
   \item Granica GBd~\cite{grm} nie jest tworzona i aktualizowana, jako że nie jest wykorzystywana w poszukiwaniu reguł decyzyjnych.
  \end{itemize}
 
- \subsection{Praktyki programistyczne}
+ \subsection{Zastosowane praktyki programistyczne}
  \begin{itemize}
   \item Test-Driven Development, TDD\footnote{Patrz http://pl.wikipedia.org/wiki/Test-driven\_development.} - najważniejsze funkcjonalności aplikacji powstały zgodnie z zachowaniem kolejności: testy jednostkowe $\rightarrow$ implementacja $\rightarrow$ refaktoryzacja.
   \item Dependency Injection\footnote{Patrz http://pl.wikipedia.org/wiki/Wstrzykiwanie\_zależności.} - obiekty klas tworzonych i wykorzystywanych przez klasę \verb+GRMFacade+ nie tworzą swoich zależności samodzielnie, a otrzymują je z zewnątrz.
@@ -471,14 +471,6 @@ uzgodnionych już wcześniej ze mna podczas konsultacji projektowych)
  \subsection{Wnioski}
  - ze dla duzej liczby atrybutow malo wydajny
 
-
-
-\section{Podręcznik użytkownika}
-podrecznik potencjalnego uzytkownika wytworzonego oprogramowania
-(zamierzam korzystać z niego podczas sprawdzania Panstwa rozwiazan)
-- wszystkie opcje programu
-- przykladowa komenda i wynik na konsoli
-- Załącznik~\ref{apx:bin}
 
 
 \section{Przykład działania aplikacji} \label{sec:example}
@@ -586,6 +578,21 @@ a;b;;;;;;;+
 
 
 
+\section{Uruchamianie aplikacji}
+Załącznik~\ref{apx:bin} zawiera przykładowy skrypt uruchamiający aplikację.
+Na jego podstawie, tzn. modyfikując jego parametry, należy utworzyć skrypt realizujący żądany tryb działania.
+
+Przydatne informacje:
+\begin{itemize}
+ \item wymogi dotyczące danych wejściowych: Sekcja~\ref{sec:assumptions:input},
+ \item format pliku wejściowego: Sekcja~\ref{sec:input:file},
+ \item spis parametrów aplikacji: Sekcja~\ref{sec:input:cmd},
+ \item opis dostępnych strategii wykonywania poszczególnych operacji: Sekcja~\ref{sec:impl},
+ \item przykład działania aplikacji: Sekcja~\ref{sec:example}.
+\end{itemize}
+
+
+
 \section{Podsumowanie}
 wnioski z realizacji projektu
 - ze trzeba by poprawic wykrywanie supergeneratorow
@@ -600,7 +607,7 @@ wnioski z realizacji projektu
 \titleformat*{\section}{\normalfont}
 
 \section{/results - zestawienie wyników badań wydajności programu.} \label{apx:results}
-\section{/bin - pliki binarne aplikacji wraz z przykładowym zbiorem danych i skryptami uruchamiającymi aplikację.} \label{apx:bin}
+\section{/bin - pliki binarne aplikacji wraz z przykładowym zbiorem danych i skryptem uruchamiającym aplikację.} \label{apx:bin}
 
 \titleformat*{\section}{\Large\bfseries}
 
