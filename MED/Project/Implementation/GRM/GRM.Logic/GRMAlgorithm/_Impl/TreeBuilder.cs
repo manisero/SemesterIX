@@ -49,7 +49,7 @@ namespace GRM.Logic.GRMAlgorithm._Impl
                 {
                     Generators = new List<Generator> { new Generator() },
                     TransactionIDs = _transactionIdsStorageStrategy.GetTreeRootTransactionIDs(transactionIds),
-                    Support = _transactionIdsStorageStrategy.GetTreeRootSupport(transactionIds.Count)
+                    Support = transactionIds.Count
                 };
 
             _transactionIdsStorageStrategy.SetTreeRootDecisiveness(root, transactionDecisions);

@@ -12,11 +12,6 @@ namespace GRM.Logic.GRMAlgorithm.TransactionIDsStorage.StorageStrategies
             return allTransactionIds.ToArray();
         }
 
-        public int GetTreeRootSupport(int allTransactionIdsCount)
-        {
-            return allTransactionIdsCount;
-        }
-
         public void SetTreeRootDecisiveness(Node root, IDictionary<int, int> transactionDecisions)
         {
             var decisionId = transactionDecisions.Values.First();

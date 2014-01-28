@@ -1,6 +1,6 @@
-Konwencja nazewnicza katalog體 zawieraj筩ych szczeg蟪owe wyniki dzia砤nia algorytmu dla kolejnych prog體 wsparcia:
+Konwencja nazewnicza katalog贸w zawieraj膮cych szczeg贸艂owe wyniki dzia艂ania algorytmu dla kolejnych prog贸w wsparcia:
 
 sortX_storeY,
 gdzie:
-X - strategia sortowania (0 = Rosn筩e Wsparcie, 1 = Malej筩e wsparcie, 2 = Porz筪ek leksykograficzny),
-Y - strategia przechowywania identyfikator體 transakcji (0 = TIDSets, 1 = DiffSets).
+X - strategia sortowania (0 = Rosn膮ce Wsparcie, 1 = Malej膮ce wsparcie, 2 = Porz膮dek leksykograficzny),
+Y - strategia przechowywania identyfikator贸w transakcji (0 = TIDSets, 1 = DiffSets).
