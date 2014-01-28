@@ -436,23 +436,28 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:
 
 
 \section{Analiza wydajności algorytmu} \label{sec:anal}
-W celu analizy wydajności programu i wyznaczenia najlepszych strategii wykonywania poszczególnych kroków algorytmu, przeprowadzono szereg badań na czterech zbiorach danych:
+W celu analizy wydajności programu i wyznaczenia najlepszych strategii wykonywania poszczególnych kroków algorytmu, przeprowadzono badania na czterech zbiorach danych:
 
 \begin{itemize}
- \item car\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Car+Evaluation.},
- \item mushrooms\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Mushroom.},
- \item nursery\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Nursery},
- \item molecular\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Molecular+Biology+\%28Splice-junction+Gene+Sequences\%29.}.
+ \item \emph{car}\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Car+Evaluation.},
+ \item \emph{mushroom}\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Mushroom.},
+ \item \emph{nursery}\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Nursery},
+ \item \emph{molecular}\footnote{Patrz http://archive.ics.uci.edu/ml/datasets/Molecular+Biology+\%28Splice-junction+Gene+Sequences\%29.}.
 \end{itemize}
 
 
  \subsection{Wybór najlepszej strategii przechowywania generatorów}
- - uzasadnic supergenerators Inverted Lists
+ Celem pierwszego badania było wyznaczenie najlepszej strategii przechowywania generatorów decyzji.
+ Spodziewanym wynikiem była znacząca przewaga strategii \verb+InvertedLists+ nad strategią \verb+BruteForce+, jako że ta druga jest strategią zachłanną.
+ 
+ W ramach badania dokonano pomiarów czasu wykonania algorytmu na dwóch zbiorach danych: \emph{nursery} (mała liczba atrybutów, duża liczba transakcji) i \emph{mushroom} (duża liczba atrybutów, średnia liczba transakcji).
+ We wszystkich pomiarach używano strategii sortowania \verb+AscendingSupport+ i strategii przechowywania identyfikatorów transakcji \verb+TIDSets+.
+ Wyniki pomiarów przedstawia poniższa tabela:
  
  \begin{center}
   \begin{tabular}{ | r || c | c | c | c | }
    \hline
-   zbiór danych            & \multicolumn{2}{|c|}{\emph{nursery}} & \multicolumn{2}{|c|}{\emph{mushrooms}} \\
+   zbiór danych            & \multicolumn{2}{|c|}{\emph{nursery}} & \multicolumn{2}{|c|}{\emph{mushroom}} \\
    \hline
    próg wsparcia; l. reguł & 1; 117           & 10; 60            & 5; 3239            & 20; 2635          \\
    \hline
@@ -464,11 +469,18 @@ W celu analizy wydajności programu i wyznaczenia najlepszych strategii wykonywa
    \hline
   \end{tabular}
  \end{center}
+ 
+ Zgodnie z oczekiwaniami, użycie strategii \verb+InvertedLists+ zaskutkowało znaczącym wzrostem wydajności.
+ Badanie pokazało, jak ważna jest optymalizacja kroków związanych z przechowywaniem generatorów decyzji - używając startegii \verb+BruteForce+, krok ten może zająć nawet dwie trzecie ogólnego czasu wykonania programu.
+ 
+ W dalszych badaniach stosowano jednie strategię \verb+InvertedLists+.
+ 
 
  \subsection{Wybór najlepszej strategii przechowywania identyfikatorów transakcji}
  - ze storage TIDSets
  - wykresy, wykresy
  - Załącznik~\ref{apx:results}
+ 
  
  \subsection{Wybór najlepszej strategii sortowania elementów}
  - ze sortowanie AscendingSupport
