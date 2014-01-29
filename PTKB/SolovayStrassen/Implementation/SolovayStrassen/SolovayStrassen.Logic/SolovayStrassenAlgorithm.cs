@@ -32,12 +32,13 @@ namespace SolovayStrassen.Logic
 
             for (int i = 0; i < iterations; i++)
             {
+                // Generate random a < p
                 var a = GenerateA(p, numberBytesCount, random);
 
-                // Check whether a factor exists
-                var gcd = BigInteger.GreatestCommonDivisor(p, a);
+                // Calculate Jacobi symbol
+                var jacobi = JacobiAlgorithm.Execute(a, p);
 
-                if (!gcd.IsOne)
+                if (jacobi == 0)
                 {
                     return false;
                 }
@@ -50,10 +51,7 @@ namespace SolovayStrassen.Logic
                     exponentResult = BigInteger.MinusOne;
                 }
 
-                // Calculate Jacobi symbol
-                var jacobi = JacobiAlgorithm.Execute(a, p);
-
-                if (exponentResult != jacobi)
+                if (jacobi != exponentResult)
                 {
                     return false;
                 }
