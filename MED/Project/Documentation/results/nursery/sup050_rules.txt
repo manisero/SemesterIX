@@ -1,0 +1,14 @@
+====================
+Decision: 'usual':
+--------------------
+Attribute 2 (improper), Attribute 9 (very_recom)
+
+====================
+Decision: 'great_pret':
+--------------------
+Attribute 2 (proper), Attribute 9 (spec_prior)
+Attribute 2 (less_proper), Attribute 9 (spec_prior)
+Attribute 2 (improper), Attribute 5 (convenient), Attribute 6 (convenient), Attribute 9 (spec_prior)
+Attribute 2 (improper), Attribute 7 (nonprob), Attribute 8 (recommended), Attribute 9 (spec_prior)
+Attribute 2 (improper), Attribute 7 (slightly_prob), Attribute 8 (recommended), Attribute 9 (spec_prior)
+

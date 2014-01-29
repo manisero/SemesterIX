@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="30ed6c1a-580d-45a2-b76e-cf52bdd487f4"
+  name="_Impl"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="675fc466-82c8-4b17-9959-f4bbf3fbd0ad"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DGRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="f3a63ecb-81f5-4757-aae5-0d34980e6a76"
+        name="TransactionIDsStorageStrategyFactory"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="5240a977-f50e-48fe-a817-a0b703fb1072"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl Type%3DTransactionIDsStorageStrategyFactory"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="7a4c8840-b4f5-445d-acf7-71d08a93af4d"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="867296dd-e8ab-4b68-97b0-899ba171c7d0">
+                <propertyInstance
+                  Id="d246c103-fcd4-42c5-8450-d0d2678990aa"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d752a906-d553-4870-b7c3-6252c243e4ff">
+                <propertyInstance
+                  Id="01c34aee-5c36-4c62-9890-c19adaf0d762"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b8e9a6da-e172-4b76-9d91-629812928f02">
+                <propertyInstance
+                  Id="df79f07d-cd0c-4eee-8ec6-9d5e5b0c8481"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6ed0f8af-6362-4da6-ba47-793763806825">
+                <propertyInstance
+                  Id="6afaa148-e18e-474c-9b73-28417cc76859"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="169c9f44-ded1-44a5-b9a0-8ec67efc9e6a">
+                <propertyInstance
+                  Id="0b72f737-a3c8-4473-8faf-aa508df5b4eb"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="711d1a61-a468-494c-a2ea-2aa06bef11c3">
+            <interfaceMoniker
+              Id="71a12fde-bd0f-4ef4-ac76-778dea0b8a3c"
+              LastKnownName="ITransactionIDsStorageStrategyFactory"
+              LastKnownLocation="Package4_0126.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="314f0b5e-66ab-4ce6-b8a2-d4df161af3e7"
+            name="Create"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="6303ca0e-ed0b-45da-869c-0d411f61855e"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl Type%3DTransactionIDsStorageStrategyFactory Member%3D(Name%3DCreate OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.TransactionIDsStorage Type%3DTransactionIDsStorageStrategyType)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c0850a3f-4b0a-4b4d-93b2-d0336d14c652"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="78854134-5abf-46cb-a4c1-63adfe163c72">
+                    <propertyInstance
+                      Id="67fc0b60-8bee-466a-a626-421917fb7f04"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c770eb0f-b17d-4064-b600-5e911a034fcb">
+                    <propertyInstance
+                      Id="ee894d96-1c50-4977-ba20-f3e5001cadab"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef458089-043c-4155-883b-35cf2d0c2c91">
+                    <propertyInstance
+                      Id="ab415132-f02d-4e0e-823e-aa5f3c2c150f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef05030e-c665-4f48-8e5c-c4ba685cc148">
+                    <propertyInstance
+                      Id="e77ad1f5-a483-4c98-b8c3-f8fb3338a666"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1975b869-e415-4e1a-8da2-84ec8529b369">
+                    <propertyInstance
+                      Id="f9f9ed58-408d-4db3-9b9b-c5f45ef87e0f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="55587d4f-ab80-4e3a-af0b-7a7405d9665c">
+                    <propertyInstance
+                      Id="63057d0e-1eb3-4db9-a22e-9a656a2d6d86"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d1db6de6-13c1-4149-b280-707bd2d4fb54"
+                  direction="Return">
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="212e1074-c2ef-40bc-927a-7cb1fcb9480a"
+                      LastKnownName="ITransactionIDsStorageStrategy"
+                      LastKnownLocation="Package4_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4393c222-d715-4a4c-9561-bf7edf7d17a9"
+                  name="strategyType"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="0589e544-ca00-47e1-bdfd-df2e27cf4a89"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl Type%3DTransactionIDsStorageStrategyFactory Member%3D(Name%3DCreate OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.TransactionIDsStorage Type%3DTransactionIDsStorageStrategyType)]) ParameterIdentifier%3DstrategyType"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="e18d7a3a-487d-453d-b66e-cf9dbe22f861"
+                      LastKnownName="TransactionIDsStorageStrategyType"
+                      LastKnownLocation="Package4_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4c86d46d-3349-47ae-acde-ca71cd4d9a57"
+            name="TransactionIDsStorageStrategyFactory"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="4fceaa72-a349-46b0-a93e-603a5a3b5607"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.TransactionIDsStorage._Impl Type%3DTransactionIDsStorageStrategyFactory Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="6270dd06-61e8-4faf-8691-d6cc3623b4a6"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="acaae0a9-adf8-4cd0-a38d-e5c955ad9da6">
+                    <propertyInstance
+                      Id="784b103a-bc03-41df-b141-601f7b072f00"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bf204abc-463d-4767-b0cc-40887a22aaf4">
+                    <propertyInstance
+                      Id="26cfe459-bbf2-4917-990c-392b7e834e47"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="220f5cb7-409c-467d-afac-3903c7498efc">
+                    <propertyInstance
+                      Id="86b56eeb-4ec1-41db-a196-1d44ea146c91"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a4df112e-398c-4816-b4ab-635fa91c9f0b">
+                    <propertyInstance
+                      Id="439b636b-3b30-4a9f-93f7-e026b96ee52e"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b63c927b-2202-4691-89ce-034ac38f4163">
+                    <propertyInstance
+                      Id="f8c4b0f6-c76b-4ab6-be15-01c0f295c411"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e3b41814-42d5-4415-9085-fbb2786471ae">
+                    <propertyInstance
+                      Id="66023428-b6b4-4415-9975-3dfb70bd2b80"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

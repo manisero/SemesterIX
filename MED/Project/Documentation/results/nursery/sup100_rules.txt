@@ -1,0 +1,6 @@
+====================
+Decision: 'great_pret':
+--------------------
+Attribute 2 (proper), Attribute 9 (spec_prior)
+Attribute 2 (less_proper), Attribute 9 (spec_prior)
+

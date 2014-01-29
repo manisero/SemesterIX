@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="285a87c0-f93d-4050-9409-e709bb4ec1d7"
+  name="_Impl"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="64990db6-b2b6-430d-a477-a22bab6ecb67"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="1360bff1-a9f7-45f3-8fb6-921d379b6c9f"
+        name="DecisionGeneratorsCollectorFactory"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="5423f364-8b90-417c-847b-5dcc3de40c7f"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl Type%3DDecisionGeneratorsCollectorFactory"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3e77753b-9135-4682-82f4-cc65c9b1385a"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cf80d41d-b0fc-44ca-9455-441dbdde02e0">
+                <propertyInstance
+                  Id="b05a2583-c226-474b-9cfe-0bd7e2f312c3"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="31ddb571-fc81-46bd-bc24-ac855aa45a48">
+                <propertyInstance
+                  Id="b0b2836c-9055-48ff-bebb-3c746014afbc"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8dc52037-4441-45ad-bb42-1d2212108697">
+                <propertyInstance
+                  Id="5dcb29da-4475-4407-b71a-076907ced2ed"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ac2124e2-b1bd-4d74-b4ac-ccd6947b125c">
+                <propertyInstance
+                  Id="eca83dbe-a1c8-4c3b-bcbd-35fcb8a309cc"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1f07f1e2-e285-4482-970f-9b36cccf5706">
+                <propertyInstance
+                  Id="264ad675-5443-4030-a326-03ceaa1ba1dd"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="f46a0a84-8a69-442c-b47f-332003fe6da5">
+            <interfaceMoniker
+              Id="86cb9297-c4df-4d78-9fe5-70034451d0f5"
+              LastKnownName="IDecisionGeneratorsCollectorFactory"
+              LastKnownLocation="Package5_0126.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="e3ddc053-5823-46e1-94d3-6a18f91e17f5"
+            name="Create"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="398467bf-f44f-4087-bd07-d0516c8464bb"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl Type%3DDecisionGeneratorsCollectorFactory Member%3D(Name%3DCreate OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DDecisionSupergeneratorsHandlingStrategyType)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1dc25378-434e-4732-a3f7-73ae4f4ac115"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b10ccfbd-c3b9-445d-9083-6f08459f307e">
+                    <propertyInstance
+                      Id="e8988341-19fb-4997-827c-7ab1645fb352"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f97e4761-f063-4c25-951b-980ab88c8e00">
+                    <propertyInstance
+                      Id="a7af35c8-e3f2-4773-b5d0-3d9b67de5e37"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ce633bd1-a0cb-4ad9-9c0e-1768e5f46f9e">
+                    <propertyInstance
+                      Id="b0624fae-4452-49cf-bd69-16e048a88494"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f5b5af7e-ef6f-4819-b0f5-0f7b350b529a">
+                    <propertyInstance
+                      Id="2ca6cd1f-19d0-4d82-944d-74cec66d7ca7"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="00df6b78-d868-4b3b-8518-6654edb4d07c">
+                    <propertyInstance
+                      Id="738e44f0-46fe-4e48-99f4-4b0254ab8ba2"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="83c05a0d-8711-4dd2-8226-c948cf4c9b8c">
+                    <propertyInstance
+                      Id="e62a5b0c-abf1-4e4b-8427-99029038cd0c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="331546c1-8536-4ff4-87ec-e1297461533d"
+                  direction="Return">
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="77cbf7da-5263-409c-90ca-65d92518458f"
+                      LastKnownName="IDecisionGeneratorsCollector"
+                      LastKnownLocation="Package5_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a8b41548-f984-4c9a-8711-9f4baec4d5e2"
+                  name="strategyType"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="fa1fa8c4-79fb-44b3-afd4-dec12815d332"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl Type%3DDecisionGeneratorsCollectorFactory Member%3D(Name%3DCreate OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting Type%3DDecisionSupergeneratorsHandlingStrategyType)]) ParameterIdentifier%3DstrategyType"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="362bb35c-ebe7-47c9-b290-c5e1fb2ba9a7"
+                      LastKnownName="DecisionSupergeneratorsHandlingStrategyType"
+                      LastKnownLocation="Package5_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7778a492-dcdc-458e-a9a1-3f49eed81963"
+            name="DecisionGeneratorsCollectorFactory"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="81f4f59c-5d6e-455b-99ab-e1f336f6850f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.GRMAlgorithm.DecisionGeneratorsCollecting._Impl Type%3DDecisionGeneratorsCollectorFactory Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="258caa2d-803d-427b-b7a4-ad546cc341df"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ccdad883-9689-4b8e-9ea1-041889b8d469">
+                    <propertyInstance
+                      Id="69b73c69-7ab7-4333-b7d6-d08f64e6b089"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1f53f8f4-2567-46fc-a21b-6cf1ac740cc4">
+                    <propertyInstance
+                      Id="7ed70b75-6f04-4ef3-9d98-16c36ac6ec83"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a5ab3a05-84d8-49d4-bc43-9b5370143f09">
+                    <propertyInstance
+                      Id="73cb48e9-f89f-45d7-b490-593fc89a8fc1"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ab83367-7833-41d7-aac8-4e95a2086a77">
+                    <propertyInstance
+                      Id="7c9b3568-b776-4457-bc2f-b845a400446e"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c6f510c5-ab4e-4b19-8cc1-d6d4e44e88bf">
+                    <propertyInstance
+                      Id="ef0a103e-9803-4286-8059-504be9d7f7ec"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2fd8a3d-9307-4cbd-9127-9b7977e64721">
+                    <propertyInstance
+                      Id="c74d4960-3701-4ec0-87ce-7eb25d187d2d"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

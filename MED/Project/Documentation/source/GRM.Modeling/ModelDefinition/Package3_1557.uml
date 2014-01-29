@@ -1,0 +1,1271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="9240f21c-573a-4886-899d-9fe549b3cf32"
+  name="ResultWriting"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="19e96f6a-4195-4f30-8414-f6a28210d16b"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DGRM.Presentation.ResultWriting"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="9a29fa2c-da74-4c98-a070-e4dac5b577a9"
+        name="CSVResultWriter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="6930cdbb-2056-4ee7-b5ce-767eef78a1b7"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e8b96b36-4115-4866-87ca-edf14bcafb17"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7fc6a6d8-7d4e-4ba3-b588-385fd8c6dfcd">
+                <propertyInstance
+                  Id="7461ce9f-cb3e-45c8-89ab-ccedea17245a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2cd75dc0-71e6-483b-9ff2-a26e60a6aa8a">
+                <propertyInstance
+                  Id="cec370a5-f015-46b7-9030-5d85139a4fc6"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="03e6584a-d85d-48f2-bc95-66cb7813c2aa">
+                <propertyInstance
+                  Id="f102415a-3036-456d-9f6b-381546d05718"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a39c8686-49ab-413e-96d0-b4b17722c7ed">
+                <propertyInstance
+                  Id="be2e924e-cf5f-4231-9b73-f127ce7fb204"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5ade36f0-18df-4dcf-91e8-2a45b79013ec">
+                <propertyInstance
+                  Id="25528aee-ea7e-4507-ad47-9e513072fbe4"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="a9c71718-d73f-445d-8fa1-cd2108299a8d"
+            name="SEPARATOR"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="8182cbeb-3893-4d07-bfd0-a962f01265fd"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3DSEPARATOR"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3ed61bfc-ba82-4be6-bdab-e309e2f787a8"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="af69d9fc-22fd-4027-8cbf-25226d3d36a8">
+                    <propertyInstance
+                      Id="dc9383aa-7743-4e40-8bb1-2ae48cca1cd1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3db6b384-1447-44af-a3b2-64c82c5124de">
+                    <propertyInstance
+                      Id="7bf21e7f-3c52-42f0-89dd-ad89f90e6f2c"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c56b5b8e-b3f3-4035-b7e2-fbd8bae3d456">
+                    <propertyInstance
+                      Id="ecb16254-5c00-4874-9804-c295a539a462"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cdfa92d4-4bb4-49cf-b598-d2f36a904b56">
+                    <propertyInstance
+                      Id="efaaee9a-971b-4770-95a8-d74c8bfe6466"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7889be1a-d920-4a26-9dd7-f5ca68dd2c2f">
+                    <propertyInstance
+                      Id="6d6c57d8-2eb1-4e71-9818-9ba941e6bc9d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="15f667d9-cbdc-4536-9ce5-e78887cf4fba"
+            name="WriteResult"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ae835f2c-5205-4052-b75a-9acc326446a2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DWriteResult OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f3a402cf-f486-465f-a82b-1d2c60d3fcb3"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cf5ff124-46b6-42f6-b998-4907fc64310a">
+                    <propertyInstance
+                      Id="915aa135-b8a7-45c7-b4fb-c73cfa65d1f3"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b036f815-1ef2-4f75-a84b-cc56173f8529">
+                    <propertyInstance
+                      Id="d5c57e1e-b22b-46d6-853b-f9f82f5773e9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b089b964-152d-4f34-a7e2-0022c38834e6">
+                    <propertyInstance
+                      Id="d032e4c1-5f21-438f-b712-3a5677c5024d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2099a695-34fd-4786-b433-b9776b2454c1">
+                    <propertyInstance
+                      Id="8cd4f867-0ad2-4753-a974-504b4f3ccb27"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0038ffca-0bee-4a75-88e5-67c1c0988a2c">
+                    <propertyInstance
+                      Id="7c967aff-8e1b-4b22-ae1a-0fb7bc7d0565"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bcb83c7f-a06f-4ddf-8784-fadfb14f9664">
+                    <propertyInstance
+                      Id="699186f7-a0d0-4bb0-93bc-f461599e7d10"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6a2ee943-ceb9-48b4-b088-fa764560573b"
+                  name="result"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="64c782a6-5340-46eb-9400-b916ae5d116f"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DWriteResult OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dresult"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="280ece0e-136d-4647-a174-01cc8065dc39"
+                      LastKnownName="GRMResult"
+                      LastKnownLocation="Package1_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2e1295b4-5da8-4667-b676-495b999ad5b6"
+                  name="outputFilePath"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="2a47d196-2c17-411d-b959-889f263f82c2"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DWriteResult OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DoutputFilePath"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e876da98-f302-4520-88bf-d72bf23866df"
+            name="FormatHeaders"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="4ca26ff9-8255-43f4-a864-e0447343d1bb"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DFormatHeaders OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0c9521da-e55c-4443-b3d4-fa03180a9458"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c3ad1a59-12ff-49f7-bb24-868b0cf28f23">
+                    <propertyInstance
+                      Id="248dabc1-3bbb-4e99-8fc5-9f7b351985dd"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3e8f68fd-eeb2-4db0-a0f5-38920d33768f">
+                    <propertyInstance
+                      Id="427c50e1-a276-4d5f-90a3-ca473e7fcf84"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c5853af4-7627-4515-a7cf-031deb84c7bc">
+                    <propertyInstance
+                      Id="b1a1606a-ddca-4901-8ca2-35ad5922f923"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a4b8743a-4a06-4099-93a5-a51a01a220ba">
+                    <propertyInstance
+                      Id="4c3a7f1f-9d69-4587-8815-38d1f427bb89"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ed053ee2-47d8-4f82-9959-4f2b758c641a">
+                    <propertyInstance
+                      Id="1a045277-199e-4fb5-a06d-767bb431201e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3f859eeb-8ea1-4358-847e-81d7804e8a59">
+                    <propertyInstance
+                      Id="8d738fec-94dd-4455-93d1-e4417326b659"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4ff1c7af-73d5-4344-86c6-4cb49531f724"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="143d2866-e3d7-47a1-bf75-7e7fb493f906"
+                  name="result"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="fec9cb9c-b141-4937-9a2b-014fd075a56b"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DFormatHeaders OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)]) ParameterIdentifier%3Dresult"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="280ece0e-136d-4647-a174-01cc8065dc39"
+                      LastKnownName="GRMResult"
+                      LastKnownLocation="Package1_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0979896f-f1be-4071-9d4a-963164ea6723"
+            name="FormatGenerator"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="115fc438-524e-40c7-b9ca-c9b9348a3521"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a3f899ec-6460-4074-87e4-f9819764d6dd"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2df1ba8-0b05-44c3-845a-c4ce56544491">
+                    <propertyInstance
+                      Id="17531397-4eee-49b0-a868-8a8d603d403a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a41ed6f5-95d7-44dc-a49d-fc80a0502df5">
+                    <propertyInstance
+                      Id="bd718fe9-78dd-4062-8efb-aefaabcf5f6a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3fe3c6ec-2d12-4b1c-b4b8-cd09d0b3e2a2">
+                    <propertyInstance
+                      Id="54adce21-f6bc-40f7-8e29-72e91613f07f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7dfb5151-53e5-481e-acb8-111c672ed589">
+                    <propertyInstance
+                      Id="4b47c884-8b52-4fcd-b0f6-fdd87d41caa3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d107b2fe-c2fa-4ca1-b815-b7bdd89d8671">
+                    <propertyInstance
+                      Id="e5720b58-af6c-4e4d-85b3-f96db69da211"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5ef37d16-24a4-4717-9d57-a17399bba703">
+                    <propertyInstance
+                      Id="1182a7bd-6b4d-496c-9676-9e70570dffde"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f0769555-7b79-4a98-85ff-25e470074733"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="46cd1088-db1f-47cc-aa52-09dcb07e4064"
+                  name="generator"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f3b8dc27-8e6e-4a1c-bd82-a53b11071859"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dgenerator"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="b4fe4ddb-15c4-404d-a4b8-12a8c3840e4c"
+                      LastKnownName="IEnumerable&lt;Item‎&gt;"
+                      LastKnownLocation="Package10_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8e775a4b-f262-43f3-a3c5-db72ac0ea928"
+                  name="attributesCount"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="557aca40-55e1-4785-b279-9f1116f128eb"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DattributesCount"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b2ce79c0-ca46-4884-b893-80ad7b4fbda2"
+                  name="decisionAttributeIndex"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="c21a13a3-be47-48ab-a794-218d3e155657"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DdecisionAttributeIndex"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6bb5fd25-e728-4cf7-9dc8-26138b232ce9"
+                  name="decision"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="1e618c86-6000-436e-bedd-5c8c0caf901a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Ddecision"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="068d7418-e5b3-4a9e-addb-36377d8e887b"
+            name="CSVResultWriter"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="564509f1-d52e-488d-b553-079a7585bf6a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DCSVResultWriter Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="fe0de417-d6a9-4e33-8bfd-43f0c57024d3"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8abae6d9-09e5-463e-a859-decba43efd81">
+                    <propertyInstance
+                      Id="72f32224-074d-417c-9b3e-a858bdd08b78"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4cdd9846-8e0a-4538-a5f0-42abae0fd92c">
+                    <propertyInstance
+                      Id="73357735-a14c-4b8f-9821-b9434fc48800"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c6a46c56-8c0e-4827-8cfb-27df8e73c1ec">
+                    <propertyInstance
+                      Id="99b1f7fb-982a-4c6e-84b8-4e1f528ffbe4"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d9f716e3-9ff1-4ae7-9ef8-c7d4abeb9b65">
+                    <propertyInstance
+                      Id="cd12f6cb-d54a-43b7-a702-d3c1f68543c9"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8bf3972b-e7b9-45b7-baa2-343e7526b03f">
+                    <propertyInstance
+                      Id="3a8845e1-bafc-4bf7-aacf-9c3fb337fc78"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f9e409d6-f177-428b-9580-f0640fcd2d0e">
+                    <propertyInstance
+                      Id="d22b85b2-ca96-47b5-a260-0608331e741b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="73b51533-cc38-4d38-941e-e17a00e15415"
+        name="TextResultWriter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="b3641279-6856-43b6-822e-90d1c98e14f5"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="8cf6fc93-35a6-4f9f-96b4-c687badad182"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e3103e13-ac70-49d3-ad2c-7a1b7488d811">
+                <propertyInstance
+                  Id="0481f5a8-ea33-4ff2-8298-3e5b8c121e78"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1ed4867d-2323-4cd2-9209-a4e270d6aa92">
+                <propertyInstance
+                  Id="37a2be7b-9d12-40a5-a472-216fd4c8ef5a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2770a79e-8879-4cf3-a83a-d5ca378548c3">
+                <propertyInstance
+                  Id="70a121af-cbce-4c44-802e-887b6778583c"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="87be4798-884d-473d-b62e-da6418570082">
+                <propertyInstance
+                  Id="85893eea-0cd4-4300-9465-318ecd8e2aae"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b4eb5ad8-f091-4bee-a815-e73e17e6b606">
+                <propertyInstance
+                  Id="f48dde3f-b2dc-4832-b4b7-fae5b1c26ba6"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="e8c96467-3218-4c17-ae3f-52c0fe7bc3de"
+            name="SEPARATOR"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="6caa1fd8-7f87-4534-8540-41da682965c9"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3DSEPARATOR"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c69a2a6d-d693-40db-93b4-4076ea4da63d"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="520a2aa9-2d66-40e6-8c49-2971db8613f0">
+                    <propertyInstance
+                      Id="5f34b5f2-2701-4f9d-8217-7cec9e1f3737"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0a14be5f-1787-4502-a47c-d8a45c5667a3">
+                    <propertyInstance
+                      Id="28b17e13-b51d-4f79-a260-f3ac26dba8aa"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a5b75d42-86b2-456d-a89e-17602c613b31">
+                    <propertyInstance
+                      Id="4142f239-3d93-4aba-9599-e369afa48d18"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ebe7da6f-063c-4ded-8cd3-67b35b01690a">
+                    <propertyInstance
+                      Id="7dcfa493-acbe-4ea1-9cbf-c85459b12b5d"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1664c70e-39d6-4748-9a23-84167f36358c">
+                    <propertyInstance
+                      Id="63f057d8-29c5-4733-b999-03eb5dd7112d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+          <property
+            Id="f81faa8b-9e6c-4477-b318-536141c25b2e"
+            name="SUBSEPARATOR"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="09ebd661-e460-4ea8-aae4-a73aff0fe38f"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3DSUBSEPARATOR"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="6971632b-f6be-4973-a40b-f246f116774a"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bf49010f-246c-42da-9743-a08283abaad1">
+                    <propertyInstance
+                      Id="942bd1e2-9759-4765-8e67-b0c685105342"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="64aa9907-35cc-4b62-98e9-d8ae812de46b">
+                    <propertyInstance
+                      Id="20c8a331-0b34-496f-b69e-1c0d6031a0aa"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="48529860-bc7e-46a2-af8d-3886261927db">
+                    <propertyInstance
+                      Id="5bc7bb8b-aab5-49aa-9144-9757fc45e782"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ca059a9b-8676-4049-ab5a-0cbce0b1ab00">
+                    <propertyInstance
+                      Id="a02c3649-77fc-494b-a3e9-5c40f5cbb957"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4fdaa02e-a84e-46a2-8e32-b2e604eef964">
+                    <propertyInstance
+                      Id="4c7a89ed-0341-4155-8188-aaec0cd6e4b6"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="fbe56b95-4611-476a-b747-da453a8e75d6"
+            name="WriteResult"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="7df008f3-7a61-4261-bd73-79c167836e05"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DWriteResult OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1e3710ba-d9c2-4946-9e8f-6425e2774104"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e39ef07-0f10-44c7-a369-da8b575982e0">
+                    <propertyInstance
+                      Id="db794873-d9a8-489a-8aa2-d06e631d04b1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="27ee8dca-3e82-4972-be78-4a22e087633d">
+                    <propertyInstance
+                      Id="c5d3ab2c-be51-4eda-9328-7e0c69f6fa06"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5b3f0243-061a-4b94-82d4-313951e2cbfe">
+                    <propertyInstance
+                      Id="6d4a9cd4-79e3-4b9f-9746-8660e0afd87d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c1df4bad-0aeb-488e-80c3-d7be14015e5b">
+                    <propertyInstance
+                      Id="525d3976-7b5d-4f12-ba64-b338fa9da551"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="087f72e2-35d3-49be-a36e-3f1623ce021c">
+                    <propertyInstance
+                      Id="0914452f-f5fd-4f96-9fb2-f593712a76c0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="31f6e0cf-1491-4f97-9db6-84af429bef4c">
+                    <propertyInstance
+                      Id="db246f35-cdb7-4920-b773-28a194423fe0"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d06009d9-e314-48b2-9563-b34d3c4ec5da"
+                  name="result"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b240efda-6bf2-463d-a541-49fdc396734d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DWriteResult OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dresult"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="280ece0e-136d-4647-a174-01cc8065dc39"
+                      LastKnownName="GRMResult"
+                      LastKnownLocation="Package1_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5e658bec-0473-4ee8-a764-152d90e5ead8"
+                  name="outputFilePath"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="a60c966c-6034-418e-9162-99f20d5bd64c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DWriteResult OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic Type%3DGRMResult)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DoutputFilePath"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="89d0e7bd-10e9-4058-94b1-496439b71b85"
+            name="GetDecisionAttributeName"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="6aa6448f-0d97-4a76-8501-df05a140e072"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DGetDecisionAttributeName OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="dcaffe8d-6dc0-49e0-8e4e-dc77a02c6715"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="47295f4b-7d74-41b1-ac58-dc10fe5136cd">
+                    <propertyInstance
+                      Id="0be2216f-44a1-4886-b52d-f8f61634c0b9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="078251d3-3af4-4de3-8e2f-5f40dc4cc2ca">
+                    <propertyInstance
+                      Id="d8862ad3-311a-47ee-ae03-49b95d16ebf2"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1e6d77de-cf1d-4b0f-8950-31083b8ca4d5">
+                    <propertyInstance
+                      Id="57994121-86c0-42bb-abfa-055c689155b5"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="406ed1da-6846-43f3-93b0-4acd6a2123bc">
+                    <propertyInstance
+                      Id="be6258fa-f66c-4e6f-8d67-1318c0b5fdac"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c6bdf14f-b5db-4c5a-891c-aba7d7349552">
+                    <propertyInstance
+                      Id="fa17549f-b5dd-4793-bb4c-04f980d0036c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8df734fa-9c30-4e52-a90b-1b6cf548a679">
+                    <propertyInstance
+                      Id="77d5e80b-005e-4591-bd91-1136bd7dba09"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="71fec1ae-3e2a-4cb2-882c-7dd069a49f54"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f5f7e80d-eb3c-4d25-a4cd-1bd93817fe32"
+                  name="decisionAttributeIndex"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e20ea3dd-5ba5-4054-8c89-a75ef39fa210"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DGetDecisionAttributeName OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))]) ParameterIdentifier%3DdecisionAttributeIndex"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ddc8e496-79a9-4b45-a90a-5eb8df7d5323"
+                  name="attributeNames"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e052951c-5156-4525-a1d4-3a7c91f7127b"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DGetDecisionAttributeName OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))]) ParameterIdentifier%3DattributeNames"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="60c64ae7-fe94-4347-b5ea-ce00001a8400"
+                      LastKnownName="IDictionary&lt;Int32‎, String‎&gt;"
+                      LastKnownLocation="Package10_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="c75d3b97-81b1-4769-a4bb-a50828183dc6"
+            name="FormatGenerator"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="444c9a11-81e2-4b6b-9c6a-70b482b0e068"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="19ca92f3-0e76-423e-a79d-bd7c367c7609"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9945abe4-238f-4293-bcee-7c3fc3b882af">
+                    <propertyInstance
+                      Id="4aad7860-560f-4e66-9151-112633970b70"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="678a5a4a-e8d3-468a-8302-85573a68e20d">
+                    <propertyInstance
+                      Id="b6f031ee-3946-4955-b51b-9f7d8228c2a0"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3bdec81e-c9c3-4e76-a27d-1b2fbfbb29fc">
+                    <propertyInstance
+                      Id="84fcffe1-0674-46c8-acc1-d0793e732c2a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="731080cc-e628-454a-a082-5ec9eceb5726">
+                    <propertyInstance
+                      Id="0d44b373-e789-4ed5-b409-1128db0ac705"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="50e4ef51-cb6b-497d-bef2-6cdcb8894be9">
+                    <propertyInstance
+                      Id="4049007e-0678-4cf1-93c3-e7152d47cb5c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c919cbaa-a08f-4e28-b4b1-bdf646ee3728">
+                    <propertyInstance
+                      Id="bb5a136f-3fd3-4482-b09d-2cb34ef9177b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dcb78b12-5c5f-4da5-a7ce-d27e56d508a0"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7b06f778-9e30-4b48-97f9-b5460f56ddaf"
+                  name="generator"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="4ccb73e9-f282-4904-b1dc-f26915f0338c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))]) ParameterIdentifier%3Dgenerator"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="b4fe4ddb-15c4-404d-a4b8-12a8c3840e4c"
+                      LastKnownName="IEnumerable&lt;Item‎&gt;"
+                      LastKnownLocation="Package10_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="96b39414-aede-4fe4-8740-dda3316240ca"
+                  name="attributeNames"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="5ff24c18-b904-46bc-8b6c-737a4ac14f3a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DFormatGenerator OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIEnumerable GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Logic%2Fbin%2FDebug%2FGRM.Logic.dll Namespace%3DGRM.Logic.DataSetProcessing.Entities Type%3DItem)]))%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))]) ParameterIdentifier%3DattributeNames"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="60c64ae7-fe94-4347-b5ea-ce00001a8400"
+                      LastKnownName="IDictionary&lt;Int32‎, String‎&gt;"
+                      LastKnownLocation="Package10_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="34242fe0-580e-40c4-89e1-53d8312b7820"
+            name="GetAttributeName"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e6ec40dc-c3b7-463f-b13c-203f71e59e09"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DGetAttributeName OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="23185ae9-3739-45fd-b273-bf98eb7241b9"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b3e68103-9b27-4de7-af8d-7fb9618c8ae0">
+                    <propertyInstance
+                      Id="0adae2af-5121-4ce8-a5a5-1745bda51505"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c58b4f52-3e55-42f1-acc4-a284016d5dd3">
+                    <propertyInstance
+                      Id="71aa5bc9-acd2-4aad-a61e-dee35468b408"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="20be3b30-4a66-42dc-8bdb-7a413ede530a">
+                    <propertyInstance
+                      Id="423d71ff-3271-4fa0-8724-3001584e5d30"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="49ba0147-d02b-4b6a-bb58-928108206016">
+                    <propertyInstance
+                      Id="e1068b53-cc17-4b42-becf-6b4cbafdd85e"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aa98baf6-d14f-47ce-84b9-e72cd3724600">
+                    <propertyInstance
+                      Id="c5d30235-7031-4dfe-9fd1-4031f7c48952"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4727c568-a45e-41fc-ae86-97a5b5275f12">
+                    <propertyInstance
+                      Id="883a0b14-f659-4072-a7a6-67dc58baf039"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eec635b0-80f3-400a-978b-f10ea6351342"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8d8d2118-fb3f-4630-aafc-39756b03614a"
+                  name="attributeId"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b9ae7cae-113d-408e-8a62-34e6cb02c85a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DGetAttributeName OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))]) ParameterIdentifier%3DattributeId"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="GRM.Logic.Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8bc0f2a7-d555-41db-877c-802e12a56e71"
+                  name="attributeNames"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="9c748293-b075-416c-a74f-f32817d6671e"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D(Name%3DGetAttributeName OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem.Collections.Generic Type%3D(Name%3DIDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DInt32)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FWindows%2FMicrosoft.NET%2FFramework%2Fv2.0.50727%2Fmscorlib.dll Namespace%3DSystem Type%3DString)]))]) ParameterIdentifier%3DattributeNames"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="60c64ae7-fe94-4347-b5ea-ce00001a8400"
+                      LastKnownName="IDictionary&lt;Int32‎, String‎&gt;"
+                      LastKnownLocation="Package10_0126.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="31bf0d3e-2fc0-45c7-b44f-b6dec3b95f5e"
+            name="TextResultWriter"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="dbe0f6dd-67a9-457d-98a7-d7e49178e3fc"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2Fdev%2FSemesterIX%2FMED%2FProject%2FImplementation%2FGRM%2FGRM.Presentation%2Fbin%2FDebug%2FGRM.Presentation.exe Namespace%3DGRM.Presentation.ResultWriting Type%3DTextResultWriter Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3d0f8793-56a3-4232-9b91-407806ec0913"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8e88ff6b-262e-4d01-910f-2ba7ff39a7b6">
+                    <propertyInstance
+                      Id="8585cd58-232b-4754-a884-4fa861b9cb9f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4c88494d-61f1-4b5a-a804-b02875f3f1b7">
+                    <propertyInstance
+                      Id="04db70ab-eab8-48d6-a57c-9b7a0d50ff57"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="11d867c4-a247-4e39-85f3-36d5385beae8">
+                    <propertyInstance
+                      Id="74a5c7e7-85ab-4dee-a70d-00df8d7ca913"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a0eafe7f-9cd1-4dda-bbc4-9d20cdbe3680">
+                    <propertyInstance
+                      Id="7eadc497-4bfe-47d1-ba0b-cfd37c8f0dbc"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="05ced506-5603-4bdb-9722-5cb570a465cf">
+                    <propertyInstance
+                      Id="022fe1cd-9f2c-41af-bd1a-639d01c5990a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e2109892-20ac-4d96-ae12-7f51d78549b7">
+                    <propertyInstance
+                      Id="37b8cbf0-1372-452c-8bd7-47050295947b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

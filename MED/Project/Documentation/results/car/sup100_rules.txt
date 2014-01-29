@@ -1,0 +1,9 @@
+====================
+acceptibility: 'unacc':
+--------------------
+persons (2)
+safety (low)
+buying (vhigh), maint (vhigh)
+buying (vhigh), maint (high)
+buying (high), maint (vhigh)
+

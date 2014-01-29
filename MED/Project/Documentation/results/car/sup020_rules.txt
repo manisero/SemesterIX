@@ -1,0 +1,13 @@
+====================
+acceptibility: 'unacc':
+--------------------
+persons (2)
+safety (low)
+buying (vhigh), maint (vhigh)
+buying (vhigh), maint (high)
+buying (high), maint (vhigh)
+buying (vhigh), lug_boot (small), safety (med)
+maint (vhigh), lug_boot (small), safety (med)
+doors (2), persons (more), lug_boot (small)
+buying (high), lug_boot (small), safety (med)
+

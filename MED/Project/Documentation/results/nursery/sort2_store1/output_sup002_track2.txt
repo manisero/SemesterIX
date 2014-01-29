@@ -1,0 +1,22 @@
+Executing GRM for file 'datasets/nursey.data'
+The file is not expected to contain attribute names
+Decision attribute: 1
+Minimum support: 2
+Sorting strategy: 'Lexicographical'
+Transaction IDs storage strategy: 'DiffSets'
+Decision supergenerators handling strategy: 'InvertedLists'
+Performance tracking level: 'Steps'
+Output files will be saved to: 'results/nursey_sort2_store1/output_sup002_track1'
+
+GRM execution finished
+Lasted 00:00:01.1860653
+Steps details:
+1. Creating data set representation: 00:00:00.3112712
+2. Selecting frequent items: 00:00:00.0037740
+3. Sorting frequent items: 00:00:00.0039251
+4. Building GRM tree: 00:00:00.0439883
+5. Running GARM procedure: 00:00:00.8033334
+6. Building result: 00:00:00.0184888
+
+Text result saved to results/nursey_sort2_store1/output_sup002_track1_rules.txt
+CSV result saved to results/nursey_sort2_store1/output_sup002_track1_rules.csv
