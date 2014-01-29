@@ -5,6 +5,7 @@
 \usepackage{url}
 \usepackage{fullpage}
 \usepackage{titlesec}
+\usepackage{amsmath}
 
 \title{Test pierwszości Solovaya-Strassena. \\ \small{Projekt z przedmiotu PTKB.}}
 \author{Michał Aniserowicz, Jakub Turek}
@@ -15,6 +16,61 @@
 \maketitle
 
 \section{Opis zadania} \label{sec:task_desc}
-Celem projektu jest zaimplementowanie algorytmu...
+Celem projektu jest zaimplementowanie probabilistycznego testu pierwszości Solovaya-Strassena.
+
+\section{Teoria}
+Probabilistyczny test pierwszości Solovaya-Strassena został opracowany przez Roberta M. Solovaya i Volkera Strassena.
+Określa on, czy dana liczba jest liczbą złożoną czy prawdopodobnie pierwszą.
+
+Podstawową wykorzystywaną przez niego własnością jest wykazany przez Eulera fakt, że dla każdej liczby pierwszej $p$ i dowolnej liczby naturalnej $a$, zachodzi:
+
+$a^{(p-1)/2} \equiv \left(\frac{a}{p}\right) \pmod p$,
+
+gdzie $\left(\frac{a}{p}\right)$ jest symbolem Legendre'a.
+
+ \subsection{Symbol Legendre'a}
+ Symbol Legendre'a to funkcja $\left( \frac a p \right)$ zdefiniowana następująco:
+
+ $
+ \left( \frac a p \right) = 
+ \begin{cases}
+   0 & \mbox{jeśli $a$ jest wielokrotnością $p$} \\
+   1 & \mbox{jeśli istnieje takie $b$, że $b^2=a \mod p$} \\
+  -1 & \mbox{jeśli nie istnieje żadne $b$ takie że $b^2=a \mod p$}
+ \end{cases}
+ $,
+
+ gdzie $p$ jest liczbą pierwszą większą od 2.
+ 
+ \paragraph{}
+ W teście Solovaya-Strassena użyto uogólnienia symbolu Legendre'a - symbolu Jacobiego.
+
+ \subsection{Symbol Jacobiego}
+ Symbol Jacobiego jest uogólnieniem symbolu Legendre'a na liczby nieparzyste (niekoniecznie pierwsze).
+ Jeśli rozkład liczby $n$ na czynniki pierwsze to:
+ 
+ $p_1^{c_1}p_2^{c_2}\cdots p_k^{c_k}$,
+ 
+ to symbol Jacobiego jest równy przez symbol Legendre'a:
+ 
+ $\left( \frac a n \right) = \left( \frac a {p_1} \right)^{c_1} \left( \frac a {p_2} \right)^{c_2} \cdots \left( \frac a {p_k} \right)^{c_k}$.
+
+ Można zauważyć, że jeśli $n$ jest pierwsze, symbol Jacobiego jest równy symbolowi Legendre'a.
+ 
+ 
+ \subsection{Kroki algorytmu}
+ 
+
+
+\section{Implementacja}
+\begin{itemize}
+ \item Język programowania: c\#, platforma  .NET.
+\end{itemize}
+
+
+
+\section{Testowanie}
+
+
 
 \end{document}
