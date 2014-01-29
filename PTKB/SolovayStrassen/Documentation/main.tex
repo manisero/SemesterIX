@@ -1,0 +1,120 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[MeX]{polski}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{fullpage}
+\usepackage{titlesec}
+\usepackage{amsmath}
+
+\title{Test pierwszości Solovaya-Strassena. \\ \small{Projekt z przedmiotu PTKB.}}
+\author{Michał Aniserowicz}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Opis zadania} \label{sec:task_desc}
+Celem projektu jest zaimplementowanie probabilistycznego testu pierwszości Solovaya-Strassena.
+
+\section{Teoria}
+Probabilistyczny test pierwszości Solovaya-Strassena został opracowany przez Roberta M. Solovaya i Volkera Strassena.
+Określa on, czy dana liczba jest liczbą złożoną czy prawdopodobnie pierwszą.
+
+Podstawową wykorzystywaną przez niego własnością jest wykazany przez Eulera fakt, że dla każdej liczby pierwszej $p$ i dowolnej liczby naturalnej $a$, zachodzi:
+
+$a^{(p-1)/2} \equiv \left(\frac{a}{p}\right) \pmod p$,
+
+gdzie $\left(\frac{a}{p}\right)$ jest symbolem Legendre'a.
+
+ \subsection{Symbol Legendre'a}
+ Symbol Legendre'a to funkcja $\left( \frac a p \right)$ zdefiniowana następująco:
+
+ $
+ \left( \frac a p \right) = 
+ \begin{cases}
+   0 & \mbox{, jeśli $a \equiv 0 \pmod p$} \\
+   1 & \mbox{, jeśli istnieje takie $b$, że $b^2=a \mod p$} \\
+  -1 & \mbox{, jeśli nie istnieje żadne $b$ takie że $b^2=a \mod p$}
+ \end{cases}
+ $,
+
+ gdzie $p$ jest liczbą pierwszą większą od 2.
+ 
+ \paragraph{}
+ W teście Solovaya-Strassena użyto uogólnienia symbolu Legendre'a - symbolu Jacobiego.
+
+ \subsection{Symbol Jacobiego} \label{sec:jacobi}
+ Symbol Jacobiego jest uogólnieniem symbolu Legendre'a na liczby nieparzyste (niekoniecznie pierwsze).
+ Jeśli rozkład liczby $n$ na czynniki pierwsze to:
+ 
+ $p_1^{c_1}p_2^{c_2}\cdots p_k^{c_k}$,
+ 
+ to symbol Jacobiego jest równy przez symbol Legendre'a:
+ 
+ $\left( \frac a n \right) = \left( \frac a {p_1} \right)^{c_1} \left( \frac a {p_2} \right)^{c_2} \cdots \left( \frac a {p_k} \right)^{c_k}$.
+
+ Można zauważyć, że jeśli $n$ jest pierwsze, symbol Jacobiego jest równy symbolowi Legendre'a.
+ 
+ 
+ \subsection{Algorytm}
+ Sprawdzenie, czy dana liczba naturalna $n$ jest pierwsza, odbywa się poprzez sprawdzenie, czy dla różnych wartości liczby naturalnej $a$ ($1 < a < n$) spełniona jest kongruencja:
+ 
+ $\left(\frac{a}{n}\right) \equiv a^{(n-1)/2} \pmod n$.
+ 
+ Jeśli dla którejkolwiek wartości $a$ powyższa kongruencja nie jest spełniona, to liczba $p$ jest liczbą złożoną - wartość symbolu Jacobiego dla pary liczb $(n, a)$  nie jest równa wartości symbolu Legendre'a dla tej pary (patrz Sekcja~\ref{sec:jacobi}).
+ 
+ Kroki algorytmu są następujące:
+ 
+ \begin{enumerate}
+  \item Pobierz parametry wejściowe: $n$ i $k$.
+  \item Powtórz $k$ razy:
+   \begin{enumerate}
+    \item Wybierz losowo $a$ ($1 < a < n$);
+    \item Oblicz $x \leftarrow \left(\frac{a}{n}\right)$;
+    \item Jeśli $x = 0$ lub $x \ne a^{(n-1)/2} \pmod n$, zwróć: \verb+złożona+.
+   \end{enumerate}
+  \item Zwróć: \verb+prawdopodobnie pierwsza+.
+ \end{enumerate}
+ 
+ Prawdopodobieństwo zwrócenia błędnego wyniku (tzn. zwrócenia \verb+prawdopodobnie pierwsza+ dla liczby złożonej) wynosi $2^{-k}$.
+
+
+\section{Implementacja}
+Aplikację implementującą test Solovaya-Strassena napisano w języku C\# (platforma .NET).
+Kod źródłowy programu wraz komentarzami zawiera Załącznik~\ref{apx:source}.
+
+Aplikacja została podzielona na następujące moduły:
+\begin{itemize}
+ \item \verb+SolovayStrassen.Logic+ - implementuje algorytm. Zawiera klasy: \verb+SolovayStrassenAlgorithm+ i \verb+JacobiAlgorithm+.
+ \item \verb+SolovayStrassen.Logic.Tests+ - zawiera testy jednostkowe algorytmu (klasy: \verb+PrimeNumberTests+ i \verb+ComplexNumberTests+).
+ \item \verb+SolovayStrassen.Console+ - punkt wejścia programu. Pobiera parametry wiersza poleceń ($n$ i $k$) i wywołuje algorytm.
+\end{itemize}
+
+Załącznik~\ref{apx:bin} zawiera pliki binarne programu i przykładowy skrypt uruchamiający.
+Przykładowa komenda uruchamiająca program:
+
+\begin{verbatim}
+SolovayStrassen 274876858367 1000
+\end{verbatim}
+
+
+\section{Testowanie}
+Aplikację przetestowano przy pomocy automatycznych testów jednostkowych.
+Duże liczby pierwsze zaczerpnięto z: \emph{http://en.wikipedia.org/wiki/List\_of\_prime\_numbers}.
+
+Wszystkie testy potwierdzają poprawność działania algorytmu.
+
+
+\section*{Załączniki}
+\appendix
+\titleformat*{\section}{\normalfont}
+
+\section{Katalog \emph{source/} - kod źródłowy aplikacji.} \label{apx:source}
+\section{Katalog \emph{app/} - pliki binarne aplikacji wraz z przykładowym skryptem uruchamiającym.} \label{apx:bin}
+
+\titleformat*{\section}{\Large\bfseries}
+
+
+\end{document}
