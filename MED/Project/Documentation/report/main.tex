@@ -131,8 +131,8 @@ Na wyjście aplikacji składają się trzy rodzaje danych:
 
 \begin{itemize}
  \item komunikaty diagnostyczne wypisywane na standardowe wyjście,
- \item plik zawierący znalezione reguły decyzyjne w formacie czytelnym dla człowieka,
- \item plik zawierący znalezione reguły decyzyjne w formacie przystosowanym do dalszej obróbki.
+ \item plik zawierający znalezione reguły decyzyjne w formacie czytelnym dla człowieka,
+ \item plik zawierający znalezione reguły decyzyjne w formacie przystosowanym do dalszej obróbki.
 \end{itemize}
 
  \subsection{Plik czytelny dla człowieka} \label{sec:output:human}
@@ -258,7 +258,7 @@ Aplikacja składa się z następujących modułów:
 
  \subsection{Moduł GRM.Presentation}
  Moduł \verb+GRM.Presentation+ odpowiada za komunikację z użytkownikiem aplikacji i zlecenie wykonania algorytmu GRM.
- Jego diagram klas przedstawia Rysunek~\ref{fig:diag:log:class}.
+ Jego diagram klas przedstawia Rysunek~\ref{fig:diag:pres:class}.
  
  \begin{figure}[!ht]
   \begin{center}
@@ -374,10 +374,10 @@ Najważniejsze aspekty implementacyjne opisywanej aplikacji:\footnote{Pełny kod
 
  
  \subsection{Strategie przechowywania generatorów decyzji} \label{sec:impl:supgen}
- Zaimplementowano następujące strategie przechowywania generatorów decyzji, a także wykrywania i usuwania ich nadgeneratorów:
+ Zaimplementowano następujące strategie przechowywania generatorów decyzji, a także wykrywania i~usuwania ich nadgeneratorów:
  
  \begin{itemize}
-  \item \verb+InvertedLists+ (klasa \verb+InvertedListsDecisionGeneratorsCollector+) - wykorzystuje koncepcję indeksu odwróconego\footnote{Patrz http://en.wikipedia.org/wiki/Inverted\_index.}, gdzie kluczem indeksu jest element, a wartością - lista generatorów, w których ten element występuje,
+  \item \verb+InvertedLists+ (klasa \verb+InvertedListsDecisionGeneratorsCollector+) - wykorzystuje koncepcję indeksu odwróconego\footnote{Patrz http://en.wikipedia.org/wiki/Inverted\_index.}, gdzie kluczem indeksu jest element, a wartością - lista generatorów, w~których ten element występuje,
   \item \verb+BruteForce+ (klasa \verb+BruteForceDecisionGeneratorsCollector+) - przechowuje jedynie listę generatorów, nadgeneratory wykrywa porównując każdy element danego generatora z każdym elementem jego potencjalnego nadgeneratora.
  \end{itemize}
  
@@ -480,14 +480,14 @@ W celu analizy wydajności programu i wyznaczenia najlepszych strategii wykonywa
 
  \subsection{Wybór najlepszej strategii przechowywania identyfikatorów transakcji}
  Jak pokazują wyniki pomiarów (patrz Załącznik~\ref{apx:results}), strategia \verb+TIDSets+ jest w każdym przypadku lepsza od strategii \verb+DiffSets+.
- Powodem takiego stanu rzeczy jest najprawdopodobniej duży narzut obliczeniowy dodatkowych operacji związanych z utrzymaniem słownika \emph{decyzja} $\rightarrow$ \emph{zbiór identyfikatorów transakcji} (przykładowo, wykrycie zależności pomiędzy węzłami drzewa DZ wykonywane przez procedurę \emph{GARM-Property} jest bardziej skomplikowane dla startegii \verb+DiffSets+, niż \verb+TIDSets+).
+ Powodem takiego stanu rzeczy jest najprawdopodobniej duży narzut obliczeniowy dodatkowych operacji związanych z utrzymaniem słownika \emph{decyzja} $\rightarrow$ \emph{zbiór identyfikatorów transakcji} (przykładowo, wykrycie zależności pomiędzy węzłami drzewa DZ wykonywane przez procedurę \emph{GARM-Property} jest bardziej skomplikowane dla strategii \verb+DiffSets+, niż \verb+TIDSets+).
  
  
  \subsection{Wybór najlepszej strategii sortowania elementów}
  Jak pokazują wyniki pomiarów (patrz Załącznik~\ref{apx:results}), dla małego zbioru danych (\emph{car}) strategia sortowania ma niewielki wpływ na wydajność algorytmu.
- Jednak dla pozostałych zbiorów, szczególnie w przypadkach skutkującym znalezieniem dużej liczby reguł decyzyjnych, wyraźnie najlepsza jest strategia \verb+AscendingSupport+.
+ Jednak dla pozostałych zbiorów, szczególnie w~przypadkach skutkującym znalezieniem dużej liczby reguł decyzyjnych, wyraźnie najlepsza jest strategia \verb+AscendingSupport+.
  
- Powodem takiego stanu rzeczy jest niższy koszt operacji na zbiorach identyfikatorów transakcji niż w przypadku strategii \verb+DescendingSupport+.
+ Powodem takiego stanu rzeczy jest niższy koszt operacji na zbiorach identyfikatorów transakcji niż w~przypadku strategii \verb+DescendingSupport+.
  Przykładem jest operacja wyznaczenia różnicy posortowanych zbiorów, która jest mniej wydajna, jeśli liczność ``lewego'' zbioru jest większa niż liczność zbioru ``prawego'' (częściej występuje wtedy potrzeba uwzględnienia w wyniku - w osobnej pętli - tych elementów zbioru ``lewego'', które są większe od największego elementu zbioru ``prawego'').
  
  Strategia \verb+Lexicographical+ uplasowała się pomiędzy dwiema pozostałymi - wzajemnie przeciwstawnymi - strategiami.
