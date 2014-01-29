@@ -152,7 +152,7 @@ Attr B (b), Attr D (d)
 
  
  \subsection{Plik przystosowany do dalszej obróbki} \label{sec:output:csv}
- Plik w formacie czytelnym dla człowieka zawiera listę generatrów wraz generowanymi przez nie decyzjami.
+ Plik w formacie czytelnym dla człowieka zawiera listę generatorów wraz generowanymi przez nie decyzjami.
  Pojedynczy generator jest przedstawiony jako lista wartości oddzielonych średnikami\footnote{Patrz http://pl.wikipedia.org/wiki/CSV\_(format\_pliku). W omawianej aplikacji zamiast przecinków użyto średników, aby plik wyjściowy mógł być odczytany przez program Microsoft Excel.}, z uwzględnieniem atrybutów niewystępujących w generatorze.
  Przykład:
  
@@ -304,7 +304,7 @@ Aplikacja składa się z następujących modułów:
 
 
 \section{Implementacja} \label{sec:impl}
-Najważniejsze aspekty implementacyjne opisywanej aplikacji:
+Najważniejsze aspekty implementacyjne opisywanej aplikacji:\footnote{Pełny kod źródłowy programu zawiera Załącznik~\ref{apx:source}.}
 
  \subsection{Kroki algorytmu}
  Działanie modułu \verb+GRM.Logic+ przebiega w następujących krokach:\\
@@ -473,24 +473,44 @@ W celu analizy wydajności programu i wyznaczenia najlepszych strategii wykonywa
  Zgodnie z oczekiwaniami, użycie strategii \verb+InvertedLists+ zaskutkowało znaczącym wzrostem wydajności.
  Badanie pokazało, jak ważna jest optymalizacja kroków związanych z przechowywaniem generatorów decyzji - używając startegii \verb+BruteForce+, krok ten może zająć nawet dwie trzecie ogólnego czasu wykonania programu.
  
- W dalszych badaniach stosowano jednie strategię \verb+InvertedLists+.
+ \paragraph{}
+ W dalszych badaniach stosowano jedynie strategię \verb+InvertedLists+.
+ Ich wyniki zawiera Załącznik~\ref{apx:results}.
  
 
  \subsection{Wybór najlepszej strategii przechowywania identyfikatorów transakcji}
- - ze storage TIDSets
- - wykresy, wykresy
- - Załącznik~\ref{apx:results}
+ Jak pokazują wyniki pomiarów (patrz Załącznik~\ref{apx:results}), strategia \verb+TIDSets+ jest w każdym przypadku lepsza od strategii \verb+DiffSets+.
+ Powodem takiego stanu rzeczy jest najprawdopodobniej duży narzut obliczeniowy dodatkowych operacji związanych z utrzymaniem słownika \emph{decyzja} $\rightarrow$ \emph{zbiór identyfikatorów transakcji} (przykładowo, wykrycie zależności pomiędzy węzłami drzewa DZ wykonywane przez procedurę \emph{GARM-Property} jest bardziej skomplikowane dla startegii \verb+DiffSets+, niż \verb+TIDSets+).
  
  
  \subsection{Wybór najlepszej strategii sortowania elementów}
- - ze sortowanie AscendingSupport
- - wykresy, wykresy
- - Załącznik~\ref{apx:results}
+ Jak pokazują wyniki pomiarów (patrz Załącznik~\ref{apx:results}), dla małego zbioru danych (\emph{car}) strategia sortowania ma niewielki wpływ na wydajność algorytmu.
+ Jednak dla pozostałych zbiorów, szczególnie w przypadkach skutkującym znalezieniem dużej liczby reguł decyzyjnych, wyraźnie najlepsza jest strategia \verb+AscendingSupport+.
+ 
+ Powodem takiego stanu rzeczy jest niższy koszt operacji na zbiorach identyfikatorów transakcji niż w przypadku strategii \verb+DescendingSupport+.
+ Przykładem jest operacja wyznaczenia różnicy posortowanych zbiorów, która jest mniej wydajna, jeśli liczność ``lewego'' zbioru jest większa niż liczność zbioru ``prawego'' (częściej występuje wtedy potrzeba uwzględnienia w wyniku - w osobnej pętli - tych elementów zbioru ``lewego'', które są większe od największego elementu zbioru ``prawego'').
+ 
+ Strategia \verb+Lexicographical+ uplasowała się pomiędzy dwiema pozostałymi - wzajemnie przeciwstawnymi - strategiami.
+ Fakt ten wydaje się zrozumiały - kolejność występowania atrybutów i ich wartości nie powinna mieć decydującego wpływu na żaden z kroków algorytmu.
  
  
  \subsection{Wnioski}
- - ze dla duzej liczby atrybutow malo wydajny
+ Zestaw strategii zapewniający najlepszą wydajność algorytmu, to:
+ 
+ \begin{itemize}
+  \item strategia sortowania: \verb+AscendingSupport+,
+  \item strategia przechowywania identyfikatorów transakcji: \verb+TIDSets+,
+  \item strategia przechowywania generatorów decyzji: \verb+InvertedLists+.
+ \end{itemize}
+ 
+ Właśnie te strategie są używane domyślnie przez aplikację.
 
+ Niezależnie od wybranego zestawu strategii, wydajność algorytmu spada wraz ze wzrostem liczby atrybutów transakcji (patrz wyniki dla zbiorów \emph{mushroom} i \emph{molecular}).
+ W przypadku zbioru \emph{molecular}, nie udało się wręcz przeprowadzić badania dla progu wsparcia poniżej 50 - nawet kilkugodzinne działanie aplikacji nie kończyło się osiągnięciem wyniku.
+ 
+ Ewentualne dalsze zabiegi optymalizacyjne powinny więc być skupione na wydajności przetwarzania zbiorów danych o dużej liczbie unikalnych elementów (tzn. dużej liczbie wielowartościowych atrybutów).
+ 
+ 
 
 
 \section{Przykład działania aplikacji} \label{sec:example}
@@ -626,10 +646,10 @@ wnioski z realizacji projektu
 \appendix
 \titleformat*{\section}{\normalfont}
 
-\section{app/ - pliki binarne aplikacji wraz z przykładowym zbiorem danych i skryptem uruchamiającym aplikację.} \label{apx:bin}
-\section{source/ - kod źródłowy aplikacji.} \label{apx:source}
-\section{diagrams/ - diagramy klas i zależności modułów aplikacji.} \label{apx:diagrams}
-\section{results/ - zestawienie wyników badań wydajności programu.} \label{apx:results}
+\section{katalog \emph{app/} - pliki binarne aplikacji wraz z przykładowym zbiorem danych i skryptem uruchamiającym aplikację.} \label{apx:bin}
+\section{katalog \emph{source/} - kod źródłowy aplikacji.} \label{apx:source}
+\section{katalog \emph{diagrams/} - diagramy klas i zależności modułów aplikacji.} \label{apx:diagrams}
+\section{katalog \emph{results/} - zestawienie wyników badań wydajności programu.} \label{apx:results}
 
 \titleformat*{\section}{\Large\bfseries}
 
