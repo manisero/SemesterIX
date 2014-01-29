@@ -34,9 +34,9 @@ gdzie $\left(\frac{a}{p}\right)$ jest symbolem Legendre'a.
  $
  \left( \frac a p \right) = 
  \begin{cases}
-   0 & \mbox{jeśli $a$ jest wielokrotnością $p$} \\
-   1 & \mbox{jeśli istnieje takie $b$, że $b^2=a \mod p$} \\
-  -1 & \mbox{jeśli nie istnieje żadne $b$ takie że $b^2=a \mod p$}
+   0 & \mbox{, jeśli $a \equiv 0 \pmod p$} \\
+   1 & \mbox{, jeśli istnieje takie $b$, że $b^2=a \mod p$} \\
+  -1 & \mbox{, jeśli nie istnieje żadne $b$ takie że $b^2=a \mod p$}
  \end{cases}
  $,
 
@@ -45,7 +45,7 @@ gdzie $\left(\frac{a}{p}\right)$ jest symbolem Legendre'a.
  \paragraph{}
  W teście Solovaya-Strassena użyto uogólnienia symbolu Legendre'a - symbolu Jacobiego.
 
- \subsection{Symbol Jacobiego}
+ \subsection{Symbol Jacobiego} \label{sec:jacobi}
  Symbol Jacobiego jest uogólnieniem symbolu Legendre'a na liczby nieparzyste (niekoniecznie pierwsze).
  Jeśli rozkład liczby $n$ na czynniki pierwsze to:
  
@@ -58,13 +58,30 @@ gdzie $\left(\frac{a}{p}\right)$ jest symbolem Legendre'a.
  Można zauważyć, że jeśli $n$ jest pierwsze, symbol Jacobiego jest równy symbolowi Legendre'a.
  
  
- \subsection{Kroki algorytmu}
+ \subsection{Algorytm}
+ Sprawdzenie, czy dana liczba naturalna $n$ jest pierwsza, odbywa się poprzez sprawdzenie, czy dla różnych wartości liczby naturalnej $a$ ($1 < a < n$) spełniona jest kongruencja:
+ 
+ $\left(\frac{a}{n}\right) \equiv a^{(n-1)/2} \pmod n$.
+ 
+ Jeśli dla którejkolwiek wartości $a$ powyższa kongruencja nie jest spełniona, to liczba $p$ jest liczbą złożoną - wartość symbolu Jacobiego dla pary liczb $(n, a)$  nie jest równa wartości symbolu Legendre'a dla tej pary (patrz Sekcja~\ref{sec:jacobi}).
+ 
+ Kroki algorytmu są następujące:
+ 
+ \begin{enumerate}
+  \item Powtórz $k$ razy:
+   \begin{enumerate}
+    \item Wybierz losowo $a$ ($1 < a < n$);
+    \item Oblicz $x \leftarrow \left(\frac{a}{n}\right)$;
+    \item Jeśli $x = 0$ lub $x \ne a^{(n-1)/2} \pmod n$, zwróć: \verb+złożona+.
+   \end{enumerate}
+  \item Zwróć: \verb+prawdopodobnie pierwsza+.
+ \end{enumerate}
  
 
 
 \section{Implementacja}
 \begin{itemize}
- \item Język programowania: c\#, platforma  .NET.
+ \item Język programowania: C\#, platforma  .NET.
 \end{itemize}
 
 
