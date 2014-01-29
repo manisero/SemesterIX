@@ -509,6 +509,7 @@ W celu analizy wydajności programu i wyznaczenia najlepszych strategii wykonywa
  W przypadku zbioru \emph{molecular}, nie udało się wręcz przeprowadzić badania dla progu wsparcia poniżej 50 - nawet kilkugodzinne działanie aplikacji nie kończyło się osiągnięciem wyniku.
  
  Ewentualne dalsze zabiegi optymalizacyjne powinny więc być skupione na wydajności przetwarzania zbiorów danych o dużej liczbie unikalnych elementów (tzn. dużej liczbie wielowartościowych atrybutów).
+ Ogólna wydajność aplikacji jest jednak w pełni zadowalająca.
  
  
 
@@ -634,11 +635,10 @@ Przydatne informacje:
 
 
 \section{Podsumowanie}
-wnioski z realizacji projektu
-- ze trzeba by poprawic wykrywanie supergeneratorow
-- ze sortowanie ma duzy wplyw
-- ze ogolnie dziala spoczko (nursery)
-- wchuj kodu taki algorytm wymaga (jesli ma byc elastyczny)
+Podsumowując, wynikiem projektu jest wydajna i elastyczna aplikacja poprawnie wykrywająca reguły decyzyjne o minimalnych poprzednikach, które są częstymi generatorami.
+Wydajność potwierdzają załączone wyniki testów, elastyczność - przejrzystość diagramów zależności i wymienność kluczowych zachowań, a poprawność - automatyczne testy jednostkowe i integracyjne.
+
+Jedynym znaczącym defektem aplikacji jest jej wydajność dla zbiorów danych o dużej liczbie wielowartościowych atrybutów.
 
 
 
